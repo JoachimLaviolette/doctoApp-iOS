@@ -14,6 +14,11 @@
 		86567361238D2E1B00BC38D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8656735F238D2E1B00BC38D8 /* LaunchScreen.storyboard */; };
 		8656736C238D2E1C00BC38D8 /* DoctoAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8656736B238D2E1C00BC38D8 /* DoctoAppTests.swift */; };
 		86567377238D2E1C00BC38D8 /* DoctoAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86567376238D2E1C00BC38D8 /* DoctoAppUITests.swift */; };
+		869CC030238D7F0D00EA27C8 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869CC02F238D7F0D00EA27C8 /* ColorManager.swift */; };
+		869CC039238D884600EA27C8 /* roboto_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 869CC036238D884600EA27C8 /* roboto_regular.ttf */; };
+		869CC03A238D884600EA27C8 /* roboto_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 869CC037238D884600EA27C8 /* roboto_medium.ttf */; };
+		869CC03B238D884600EA27C8 /* roboto_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 869CC038238D884600EA27C8 /* roboto_bold.ttf */; };
+		869CC03D238D887F00EA27C8 /* boogaloo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 869CC03C238D887E00EA27C8 /* boogaloo.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +52,11 @@
 		86567372238D2E1C00BC38D8 /* DoctoAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DoctoAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		86567376238D2E1C00BC38D8 /* DoctoAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctoAppUITests.swift; sourceTree = "<group>"; };
 		86567378238D2E1C00BC38D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		869CC02F238D7F0D00EA27C8 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ColorManager.swift; path = Const/ColorManager.swift; sourceTree = "<group>"; };
+		869CC036238D884600EA27C8 /* roboto_regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = roboto_regular.ttf; sourceTree = "<group>"; };
+		869CC037238D884600EA27C8 /* roboto_medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = roboto_medium.ttf; sourceTree = "<group>"; };
+		869CC038238D884600EA27C8 /* roboto_bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = roboto_bold.ttf; sourceTree = "<group>"; };
+		869CC03C238D887E00EA27C8 /* boogaloo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = boogaloo.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,12 +107,14 @@
 		86567355238D2E1B00BC38D8 /* DoctoApp */ = {
 			isa = PBXGroup;
 			children = (
+				869CC031238D81AB00EA27C8 /* Fonts */,
 				86567356238D2E1B00BC38D8 /* AppDelegate.swift */,
 				86567358238D2E1B00BC38D8 /* ViewController.swift */,
 				8656735A238D2E1B00BC38D8 /* Main.storyboard */,
 				8656735D238D2E1B00BC38D8 /* Assets.xcassets */,
 				8656735F238D2E1B00BC38D8 /* LaunchScreen.storyboard */,
 				86567362238D2E1B00BC38D8 /* Info.plist */,
+				869CC02F238D7F0D00EA27C8 /* ColorManager.swift */,
 			);
 			path = DoctoApp;
 			sourceTree = "<group>";
@@ -123,6 +135,17 @@
 				86567378238D2E1C00BC38D8 /* Info.plist */,
 			);
 			path = DoctoAppUITests;
+			sourceTree = "<group>";
+		};
+		869CC031238D81AB00EA27C8 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				869CC03C238D887E00EA27C8 /* boogaloo.ttf */,
+				869CC038238D884600EA27C8 /* roboto_bold.ttf */,
+				869CC037238D884600EA27C8 /* roboto_medium.ttf */,
+				869CC036238D884600EA27C8 /* roboto_regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,7 +252,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				869CC039238D884600EA27C8 /* roboto_regular.ttf in Resources */,
 				86567361238D2E1B00BC38D8 /* LaunchScreen.storyboard in Resources */,
+				869CC03D238D887F00EA27C8 /* boogaloo.ttf in Resources */,
+				869CC03B238D884600EA27C8 /* roboto_bold.ttf in Resources */,
+				869CC03A238D884600EA27C8 /* roboto_medium.ttf in Resources */,
 				8656735E238D2E1B00BC38D8 /* Assets.xcassets in Resources */,
 				8656735C238D2E1B00BC38D8 /* Main.storyboard in Resources */,
 			);
@@ -256,6 +283,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				869CC030238D7F0D00EA27C8 /* ColorManager.swift in Sources */,
 				86567359238D2E1B00BC38D8 /* ViewController.swift in Sources */,
 				86567357238D2E1B00BC38D8 /* AppDelegate.swift in Sources */,
 			);
