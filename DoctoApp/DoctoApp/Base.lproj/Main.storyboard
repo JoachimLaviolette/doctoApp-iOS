@@ -17,109 +17,125 @@
         <array key="roboto_bold.ttf">
             <string>Roboto-Black</string>
         </array>
+        <array key="roboto_medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
         <array key="roboto_regular.ttf">
             <string>Roboto-Regular</string>
         </array>
     </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--HomeVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="DoctoApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" userLabel="HomeVC" customClass="ViewController" customModule="DoctoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Gxk-Yd-x2F">
-                                <rect key="frame" x="0.0" y="20" width="375" height="241"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uey-54-ISs">
+                                <rect key="frame" x="0.0" y="30" width="355" height="35"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QW8-fK-2BP">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a4w-cX-JaF">
-                                                <rect key="frame" x="0.0" y="0.0" width="325" height="56"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="DoctoApp" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tBY-7S-rwj">
-                                                        <rect key="frame" x="99" y="3" width="127" height="50"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <accessibility key="accessibilityConfiguration">
-                                                            <accessibilityTraits key="traits" staticText="YES" adjustable="YES"/>
-                                                        </accessibility>
-                                                        <fontDescription key="fontDescription" name="Boogaloo-Regular" family="Boogaloo" pointSize="36"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <accessibility key="accessibilityConfiguration">
-                                                    <accessibilityTraits key="traits" adjustable="YES"/>
-                                                </accessibility>
-                                            </view>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WsG-fm-Pcy">
-                                                <rect key="frame" x="325" y="0.0" width="50" height="56"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qKm-8M-MxE">
-                                                        <rect key="frame" x="11" y="14" width="28" height="29"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <state key="normal" image="ic_profile"/>
-                                                        <connections>
-                                                            <segue destination="7wN-8F-i2Q" kind="show" id="VWz-LN-tYp"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </view>
-                                        </subviews>
-                                    </stackView>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y0Z-NL-oYo">
-                                        <rect key="frame" x="0.0" y="56" width="375" height="129"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Book an appointment with a specialized doctor online" textAlignment="center" lineBreakMode="clip" numberOfLines="3" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dcd-0V-VH8">
-                                                <rect key="frame" x="48" y="71" width="279" height="50"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <accessibility key="accessibilityConfiguration">
-                                                    <accessibilityTraits key="traits" staticText="YES" adjustable="YES"/>
-                                                </accessibility>
-                                                <fontDescription key="fontDescription" name="Roboto-Black" family="Roboto" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <accessibility key="accessibilityConfiguration">
-                                            <accessibilityTraits key="traits" adjustable="YES"/>
-                                        </accessibility>
-                                    </view>
-                                    <searchBar opaque="NO" contentMode="redraw" ambiguous="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="56h-sc-raE">
-                                        <rect key="frame" x="0.0" y="185" width="375" height="56"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="barTintColor" red="0.51372549019607838" green="0.74901960784313726" blue="0.84313725490196079" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </searchBar>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DoctoApp" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6l-NK-dVH" userLabel="main_logo">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="I7W-Wf-nym"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Boogaloo-Regular" family="Boogaloo" pointSize="36"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Oe-Tf-m17" userLabel="main_login">
+                                        <rect key="frame" x="320" y="0.0" width="35" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="35" id="OPv-vm-OFh"/>
+                                            <constraint firstAttribute="height" constant="35" id="mRe-4z-Xxn"/>
+                                        </constraints>
+                                        <state key="normal" image="ic_profile"/>
+                                        <connections>
+                                            <segue destination="7wN-8F-i2Q" kind="show" id="M15-db-t1E"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="main_background" translatesAutoresizingMaskIntoConstraints="NO" id="D5P-SU-S5G">
-                                <rect key="frame" x="0.0" y="427" width="375" height="240"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Olx-O0-lH3">
+                                <rect key="frame" x="40" y="164" width="295" height="42.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Book an appointment with a specialized doctor online" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C29-5P-vXO" userLabel="main_caption">
+                                        <rect key="frame" x="0.0" y="0.0" width="295" height="42.5"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="18"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main_background" translatesAutoresizingMaskIntoConstraints="NO" id="D5P-SU-S5G" userLabel="home_picture">
+                                <rect key="frame" x="0.0" y="426" width="375" height="241"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="241" id="fDU-NO-Ok3"/>
+                                </constraints>
                             </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="RMW-kr-cq6">
+                                <rect key="frame" x="2" y="219" width="370" height="40"/>
+                                <subviews>
+                                    <searchBar contentMode="redraw" placeholder="Doctor, place, speciality..." translatesAutoresizingMaskIntoConstraints="NO" id="XRK-Io-kn3" userLabel="main_search_bar">
+                                        <rect key="frame" x="0.0" y="0.0" width="288" height="40"/>
+                                        <color key="backgroundColor" name="home_background_color"/>
+                                        <color key="barTintColor" name="home_background_color"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="w3H-gl-Y6j"/>
+                                        </connections>
+                                    </searchBar>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cWD-pY-D2a" userLabel="main_search_btn">
+                                        <rect key="frame" x="290" y="0.0" width="80" height="40"/>
+                                        <color key="backgroundColor" name="home_search_btn_background"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="RT3-oV-dKl"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Roboto-Black" family="Roboto" pointSize="16"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="SEARCH">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="6QF-H6-01h"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
-                        <color key="backgroundColor" name="main_background_color"/>
+                        <color key="backgroundColor" name="home_background_color"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="D5P-SU-S5G" secondAttribute="trailing" id="08f-eI-Va6"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RMW-kr-cq6" secondAttribute="trailing" constant="3" id="1qg-k9-J9V"/>
+                            <constraint firstItem="RMW-kr-cq6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="2" id="2nF-Ur-ElW"/>
+                            <constraint firstItem="Olx-O0-lH3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="47U-eS-HPD"/>
+                            <constraint firstItem="D5P-SU-S5G" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="70M-9T-N9a"/>
+                            <constraint firstItem="Uey-54-ISs" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="HaM-HS-Go9"/>
+                            <constraint firstItem="D5P-SU-S5G" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="JiB-gC-a0V"/>
+                            <constraint firstAttribute="trailing" secondItem="Olx-O0-lH3" secondAttribute="trailing" constant="40" id="WoA-5y-PzW"/>
+                            <constraint firstItem="Uey-54-ISs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Yfe-25-NaD"/>
+                            <constraint firstItem="RMW-kr-cq6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="dnJ-FU-QFm"/>
+                            <constraint firstItem="RMW-kr-cq6" firstAttribute="top" secondItem="Olx-O0-lH3" secondAttribute="bottom" constant="12.5" id="g5X-sn-Kcy"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Uey-54-ISs" secondAttribute="trailing" constant="20" id="x4R-t2-H3h"/>
+                            <constraint firstItem="Olx-O0-lH3" firstAttribute="top" secondItem="Uey-54-ISs" secondAttribute="bottom" constant="99" id="x8Y-f5-UdT"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="searchBar" destination="56h-sc-raE" id="ySM-Yv-F88"/>
+                        <outlet property="searchBar" destination="XRK-Io-kn3" id="fqv-cr-zXN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="133.59999999999999" y="133.5832083958021"/>
         </scene>
-        <!--View Controller-->
+        <!--LoginVC-->
         <scene sceneID="m9i-Ny-9Eu">
             <objects>
-                <viewController id="7wN-8F-i2Q" sceneMemberID="viewController">
+                <viewController id="7wN-8F-i2Q" userLabel="LoginVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="efr-SA-CNe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -258,6 +274,12 @@
     <resources>
         <image name="ic_profile" width="36" height="36"/>
         <image name="main_background" width="469" height="322"/>
+        <namedColor name="home_background_color">
+            <color red="0.51399999856948853" green="0.74900001287460327" blue="0.84299999475479126" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="home_search_btn_background">
+            <color red="1" green="0.45882352941176469" blue="0.035294117647058823" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="login_background_color">
             <color red="0.89399999380111694" green="0.89399999380111694" blue="0.89399999380111694" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -281,9 +303,6 @@
         </namedColor>
         <namedColor name="login_sucess_msg_content_color">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="main_background_color">
-            <color red="0.51399999856948853" green="0.74900001287460327" blue="0.84299999475479126" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

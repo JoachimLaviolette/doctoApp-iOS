@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     }
     
     private func Initialize() {
+        // Remove seach bar borders
         self.searchBar.backgroundImage = UIImage()
     }
 }
