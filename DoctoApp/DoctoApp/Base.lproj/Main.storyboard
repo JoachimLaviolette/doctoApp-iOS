@@ -140,135 +140,126 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Aw1-KB-bvn">
-                                <rect key="frame" x="0.0" y="20" width="376" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Aw1-KB-bvn">
+                                <rect key="frame" x="0.0" y="20" width="375" height="202.5"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uxE-65-vYm">
-                                        <rect key="frame" x="0.0" y="0.0" width="376" height="50"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Login and access your profile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="alz-Lo-8QS">
-                                                <rect key="frame" x="97" y="8" width="182" height="17"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <accessibility key="accessibilityConfiguration">
-                                                    <accessibilityTraits key="traits" staticText="YES" adjustable="YES"/>
-                                                </accessibility>
-                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
-                                                <color key="textColor" name="login_caption_color"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login and access your profile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="alz-Lo-8QS">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="16.5"/>
                                         <accessibility key="accessibilityConfiguration">
-                                            <accessibilityTraits key="traits" adjustable="YES"/>
+                                            <accessibilityTraits key="traits" staticText="YES" adjustable="YES"/>
                                         </accessibility>
-                                    </view>
-                                </subviews>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="dnz-rt-8Dv">
-                                <rect key="frame" x="0.0" y="59" width="376" height="100"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2nS-MT-wgc">
-                                        <rect key="frame" x="0.0" y="0.0" width="376" height="100"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                        <color key="textColor" name="login_caption_color"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6qs-BE-pLc">
+                                        <rect key="frame" x="0.0" y="16.5" width="375" height="186"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J6O-0n-tNx">
-                                                <rect key="frame" x="0.0" y="0.0" width="376" height="50"/>
+                                            <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rhi-AC-7yB">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="93"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Login and access your profile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xI6-Ng-li5">
-                                                        <rect key="frame" x="81" y="8" width="226" height="20"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <accessibility key="accessibilityConfiguration">
-                                                            <accessibilityTraits key="traits" staticText="YES" adjustable="YES"/>
-                                                        </accessibility>
-                                                        <fontDescription key="fontDescription" name="Roboto-Black" family="Roboto" pointSize="17"/>
-                                                        <color key="textColor" name="login_success_msg_title_color"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2nS-MT-wgc" userLabel="login_msg">
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="93"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connexion succeeded" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xI6-Ng-li5">
+                                                                <rect key="frame" x="10" y="13.5" width="355" height="20"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <accessibility key="accessibilityConfiguration">
+                                                                    <accessibilityTraits key="traits" staticText="YES" adjustable="YES"/>
+                                                                </accessibility>
+                                                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                                                <fontDescription key="fontDescription" name="Roboto-Black" family="Roboto" pointSize="17"/>
+                                                                <color key="textColor" name="login_success_msg_title_color"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are now connected. You can view your bookings and update your personnal information using the right sidebar" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4XP-G4-tq9">
+                                                                <rect key="frame" x="10" y="33.5" width="355" height="49.5"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <accessibility key="accessibilityConfiguration">
+                                                                    <accessibilityTraits key="traits" staticText="YES" adjustable="YES"/>
+                                                                </accessibility>
+                                                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                                                <color key="textColor" name="login_sucess_msg_content_color"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <edgeInsets key="layoutMargins" top="10" left="10" bottom="10" right="10"/>
+                                                    </stackView>
                                                 </subviews>
                                                 <color key="backgroundColor" name="login_success_msg_color"/>
-                                                <accessibility key="accessibilityConfiguration">
-                                                    <accessibilityTraits key="traits" adjustable="YES"/>
-                                                </accessibility>
+                                                <constraints>
+                                                    <constraint firstItem="2nS-MT-wgc" firstAttribute="top" secondItem="Rhi-AC-7yB" secondAttribute="top" id="8ni-eZ-thx"/>
+                                                    <constraint firstAttribute="bottom" secondItem="2nS-MT-wgc" secondAttribute="bottom" id="BSL-tC-ZRq"/>
+                                                    <constraint firstItem="2nS-MT-wgc" firstAttribute="leading" secondItem="Rhi-AC-7yB" secondAttribute="leading" id="enq-0d-EDV"/>
+                                                    <constraint firstAttribute="trailing" secondItem="2nS-MT-wgc" secondAttribute="trailing" id="fNC-6u-jpY"/>
+                                                </constraints>
+                                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                             </view>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TDq-Fy-8Vd">
-                                                <rect key="frame" x="0.0" y="50" width="376" height="50"/>
+                                            <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fsw-In-nbf">
+                                                <rect key="frame" x="0.0" y="93" width="375" height="93"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Login and access your profile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4XP-G4-tq9">
-                                                        <rect key="frame" x="97" y="8" width="182" height="17"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <accessibility key="accessibilityConfiguration">
-                                                            <accessibilityTraits key="traits" staticText="YES" adjustable="YES"/>
-                                                        </accessibility>
-                                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
-                                                        <color key="textColor" name="login_sucess_msg_content_color"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="oUa-Md-wOb" userLabel="login_delete_account_msg">
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="93"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account removal failed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDG-Yz-s77">
+                                                                <rect key="frame" x="10" y="10" width="355" height="40"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <accessibility key="accessibilityConfiguration">
+                                                                    <accessibilityTraits key="traits" staticText="YES" adjustable="YES"/>
+                                                                </accessibility>
+                                                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                                                <fontDescription key="fontDescription" name="Roboto-Black" family="Roboto" pointSize="17"/>
+                                                                <color key="textColor" name="login_success_msg_title_color"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="something went wrong when removing your account. Please contact the admin" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CdJ-pI-wT9">
+                                                                <rect key="frame" x="10" y="50" width="355" height="33"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <accessibility key="accessibilityConfiguration">
+                                                                    <accessibilityTraits key="traits" staticText="YES" adjustable="YES"/>
+                                                                </accessibility>
+                                                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                                                <color key="textColor" name="login_sucess_msg_content_color"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <edgeInsets key="layoutMargins" top="10" left="10" bottom="10" right="10"/>
+                                                    </stackView>
                                                 </subviews>
-                                                <color key="backgroundColor" name="login_success_msg_color"/>
-                                                <accessibility key="accessibilityConfiguration">
-                                                    <accessibilityTraits key="traits" adjustable="YES"/>
-                                                </accessibility>
+                                                <color key="backgroundColor" name="login_delete_account_message_color"/>
+                                                <constraints>
+                                                    <constraint firstItem="oUa-Md-wOb" firstAttribute="top" secondItem="fsw-In-nbf" secondAttribute="top" id="Kse-Fq-bki"/>
+                                                    <constraint firstAttribute="trailing" secondItem="oUa-Md-wOb" secondAttribute="trailing" id="iZX-FH-IdD"/>
+                                                    <constraint firstItem="oUa-Md-wOb" firstAttribute="leading" secondItem="fsw-In-nbf" secondAttribute="leading" id="naK-ie-WOz"/>
+                                                    <constraint firstAttribute="bottom" secondItem="oUa-Md-wOb" secondAttribute="bottom" id="uRa-Bo-scc"/>
+                                                </constraints>
+                                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" name="login_success_msg_color"/>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="tXn-Wv-gLD">
-                                <rect key="frame" x="0.0" y="167" width="376" height="100"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D0R-Up-EVe">
-                                        <rect key="frame" x="0.0" y="0.0" width="376" height="50"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Login and access your profile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EKb-G4-fMf">
-                                                <rect key="frame" x="81" y="8" width="226" height="20"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <accessibility key="accessibilityConfiguration">
-                                                    <accessibilityTraits key="traits" staticText="YES" adjustable="YES"/>
-                                                </accessibility>
-                                                <fontDescription key="fontDescription" name="Roboto-Black" family="Roboto" pointSize="17"/>
-                                                <color key="textColor" name="login_delete_account_msg_title_color"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" name="login_delete_account_message_color"/>
-                                        <accessibility key="accessibilityConfiguration">
-                                            <accessibilityTraits key="traits" adjustable="YES"/>
-                                        </accessibility>
-                                    </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="15j-BQ-bsv">
-                                        <rect key="frame" x="0.0" y="50" width="376" height="50"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Login and access your profile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ONa-jK-9Vy">
-                                                <rect key="frame" x="97" y="8" width="182" height="17"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <accessibility key="accessibilityConfiguration">
-                                                    <accessibilityTraits key="traits" staticText="YES" adjustable="YES"/>
-                                                </accessibility>
-                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
-                                                <color key="textColor" name="login_delete_account_msg_content_color"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" name="login_delete_account_message_color"/>
-                                        <accessibility key="accessibilityConfiguration">
-                                            <accessibilityTraits key="traits" adjustable="YES"/>
-                                        </accessibility>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" name="login_success_msg_color"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="alz-Lo-8QS" secondAttribute="trailing" id="Cdd-ZU-fZi"/>
+                                    <constraint firstItem="alz-Lo-8QS" firstAttribute="leading" secondItem="Aw1-KB-bvn" secondAttribute="leading" id="Jww-c0-MfB"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" name="login_background_color"/>
+                        <constraints>
+                            <constraint firstItem="Aw1-KB-bvn" firstAttribute="leading" secondItem="efr-SA-CNe" secondAttribute="leading" id="jwF-5k-bk5"/>
+                            <constraint firstItem="Aw1-KB-bvn" firstAttribute="trailing" secondItem="O2X-2b-fSb" secondAttribute="trailing" id="oc3-Sx-cgu"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="O2X-2b-fSb"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tEM-aA-BwZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1000.8" y="-36.431784107946029"/>
+            <point key="canvasLocation" x="2234" y="-145"/>
         </scene>
     </scenes>
     <resources>
@@ -288,12 +279,6 @@
         </namedColor>
         <namedColor name="login_delete_account_message_color">
             <color red="0.74509803921568629" green="0.29019607843137257" blue="0.29019607843137257" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="login_delete_account_msg_content_color">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="login_delete_account_msg_title_color">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="login_success_msg_color">
             <color red="0.093999996781349182" green="0.58799999952316284" blue="0.3529999852180481" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
