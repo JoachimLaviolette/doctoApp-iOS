@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		86158C49239EBBF8007E5D5B /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86158C48239EBBF8007E5D5B /* LoginVC.swift */; };
+		86158C4B239ED13C007E5D5B /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86158C4A239ED13C007E5D5B /* ForgotPasswordVC.swift */; };
 		86567357238D2E1B00BC38D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86567356238D2E1B00BC38D8 /* AppDelegate.swift */; };
 		8656735C238D2E1B00BC38D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8656735A238D2E1B00BC38D8 /* Main.storyboard */; };
 		8656735E238D2E1B00BC38D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8656735D238D2E1B00BC38D8 /* Assets.xcassets */; };
@@ -19,7 +21,6 @@
 		869CC03B238D884600EA27C8 /* roboto_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 869CC038238D884600EA27C8 /* roboto_bold.ttf */; };
 		869CC03D238D887F00EA27C8 /* boogaloo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 869CC03C238D887E00EA27C8 /* boogaloo.ttf */; };
 		86D311BE239174DE0061FDC7 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D311BD239174DE0061FDC7 /* HomeVC.swift */; };
-		86D311C22391766E0061FDC7 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D311C12391766E0061FDC7 /* LoginVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		86158C48239EBBF8007E5D5B /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		86158C4A239ED13C007E5D5B /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
 		86567353238D2E1B00BC38D8 /* DoctoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoctoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86567356238D2E1B00BC38D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8656735B238D2E1B00BC38D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -58,7 +61,6 @@
 		869CC038238D884600EA27C8 /* roboto_bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = roboto_bold.ttf; sourceTree = "<group>"; };
 		869CC03C238D887E00EA27C8 /* boogaloo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = boogaloo.ttf; sourceTree = "<group>"; };
 		86D311BD239174DE0061FDC7 /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
-		86D311C12391766E0061FDC7 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,11 +115,12 @@
 				86567356238D2E1B00BC38D8 /* AppDelegate.swift */,
 				86D311BD239174DE0061FDC7 /* HomeVC.swift */,
 				8656735A238D2E1B00BC38D8 /* Main.storyboard */,
+				86158C4A239ED13C007E5D5B /* ForgotPasswordVC.swift */,
 				8656735D238D2E1B00BC38D8 /* Assets.xcassets */,
 				8656735F238D2E1B00BC38D8 /* LaunchScreen.storyboard */,
 				86567362238D2E1B00BC38D8 /* Info.plist */,
 				869CC02F238D7F0D00EA27C8 /* ColorManager.swift */,
-				86D311C12391766E0061FDC7 /* LoginVC.swift */,
+				86158C48239EBBF8007E5D5B /* LoginVC.swift */,
 			);
 			path = DoctoApp;
 			sourceTree = "<group>";
@@ -288,8 +291,9 @@
 			files = (
 				869CC030238D7F0D00EA27C8 /* ColorManager.swift in Sources */,
 				86D311BE239174DE0061FDC7 /* HomeVC.swift in Sources */,
-				86D311C22391766E0061FDC7 /* LoginVC.swift in Sources */,
+				86158C49239EBBF8007E5D5B /* LoginVC.swift in Sources */,
 				86567357238D2E1B00BC38D8 /* AppDelegate.swift in Sources */,
+				86158C4B239ED13C007E5D5B /* ForgotPasswordVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
