@@ -93,5 +93,9 @@ class ViewController: UIViewController {
 
         print(doctor1.getExperiencesAString())*/
     }
+    
+    @IBAction func testCreateAddressTable(_ sender: UIButton) {
+        let _ = DoctoAppDatabaseHelper()
+    }
 }
 
