@@ -20,4 +20,14 @@ class LoginPopUpDeleteAccountVC: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func discardDeleteAccount(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func deleteAccount(_ sender: Any) {
+        // TO DO Delete Account Logic
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
 }
