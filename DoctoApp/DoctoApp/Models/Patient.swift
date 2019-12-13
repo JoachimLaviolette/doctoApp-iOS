@@ -20,8 +20,8 @@ class Patient: Resident {
         pwd: String,
         pwdSalt: String,
         lastLogin: String,
-        picture: String,
-        address: Address,
+        picture: String?,
+        address: Address?,
         birthdate: String,
         insuranceNumber: String
     ) {
@@ -49,11 +49,11 @@ class Patient: Resident {
         pwd: String,
         pwdSalt: String,
         lastLogin: String,
-        picture: String,
-        address: Address,
+        picture: String?,
+        address: Address?,
         birthdate: String,
         insuranceNumber: String,
-        appointments: [Booking]
+        bookings: [Booking]?
     ) {
         self.birthdate = birthdate
         self.insuranceNumber = insuranceNumber
@@ -68,7 +68,7 @@ class Patient: Resident {
             lastLogin: lastLogin,
             picture: picture,
             address: address,
-            appointments: appointments
+            bookings: bookings
         )
     }
     

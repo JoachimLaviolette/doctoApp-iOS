@@ -15,13 +15,13 @@ class Doctor: Resident {
     private var underAgreement: Bool
     private var healthInsuranceCard: Bool
     private var thirdPartyPayment: Bool
-    private var header: String
-    private var availabilities: [Availability] 
-    private var languages: [Language]
-    private var paymentOptions: [PaymentOption]
-    private var reasons: [Reason]
-    private var trainings: [Education]
-    private var experiences: [Experience]
+    private var header: String?
+    private var availabilities: [Availability]?
+    private var languages: [Language]?
+    private var paymentOptions: [PaymentOption]?
+    private var reasons: [Reason]?
+    private var educations: [Education]?
+    private var experiences: [Experience]?
     
     init(
         id: Int,
@@ -31,15 +31,15 @@ class Doctor: Resident {
         pwd: String,
         pwdSalt: String,
         lastLogin: String,
-        picture: String,
-        address: Address,
+        picture: String?,
+        address: Address?,
         speciality: String,
         description: String,
         contactNumber: String,
         underAgreement: Bool,
         healthInsuranceCard: Bool,
         thirdPartyPayment: Bool,
-        header: String
+        header: String?
     ) {
         self.speciality = speciality
         self.description = description
@@ -52,7 +52,7 @@ class Doctor: Resident {
         self.languages = [Language]()
         self.paymentOptions = [PaymentOption]()
         self.reasons = [Reason]()
-        self.trainings = [Education]()
+        self.educations = [Education]()
         self.experiences = [Experience]()
         
         super.init(
@@ -76,22 +76,22 @@ class Doctor: Resident {
         pwd: String,
         pwdSalt: String,
         lastLogin: String,
-        picture: String,
-        address: Address,
+        picture: String?,
+        address: Address?,
         speciality: String,
         description: String,
         contactNumber: String,
         underAgreement: Bool,
         healthInsuranceCard: Bool,
         thirdPartyPayment: Bool,
-        header: String,
-        availabilities: [Availability],
-        languages: [Language],
-        paymentOptions: [PaymentOption],
-        reasons: [Reason],
-        trainings: [Education],
-        experiences: [Experience],
-        appointments: [Booking]
+        header: String?,
+        availabilities: [Availability]?,
+        languages: [Language]?,
+        paymentOptions: [PaymentOption]?,
+        reasons: [Reason]?,
+        educations: [Education]?,
+        experiences: [Experience]?,
+        bookings: [Booking]?
     ) {
         self.speciality = speciality
         self.description = description
@@ -104,7 +104,7 @@ class Doctor: Resident {
         self.languages = languages
         self.paymentOptions = paymentOptions
         self.reasons = reasons
-        self.trainings = trainings
+        self.educations = educations
         self.experiences = experiences
         
         super.init(
@@ -117,7 +117,7 @@ class Doctor: Resident {
             lastLogin: lastLogin,
             picture: picture,
             address: address,
-            appointments: appointments
+            bookings: bookings
         )
     }
 
@@ -129,21 +129,21 @@ class Doctor: Resident {
         pwd: String,
         pwdSalt: String,
         lastLogin: String,
-        picture: String,
-        address: Address,
+        picture: String?,
+        address: Address?,
         speciality: String,
         description: String,
         contactNumber: String,
         underAgreement: Bool,
         healthInsuranceCard: Bool,
         thirdPartyPayment: Bool,
-        header: String,
-        availabilities: [Availability],
-        languages: [Language],
-        paymentOptions: [PaymentOption],
-        reasons: [Reason],
-        trainings: [Education],
-        experiences: [Experience]
+        header: String?,
+        availabilities: [Availability]?,
+        languages: [Language]?,
+        paymentOptions: [PaymentOption]?,
+        reasons: [Reason]?,
+        educations: [Education]?,
+        experiences: [Experience]?
     ) {
         self.speciality = speciality
         self.description = description
@@ -156,7 +156,7 @@ class Doctor: Resident {
         self.languages = languages
         self.paymentOptions = paymentOptions
         self.reasons = reasons
-        self.trainings = trainings
+        self.educations = educations
         self.experiences = experiences
         
         super.init(
@@ -178,13 +178,13 @@ class Doctor: Resident {
     func isUnderAgreement() -> Bool { return self.underAgreement }
     func isHealthInsuranceCard() -> Bool { return self.healthInsuranceCard }
     func isThirdPartyPayment() -> Bool { return self.thirdPartyPayment }
-    func getHeader() -> String { return self.header }
-    func getAvailabilities() -> [Availability] { return self.availabilities }
-    func getLanguages() -> [Language] { return self.languages }
-    func getPaymentOptions() -> [PaymentOption] { return self.paymentOptions }
-    func getReasons() -> [Reason] { return self.reasons }
-    func getTrainings() -> [Education] { return self.trainings }
-    func getExperiences() -> [Experience] { return self.experiences }
+    func getHeader() -> String? { return self.header }
+    func getAvailabilities() -> [Availability]? { return self.availabilities }
+    func getLanguages() -> [Language]? { return self.languages }
+    func getPaymentOptions() -> [PaymentOption]? { return self.paymentOptions }
+    func getReasons() -> [Reason]? { return self.reasons }
+    func getEducations() -> [Education]? { return self.educations }
+    func getExperiences() -> [Experience]? { return self.experiences }
 
     func setSpeciality(speciality: String) { self.speciality = speciality }
     func setDescription(description: String) { self.description = description }
@@ -192,84 +192,84 @@ class Doctor: Resident {
     func setUnderAgreement(underAgreement: Bool) { self.underAgreement = underAgreement }
     func setHealthInsuranceCard(healthInsuranceCard: Bool) { self.healthInsuranceCard = healthInsuranceCard }
     func setThirdPartyPayment(thirdPartyPayment: Bool) { self.thirdPartyPayment = thirdPartyPayment }
-    func setHeader(header: String) { self.header = header }
-    func setAvailabilities(availabilities: [Availability]) { self.availabilities = availabilities }
-    func setLanguages(languages: [Language]) { self.languages = languages }
-    func setPaymentOptions(paymentOptions: [PaymentOption]) { self.paymentOptions = paymentOptions }
-    func setReasons(reasons: [Reason]) { self.reasons = reasons }
-    func setTrainings(trainings: [Education]) { self.trainings = trainings }
-    func setExperiences(experiences: [Experience]) { self.experiences = experiences }
+    func setHeader(header: String?) { self.header = header }
+    func setAvailabilities(availabilities: [Availability]?) { self.availabilities = availabilities }
+    func setLanguages(languages: [Language]?) { self.languages = languages }
+    func setPaymentOptions(paymentOptions: [PaymentOption]?) { self.paymentOptions = paymentOptions }
+    func setReasons(reasons: [Reason]?) { self.reasons = reasons }
+    func setEducations(educations: [Education]?) { self.educations = educations }
+    func setExperiences(experiences: [Experience]?) { self.experiences = experiences }
 
     // Add methods
     func addAvailability(a: Availability) {
-        self.availabilities.append(a)
+        self.availabilities!.append(a)
     }
 
     func addLanguage(l: Language) {
-        self.languages.append(l)
+        self.languages!.append(l)
     }
 
     func addPaymentOption(po: PaymentOption) {
-        self.paymentOptions.append(po)
+        self.paymentOptions!.append(po)
     }
 
     func addReason(r: Reason) {
-        self.reasons.append(r)
+        self.reasons!.append(r)
     }
 
-    func addTraining(e: Education) {
-        self.trainings.append(e)
+    func addEducation(e: Education) {
+        self.educations!.append(e)
     }
 
     func addExperience(e: Experience) {
-        self.experiences.append(e)
+        self.experiences!.append(e)
     }
 
     // Remove methods
     func removeAvailability(a: Availability) {
-        if self.availabilities.contains(a) {
-            self.availabilities.index(of: a).map { 
-                self.availabilities.remove(at: $0) 
+        if self.availabilities!.contains(a) {
+            self.availabilities!.index(of: a).map {
+                self.availabilities!.remove(at: $0)
             }
         }
     }
 
     func removeLanguage(l: Language) {
-        if self.languages.contains(l) {
-            self.languages.index(of: l).map { 
-                self.languages.remove(at: $0) 
+        if self.languages!.contains(l) {
+            self.languages!.index(of: l).map {
+                self.languages!.remove(at: $0)
             }
         }
     }
 
     func removePaymentOption(po: PaymentOption) {
-        if self.paymentOptions.contains(po) {
-            self.paymentOptions.index(of: po).map { 
-                self.paymentOptions.remove(at: $0) 
+        if self.paymentOptions!.contains(po) {
+            self.paymentOptions!.index(of: po).map {
+                self.paymentOptions!.remove(at: $0)
             }
         }
     }
 
     func removeReason(r: Reason) {
-        if self.reasons.contains(r) {
-            self.reasons.index(of: r).map { 
-                self.reasons.remove(at: $0) 
+        if self.reasons!.contains(r) {
+            self.reasons!.index(of: r).map {
+                self.reasons!.remove(at: $0)
             }
         }
     }
 
-    func removeTraining(e: Education) {
-        if self.trainings.contains(e) {
-            self.trainings.index(of: e).map { 
-                self.trainings.remove(at: $0) 
+    func removeEducation(e: Education) {
+        if self.educations!.contains(e) {
+            self.educations!.index(of: e).map {
+                self.educations!.remove(at: $0)
             }
         }
     }
 
     func removeExperience(e: Experience) {
-        if self.experiences.contains(e) {
-            self.experiences.index(of: e).map { 
-                self.experiences.remove(at: $0) 
+        if self.experiences!.contains(e) {
+            self.experiences!.index(of: e).map {
+                self.experiences!.remove(at: $0)
             }
         }
     }
@@ -337,7 +337,7 @@ class Doctor: Resident {
     func getPaymentOptionsAsString() -> String {
         var paymentOptions: String = ""
 
-        for po in self.paymentOptions { paymentOptions += po.rawValue + ", " }
+        for po in self.paymentOptions! { paymentOptions += po.rawValue + ", " }
 
         if paymentOptions.isEmpty { return paymentOptions }
 
@@ -351,32 +351,37 @@ class Doctor: Resident {
     func getLanguagesAsString() -> String {
         var languages: String = ""
 
-        for l in self.languages {
+        for l in self.languages! {
             languages += "- " + l.rawValue + "\n"
         } 
 
         return languages.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 
-    // Return trainings as a string
-    func getTrainingsAsString() -> String {
-        var trainings: String = ""
+    // Return educations as a string
+    func getEducationsAsString() -> String {
+        var educations: String = ""
 
-        for e in self.trainings {
-            trainings += "- " + e.getYear() + ": " + e.getDegree() + "\n"
+        for e in self.educations! {
+            educations += "- " + e.getYear() + ": " + e.getDegree() + "\n"
         }
 
-        return trainings.trimmingCharacters(in: .whitespacesAndNewlines)
+        return educations.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 
     // Return experiences as a string
     func getExperiencesAString() -> String {
         var experiences: String = ""
 
-        for e in self.experiences {
+        for e in self.experiences! {
             experiences += "- " + e.getYear() + ": " + e.getDescription() + "\n"
         } 
 
         return experiences.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    
+    // Transitive getters and setters
+    func SetReasonId(reason: Reason, reasonId: Int) {
+        if self.reasons!.contains(reason) { reason.setId(id: reasonId) }
     }
 }

@@ -16,9 +16,9 @@ class Resident {
     private var pwd: String
     private var pwdSalt: String
     private var lastLogin: String
-    private var picture: String
-    private var address: Address
-    private var appointments: [Booking]
+    private var picture: String?
+    private var address: Address?
+    private var bookings: [Booking]?
     
     init(
         id: Int,
@@ -28,8 +28,8 @@ class Resident {
         pwd: String,
         pwdSalt: String,
         lastLogin: String,
-        picture: String,
-        address: Address
+        picture: String?,
+        address: Address?
     ) {
         
         self.id = id
@@ -41,7 +41,7 @@ class Resident {
         self.address = address
         self.lastLogin = lastLogin
         self.picture = picture
-        self.appointments = [Booking]()
+        self.bookings = [Booking]()
     }
 
     init(
@@ -52,9 +52,9 @@ class Resident {
         pwd: String,
         pwdSalt: String,
         lastLogin: String,
-        picture: String,
-        address: Address,
-        appointments: [Booking]
+        picture: String?,
+        address: Address?,
+        bookings: [Booking]?
     ) {
         self.id = id
         self.lastname = lastname
@@ -65,7 +65,7 @@ class Resident {
         self.address = address
         self.lastLogin = lastLogin
         self.picture = picture
-        self.appointments = appointments
+        self.bookings = bookings
     }
     
     func getId() -> Int { return self.id }
@@ -76,9 +76,9 @@ class Resident {
     func getPwd() -> String { return self.pwd }
     func getPwdSalt() -> String { return self.pwdSalt }
     func getLastLogin() -> String { return self.lastLogin }
-    func getPicture() -> String { return self.picture }
-    func getAddress() -> Address { return self.address }
-    func getAppointments() -> [Booking] { return self.appointments }
+    func getPicture() -> String? { return self.picture }
+    func getAddress() -> Address? { return self.address }
+    func getBookings() -> [Booking]? { return self.bookings }
 
     func setId(id: Int) { self.id = id }
     func setLastname(lastname: String) { self.lastname = lastname }
@@ -87,51 +87,51 @@ class Resident {
     func setPwd(pwd: String) { self.pwd = pwd }
     func setPwdSalt(pwdSalt: String) { self.pwdSalt = pwdSalt }
     func setLastLogin(lastLogin: String) { self.lastLogin = lastLogin }
-    func setPicture(picture: String) { self.picture = picture }
-    func setAddress(address: Address) { self.address = address }
-    func setAppointments(appointments: [Booking]) { self.appointments = appointments }
+    func setPicture(picture: String?) { self.picture = picture }
+    func setAddress(address: Address?) { self.address = address }
+    func setBookings(bookings: [Booking]?) { self.bookings = bookings }
 
     // Add methods
-    func addAppointment(b: Booking) {
-        self.appointments.append(b)
+    func addBooking(b: Booking) {
+        self.bookings!.append(b)
     }
 
     // Remove methods
-    /*func removeAppointment(b: Booking) {
-        if self.appointments.contains(where: b) {
-            self.appointments.index(of: b).map { 
-                self.appointments.remove(at: $0) 
+    /*func removeBooking(b: Booking) {
+        if self.bookings.contains(where: b) {
+            self.bookings.index(of: b).map {
+                self.bookings.remove(at: $0)
             }
         }
     }*/
 
     // Transitive getters and setters
     func GetZip() -> String {
-        return self.address.getZip()
+        return self.address!.getZip()
     }
 
     func GetStreet2() -> String {
-        return self.address.getStreet2()
+        return self.address!.getStreet2()
     }
 
     func GetStreet1() -> String {
-        return self.address.getStreet1()
+        return self.address!.getStreet1()
     }
 
     func GetCountry() -> String {
-        return self.address.getCountry()
+        return self.address!.getCountry()
     }
 
     func GetCity() -> String {
-        return self.address.getCity()
+        return self.address!.getCity()
     }
 
     func GetAddressId() -> Int {
-        return self.address.getId()
+        return self.address!.getId()
     }
 
     func SetAddressId(id: Int) {
-        self.address.setId(id: id)
+        self.address!.setId(id: id)
     }
 
     func GetCityCountry() -> String {

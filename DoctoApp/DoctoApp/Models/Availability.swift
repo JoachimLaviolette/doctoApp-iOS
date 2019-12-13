@@ -14,11 +14,8 @@ class Availability {
     init(
         doctor: Doctor?,
         date: String,
-        time: String,
-        city: String,
-        zip: String,
-        country: String
-        ) {
+        time: String
+    ) {
         self.doctor = doctor
         self.date = date
         self.time = time

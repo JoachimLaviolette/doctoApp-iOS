@@ -9,26 +9,26 @@
 import UIKit
 
 class Education {
-    private var year: String
     private var doctor: Doctor?
+    private var year: String
     private var degree: String
     
     init(
-        year: String,
         doctor: Doctor?,
+        year: String,
         degree: String
-        ) {
-        self.year = year
+    ) {
         self.doctor = doctor
+        self.year = year
         self.degree = degree
     }
     
-    func getYear() -> String { return self.year }
     func getDoctor() -> Doctor? { return self.doctor }
+    func getYear() -> String { return self.year }
     func getDegree() -> String { return self.degree }
     
-    func setYear(year: String) { self.year = year }
     func setDoctor(doctor: Doctor) { self.doctor = doctor }
+    func setYear(year: String) { self.year = year }
     func setDegree(degree: String) { self.degree = degree }
 }
 

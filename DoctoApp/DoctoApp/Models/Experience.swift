@@ -7,26 +7,26 @@
 //
 
 class Experience {
-    private var year: String
     private var doctor: Doctor?
+    private var year: String
     private var description: String
     
     init(
-        year: String,
         doctor: Doctor?,
+        year: String,
         description: String
-        ) {
-        self.year = year
+    ) {
         self.doctor = doctor
+        self.year = year
         self.description = description
     }
     
-    func getYear() -> String { return self.year }
     func getDoctor() -> Doctor? { return self.doctor }
+    func getYear() -> String { return self.year }
     func getDescription() -> String { return self.description }
     
-    func setYear(year: String) { self.year = year }
     func setDoctor(doctor: Doctor) { self.doctor = doctor }
+    func setYear(year: String) { self.year = year }
     func setDescription(description: String) { self.description = description }
 }
 

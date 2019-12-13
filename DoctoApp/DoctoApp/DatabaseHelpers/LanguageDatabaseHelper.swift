@@ -80,4 +80,84 @@ class LanguageDatabaseHelper: DatabaseHelper {
             try self.database.run(LanguageDatabaseHelper.table.drop())
         } catch {}
     }
+    
+    // Insert all the languages of the given doctor in the database
+    func insertLanguages(doctor: Doctor) -> Doctor {
+        for language: Language in doctor.getLanguages()! {
+            self.insertLanguage(language: language, doctor: doctor)
+        }
+        
+        return doctor
+    }
+    
+    // Insert a new language in the database related to the given doctor
+    private func insertLanguage(language: Language, doctor: Doctor) {
+        self.initTableConfig()
+        
+        let query = LanguageDatabaseHelper.table.insert(
+            self.doctorId <- Int64(doctor.getId()),
+            self.language <- language.rawValue
+        )
+        
+        do {
+            try self.database.run(query)
+            print("Language insertion succeeded for doctor: " + doctor.getFullname())
+        } catch {
+            print("Language insertion failed for doctor: " + doctor.getFullname())
+        }
+    }
+    
+    // Update the languages of the given doctor in the database
+    func updateLanguages(doctor: Doctor) -> Bool {
+        self.initTableConfig()
+        
+        if self.dropLanguages(doctor: doctor) {
+            let _ = self.insertLanguages(doctor: doctor)
+        }
+        
+        return true
+    }
+    
+    // Drop all the languages related to the given doctor from the database
+    private func dropLanguages(doctor: Doctor) -> Bool {
+        self.initTableConfig()
+        
+        let filter = LanguageDatabaseHelper.table.filter(self.doctorId == Int64(doctor.getId()))
+        let query = filter.delete()
+        
+        do {
+            if try self.database.run(query) > 0 {
+                print("Languages removal succeeded for doctor: " + doctor.getFullname())
+                
+                return true
+            }
+            
+            print("Languages removal failed for doctor: " + doctor.getFullname())
+        } catch {
+            print("Languages removal failed for doctor: " + doctor.getFullname())
+        }
+        
+        return false
+    }
+    
+    // Retrieve all languages related to the given doctor
+    func getLanguages(doctor: Doctor) -> [Language] {
+        var languages: [Language] = []
+        
+        self.initTableConfig()
+        
+        let query = LanguageDatabaseHelper.table
+            .select(LanguageDatabaseHelper.table[*])
+            .filter(self.doctorId == Int64(doctor.getId()))
+        
+        do {
+            for language in try self.database.prepare(query) {
+                languages.append(Language.getValueOf(languageName: try language.get(self.language))!)
+            }
+        } catch {
+            print("Something went wrong when fetching languages data.")
+        }
+        
+        return languages
+    }
 }

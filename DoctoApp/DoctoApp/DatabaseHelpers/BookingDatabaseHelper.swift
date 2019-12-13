@@ -109,4 +109,165 @@ class BookingDatabaseHelper: DatabaseHelper {
             try self.database.run(BookingDatabaseHelper.table.drop())
         } catch {}
     }
+    
+    // Insert all the bookings of the given resident in the database
+    func insertBookings(resident: Resident) -> Resident {
+        for booking: Booking in (resident.getBookings())! {
+            self.insertBooking(booking: booking)
+        }
+        
+        return resident
+    }
+    
+    // Insert a new booking in the database
+    private func insertBooking(booking: Booking) {
+        self.initTableConfig()
+        
+        let query = BookingDatabaseHelper.table.insert(
+            self.patientId <- Int64(booking.GetPatientId()),
+            self.doctorId <- Int64(booking.GetDoctorId()),
+            self.reasonId <- Int64(booking.GetPatientId()),
+            self.fullDate <- booking.getFullDate(),
+            self.date <- booking.getDate(),
+            self.time <- booking.getTime(),
+            self.bookingDate <- booking.getBookingDate()
+        )
+        
+        do {
+            try self.database.run(query)
+            print("Booking insertion succeeded.")
+        } catch {
+            print("Booking insertion failed.")
+        }
+    }
+    
+    // Update the given booking in the database
+    func updateBooking(booking: Booking) -> Bool {
+        self.initTableConfig()
+        
+        let filter = BookingDatabaseHelper.table.filter(BookingDatabaseHelper.id == Int64(booking.getId()))
+        let query = filter.update(
+            self.time <- booking.getTime(),
+            self.bookingDate <- booking.getBookingDate()
+        )
+        
+        do {
+            if try self.database.run(query) > 0 {
+                print("Booking update succeeded.")
+                
+                return true
+            }
+            
+            print("Booking update failed.")
+        } catch {
+            print("Booking update failed.")
+        }
+        
+        return false
+    }
+    
+    // Drop the given booking from the database
+    private func dropBooking(booking: Booking) -> Bool {
+        self.initTableConfig()
+        
+        let filter = BookingDatabaseHelper.table.filter(BookingDatabaseHelper.id == Int64(booking.getId()))
+        let query = filter.delete()
+        
+        do {
+            if try self.database.run(query) > 0 {
+                print("Booking removal succeeded.")
+
+                return true
+            }
+            
+            print("Booking removal failed.")
+        } catch {
+            print("Booking removal failed.")
+        }
+        
+        return false
+    }
+    
+    // Retrieve all bookings related to the given doctor
+    func getBookings(doctor: Doctor) -> [Booking] {
+        var bookings: [Booking] = []
+        
+        self.initTableConfig()
+        
+        var query = BookingDatabaseHelper.table
+            .select(BookingDatabaseHelper.table[*])
+            .filter(self.doctorId == Int64(doctor.getId()))
+        
+        do {
+            for booking in try self.database.prepare(query) {
+                let patient: Patient = PatientDatabaseHelper().getPatient(patientId: Int(try booking.get(self.patientId)), true)!
+                patient.setBookings(bookings: bookings)
+                
+                let reason: Reason = ReasonDatabaseHelper().getReason(reasonId: Int(try booking.get(self.reasonId)))!
+                reason.setDoctor(doctor: doctor)
+                
+                bookings.append(
+                    Booking(
+                        id: try Int(booking.get(BookingDatabaseHelper.id)),
+                        patient: patient,
+                        doctor: doctor,
+                        reason: reason,
+                        fullDate: try booking.get(self.fullDate),
+                        date: try booking.get(self.date),
+                        time: try booking.get(self.time),
+                        bookingDate: try booking.get(self.bookingDate)
+                    )
+                )
+            }
+        } catch {
+            print("Something went wrong when fetching bookings data for doctor: " + doctor.getFullname())
+        }
+        
+        return bookings
+    }
+    
+    // Retrieve all bookings related to the given patient
+    func getBookings(patient: Patient) -> [Booking] {
+        var bookings: [Booking] = []
+        
+        self.initTableConfig()
+        
+        let currentDate = ""
+        let currentTime = ""
+        
+        var query = BookingDatabaseHelper.table
+            .select(BookingDatabaseHelper.table[*])
+            .filter(
+                self.patientId == Int64(patient.getId())
+                && self.date > currentDate
+                || (self.date == currentDate && self.time > currentTime)
+            )
+        
+        do {
+            for booking in try self.database.prepare(query) {
+                let doctor: Doctor = DoctorDatabaseHelper().getDoctor(doctorId: Int(try booking.get(self.doctorId)), email: nil, fromPatient: true)!
+                doctor.setBookings(bookings: bookings)
+                
+                let reason: Reason = ReasonDatabaseHelper().getReason(reasonId: Int(try booking.get(self.reasonId)))!
+                reason.setDoctor(doctor: doctor)
+                
+                bookings.append(
+                    Booking(
+                        id: try Int(booking.get(BookingDatabaseHelper.id)),
+                        patient: patient,
+                        doctor: doctor,
+                        reason: reason,
+                        fullDate: try booking.get(self.fullDate),
+                        date: try booking.get(self.date),
+                        time: try booking.get(self.time),
+                        bookingDate: try booking.get(self.bookingDate)
+                    )
+                )
+            }
+        } catch {
+            print("Something went wrong when fetching bookings data for patient: " + patient.getFullname())
+        }
+        
+        return bookings
+    }
 }

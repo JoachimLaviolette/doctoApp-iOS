@@ -83,4 +83,91 @@ class ExperienceDatabaseHelper: DatabaseHelper {
             try self.database.run(ExperienceDatabaseHelper.table.drop())
         } catch {}
     }
+    
+    // Insert all the experiences of the given doctor in the database
+    func insertExperiences(doctor: Doctor) -> Doctor {
+        for experience: Experience in doctor.getExperiences()! {
+            self.insertExperience(experience: experience, doctor: doctor)
+        }
+        
+        return doctor
+    }
+    
+    // Insert a new experience in the database related to the given doctor
+    private func insertExperience(experience: Experience, doctor: Doctor) {
+        self.initTableConfig()
+        
+        let query = ExperienceDatabaseHelper.table.insert(
+            self.doctorId <- Int64(doctor.getId()),
+            self.year <- experience.getYear(),
+            self.description <- experience.getDescription()
+        )
+        
+        do {
+            try self.database.run(query)
+            print("Experience insertion succeeded for doctor: " + doctor.getFullname())
+        } catch {
+            print("Experience insertion failed for doctor: " + doctor.getFullname())
+        }
+    }
+    
+    // Update the experiences of the given doctor in the database
+    func updateExperiences(doctor: Doctor) -> Bool {
+        self.initTableConfig()
+        
+        if self.dropExperiences(doctor: doctor) {
+            let _ = self.insertExperiences(doctor: doctor)
+        }
+        
+        return true
+    }
+    
+    // Drop all the experiences related to the given doctor from the database
+    private func dropExperiences(doctor: Doctor) -> Bool {
+        self.initTableConfig()
+        
+        let filter = ExperienceDatabaseHelper.table.filter(self.doctorId == Int64(doctor.getId()))
+        let query = filter.delete()
+        
+        do {
+            if try self.database.run(query) > 0 {
+                print("Experiences removal succeeded for doctor: " + doctor.getFullname())
+                
+                return true
+            }
+            
+            print("Experiences removal failed for doctor: " + doctor.getFullname())
+        } catch {
+            print("Experiences removal failed for doctor: " + doctor.getFullname())
+        }
+        
+        return false
+    }
+    
+    // Retrieve all experiences related to the given doctor
+    func getExperiences(doctor: Doctor) -> [Experience] {
+        var experiences: [Experience] = []
+        
+        self.initTableConfig()
+        
+        let query = ExperienceDatabaseHelper.table
+            .select(ExperienceDatabaseHelper.table[*])
+            .filter(self.doctorId == Int64(doctor.getId()))
+        
+        do {
+            for experience in try self.database.prepare(query) {
+                experiences.append(
+                    Experience(
+                        doctor: doctor,
+                        year: try experience.get(self.year),
+                        description: try experience.get(self.description)
+                    )
+                )
+            }
+        } catch {
+            print("Something went wrong when fetching experiences data.")
+        }
+        
+        return experiences
+    }
 }
