@@ -144,7 +144,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Aw1-KB-bvn">
-                                <rect key="frame" x="0.0" y="84" width="375" height="865.5"/>
+                                <rect key="frame" x="0.0" y="84" width="375" height="771"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login and access your profile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="alz-Lo-8QS">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="16.5"/>
@@ -156,7 +156,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6qs-BE-pLc">
-                                        <rect key="frame" x="0.0" y="16.5" width="375" height="849"/>
+                                        <rect key="frame" x="0.0" y="16.5" width="375" height="754.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rhi-AC-7yB">
                                                 <rect key="frame" x="10" y="10" width="355" height="93"/>
@@ -201,7 +201,7 @@
                                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                             </view>
                                             <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fsw-In-nbf">
-                                                <rect key="frame" x="10" y="113" width="355" height="83"/>
+                                                <rect key="frame" x="10" y="10" width="355" height="83"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="oUa-Md-wOb" userLabel="login_delete_account_msg">
                                                         <rect key="frame" x="0.0" y="0.0" width="355" height="83"/>
@@ -243,20 +243,20 @@
                                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                             </view>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="27K-32-oXD">
-                                                <rect key="frame" x="10" y="206" width="355" height="30"/>
+                                                <rect key="frame" x="10" y="10" width="355" height="30"/>
                                                 <edgeInsets key="layoutMargins" top="10" left="10" bottom="10" right="10"/>
                                                 <color key="textColor" name="login_input_text_color"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GEt-A9-L33">
-                                                <rect key="frame" x="10" y="246" width="355" height="30"/>
+                                                <rect key="frame" x="10" y="50" width="355" height="30"/>
                                                 <color key="textColor" name="login_input_text_color"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                             </textField>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9aD-RC-Oe2">
-                                                <rect key="frame" x="10" y="286" width="355" height="31"/>
+                                                <rect key="frame" x="10" y="90" width="355" height="31"/>
                                                 <subviews>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="leading" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wqc-12-H7g">
                                                         <rect key="frame" x="0.0" y="0.0" width="53.5" height="31"/>
@@ -280,7 +280,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="eOE-8P-lNE">
-                                                <rect key="frame" x="10" y="327" width="355" height="252"/>
+                                                <rect key="frame" x="10" y="131" width="355" height="252"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ixn-co-tJS">
                                                         <rect key="frame" x="75" y="8" width="205" height="36"/>
@@ -299,6 +299,9 @@
                                                         <state key="normal" title="My Bookings" image="ic_bookings">
                                                             <color key="titleColor" name="login_my_bookings_btn_text_color"/>
                                                         </state>
+                                                        <connections>
+                                                            <segue destination="vCf-41-LEZ" kind="show" id="kN0-Ap-c7W"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OiR-e3-ws9">
                                                         <rect key="frame" x="75" y="108" width="205" height="36"/>
@@ -337,10 +340,10 @@
                                                 <edgeInsets key="layoutMargins" top="8" left="75" bottom="8" right="75"/>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vcu-uC-8l2">
-                                                <rect key="frame" x="10" y="589" width="355" height="120"/>
+                                                <rect key="frame" x="10" y="393" width="355" height="221.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="7Qu-Vm-E0P">
-                                                        <rect key="frame" x="0.0" y="0.0" width="355" height="120"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="355" height="221.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not registered yet ?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vGI-EI-7dR">
                                                                 <rect key="frame" x="121" y="20" width="113.5" height="15.5"/>
@@ -349,7 +352,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7O6-vb-ykl">
-                                                                <rect key="frame" x="105.5" y="40.5" width="144" height="59.5"/>
+                                                                <rect key="frame" x="105.5" y="40.5" width="144" height="161"/>
                                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                                                 <state key="normal" title="Create your account now">
                                                                     <color key="titleColor" name="login_signup_link_color"/>
@@ -368,7 +371,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v63-qs-NxW">
-                                                <rect key="frame" x="10" y="719" width="355" height="120"/>
+                                                <rect key="frame" x="10" y="624.5" width="355" height="120"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="g6L-7B-VHx">
                                                         <rect key="frame" x="0.0" y="0.0" width="355" height="120"/>
@@ -400,6 +403,12 @@
                                             </view>
                                         </subviews>
                                         <edgeInsets key="layoutMargins" top="10" left="10" bottom="10" right="10"/>
+                                        <variation key="default">
+                                            <mask key="subviews">
+                                                <exclude reference="Rhi-AC-7yB"/>
+                                                <exclude reference="fsw-In-nbf"/>
+                                            </mask>
+                                        </variation>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -556,6 +565,196 @@
             </objects>
             <point key="canvasLocation" x="3188" y="919.79010494752629"/>
         </scene>
+        <!--My BookingsVC-->
+        <scene sceneID="6iZ-if-Eyp">
+            <objects>
+                <viewController id="vCf-41-LEZ" customClass="MyBookingsVC" customModule="DoctoApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DFt-fs-UOm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="u6P-HW-JAf">
+                                <rect key="frame" x="0.0" y="64" width="375" height="414.5"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qXd-OP-Pa0">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="0j4-4h-lH2">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gA7-ds-YzK">
+                                                        <rect key="frame" x="0.0" y="0.0" width="53.5" height="75"/>
+                                                        <state key="normal" image="ic_home"/>
+                                                    </button>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="wwa-Is-TTr">
+                                                        <rect key="frame" x="53.5" y="0.0" width="321.5" height="75"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My bookings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kj6-up-4hn">
+                                                                <rect key="frame" x="20" y="20" width="281.5" height="15"/>
+                                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                                                <color key="textColor" name="my_bookings_title_color"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="See all the appointments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jsr-t6-uZn">
+                                                                <rect key="frame" x="20" y="40" width="281.5" height="15"/>
+                                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                                                                <color key="textColor" name="my_bookings_subtitle_color"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <edgeInsets key="layoutMargins" top="20" left="20" bottom="20" right="20"/>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" name="my_bookings_header_color"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="75" id="Q72-xt-ZPf"/>
+                                            <constraint firstAttribute="trailing" secondItem="0j4-4h-lH2" secondAttribute="trailing" id="WMm-oS-GWN"/>
+                                            <constraint firstItem="0j4-4h-lH2" firstAttribute="top" secondItem="qXd-OP-Pa0" secondAttribute="top" id="nUm-1q-joU"/>
+                                            <constraint firstAttribute="bottom" secondItem="0j4-4h-lH2" secondAttribute="bottom" id="pxI-no-blJ"/>
+                                            <constraint firstItem="0j4-4h-lH2" firstAttribute="leading" secondItem="qXd-OP-Pa0" secondAttribute="leading" id="xAe-2T-je6"/>
+                                        </constraints>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="57K-dr-e9w">
+                                        <rect key="frame" x="0.0" y="85" width="375" height="329.5"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kTN-jt-Z9e">
+                                                <rect key="frame" x="10" y="10" width="355" height="99.5"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="PZM-U8-Adr" userLabel="my_bookins_no _booking_msg">
+                                                        <rect key="frame" x="0.0" y="0.0" width="355" height="99.5"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No booking to display" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ANU-PX-VSm">
+                                                                <rect key="frame" x="10" y="10" width="335" height="20"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <accessibility key="accessibilityConfiguration">
+                                                                    <accessibilityTraits key="traits" staticText="YES" adjustable="YES"/>
+                                                                </accessibility>
+                                                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                                                <fontDescription key="fontDescription" name="Roboto-Black" family="Roboto" pointSize="17"/>
+                                                                <color key="textColor" name="my_bookings_no_booking_msg_title_color"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y8e-lQ-caB">
+                                                                <rect key="frame" x="10" y="40" width="335" height="49.5"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <accessibility key="accessibilityConfiguration">
+                                                                    <accessibilityTraits key="traits" staticText="YES" adjustable="YES"/>
+                                                                </accessibility>
+                                                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                                                <string key="text">It appears you have no booking registered yet in the system. To book an appointment with a doctor, use the search system from the main screen of the app.</string>
+                                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                                                <color key="textColor" name="my_bookings_subtitle_color"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <edgeInsets key="layoutMargins" top="10" left="10" bottom="10" right="10"/>
+                                                    </stackView>
+                                                </subviews>
+                                                <color key="backgroundColor" name="my_bookings_no_booking_msg_color"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="PZM-U8-Adr" secondAttribute="bottom" id="0QR-DR-oVg"/>
+                                                    <constraint firstItem="PZM-U8-Adr" firstAttribute="leading" secondItem="kTN-jt-Z9e" secondAttribute="leading" id="6jf-U1-elX"/>
+                                                    <constraint firstAttribute="trailing" secondItem="PZM-U8-Adr" secondAttribute="trailing" id="C54-lb-ecT"/>
+                                                    <constraint firstItem="PZM-U8-Adr" firstAttribute="top" secondItem="kTN-jt-Z9e" secondAttribute="top" id="wAQ-ga-Ru5"/>
+                                                </constraints>
+                                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                            </view>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="47J-SG-e4V">
+                                                <rect key="frame" x="10" y="119.5" width="355" height="200"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="9EC-dG-f9a"/>
+                                                </constraints>
+                                                <prototypes>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="appointment_patient_TVC" id="Q1V-UK-zW2" customClass="AppointmentPatientItemTVC" customModule="DoctoApp" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="28" width="355" height="44"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Q1V-UK-zW2" id="3A2-jd-GQu">
+                                                            <rect key="frame" x="0.0" y="0.0" width="355" height="43.5"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="uVG-jK-eXy">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="355" height="43.5"/>
+                                                                    <subviews>
+                                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rqj-9O-mxw">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="355" height="43.5"/>
+                                                                            <subviews>
+                                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_calendar" translatesAutoresizingMaskIntoConstraints="NO" id="RRH-Et-l8i">
+                                                                                    <rect key="frame" x="10" y="4" width="36" height="36"/>
+                                                                                    <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                                                                </imageView>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="{Day, Month X}" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P7c-EF-naR">
+                                                                                    <rect key="frame" x="56" y="13" width="97.5" height="18"/>
+                                                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                                                                    <color key="textColor" name="patient_appointment_item_fullday_color"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                </label>
+                                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_time_2" translatesAutoresizingMaskIntoConstraints="NO" id="p7h-k2-iM5">
+                                                                                    <rect key="frame" x="168.5" y="4" width="36" height="36"/>
+                                                                                </imageView>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="{hh:mm}" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ccx-tG-hVW">
+                                                                                    <rect key="frame" x="214.5" y="13" width="57" height="18"/>
+                                                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                                                                    <color key="textColor" name="patient_appointment_item_time_color"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                </label>
+                                                                            </subviews>
+                                                                            <color key="backgroundColor" name="patient_appointment_item_header_color"/>
+                                                                            <constraints>
+                                                                                <constraint firstItem="P7c-EF-naR" firstAttribute="centerY" secondItem="rqj-9O-mxw" secondAttribute="centerY" id="3N2-TW-NFw"/>
+                                                                                <constraint firstItem="ccx-tG-hVW" firstAttribute="leading" secondItem="p7h-k2-iM5" secondAttribute="trailing" constant="10" id="9OS-Mp-RR1"/>
+                                                                                <constraint firstItem="RRH-Et-l8i" firstAttribute="leading" secondItem="rqj-9O-mxw" secondAttribute="leading" constant="10" id="BFa-XH-K3U"/>
+                                                                                <constraint firstItem="RRH-Et-l8i" firstAttribute="centerY" secondItem="rqj-9O-mxw" secondAttribute="centerY" id="FBc-1p-FcE"/>
+                                                                                <constraint firstItem="p7h-k2-iM5" firstAttribute="centerY" secondItem="rqj-9O-mxw" secondAttribute="centerY" id="GN4-AW-lXr"/>
+                                                                                <constraint firstItem="P7c-EF-naR" firstAttribute="centerY" secondItem="RRH-Et-l8i" secondAttribute="centerY" id="M10-fC-BXr"/>
+                                                                                <constraint firstItem="ccx-tG-hVW" firstAttribute="centerY" secondItem="rqj-9O-mxw" secondAttribute="centerY" id="cW4-Vb-7UJ"/>
+                                                                                <constraint firstItem="P7c-EF-naR" firstAttribute="leading" secondItem="RRH-Et-l8i" secondAttribute="trailing" constant="10" id="diy-st-WxE"/>
+                                                                                <constraint firstItem="p7h-k2-iM5" firstAttribute="leading" secondItem="P7c-EF-naR" secondAttribute="trailing" constant="15" id="n9q-Rv-TQa"/>
+                                                                                <constraint firstItem="ccx-tG-hVW" firstAttribute="centerY" secondItem="RRH-Et-l8i" secondAttribute="centerY" id="pFy-mZ-JsD"/>
+                                                                                <constraint firstItem="p7h-k2-iM5" firstAttribute="centerY" secondItem="RRH-Et-l8i" secondAttribute="centerY" id="ubb-g9-fCL"/>
+                                                                            </constraints>
+                                                                        </view>
+                                                                    </subviews>
+                                                                </stackView>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="uVG-jK-eXy" firstAttribute="top" secondItem="3A2-jd-GQu" secondAttribute="top" id="Kg6-Gl-Ael"/>
+                                                                <constraint firstItem="uVG-jK-eXy" firstAttribute="leading" secondItem="3A2-jd-GQu" secondAttribute="leading" id="LoP-Z5-2XF"/>
+                                                                <constraint firstAttribute="bottom" secondItem="uVG-jK-eXy" secondAttribute="bottom" id="l2U-g6-dhi"/>
+                                                                <constraint firstAttribute="trailing" secondItem="uVG-jK-eXy" secondAttribute="trailing" id="rlJ-kW-XoM"/>
+                                                            </constraints>
+                                                        </tableViewCellContentView>
+                                                    </tableViewCell>
+                                                </prototypes>
+                                            </tableView>
+                                        </subviews>
+                                        <edgeInsets key="layoutMargins" top="10" left="10" bottom="10" right="10"/>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="57K-dr-e9w" secondAttribute="bottom" constant="200" id="4ZD-Lu-aqO"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" name="my_bookings_body_color"/>
+                        <constraints>
+                            <constraint firstItem="u6P-HW-JAf" firstAttribute="leading" secondItem="5iO-Wf-hbO" secondAttribute="leading" id="0l4-09-iWa"/>
+                            <constraint firstItem="u6P-HW-JAf" firstAttribute="top" secondItem="5iO-Wf-hbO" secondAttribute="top" id="8Bp-WT-MjW"/>
+                            <constraint firstItem="u6P-HW-JAf" firstAttribute="trailing" secondItem="5iO-Wf-hbO" secondAttribute="trailing" id="Um5-9S-DK5"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="5iO-Wf-hbO"/>
+                    </view>
+                    <connections>
+                        <outlet property="AppointmentTableView" destination="47J-SG-e4V" id="w3V-OL-q61"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vJb-Rr-YiA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3188" y="-618.44077961019491"/>
+        </scene>
         <!--Forgot PasswordVC-->
         <scene sceneID="bIR-bz-B3P">
             <objects>
@@ -701,9 +900,12 @@
     </scenes>
     <resources>
         <image name="ic_bookings" width="36" height="36"/>
+        <image name="ic_calendar" width="36" height="36"/>
         <image name="ic_delete" width="36" height="36"/>
+        <image name="ic_home" width="36" height="36"/>
         <image name="ic_logout" width="36" height="36"/>
         <image name="ic_profile" width="36" height="36"/>
+        <image name="ic_time_2" width="36" height="36"/>
         <image name="main_background" width="469" height="322"/>
         <namedColor name="forgor_password_background_color">
             <color red="0.89411764705882357" green="0.89411764705882357" blue="0.89411764705882357" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -808,6 +1010,33 @@
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="login_sucess_msg_content_color">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="my_bookings_body_color">
+            <color red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="my_bookings_header_color">
+            <color red="0.10588235294117647" green="0.52549019607843139" blue="0.89411764705882357" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="my_bookings_no_booking_msg_color">
+            <color red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="my_bookings_no_booking_msg_title_color">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="my_bookings_subtitle_color">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="my_bookings_title_color">
+            <color red="0.40000000000000002" green="0.6588235294117647" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="patient_appointment_item_fullday_color">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="patient_appointment_item_header_color">
+            <color red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="patient_appointment_item_time_color">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
