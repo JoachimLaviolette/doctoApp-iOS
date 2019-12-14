@@ -77,4 +77,13 @@ class Patient: Resident {
     
     func setBirthdate(birthdate: String) { self.birthdate = birthdate }
     func setInsuranceNumber(insuranceNumber: String) { self.insuranceNumber = insuranceNumber }
+
+    // Update patient data
+    override func update() -> Resident {
+        return PatientDatabaseHelper().getPatient(
+            patientId: self.id,
+            email: nil,
+            fromDoctor: false
+        ); 
+    }
 }

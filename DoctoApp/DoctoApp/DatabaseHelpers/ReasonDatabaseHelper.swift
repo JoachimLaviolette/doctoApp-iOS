@@ -98,10 +98,16 @@ class ReasonDatabaseHelper: DatabaseHelper {
         
         do {
             let reasonId: Int = Int(try self.database.run(query))
+            reason.setId(id: reasonId)
             doctor.SetReasonId(reason: reason, reasonId: reasonId)
-            print("Reason insertion succeeded for doctor: " + doctor.getFullname())
+                
+            if reasonId != -1 {
+                print("Reason insertion succeeded for doctor: " + doctor.getFullname())
+                
+                return true
+            }
             
-            return true
+            print("Reason insertion failed for doctor: " + doctor.getFullname())
         } catch {
             print("Reason insertion failed for doctor: " + doctor.getFullname())
         }

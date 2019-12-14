@@ -31,7 +31,6 @@ class Resident {
         picture: String?,
         address: Address?
     ) {
-        
         self.id = id
         self.lastname = lastname
         self.firstname = firstname
@@ -104,6 +103,9 @@ class Resident {
             }
         }
     }*/
+
+    // Update resident data
+    func update() -> Resident { return self }
 
     // Transitive getters and setters
     func GetZip() -> String {

@@ -9,7 +9,6 @@
 import UIKit
 
 class LoginVC: UIViewController {
-   
     @IBOutlet weak var loginMsg: UIView!
     @IBOutlet weak var deleteAccountMsg: UIView!
     @IBOutlet weak var emailInput: UITextField!

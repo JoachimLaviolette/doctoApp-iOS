@@ -120,7 +120,7 @@ class BookingDatabaseHelper: DatabaseHelper {
     }
     
     // Insert a new booking in the database
-    private func insertBooking(booking: Booking) {
+    public func insertBooking(booking: Booking) -> Bool {
         self.initTableConfig()
         
         let query = BookingDatabaseHelper.table.insert(
@@ -134,11 +134,21 @@ class BookingDatabaseHelper: DatabaseHelper {
         )
         
         do {
-            try self.database.run(query)
-            print("Booking insertion succeeded.")
+            let bookingId: Int = try self.database.run(query)
+            booking.setId(id: bookingId)
+            
+            if bookingId != -1 {
+                print("Booking insertion succeeded.")
+
+                return true
+            }
+
+            print("Booking insertion failed.")
         } catch {
             print("Booking insertion failed.")
         }
+
+        return false
     }
     
     // Update the given booking in the database
@@ -232,8 +242,8 @@ class BookingDatabaseHelper: DatabaseHelper {
         
         self.initTableConfig()
         
-        let currentDate = ""
-        let currentTime = ""
+        let currentDate = DateTimeService.GetCurrentDate()
+        let currentTime = DateTimeService.GetCurrentDate()
         
         var query = BookingDatabaseHelper.table
             .select(BookingDatabaseHelper.table[*])

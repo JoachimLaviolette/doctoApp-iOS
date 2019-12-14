@@ -379,6 +379,29 @@ class Doctor: Resident {
 
         return experiences.trimmingCharacters(in: .whitespacesAndNewlines)
     }
+
+    // Organize the availabilities by day
+    func [Int: [String: [Availability]]] getAvailabilitiesPerDay(weeksNumber: Int) {
+        var availabilitiesPerDay: [Int: [String: [Availability]]] = []
+
+        return availabilitiesPerDay
+    }
+
+    // Organize the availabilities for the given day
+    func [Int: [String: [Availability]]] getAvailabilitiesForDay(bookingFullDate: String) {
+        var availabilitiesForDay: [Int: [String: [Availability]]] = []
+
+        return availabilitiesForDay
+    }
+
+    // Update doctor data
+    override func update() -> Resident {
+        return DoctorDatabaseHelper().getDoctor(
+            doctorId: self.id,
+            email: nil,
+            fromPatient: false
+        ); 
+    }
     
     // Transitive getters and setters
     func SetReasonId(reason: Reason, reasonId: Int) {
