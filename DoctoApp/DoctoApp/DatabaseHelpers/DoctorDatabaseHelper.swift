@@ -128,7 +128,7 @@ class DoctorDatabaseHelper: DatabaseHelper {
     }
     
     // Insert a new doctor in the database
-    private func insertDoctor(doctor: Doctor) -> Resident {
+    private func insertDoctor(doctor: Doctor) -> Doctor {
         self.initTableConfig()
         
         let query = DoctorDatabaseHelper.table.insert(
@@ -271,7 +271,7 @@ class DoctorDatabaseHelper: DatabaseHelper {
         return doctors
     }
     
-    // Retrieve an doctor by its id
+    // Retrieve a doctor by its id
     func getDoctor(doctorId: Int?, email: String?, fromPatient: Bool) -> Doctor? {
         self.initTableConfig()
         
@@ -289,7 +289,6 @@ class DoctorDatabaseHelper: DatabaseHelper {
         
         do {
             for d in try self.database.prepare(query!) {
-                // let doctorData: Dictionary<String, Any> = Dictionary<String, Any>()
                 let doctor: Doctor = Doctor(
                     id: doctorId!,
                     lastname: try d.get(self.lastname),

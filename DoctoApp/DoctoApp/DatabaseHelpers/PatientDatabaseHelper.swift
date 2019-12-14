@@ -93,4 +93,162 @@ class PatientDatabaseHelper: DatabaseHelper {
             try self.database.run(PatientDatabaseHelper.table.drop())
         } catch {}
     }
+
+    // Create a new patient in the database
+    func createPatient(patient: Patient) -> Bool {
+        var p: Patient = AddressDatabaseHelper().insertAddress(resident: patient) as! Patient
+        
+        // Check if the address was correctly added to the database
+        if p.GetAddressId() == -1 { return false }
+        
+        p = self.insertPatient(patient: p) as! Patient
+        
+        // Check if the patient was correctly added to the database
+        if p.getId() == -1 { return false }
+        
+        p = BookingDatabaseHelper().insertBookings(resident: p) as! Patient
+        
+        return true
+    }
+    
+    // Insert a new patient in the database
+    private func insertPatient(patient: Patient) -> Patient {
+        self.initTableConfig()
+        
+        let query = PatientDatabaseHelper.table.insert(
+            PatientDatabaseHelper.id <- Int64(patient.getId()),
+            self.lastname <- patient.getLastname(),
+            self.firstname <- patient.getFirstname(),
+            self.birthdate <- patient.getBirthdate(),
+            self.email <- patient.getEmail(),
+            self.pwd <- patient.getPwd(),
+            self.pwdSalt <- patient.getPwdSalt(),
+            self.insuranceNumber <- patient.getInsuranceNumber(),
+            self.addressId <- Int64(patient.GetAddressId()),
+            self.lastLogin <- patient.getLastLogin(),
+            self.picture <- patient.getPicture() == nil ? "" : patient.getPicture()!,
+        )
+        
+        do {
+            let patientId: Int = Int(try self.database.run(query))
+            patient.setId(id: patientId)
+            print("Patient insertion succeeded for patient: " + patient.getFullname())
+        } catch {
+            print("Patient insertion failed for patient: " + patient.getFullname())
+        }
+        
+        return patient
+    }
+    
+    // Update the given patient data in the database
+    private func updatePatientData(patient: Patient) -> Bool {
+        self.initTableConfig()
+        
+        let filter = PatientDatabaseHelper.table.filter(PatientDatabaseHelper.id == Int64(patient.getId()))
+        let query = filter.update(
+            self.lastname <- patient.getLastname(),
+            self.firstname <- patient.getFirstname(),
+            self.birthdate <- patient.getBirthdate(),
+            self.email <- patient.getEmail(),
+            self.pwd <- patient.getPwd(),
+            self.pwdSalt <- patient.getPwdSalt(),
+            self.insuranceNumber <- patient.getInsuranceNumber(),
+            self.addressId <- Int64(patient.GetAddressId()),
+            self.lastLogin <- patient.getLastLogin(),
+            self.picture <- patient.getPicture() == nil ? "" : patient.getPicture()!,
+        )
+        
+        do {
+            if try self.database.run(query) > 0 {
+                print("Patient update succeeded.")
+                
+                return true
+            }
+            
+            print("Patient update failed.")
+        } catch {
+            print("Patient update failed.")
+        }
+        
+        return false
+    }
+    
+    // Update the given patient in the database
+    func updatePatient(patient: Patient) -> Bool {
+        if !AddressDatabaseHelper().updateAddress(resident: patient) { return false }
+        
+        return self.updatePatientData(patient: patient)
+    }
+    
+    // Delete the given patient from the database
+    func deletePatient(patient: Patient) -> Bool {
+        self.initTableConfig()
+        
+        let filter = PatientDatabaseHelper.table.filter(PatientDatabaseHelper.id == Int64(patient.getId()))
+        let query = filter.delete()
+        
+        do {
+            if try self.database.run(query) > 0 {
+                print("Patient removal succeeded for patient: " + patient.getFullname())
+                
+                return true
+            }
+            
+            print("Patient removal failed for patient: " + patient.getFullname())
+        } catch {
+            print("Patient removal failed for patient: " + patient.getFullname())
+        }
+        
+        return false
+    }
+    
+    // Retrieve a patient by its id
+    func getPatient(patientId: Int?, email: String?, fromDoctor: Bool) -> Patient? {
+        self.initTableConfig()
+        
+        var query: Table? = nil
+        
+        if patientId != nil {
+            query = PatientDatabaseHelper.table
+                .select(PatientDatabaseHelper.table[*])
+                .filter(PatientDatabaseHelper.id == Int64(patientId!))
+        } else if email != nil {
+            query = PatientDatabaseHelper.table
+                .select(PatientDatabaseHelper.table[*])
+                .filter(self.email == email!)
+        }
+        
+        do {
+            for p in try self.database.prepare(query!) {
+                let patient: Patient = Patient(
+                    id: patientId!,
+                    lastname: try p.get(self.lastname),
+                    firstname: try p.get(self.firstname),
+                    email: try p.get(self.email),
+                    pwd: try p.get(self.pwd),
+                    pwdSalt: try p.get(self.pwdSalt),
+                    lastLogin: try p.get(self.lastLogin),
+                    picture: try p.get(self.picture),
+                    address: nil,
+                    birthdate: try p.get(self.birthdate),
+                    insuranceNumber: try p.get(self.insuranceNumber)
+                )
+                
+                let address: Address? = AddressDatabaseHelper().getAddress(addressId: Int(try p.get(self.addressId)))
+                
+                patient.setAddress(address: address)
+                
+                if !fromDoctor {
+                    let bookings: [Booking] = BookingDatabaseHelper().getBookings(patient: patient)
+                    patient.setBookings(bookings: bookings)
+                }
+                
+                return patient
+            }
+        } catch {
+            print("Something went wrong when fetching patient data.")
+        }
+        
+        return nil
+    }
 }
