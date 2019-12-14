@@ -382,14 +382,65 @@ class Doctor: Resident {
 
     // Organize the availabilities by day
     func [Int: [String: [Availability]]] getAvailabilitiesPerDay(weeksNumber: Int) {
-        var availabilitiesPerDay: [Int: [String: [Availability]]] = []
+        var availabilitiesPerDay: [Int: [String: [Availability]]] = [Int: [String: [Availability]]]()
+        var availabilitiesPerDayRef: [String: [Availability]] = [String: [Availability]]()
+
+        for a: Availability in self.availabilities {
+            if !availabilitiesPerDayRef.contains(a.getDate()) {
+                availabilitiesPerDayRef[a.getDate()] = [Availability]()
+            }
+        }
+
+        for x in 0...7 * weeksNumber {
+            let date: String = DateTimeService.GetDateFromCurrent(daysToAdd: x)
+            
+            if availabilitiesPerDayRef.contains(DateTimeService.GetDayFromDate(date: date)) {
+                availabilitiesPerDay[availabilitiesPerDay.count][date] = [Availability]()
+            }
+        }
+
+        for a: Availability in self.availabilities {
+            if availabilitiesPerDayRef.contains(a.getDate()) {
+                availabilitiesPerDayRef[a.getDate()].append(a)
+            }
+        }
+
+        for x in 0...(availabilitiesPerDay.count - 1) {
+            let fullDate: String = Array(availabilitiesPerDay[x].keys).first // availabilitiesPerDay[x].keys should contain the same key which is the full date so it's not important to have it sorted 
+            let day = DateTimeService.GetDayFromDate(date: fullDate)
+
+            if availabilitiesPerDayRef.contains(day) {
+                for a: Availability in availabilitiesPerDayRef[day] {
+                    availabilitiesPerDay[fullDate].append(
+                        Availability(
+                            self,
+                            fullDate,
+                            a.getTime()
+                        )
+                    )
+                }
+            }
+        }
 
         return availabilitiesPerDay
     }
 
     // Organize the availabilities for the given day
     func [Int: [String: [Availability]]] getAvailabilitiesForDay(bookingFullDate: String) {
-        var availabilitiesForDay: [Int: [String: [Availability]]] = []
+        var availabilitiesForDay: [String: [Availability]] = [String: [Availability]]()
+        availabilitiesForDay[bookingFullDate] = [Availability]()
+
+        for a: Availability in self.availabilities {
+            if a.getDate() == DateTimeService.GetDayFromDate(date: bookingFullDate) {
+                availabilitiesForDay[bookingFullDate].append(
+                    Availability(
+                        self,
+                        bookingFullDate,
+                        a.getTime()
+                    )
+                )
+            }
+        }
 
         return availabilitiesForDay
     }
