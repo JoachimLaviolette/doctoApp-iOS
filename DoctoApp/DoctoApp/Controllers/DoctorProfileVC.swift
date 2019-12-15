@@ -8,11 +8,14 @@
 
 import UIKit
 
-class DoctorProfileVC: UITableViewCell {
+class DoctorProfileVC: UIViewController {
     @IBOutlet weak var doctorPicture: UIImageView!
     @IBOutlet weak var doctorHeader: UIImageView!
     @IBOutlet weak var doctorFullname: UILabel!
     @IBOutlet weak var doctorSpeciality: UILabel!
+    @IBOutlet weak var doctorAddress: UILabel!
+    @IBOutlet weak var doctorPricesAndRefunds: UILabel!
+    @IBOutlet weak var doctorPaymentOptions: UILabel!
     
     var doctor: Doctor! // must be set by the calling view
     

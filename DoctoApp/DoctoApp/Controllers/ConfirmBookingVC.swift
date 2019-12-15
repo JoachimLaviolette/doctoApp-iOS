@@ -8,8 +8,11 @@
 
 import UIKit
 
-class ConfirmBookingVC: UITableViewCell {
-    
+class ConfirmBookingVC: UIViewController {
+    @IBOutlet weak var bookingErrorMessage: UIView!
+    @IBOutlet weak var bookingSuccessMessage: UIView!
+    @IBOutlet weak var bookingDetailsView: BookingDetailsView!
+
     var booking: Booking! // must be set by the calling view
     var doctor: Doctor!
     var patient: Patient! 
@@ -28,15 +31,17 @@ class ConfirmBookingVC: UITableViewCell {
         self.doctor = self.booking.getDoctor().update() as! Doctor
         self.patient = self.booking.getPatient().update() as! Patient
 
-        self.SetContent()
+        self.setContent()
     }
 
     // Set view content
-    private func SetContent() {
-        if BookingDatabaseHelper().insertBooking(self.booking) {
-            self.SetSuccessContent()
-        } else {
-            self.SetErrorContent()
-        }
+    private func setContent() {
+        if BookingDatabaseHelper().insertBooking(self.booking) { self.setSuccessContent() } 
+        else { self.setErrorContent() }
+    }
+
+    // Set success content
+    private func setSuccessContent() {
+        self.bookingDetailsView.setData(booking: booking)
     }
 }
