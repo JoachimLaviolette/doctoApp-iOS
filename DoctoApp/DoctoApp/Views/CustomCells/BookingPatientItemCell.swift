@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AppointmentPatientItemTVC: UITableViewCell {
+class BookingPatientItemCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -19,7 +19,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HeaderSubtitleView" customModule="DoctoApp" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="UXe-eq-mOp"/>
-                <outlet property="doctorFullname" destination="B6L-s2-Hfx" id="oj5-89-rJC"/>
                 <outlet property="headerSubtitle" destination="B6L-s2-Hfx" id="0FY-A0-0AM"/>
                 <outlet property="headerTitle" destination="epv-4x-xVb" id="hRa-aU-vhP"/>
             </connections>
