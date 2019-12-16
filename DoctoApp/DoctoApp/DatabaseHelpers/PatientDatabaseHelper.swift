@@ -126,7 +126,7 @@ class PatientDatabaseHelper: DatabaseHelper {
             self.insuranceNumber <- patient.getInsuranceNumber(),
             self.addressId <- Int64(patient.GetAddressId()),
             self.lastLogin <- patient.getLastLogin(),
-            self.picture <- patient.getPicture() == nil ? "" : patient.getPicture()!,
+            self.picture <- patient.getPicture() == nil ? "" : patient.getPicture()!
         )
         
         do {
@@ -155,7 +155,7 @@ class PatientDatabaseHelper: DatabaseHelper {
             self.insuranceNumber <- patient.getInsuranceNumber(),
             self.addressId <- Int64(patient.GetAddressId()),
             self.lastLogin <- patient.getLastLogin(),
-            self.picture <- patient.getPicture() == nil ? "" : patient.getPicture()!,
+            self.picture <- patient.getPicture() == nil ? "" : patient.getPicture()!
         )
         
         do {

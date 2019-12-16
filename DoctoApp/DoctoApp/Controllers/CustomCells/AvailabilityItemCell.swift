@@ -9,16 +9,20 @@
 import UIKit
 
 class AvailabilityItemCell: UITableViewCell {
+    var chooseAvailabilityDelegate: ChooseAvailabilityDelegator! // must be set by the calling view
+    
     @IBOutlet weak var availabilityTime: UILabel!
     
     var availability: Availability! // must be set by the calling view
     var doctor: Doctor! // must be set by the calling view
     var patient: Patient! // must be set by the calling view
+    var reason: Reason! // must be set by the calling view
     
     private static let confirmBookingSegueIdentifier: String = "confirm_booking_segue"
 
-    func setData(availability: Availability, doctor: Doctor, patient: Patient) {   
-        self.availability = availability   
+    func setData(availability: Availability, reason: Reason, doctor: Doctor, patient: Patient) {
+        self.availability = availability
+        self.reason = reason
         self.doctor = doctor
         self.patient = patient
         self.availabilityTime.text = self.availability.getTime()
@@ -26,28 +30,21 @@ class AvailabilityItemCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        self.showAvailabilities()
+        self.confirmBooking()
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == confirmBookingSegueIdentifier
-            && segue.destination is ConfirmBookingVC {
-            let confirmBookingVC = segue.destination as! ConfirmBookingVC
-            confirmBookingVC.booking = Booking(
+    // Display booking confirmation
+    private func confirmBooking() {
+        self.chooseAvailabilityDelegate.confirmBooking(booking: Booking(
                 id: -1,
                 patient: self.patient,
                 doctor: self.doctor,
                 reason: self.reason,
-                fullDate: self.availability.getFullDate(),
+                fullDate: self.availability.getDate(),
                 date: self.availability.getDate(),
                 time: self.availability.getTime(),
                 bookingDate: DateTimeService.GetCurrentDateTime()
             )
-        }
-    }
-
-    // Display availabilities
-    private func confirmBooking() {
-        performSegueWithIdentifier(confirmBookingSegueIdentifier, sender: self)
+        )
     }
 }

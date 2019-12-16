@@ -14,7 +14,7 @@ class BookingDetailsView: UIView {
     @IBOutlet weak var bookingFulldate: UILabel!
     @IBOutlet weak var bookingTime: UILabel!
 
-    @IBOutlet weak var doctorPicture: UILabel!
+    @IBOutlet weak var doctorPicture: UIImageView!
     @IBOutlet weak var doctorFullname: UILabel!
     @IBOutlet weak var doctorSpeciality: UILabel!
 
@@ -23,7 +23,7 @@ class BookingDetailsView: UIView {
 
     @IBOutlet weak var bookingReason: UILabel!
 
-    @IBOutlet weak var patientPicture: UILabel! // must be displayed on booking confirmation view only
+    @IBOutlet weak var patientPicture: UIImageView! // must be displayed on booking confirmation view only
     @IBOutlet weak var patientFullname: UILabel! // must be displayed on booking confirmation view only
 
     @IBOutlet weak var warningMessageContent: UILabel!
@@ -43,14 +43,14 @@ class BookingDetailsView: UIView {
         self.initialize()
     }
 
-    override init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.initialize()
     }
 
     // Initialize controller properties
     private func initialize() {
-        Bundle.main.loadNibNamed(bookingDetailsViewXib, owner: nil, options: nil)
+        Bundle.main.loadNibNamed(BookingDetailsView.bookingDetailsViewXib, owner: nil, options: nil)
         self.addSubview(self.contentView)
         self.contentView.frame = self.bounds
         self.contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
@@ -64,24 +64,24 @@ class BookingDetailsView: UIView {
         let reason: Reason = booking.getReason()
 
         // Set the view components values
-        self.bookingFullDate.text = booking.getFulldate()
+        self.bookingFulldate.text = booking.getFullDate()
         self.bookingTime.text = booking.getTime()
         
-        if !doctor.getPicture().isEmpty { self.doctorPicture.image = UIImage(name: doctor.getPicture()) }
+        if !doctor.getPicture()!.isEmpty { self.doctorPicture.image = UIImage(named: doctor.getPicture()!) }
         self.doctorFullname.text = doctor.getFullname()
         self.doctorFullname.text = doctor.getFullname()
         self.doctorFullname.text = doctor.getFullname()
 
-        self.bookingReason.text = reason.getDesccription()
+        self.bookingReason.text = reason.getDescription()
 
-        if !patient.getPicture().isEmpty { self.patientPicture.image = UIImage(name: patient.getPicture()) }
+        if !patient.getPicture()!.isEmpty { self.patientPicture.image = UIImage(named: patient.getPicture()!) }
         self.patientFullname.text = patient.getFullname()
         
-        self.warningMessageContent.text = doctor.getWarningMessageContent()
+        self.warningMessageContent.text = doctor.getWarningMessage()
 
         self.doctorContactNumber.text = doctor.getContactNumber()
 
-        self.doctorAddress.text = doctor.getAddress()
+        self.doctorAddress.text = doctor.GetFullAddress()
 
         self.doctorPaymentOptions.text = doctor.getPaymentOptionsAsString()
 

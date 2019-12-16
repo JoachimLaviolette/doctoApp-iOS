@@ -9,13 +9,13 @@
 import UIKit
 
 class ReasonItemCell: UITableViewCell {
+    var chooseReasonDelegate: ChooseReasonDelegator! // must be set by the caling view
+    
     @IBOutlet weak var reasonDescription: UILabel!
     
     var reason: Reason! // must be set by the calling view
     var doctor: Doctor! // must be set by the calling view
     var patient: Patient! // must be set by the calling view
-    
-    private static let chooseAvailabilitySegueIdentifier: String = "choose_availability_segue"
 
     func setData(reason: Reason, doctor: Doctor, patient: Patient) {   
         self.reason = reason   
@@ -26,21 +26,11 @@ class ReasonItemCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        self.chooseAvailabilities()
+        self.chooseAvailability()
     }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == chooseAvailabilitySegueIdentifier
-            && segue.destination is ChooseAvailabilityVC {
-            let chooseAvailabilityVC = segue.destination as! ChooseAvailabilityVC
-            chooseAvailabilityVC.reason = self.reason
-            chooseAvailabilityVC.doctor = self.doctor
-            chooseAvailabilityVC.patient = self.patient
-        }
-    }
-
+    
     // Display availabilities
     private func chooseAvailability() {
-        performSegueWithIdentifier(chooseAvailabilitySegueIdentifier, sender: self)
+        self.chooseReasonDelegate.chooseReason(reason: self.reason)
     }
 }

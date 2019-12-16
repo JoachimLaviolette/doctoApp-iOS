@@ -381,12 +381,12 @@ class Doctor: Resident {
     }
 
     // Organize the availabilities by day
-    func [Int: [String: [Availability]]] getAvailabilitiesPerDay(weeksNumber: Int) {
+    func getAvailabilitiesPerDay(weeksNumber: Int) -> [Int: [String: [Availability]]] {
         var availabilitiesPerDay: [Int: [String: [Availability]]] = [Int: [String: [Availability]]]()
         var availabilitiesPerDayRef: [String: [Availability]] = [String: [Availability]]()
 
-        for a: Availability in self.availabilities {
-            if !availabilitiesPerDayRef.contains(a.getDate()) {
+        for a: Availability in self.availabilities! {
+            if !availabilitiesPerDayRef.contains(where: a.getDate()) {
                 availabilitiesPerDayRef[a.getDate()] = [Availability]()
             }
         }
@@ -394,23 +394,23 @@ class Doctor: Resident {
         for x in 0...7 * weeksNumber {
             let date: String = DateTimeService.GetDateFromCurrent(daysToAdd: x)
             
-            if availabilitiesPerDayRef.contains(DateTimeService.GetDayFromDate(date: date)) {
-                availabilitiesPerDay[availabilitiesPerDay.count][date] = [Availability]()
+            if availabilitiesPerDayRef.contains(where: DateTimeService.GetDayFromDate(date: date)) {
+                availabilitiesPerDay[availabilitiesPerDay.count]![date] = [Availability]()
             }
         }
 
-        for a: Availability in self.availabilities {
-            if availabilitiesPerDayRef.contains(a.getDate()) {
+        for a: Availability in self.availabilities! {
+            if availabilitiesPerDayRef.contains(where: a.getDate()) {
                 availabilitiesPerDayRef[a.getDate()].append(a)
             }
         }
 
         for x in 0...(availabilitiesPerDay.count - 1) {
-            let fullDate: String = Array(availabilitiesPerDay[x].keys).first // availabilitiesPerDay[x].keys should contain the same key which is the full date so it's not important to have it sorted 
+            let fullDate: String = Array(availabilitiesPerDay[x]!.keys).first! // availabilitiesPerDay[x].keys should contain the same key which is the full date so it's not important to have it sorted 
             let day = DateTimeService.GetDayFromDate(date: fullDate)
 
-            if availabilitiesPerDayRef.contains(day) {
-                for a: Availability in availabilitiesPerDayRef[day] {
+            if availabilitiesPerDayRef.contains(where: day) {
+                for a: Availability in availabilitiesPerDayRef[day]! {
                     availabilitiesPerDay[fullDate].append(
                         Availability(
                             self,
@@ -426,11 +426,11 @@ class Doctor: Resident {
     }
 
     // Organize the availabilities for the given day
-    func [Int: [String: [Availability]]] getAvailabilitiesForDay(bookingFullDate: String) {
+    func getAvailabilitiesForDay(bookingFullDate: String) -> [String: [Availability]] {
         var availabilitiesForDay: [String: [Availability]] = [String: [Availability]]()
         availabilitiesForDay[bookingFullDate] = [Availability]()
 
-        for a: Availability in self.availabilities {
+        for a: Availability in self.availabilities! {
             if a.getDate() == DateTimeService.GetDayFromDate(date: bookingFullDate) {
                 availabilitiesForDay[bookingFullDate].append(
                     Availability(
@@ -448,10 +448,10 @@ class Doctor: Resident {
     // Update doctor data
     override func update() -> Resident {
         return DoctorDatabaseHelper().getDoctor(
-            doctorId: self.id,
+            doctorId: self.getId(),
             email: nil,
             fromPatient: false
-        ); 
+        )!;
     }
     
     // Transitive getters and setters

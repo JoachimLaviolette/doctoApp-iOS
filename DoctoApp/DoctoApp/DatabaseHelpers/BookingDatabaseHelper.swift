@@ -134,7 +134,7 @@ class BookingDatabaseHelper: DatabaseHelper {
         )
         
         do {
-            let bookingId: Int = try self.database.run(query)
+            let bookingId: Int = Int(try self.database.run(query))
             booking.setId(id: bookingId)
             
             if bookingId != -1 {
@@ -210,7 +210,7 @@ class BookingDatabaseHelper: DatabaseHelper {
         
         do {
             for booking in try self.database.prepare(query) {
-                let patient: Patient = PatientDatabaseHelper().getPatient(patientId: Int(try booking.get(self.patientId)), true)!
+                let patient: Patient = PatientDatabaseHelper().getPatient(patientId: Int(try booking.get(self.patientId)), email: nil, fromDoctor: true)!
                 patient.setBookings(bookings: bookings)
                 
                 let reason: Reason = ReasonDatabaseHelper().getReason(reasonId: Int(try booking.get(self.reasonId)))!
@@ -245,7 +245,7 @@ class BookingDatabaseHelper: DatabaseHelper {
         let currentDate = DateTimeService.GetCurrentDate()
         let currentTime = DateTimeService.GetCurrentDate()
         
-        var query = BookingDatabaseHelper.table
+        let query = BookingDatabaseHelper.table
             .select(BookingDatabaseHelper.table[*])
             .filter(
                 self.patientId == Int64(patient.getId())

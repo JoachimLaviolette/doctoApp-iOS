@@ -30,6 +30,6 @@ class DoctorProfileVC: UIViewController {
     // Initialize controller properties
     private func initialize() {        
         // Retrieve most recent changes updating the doctor model
-        self.doctor = doctor.update() as! Doctor
+        self.doctor = doctor.update() as? Doctor
     }
 }

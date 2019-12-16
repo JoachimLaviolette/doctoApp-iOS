@@ -81,9 +81,9 @@ class Patient: Resident {
     // Update patient data
     override func update() -> Resident {
         return PatientDatabaseHelper().getPatient(
-            patientId: self.id,
+            patientId: self.getId(),
             email: nil,
             fromDoctor: false
-        ); 
+        )!; 
     }
 }

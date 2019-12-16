@@ -6,11 +6,13 @@
 //  Copyright © 2019 LAVIOLETTE JOACHIM. All rights reserved.
 //
 
+import Foundation
+
 class DateTimeService {
     // Return the current date
     static func GetCurrentDateTime() -> String {
         let formatter = DateFormatter()
-        format.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
 
         return formatter.string(from: Date())
     }
@@ -18,7 +20,7 @@ class DateTimeService {
     // Return the current date
     static func GetCurrentDate() -> String {
         let formatter = DateFormatter()
-        format.dateFormat = "EEEE, MMMM d"
+        formatter.dateFormat = "EEEE, MMMM d"
 
         return formatter.string(from: Date())
     }
@@ -26,7 +28,7 @@ class DateTimeService {
     // Return the current time
     static func GetCurrentTime() -> String {
         let formatter = DateFormatter()
-        format.dateFormat = "HH:mm"
+        formatter.dateFormat = "HH:mm"
 
         return formatter.string(from: Date())
     }
@@ -34,7 +36,7 @@ class DateTimeService {
     // Return the current year
     private func GetCurrentYear() -> String {
         let formatter = DateFormatter()
-        format.dateFormat = "yyyy"
+        formatter.dateFormat = "yyyy"
         
         return formatter.string(from: Date())
     }
@@ -43,13 +45,13 @@ class DateTimeService {
     static func GetDateFromCurrent(daysToAdd: Int) -> String {
         let date = Calendar.current.date(byAdding: .day, value: daysToAdd, to: Date())!
         let formatter = DateFormatter()
-        format.dateFormat = "EEEE, MMMM d"
+        formatter.dateFormat = "EEEE, MMMM d"
         
         return formatter.string(from: date)
     }
 
     // Must be in format {Day, Month 7}
-   static func GetDayFromDate(date: String) {
-        return date.substring(fromIndex: 0, toIndex: date.indexOf(of: ",")!.encodedOffset)
+   static func GetDayFromDate(date: String) -> String {
+        return date.substring(fromIndex: 0, toIndex: date.index(of: ",")!.encodedOffset)
    }
 }

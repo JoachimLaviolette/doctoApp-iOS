@@ -28,20 +28,25 @@ class ConfirmBookingVC: UIViewController {
     // Initialize controller properties
     private func initialize() {        
         // Retrieve most recent changes updating the doctor and the patient models
-        self.doctor = self.booking.getDoctor().update() as! Doctor
-        self.patient = self.booking.getPatient().update() as! Patient
+        self.doctor = self.booking.getDoctor().update() as? Doctor
+        self.patient = self.booking.getPatient().update() as? Patient
 
         self.setContent()
     }
 
     // Set view content
     private func setContent() {
-        if BookingDatabaseHelper().insertBooking(self.booking) { self.setSuccessContent() } 
+        if BookingDatabaseHelper().insertBooking(booking: self.booking) { self.setSuccessContent() }
         else { self.setErrorContent() }
     }
 
     // Set success content
     private func setSuccessContent() {
         self.bookingDetailsView.setData(booking: booking)
+    }
+    
+    // Set error content
+    private func setErrorContent() {
+        
     }
 }
