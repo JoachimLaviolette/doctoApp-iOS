@@ -13,7 +13,7 @@ protocol ChooseReasonDelegator {
 }
 
 class ChooseReasonVC: UIViewController {
-    @IBOutlet weak var doctorFullname: UILabel!
+    @IBOutlet weak var headerDashboardSubtitle: HeaderDashboardSubtitleView!
     @IBOutlet weak var reasonList: UITableView!
     
     private var reasons: [Reason] = []
@@ -22,6 +22,7 @@ class ChooseReasonVC: UIViewController {
     var patient: Patient! // must be set by the calling view
     private var reason: Reason?
 
+    private static let headerTitle: String = "Book an appointment"
     private static let reasonItemCellIdentifer: String = "reason_item_cell"
     private static let chooseAvailabilitySegueIdentifier: String = "choose_availability_segue"
     
@@ -34,8 +35,12 @@ class ChooseReasonVC: UIViewController {
     private func initialize() {        
         self.reasonList.delegate = self
         self.reasonList.dataSource = self
+        self.patient = Patient(id: 0, lastname: "FRANCO", firstname: "James", email: "james.franco@gmail.com", pwd: "Test", pwdSalt: "Test3X", lastLogin: "2019-12-16", picture: "", address: Address(id: 1, street1: "3 place Henry IV", street2: "", city: "Paris", zip: "75016", country: "France"), birthdate: "1996-05-23", insuranceNumber: "02153562365602")
+        self.doctor = Doctor(id: 0, lastname: "LAVIOLETTE", firstname: "Joachim", email: "joachim.laviolete@gmail.com", pwd: "Test", pwdSalt: "Test2X", lastLogin: "2019-12-16", picture: "", address: Address(id: 0, street1: "8 rue de la plaine", street2: "Bat A26", city: "Paris", zip: "75008", country: "France"), speciality: "Pediatrician", description: "Specialized in children auscultation", contactNumber: "0660170694", underAgreement: true, healthInsuranceCard: true, thirdPartyPayment: true, header: "")
+        self.doctor.setReasons(reasons: [Reason(id: 0, doctor: self.doctor, description: "Reason 1"), Reason(id: 1, doctor: self.doctor, description: "Reason 2"), Reason(id: 2, doctor: self.doctor, description: "Reason 3")])
         self.reasons = self.doctor.getReasons()!
-        self.doctorFullname.text = self.doctor.getFullname()
+        self.headerDashboardSubtitle.headerTitle.text = ChooseReasonVC.headerTitle
+        self.headerDashboardSubtitle.headerSubtitle.text = self.doctor.getFullname()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -58,17 +63,12 @@ extension ChooseReasonVC: UITableViewDelegate, UITableViewDataSource, ChooseReas
         let reason: Reason = self.reasons[indexPath.row]
         let reasonItemCell = tableView.dequeueReusableCell(withIdentifier: ChooseReasonVC.reasonItemCellIdentifer) as! ReasonItemCell
         reasonItemCell.chooseReasonDelegate = self
-        reasonItemCell.setData(
-            reason: reason, 
-            doctor: self.doctor, 
-            patient: self.patient
-        )
+        reasonItemCell.setData(reason: reason)
         
         return reasonItemCell
     }
     
     func chooseReason(reason: Reason) {
         self.reason = reason
-        self.performSegue(withIdentifier: ChooseReasonVC.chooseAvailabilitySegueIdentifier, sender: nil)
     }
 }

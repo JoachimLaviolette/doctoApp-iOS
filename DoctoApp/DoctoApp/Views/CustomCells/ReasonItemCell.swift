@@ -14,13 +14,9 @@ class ReasonItemCell: UITableViewCell {
     @IBOutlet weak var reasonDescription: UILabel!
     
     var reason: Reason! // must be set by the calling view
-    var doctor: Doctor! // must be set by the calling view
-    var patient: Patient! // must be set by the calling view
 
-    func setData(reason: Reason, doctor: Doctor, patient: Patient) {   
-        self.reason = reason   
-        self.doctor = doctor
-        self.patient = patient
+    func setData(reason: Reason) {
+        self.reason = reason
         self.reasonDescription.text = self.reason.getDescription()
     }
 

@@ -36,7 +36,7 @@ class BookingDetailsView: UIView {
     
     @IBOutlet weak var doctorPricesAndRefunds: UILabel!
 
-    private static let bookingDetailsViewXib: String = "BookingDetailsView"
+    private static let xibFile: String = "BookingDetailsView"
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -50,7 +50,7 @@ class BookingDetailsView: UIView {
 
     // Initialize controller properties
     private func initialize() {
-        Bundle.main.loadNibNamed(BookingDetailsView.bookingDetailsViewXib, owner: nil, options: nil)
+        Bundle.main.loadNibNamed(BookingDetailsView.xibFile, owner: nil, options: nil)
         self.addSubview(self.contentView)
         self.contentView.frame = self.bounds
         self.contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]

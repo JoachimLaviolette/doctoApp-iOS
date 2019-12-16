@@ -28,7 +28,7 @@
         <!--HomeVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" userLabel="HomeVC" customClass="ViewController" customModule="DoctoApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" userLabel="HomeVC" customClass="HomeVC" customModule="DoctoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -100,7 +100,7 @@
                                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="testCreateAddressTable:" destination="BYZ-38-t0r" eventType="touchUpInside" id="x5r-xy-TSO"/>
+                                            <segue destination="ONO-v5-ywD" kind="show" id="497-PI-6lu"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -442,10 +442,10 @@
             </objects>
             <point key="canvasLocation" x="3188" y="134"/>
         </scene>
-        <!--Login Pop Up Delete AccountVC-->
+        <!--LoginPopUpDeleteAccountVC-->
         <scene sceneID="IFn-Ly-Vjo">
             <objects>
-                <viewController id="gnE-pi-1Bf" customClass="LoginPopUpDeleteAccountVC" customModule="DoctoApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="gnE-pi-1Bf" userLabel="LoginPopUpDeleteAccountVC" customClass="LoginPopUpDeleteAccountVC" customModule="DoctoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <visualEffectView key="view" opaque="NO" contentMode="scaleToFill" id="CJC-YU-6Gb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -565,10 +565,10 @@
             </objects>
             <point key="canvasLocation" x="3188" y="919.79010494752629"/>
         </scene>
-        <!--My BookingsVC-->
+        <!--MyBookingsVC-->
         <scene sceneID="6iZ-if-Eyp">
             <objects>
-                <viewController id="vCf-41-LEZ" customClass="MyBookingsVC" customModule="DoctoApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vCf-41-LEZ" userLabel="MyBookingsVC" customClass="MyBookingsVC" customModule="DoctoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DFt-fs-UOm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -755,10 +755,10 @@
             </objects>
             <point key="canvasLocation" x="3188" y="-618.44077961019491"/>
         </scene>
-        <!--Forgot PasswordVC-->
+        <!--ForgotPasswordVC-->
         <scene sceneID="bIR-bz-B3P">
             <objects>
-                <viewController id="ptA-WE-5cD" customClass="ForgotPasswordVC" customModule="DoctoApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ptA-WE-5cD" userLabel="ForgotPasswordVC" customClass="ForgotPasswordVC" customModule="DoctoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4rh-yF-l6z">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -897,6 +897,133 @@
             </objects>
             <point key="canvasLocation" x="133.59999999999999" y="133.5832083958021"/>
         </scene>
+        <!--ChooseAvailabilityVC-->
+        <scene sceneID="42c-3n-pZO">
+            <objects>
+                <viewController id="Lay-2D-PJL" userLabel="ChooseAvailabilityVC" customClass="ChooseAvailabilityVC" customModule="DoctoApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xVG-TN-GjB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t68-vD-ROF" userLabel="Header Dashboard Subtitle" customClass="HeaderDashboardSubtitleView" customModule="DoctoApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="375" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="85" id="Ayw-EF-yvb"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0L9-UT-usB">
+                                <rect key="frame" x="30" y="270" width="317" height="72"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="t68-vD-ROF" firstAttribute="top" secondItem="1E9-Mu-CHk" secondAttribute="top" id="IMu-Le-0Gg"/>
+                            <constraint firstItem="t68-vD-ROF" firstAttribute="trailing" secondItem="1E9-Mu-CHk" secondAttribute="trailing" id="Or6-IZ-JQJ"/>
+                            <constraint firstItem="t68-vD-ROF" firstAttribute="leading" secondItem="1E9-Mu-CHk" secondAttribute="leading" id="gr1-x4-Vfm"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="1E9-Mu-CHk"/>
+                    </view>
+                    <connections>
+                        <outlet property="headerDashboardSubtitle" destination="t68-vD-ROF" id="GKt-iX-DLl"/>
+                        <outlet property="labelTest" destination="0L9-UT-usB" id="RaP-0v-EwZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ewi-KM-bqF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1080.8" y="908.9955022488756"/>
+        </scene>
+        <!--ChooseReasonVC-->
+        <scene sceneID="Olm-by-oFj">
+            <objects>
+                <viewController id="ONO-v5-ywD" userLabel="ChooseReasonVC" customClass="ChooseReasonVC" customModule="DoctoApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="83d-Ru-zDe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Qg-f3-ohx" userLabel="Header Dashboard Subtitle" customClass="HeaderDashboardSubtitleView" customModule="DoctoApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="375" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="85" id="nA7-Oj-Oig"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="yCI-Dp-SD0">
+                                <rect key="frame" x="20" y="209" width="335" height="438"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FNB-2K-KUO">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="438"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reason_item_cell" id="qw7-yB-Yvc" customClass="ReasonItemCell" customModule="DoctoApp" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="335" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qw7-yB-Yvc" id="ppS-OZ-0Ha">
+                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kik-aB-nCs">
+                                                            <rect key="frame" x="15" y="11" width="305" height="21"/>
+                                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
+                                                            <color key="textColor" name="patient_appointment_item_header_color"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="kik-aB-nCs" firstAttribute="centerX" secondItem="ppS-OZ-0Ha" secondAttribute="centerX" id="AmW-xr-izf"/>
+                                                        <constraint firstItem="kik-aB-nCs" firstAttribute="top" secondItem="ppS-OZ-0Ha" secondAttribute="topMargin" id="GBb-BZ-mht"/>
+                                                        <constraint firstAttribute="bottomMargin" secondItem="kik-aB-nCs" secondAttribute="bottom" constant="1" id="MHh-5K-be0"/>
+                                                        <constraint firstItem="kik-aB-nCs" firstAttribute="trailing" secondItem="ppS-OZ-0Ha" secondAttribute="trailingMargin" id="ZAS-V9-8Fr"/>
+                                                        <constraint firstItem="kik-aB-nCs" firstAttribute="centerY" secondItem="ppS-OZ-0Ha" secondAttribute="centerY" id="kBv-04-abD"/>
+                                                        <constraint firstItem="kik-aB-nCs" firstAttribute="centerX" secondItem="ppS-OZ-0Ha" secondAttribute="centerX" id="ncH-XX-ZDl"/>
+                                                        <constraint firstItem="kik-aB-nCs" firstAttribute="leading" secondItem="ppS-OZ-0Ha" secondAttribute="leadingMargin" id="s9l-FE-6Ca"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="reasonDescription" destination="kik-aB-nCs" id="GRh-Xa-Hgm"/>
+                                                    <segue destination="Lay-2D-PJL" kind="show" identifier="choose_availability_segue" id="Apv-kh-IGC"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose you consultation reason" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0OP-4u-3kn">
+                                <rect key="frame" x="20" y="167" width="335" height="24"/>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
+                                <color key="textColor" name="login_delete_account_popup_section_title_color"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" name="login_background_color"/>
+                        <constraints>
+                            <constraint firstItem="9Qg-f3-ohx" firstAttribute="leading" secondItem="gkD-Nt-gL3" secondAttribute="leading" id="Dn6-Ho-g0y"/>
+                            <constraint firstItem="yCI-Dp-SD0" firstAttribute="top" secondItem="9Qg-f3-ohx" secondAttribute="bottom" constant="60" id="I5J-jJ-Os5"/>
+                            <constraint firstItem="9Qg-f3-ohx" firstAttribute="top" secondItem="gkD-Nt-gL3" secondAttribute="top" id="IzY-QQ-ASU"/>
+                            <constraint firstItem="gkD-Nt-gL3" firstAttribute="trailing" secondItem="0OP-4u-3kn" secondAttribute="trailing" constant="20" id="OJy-BF-Zlg"/>
+                            <constraint firstItem="FNB-2K-KUO" firstAttribute="top" secondItem="0OP-4u-3kn" secondAttribute="bottom" constant="18" id="WJb-uZ-Ctm"/>
+                            <constraint firstItem="0OP-4u-3kn" firstAttribute="top" secondItem="9Qg-f3-ohx" secondAttribute="bottom" constant="18" id="is8-q1-H2U"/>
+                            <constraint firstItem="0OP-4u-3kn" firstAttribute="leading" secondItem="gkD-Nt-gL3" secondAttribute="leading" constant="20" id="kIV-FN-4rM"/>
+                            <constraint firstItem="yCI-Dp-SD0" firstAttribute="bottom" secondItem="gkD-Nt-gL3" secondAttribute="bottom" constant="-20" id="mSd-yy-P2k"/>
+                            <constraint firstItem="9Qg-f3-ohx" firstAttribute="trailing" secondItem="gkD-Nt-gL3" secondAttribute="trailing" id="pgB-i0-az2"/>
+                            <constraint firstItem="yCI-Dp-SD0" firstAttribute="trailing" secondItem="gkD-Nt-gL3" secondAttribute="trailing" constant="-20" id="qSK-nL-IFW"/>
+                            <constraint firstItem="yCI-Dp-SD0" firstAttribute="leading" secondItem="gkD-Nt-gL3" secondAttribute="leading" constant="20" id="xUT-ha-odf"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="gkD-Nt-gL3"/>
+                    </view>
+                    <connections>
+                        <outlet property="headerDashboardSubtitle" destination="9Qg-f3-ohx" id="zKR-91-FU9"/>
+                        <outlet property="reasonList" destination="FNB-2K-KUO" id="C1M-be-3ae"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8HX-DG-GsB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1989.5999999999999" y="586.95652173913049"/>
+        </scene>
     </scenes>
     <resources>
         <image name="ic_bookings" width="36" height="36"/>
@@ -966,6 +1093,9 @@
         </namedColor>
         <namedColor name="login_delete_account_popup_section_content_color">
             <color red="0.44705882352941179" green="0.44705882352941179" blue="0.44705882352941179" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="login_delete_account_popup_section_title_color">
+            <color red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="login_delete_account_popup_title_background_color">
             <color red="0.10588235294117647" green="0.52549019607843139" blue="0.89411764705882357" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

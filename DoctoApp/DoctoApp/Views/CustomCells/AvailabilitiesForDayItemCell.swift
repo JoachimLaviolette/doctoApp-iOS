@@ -19,7 +19,7 @@ class AvailabilitiesForDayItemCell: UITableViewCell {
     var doctor: Doctor! // must be set by the calling view
     var patient: Patient! // must be set by the calling view
 
-    private static let availabilityCellIdentifer: String = "availability_item_cell"
+    private static let availabilityItemCellIdentifer: String = "availability_item_cell"
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -47,7 +47,7 @@ extension AvailabilitiesForDayItemCell: UITableViewDelegate, UITableViewDataSour
         let fullDateKey: String = (self.availabilitiesForDay.first?.key)!
         let availabilitiesForDay: [Availability] = self.availabilitiesForDay[fullDateKey]!
         let availability: Availability = availabilitiesForDay[indexPath.row]
-        let availabilityItemCell = tableView.dequeueReusableCell(withIdentifier: AvailabilitiesForDayItemCell.availabilityCellIdentifer) as! AvailabilityItemCell
+        let availabilityItemCell = tableView.dequeueReusableCell(withIdentifier: AvailabilitiesForDayItemCell.availabilityItemCellIdentifer) as! AvailabilityItemCell
         availabilityItemCell.chooseAvailabilityDelegate = self.chooseAvailabilityDelegate
         
         availabilityItemCell.setData(

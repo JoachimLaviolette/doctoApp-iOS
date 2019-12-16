@@ -13,8 +13,10 @@ protocol ChooseAvailabilityDelegator {
 }
 
 class ChooseAvailabilityVC: UIViewController {
-    @IBOutlet weak var doctorFullname: UILabel!
+    @IBOutlet weak var headerDashboardSubtitle: HeaderDashboardSubtitleView!
     @IBOutlet weak var availabilityPerDayList: UITableView!
+    
+    @IBOutlet weak var labelTest: UILabel!
     
     private var availabilitiesPerDay: [Int: [String: [Availability]]] = [Int: [String: [Availability]]]()
 
@@ -24,6 +26,8 @@ class ChooseAvailabilityVC: UIViewController {
     private var booking: Booking? 
 
     private static let weeksNumber: Int = 1
+    
+    private static let headerTitle: String = "Book an appointment"
     private static let availabilitiesForDayItemCellIdentifer: String = "availabilities_for_day_item_cell"
     private static let confirmBookingSegueIdentifier: String = "confirm_booking_segue"
     
@@ -34,10 +38,13 @@ class ChooseAvailabilityVC: UIViewController {
     
     // Initialize controller properties
     private func initialize() {        
-        self.availabilityPerDayList.delegate = self
-        self.availabilityPerDayList.dataSource = self
-        self.availabilitiesPerDay = self.doctor.getAvailabilitiesPerDay(weeksNumber: ChooseAvailabilityVC.weeksNumber)
-        self.doctorFullname.text = self.doctor.getFullname()
+        //self.availabilityPerDayList.delegate = self
+        //self.availabilityPerDayList.dataSource = self
+        //self.availabilitiesPerDay = self.doctor.getAvailabilitiesPerDay(weeksNumber: ChooseAvailabilityVC.weeksNumber)
+        self.headerDashboardSubtitle.headerTitle.text = ChooseAvailabilityVC.headerTitle
+        self.headerDashboardSubtitle.headerSubtitle.text = self.doctor.getFullname()
+        self.labelTest.text = self.reason.getDescription()
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -70,6 +77,5 @@ extension ChooseAvailabilityVC: UITableViewDelegate, UITableViewDataSource, Choo
     
     func confirmBooking(booking: Booking) {
         self.booking = booking
-        self.performSegue(withIdentifier: ChooseAvailabilityVC.confirmBookingSegueIdentifier, sender: nil)
     }
 }

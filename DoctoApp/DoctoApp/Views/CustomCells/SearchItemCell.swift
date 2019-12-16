@@ -21,10 +21,7 @@ class SearchItemCell: UITableViewCell {
     func setData(doctor: Doctor) {   
         self.doctor = doctor   
 
-        if !self.doctor.getPicture()!.isEmpty {
-            self.doctorPicture.image = UIImage(named: self.doctor.getPicture()!)
-        }
-
+        if !self.doctor.getPicture()!.isEmpty { self.doctorPicture.image = UIImage(named: self.doctor.getPicture()!) }
         self.doctorFullname.text = self.doctor.getFullname()
         self.doctorSpeciality.text = self.doctor.getSpeciality()
         self.doctorAddress.text = self.doctor.GetCityCountry()

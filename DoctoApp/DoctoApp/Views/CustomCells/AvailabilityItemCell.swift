@@ -17,8 +17,6 @@ class AvailabilityItemCell: UITableViewCell {
     var doctor: Doctor! // must be set by the calling view
     var patient: Patient! // must be set by the calling view
     var reason: Reason! // must be set by the calling view
-    
-    private static let confirmBookingSegueIdentifier: String = "confirm_booking_segue"
 
     func setData(availability: Availability, reason: Reason, doctor: Doctor, patient: Patient) {
         self.availability = availability
