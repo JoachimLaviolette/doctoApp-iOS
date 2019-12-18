@@ -10,76 +10,15 @@ import UIKit
 import Foundation
 import SQLite
 
-class PaymentOptionDatabaseHelper: DatabaseHelper {
-    var database: Connection!
-    
+class PaymentOptionDatabaseHelper: DoctoAppDatabaseHelper {
     static let tableName = "payment_option"
     static let table = Table("payment_option")
     
     // Fields
-    private let doctorId = Expression<Int64>("doctor_id")
-    private let paymentOption = Expression<String>("payment_option")
+    static let doctorId = Expression<Int64>("doctor_id")
+    static let paymentOption = Expression<String>("payment_option")
     
-    private static var pk = 0
-    private var tableExist = false
-    
-    init() {}
-    
-    func initTableConfig() {
-        do {
-            let documentDirectory = try FileManager.default.url(
-                for: .documentDirectory,
-                in: .userDomainMask,
-                appropriateFor: nil,
-                create: true
-            )
-            
-            let fileUrl = documentDirectory
-                .appendingPathComponent(PaymentOptionDatabaseHelper.tableName)
-                .appendingPathExtension("sqlite3")
-            
-            self.database = try Connection(fileUrl.path)
-        } catch {
-            print(error)
-        }
-    }
-    
-    func createTable() {
-        if !self.tableExist {
-            self.tableExist = true
-            
-            let createTable = PaymentOptionDatabaseHelper.table.create { table in
-                table.column(self.doctorId)
-                table.column(self.paymentOption)
-                
-                // Alter table
-                table.primaryKey(
-                    self.doctorId,
-                    self.paymentOption
-                )
-                
-                table.foreignKey(
-                    self.doctorId,
-                    references: DoctorDatabaseHelper.table, DoctorDatabaseHelper.id,
-                    update: .cascade,
-                    delete: .cascade
-                )
-            }
-            
-            do {
-                try self.database.run(createTable)
-                print (PaymentOptionDatabaseHelper.tableName + " table was successfully created.")
-            } catch {
-                print(error)
-            }
-        }
-    }
-    
-    func dropTable() {
-        do {
-            try self.database.run(PaymentOptionDatabaseHelper.table.drop())
-        } catch {}
-    }
+    override init() {}
     
     // Insert all the payment options of the given doctor in the database
     func insertPaymentOptions(doctor: Doctor) -> Doctor {
@@ -92,11 +31,11 @@ class PaymentOptionDatabaseHelper: DatabaseHelper {
     
     // Insert a new payment option in the database related to the given doctor
     private func insertPaymentOption(paymentOption: PaymentOption, doctor: Doctor) {
-        self.initTableConfig()
+        self.initDb()
         
         let query = PaymentOptionDatabaseHelper.table.insert(
-            self.doctorId <- Int64(doctor.getId()),
-            self.paymentOption <- paymentOption.rawValue
+            PaymentOptionDatabaseHelper.doctorId <- Int64(doctor.getId()),
+            PaymentOptionDatabaseHelper.paymentOption <- paymentOption.rawValue
         )
         
         do {
@@ -109,7 +48,7 @@ class PaymentOptionDatabaseHelper: DatabaseHelper {
     
     // Update the payment options of the given doctor in the database
     func updatePaymentOptions(doctor: Doctor) -> Bool {
-        self.initTableConfig()
+        self.initDb()
         
         if self.dropPaymentOptions(doctor: doctor) {
             let _ = self.insertPaymentOptions(doctor: doctor)
@@ -120,9 +59,9 @@ class PaymentOptionDatabaseHelper: DatabaseHelper {
     
     // Drop all the payment options related to the given doctor from the database
     private func dropPaymentOptions(doctor: Doctor) -> Bool {
-        self.initTableConfig()
+        self.initDb()
         
-        let filter = PaymentOptionDatabaseHelper.table.filter(self.doctorId == Int64(doctor.getId()))
+        let filter = PaymentOptionDatabaseHelper.table.filter(PaymentOptionDatabaseHelper.doctorId == Int64(doctor.getId()))
         let query = filter.delete()
         
         do {
@@ -144,15 +83,15 @@ class PaymentOptionDatabaseHelper: DatabaseHelper {
     func getPaymentOptions(doctor: Doctor) -> [PaymentOption] {
         var paymentOptions: [PaymentOption] = []
         
-        self.initTableConfig()
+        self.initDb()
         
         let query = PaymentOptionDatabaseHelper.table
             .select(PaymentOptionDatabaseHelper.table[*])
-            .filter(self.doctorId == Int64(doctor.getId()))
+            .filter(PaymentOptionDatabaseHelper.doctorId == Int64(doctor.getId()))
         
         do {
             for paymentOption in try self.database.prepare(query) {
-                paymentOptions.append(PaymentOption.getValueOf(paymentOptionName: try paymentOption.get(self.paymentOption))!)
+                paymentOptions.append(PaymentOption.getValueOf(paymentOptionName: try paymentOption.get(PaymentOptionDatabaseHelper.paymentOption))!)
             }
         } catch {
             print("Something went wrong when fetching payment options data.")

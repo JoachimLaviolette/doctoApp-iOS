@@ -28,22 +28,24 @@ class ChooseReasonVC: UIViewController {
     }
     
     // Initialize controller properties
-    private func initialize() {        
+    private func initialize() {
+        // Update doctor model to get most recent changes
+        self.doctor = self.doctor.update() as? Doctor
+        
+        // Retrieve reasons
+        self.reasons = self.doctor.getReasons() ?? []
+        
         self.reasonList.delegate = self
         self.reasonList.dataSource = self
 
         // Setup cell
         self.reasonList.rowHeight = UITableView.automaticDimension
-        self.reasonList.separatorColor = UIColor.clear
-
-        // Setup test models
-        self.patient = Patient(id: 0, lastname: "FRANCO", firstname: "James", email: "james.franco@gmail.com", pwd: "Test", pwdSalt: "Test3X", lastLogin: "2019-12-16", picture: "", address: Address(id: 1, street1: "3 place Henry IV", street2: "", city: "Paris", zip: "75016", country: "France"), birthdate: "1996-05-23", insuranceNumber: "02153562365602")
-        self.doctor = Doctor(id: 0, lastname: "LAVIOLETTE", firstname: "Joachim", email: "joachim.laviolete@gmail.com", pwd: "Test", pwdSalt: "Test2X", lastLogin: "2019-12-16", picture: "", address: Address(id: 0, street1: "8 rue de la plaine", street2: "Bat A26", city: "Paris", zip: "75008", country: "France"), speciality: "Pediatrician", description: "Specialized in children auscultation", contactNumber: "0660170694", underAgreement: true, healthInsuranceCard: true, thirdPartyPayment: true, header: "")
-        self.doctor.setReasons(reasons: [Reason(id: 0, doctor: self.doctor, description: "Reason 1"), Reason(id: 1, doctor: self.doctor, description: "Reason 2"), Reason(id: 2, doctor: self.doctor, description: "Reason 3")])
-        self.reasons = self.doctor.getReasons()!
+        self.reasonList.separatorColor = UIColor(hex: Colors.FORGOT_PASSWORD_BACKGROUND)
         
-        self.headerDashboardSubtitle.headerTitle.text = ChooseReasonVC.headerTitle
-        self.headerDashboardSubtitle.headerSubtitle.text = self.doctor.getFullname()
+        self.setHeaderData()
+
+        // Setup patient test model
+        self.patient = Patient(id: 0, lastname: "FRANCO", firstname: "James", email: "james.franco@gmail.com", pwd: "Test", pwdSalt: "Test3X", lastLogin: "2019-12-16", picture: "pp4", address: Address(id: -1, street1: "3 place Henry IV", street2: "", city: "Paris", zip: "75016", country: "France"), birthdate: "1996-05-23", insuranceNumber: "02153562365602")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -54,6 +56,12 @@ class ChooseReasonVC: UIViewController {
             chooseAvailabilityVC.doctor = self.doctor
             chooseAvailabilityVC.patient = self.patient
         }
+    }
+    
+    // Set header data
+    private func setHeaderData() {
+        self.headerDashboardSubtitle.headerTitle.text = ChooseReasonVC.headerTitle
+        self.headerDashboardSubtitle.headerSubtitle.text = self.doctor.getFullname()
     }
 }
 
@@ -72,6 +80,10 @@ extension ChooseReasonVC: UITableViewDelegate, UITableViewDataSource {
         reasonItemCell.setData(reason: self.reasons[indexPath.row])
         
         return reasonItemCell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 40
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

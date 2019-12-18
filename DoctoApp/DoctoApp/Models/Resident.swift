@@ -106,7 +106,7 @@ class Resident {
 
     // Update resident data
     func update() -> Resident { return self }
-
+    
     // Transitive getters and setters
     func GetZip() -> String {
         return self.address!.getZip()

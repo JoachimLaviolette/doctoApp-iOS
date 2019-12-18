@@ -10,99 +10,29 @@ import UIKit
 import Foundation
 import SQLite
 
-class DoctorDatabaseHelper: DatabaseHelper {
-    var database: Connection!
-    
+class DoctorDatabaseHelper: DoctoAppDatabaseHelper {
     static let tableName = "doctor"
     static let table = Table("doctor")
     
     // Fields
     static let id = Expression<Int64>("id")
-    private let lastname = Expression<String>("lastname")
-    private let firstname = Expression<String>("firstname")
-    private let speciality = Expression<String>("speciality")
-    private let email = Expression<String>("email")
-    private let pwd = Expression<String>("pwd")
-    private let pwdSalt = Expression<String>("pwd_salt")
-    private let description = Expression<String>("description")
-    private let contactNumber = Expression<String>("contact_number")
-    private let isUnderAgreement = Expression<Bool>("is_under_agreement")
-    private let isHealthInsuranceCard = Expression<Bool>("is_health_insurance_card")
-    private let isThirdPartyPayment = Expression<Bool>("is_third_party_payment")
-    private let addressId = Expression<Int64>("doctor_id")
-    private let lastLogin = Expression<String>("last_login")
-    private let picture = Expression<String>("picture")
-    private let header = Expression<String>("header")
+    static let lastname = Expression<String>("lastname")
+    static let firstname = Expression<String>("firstname")
+    static let speciality = Expression<String>("speciality")
+    static let email = Expression<String>("email")
+    static let pwd = Expression<String>("pwd")
+    static let pwdSalt = Expression<String>("pwd_salt")
+    static let description = Expression<String>("description")
+    static let contactNumber = Expression<String>("contact_number")
+    static let isUnderAgreement = Expression<Bool>("is_under_agreement")
+    static let isHealthInsuranceCard = Expression<Bool>("is_health_insurance_card")
+    static let isThirdPartyPayment = Expression<Bool>("is_third_party_payment")
+    static let addressId = Expression<Int64>("address_id")
+    static let lastLogin = Expression<String>("last_login")
+    static let picture = Expression<String>("picture")
+    static let header = Expression<String>("header")
     
-    private static var pk = 0
-    private var tableExist = false
-    
-    init() {}
-    
-    func initTableConfig() {
-        do {
-            let documentDirectory = try FileManager.default.url(
-                for: .documentDirectory,
-                in: .userDomainMask,
-                appropriateFor: nil,
-                create: true
-            )
-            
-            let fileUrl = documentDirectory
-                .appendingPathComponent(DoctorDatabaseHelper.tableName)
-                .appendingPathExtension("sqlite3")
-            
-            self.database = try Connection(fileUrl.path)
-        } catch {
-            print(error)
-        }
-    }
-    
-    func createTable() {
-        if !self.tableExist {
-            self.tableExist = true
-            
-            let createTable = DoctorDatabaseHelper.table.create { table in
-                table.column(DoctorDatabaseHelper.id, primaryKey: .autoincrement)
-                table.column(self.lastname)
-                table.column(self.firstname)
-                table.column(self.speciality)
-                table.column(self.email)
-                table.column(self.pwd)
-                table.column(self.pwdSalt)
-                table.column(self.description)
-                table.column(self.contactNumber)
-                table.column(self.isUnderAgreement)
-                table.column(self.isHealthInsuranceCard)
-                table.column(self.isThirdPartyPayment)
-                table.column(self.addressId, unique: true)
-                table.column(self.lastLogin)
-                table.column(self.picture)
-                table.column(self.header)
-                
-                // Alter table
-                table.foreignKey(
-                    self.addressId,
-                    references: DoctorDatabaseHelper.table, DoctorDatabaseHelper.id,
-                    update: .cascade,
-                    delete: .cascade
-                )
-            }
-            
-            do {
-                try self.database.run(createTable)
-                print (DoctorDatabaseHelper.tableName + " table was successfully created.")
-            } catch {
-                print(error)
-            }
-        }
-    }
-    
-    func dropTable() {
-        do {
-            try self.database.run(DoctorDatabaseHelper.table.drop())
-        } catch {}
-    }
+    override init() {}
     
     // Create a new doctor in the database
     func createDoctor(doctor: Doctor) -> Bool {
@@ -129,24 +59,24 @@ class DoctorDatabaseHelper: DatabaseHelper {
     
     // Insert a new doctor in the database
     private func insertDoctor(doctor: Doctor) -> Doctor {
-        self.initTableConfig()
+        self.initDb()
         
         let query = DoctorDatabaseHelper.table.insert(
-            self.lastname <- doctor.getLastname(),
-            self.firstname <- doctor.getFirstname(),
-            self.speciality <- doctor.getSpeciality(),
-            self.email <- doctor.getEmail(),
-            self.description <- doctor.getDescription(),
-            self.contactNumber <- doctor.getContactNumber(),
-            self.pwd <- doctor.getPwd(),
-            self.pwdSalt <- doctor.getPwdSalt(),
-            self.isUnderAgreement <- doctor.isUnderAgreement(),
-            self.isHealthInsuranceCard <- doctor.isHealthInsuranceCard(),
-            self.isThirdPartyPayment <- doctor.isThirdPartyPayment(),
-            self.addressId <- Int64(doctor.GetAddressId()),
-            self.lastLogin <- doctor.getLastLogin(),
-            self.picture <- doctor.getPicture() == nil ? "" : doctor.getPicture()!,
-            self.header <- doctor.getHeader() == nil ? "" : doctor.getHeader()!
+            DoctorDatabaseHelper.lastname <- doctor.getLastname(),
+            DoctorDatabaseHelper.firstname <- doctor.getFirstname(),
+            DoctorDatabaseHelper.speciality <- doctor.getSpeciality(),
+            DoctorDatabaseHelper.email <- doctor.getEmail(),
+            DoctorDatabaseHelper.description <- doctor.getDescription(),
+            DoctorDatabaseHelper.contactNumber <- doctor.getContactNumber(),
+            DoctorDatabaseHelper.pwd <- doctor.getPwd(),
+            DoctorDatabaseHelper.pwdSalt <- doctor.getPwdSalt(),
+            DoctorDatabaseHelper.isUnderAgreement <- doctor.isUnderAgreement(),
+            DoctorDatabaseHelper.isHealthInsuranceCard <- doctor.isHealthInsuranceCard(),
+            DoctorDatabaseHelper.isThirdPartyPayment <- doctor.isThirdPartyPayment(),
+            DoctorDatabaseHelper.addressId <- Int64(doctor.GetAddressId()),
+            DoctorDatabaseHelper.lastLogin <- doctor.getLastLogin(),
+            DoctorDatabaseHelper.picture <- doctor.getPicture() == nil ? "" : doctor.getPicture()!,
+            DoctorDatabaseHelper.header <- doctor.getHeader() == nil ? "" : doctor.getHeader()!
         )
         
         do {
@@ -162,25 +92,25 @@ class DoctorDatabaseHelper: DatabaseHelper {
     
     // Update the given doctor data in the database
     private func updateDoctorData(doctor: Doctor) -> Bool {
-        self.initTableConfig()
+        self.initDb()
         
         let filter = DoctorDatabaseHelper.table.filter(DoctorDatabaseHelper.id == Int64(doctor.getId()))
         let query = filter.update(
-            self.lastname <- doctor.getLastname(),
-            self.firstname <- doctor.getFirstname(),
-            self.speciality <- doctor.getSpeciality(),
-            self.email <- doctor.getEmail(),
-            self.description <- doctor.getDescription(),
-            self.contactNumber <- doctor.getContactNumber(),
-            self.pwd <- doctor.getPwd(),
-            self.pwdSalt <- doctor.getPwdSalt(),
-            self.isUnderAgreement <- doctor.isUnderAgreement(),
-            self.isHealthInsuranceCard <- doctor.isHealthInsuranceCard(),
-            self.isThirdPartyPayment <- doctor.isThirdPartyPayment(),
-            self.addressId <- Int64(doctor.GetAddressId()),
-            self.lastLogin <- doctor.getLastLogin(),
-            self.picture <- doctor.getPicture() == nil ? "" : doctor.getPicture()!,
-            self.header <- doctor.getHeader() == nil ? "" : doctor.getHeader()!
+            DoctorDatabaseHelper.lastname <- doctor.getLastname(),
+            DoctorDatabaseHelper.firstname <- doctor.getFirstname(),
+            DoctorDatabaseHelper.speciality <- doctor.getSpeciality(),
+            DoctorDatabaseHelper.email <- doctor.getEmail(),
+            DoctorDatabaseHelper.description <- doctor.getDescription(),
+            DoctorDatabaseHelper.contactNumber <- doctor.getContactNumber(),
+            DoctorDatabaseHelper.pwd <- doctor.getPwd(),
+            DoctorDatabaseHelper.pwdSalt <- doctor.getPwdSalt(),
+            DoctorDatabaseHelper.isUnderAgreement <- doctor.isUnderAgreement(),
+            DoctorDatabaseHelper.isHealthInsuranceCard <- doctor.isHealthInsuranceCard(),
+            DoctorDatabaseHelper.isThirdPartyPayment <- doctor.isThirdPartyPayment(),
+            DoctorDatabaseHelper.addressId <- Int64(doctor.GetAddressId()),
+            DoctorDatabaseHelper.lastLogin <- doctor.getLastLogin(),
+            DoctorDatabaseHelper.picture <- doctor.getPicture() == nil ? "" : doctor.getPicture()!,
+            DoctorDatabaseHelper.header <- doctor.getHeader() == nil ? "" : doctor.getHeader()!
         )
         
         do {
@@ -212,7 +142,7 @@ class DoctorDatabaseHelper: DatabaseHelper {
     
     // Delete the given doctor from the database
     func deleteDoctor(doctor: Doctor) -> Bool {
-        self.initTableConfig()
+        self.initDb()
         
         let filter = DoctorDatabaseHelper.table.filter(DoctorDatabaseHelper.id == Int64(doctor.getId()))
         let query = filter.delete()
@@ -243,25 +173,22 @@ class DoctorDatabaseHelper: DatabaseHelper {
     // - Doctor's address country
     func getDoctors(needle: String?) -> [Doctor] {
         var doctors: [Doctor] = []
-        let keyword = needle == nil ? "" : needle!
+        let keyword = needle == nil ? "" : needle!.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        self.initTableConfig()
+        if keyword.isEmpty { return [] }
         
-        let query = DoctorDatabaseHelper.table
-            .join(AddressDatabaseHelper.table, on: DoctorDatabaseHelper.table[self.addressId] == AddressDatabaseHelper.id)
-            .filter(
-                DoctorDatabaseHelper.table[self.lastname].like("%" + keyword + "%")
-                || DoctorDatabaseHelper.table[self.lastname].like("%" + keyword + "%")
-                || DoctorDatabaseHelper.table[self.firstname].like("%" + keyword + "%")
-                || AddressDatabaseHelper.table[AddressDatabaseHelper.city].like("%" + keyword + "%")
-                || AddressDatabaseHelper.table[AddressDatabaseHelper.street1].like("%" + keyword + "%")
-                || AddressDatabaseHelper.table[AddressDatabaseHelper.street2].like("%" + keyword + "%")
-                || AddressDatabaseHelper.table[AddressDatabaseHelper.country].like("%" + keyword + "%")
-            )
+        self.initDb()
+        
+        let query = "SELECT doctor.id FROM doctor JOIN address ON address.id = doctor.address_id WHERE doctor.firstname LIKE '%\(keyword)%' OR doctor.lastname LIKE '%\(keyword)%' OR address.city LIKE '%\(keyword)%' OR address.street1 LIKE '%\(keyword)%' OR address.street2 LIKE '%\(keyword)%' OR address.country LIKE '%\(keyword)%'"
         
         do {
-            for doctor in try self.database.prepare(query) {
-                doctors.append(self.getDoctor(doctorId: Int(try doctor.get(DoctorDatabaseHelper.id)), email: nil, fromPatient: false)!)
+            let stmt = try self.database.prepare(query)
+            for row in stmt {
+                for (index, name) in stmt.columnNames.enumerated() {
+                    if name == "id" {
+                        doctors.append(self.getDoctor(doctorId: Int(row[index]! as! Int64), email: nil, fromPatient: false)!)
+                    }
+                }
             }
         } catch {
             print("Something went wrong when fetching doctors according to the following keyword: " + keyword)
@@ -272,7 +199,7 @@ class DoctorDatabaseHelper: DatabaseHelper {
     
     // Retrieve a doctor by its id
     func getDoctor(doctorId: Int?, email: String?, fromPatient: Bool) -> Doctor? {
-        self.initTableConfig()
+        self.initDb()
         
         var query: Table? = nil
         
@@ -283,31 +210,31 @@ class DoctorDatabaseHelper: DatabaseHelper {
         } else if email != nil {
             query = DoctorDatabaseHelper.table
                 .select(DoctorDatabaseHelper.table[*])
-                .filter(self.email == email!)
+                .filter(DoctorDatabaseHelper.email == email!)
         }
         
         do {
             for d in try self.database.prepare(query!) {
                 let doctor: Doctor = Doctor(
                     id: doctorId!,
-                    lastname: try d.get(self.lastname),
-                    firstname: try d.get(self.firstname),
-                    email: try d.get(self.email),
-                    pwd: try d.get(self.pwd),
-                    pwdSalt: try d.get(self.pwdSalt),
-                    lastLogin: try d.get(self.lastLogin),
-                    picture: try d.get(self.picture),
+                    lastname: try d.get(DoctorDatabaseHelper.lastname),
+                    firstname: try d.get(DoctorDatabaseHelper.firstname),
+                    email: try d.get(DoctorDatabaseHelper.email),
+                    pwd: try d.get(DoctorDatabaseHelper.pwd),
+                    pwdSalt: try d.get(DoctorDatabaseHelper.pwdSalt),
+                    lastLogin: try d.get(DoctorDatabaseHelper.lastLogin),
+                    picture: try d.get(DoctorDatabaseHelper.picture),
                     address: nil,
-                    speciality: try d.get(self.speciality),
-                    description: try d.get(self.description),
-                    contactNumber: try d.get(self.contactNumber),
-                    underAgreement: try d.get(self.isUnderAgreement),
-                    healthInsuranceCard: try d.get(self.isHealthInsuranceCard),
-                    thirdPartyPayment: try d.get(self.isThirdPartyPayment),
-                    header: try d.get(self.header)
+                    speciality: try d.get(DoctorDatabaseHelper.speciality),
+                    description: try d.get(DoctorDatabaseHelper.description),
+                    contactNumber: try d.get(DoctorDatabaseHelper.contactNumber),
+                    underAgreement: try d.get(DoctorDatabaseHelper.isUnderAgreement),
+                    healthInsuranceCard: try d.get(DoctorDatabaseHelper.isHealthInsuranceCard),
+                    thirdPartyPayment: try d.get(DoctorDatabaseHelper.isThirdPartyPayment),
+                    header: try d.get(DoctorDatabaseHelper.header)
                 )
                 
-                let address: Address? = AddressDatabaseHelper().getAddress(addressId: Int(try d.get(self.addressId)))
+                let address: Address? = AddressDatabaseHelper().getAddress(addressId: Int(try d.get(DoctorDatabaseHelper.addressId)))
                 let availabilities: [Availability] = AvailabilityDatabaseHelper().getAvailabilities(doctor: doctor)
                 let languages: [Language] = LanguageDatabaseHelper().getLanguages(doctor: doctor)
                 let paymentOptions: [PaymentOption] = PaymentOptionDatabaseHelper().getPaymentOptions(doctor: doctor)

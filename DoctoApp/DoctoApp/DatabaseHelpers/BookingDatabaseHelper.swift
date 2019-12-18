@@ -10,105 +10,21 @@ import UIKit
 import Foundation
 import SQLite
 
-class BookingDatabaseHelper: DatabaseHelper {
-    var database: Connection!
-    
+class BookingDatabaseHelper: DoctoAppDatabaseHelper {
     static let tableName = "booking"
     static let table = Table("booking")
     
     // Fields
     static let id = Expression<Int64>("id")
-    private let patientId = Expression<Int64>("patient_id")
-    private let doctorId = Expression<Int64>("doctor_id")
-    private let reasonId = Expression<Int64>("reason_id")
-    private let fullDate = Expression<String>("full_date")
-    private let date = Expression<String>("date")
-    private let time = Expression<String>("time")
-    private let bookingDate = Expression<String>("bookingDate")
+    static let patientId = Expression<Int64>("patient_id")
+    static let doctorId = Expression<Int64>("doctor_id")
+    static let reasonId = Expression<Int64>("reason_id")
+    static let fullDate = Expression<String>("full_date")
+    static let date = Expression<String>("date")
+    static let time = Expression<String>("time")
+    static let bookingDate = Expression<String>("bookingDate")
     
-    private static var pk = 0
-    private var tableExist = false
-    
-    init() {}
-    
-    func initTableConfig() {
-        do {
-            let documentDirectory = try FileManager.default.url(
-                for: .documentDirectory,
-                in: .userDomainMask,
-                appropriateFor: nil,
-                create: true
-            )
-            
-            let fileUrl = documentDirectory
-                .appendingPathComponent(BookingDatabaseHelper.tableName)
-                .appendingPathExtension("sqlite3")
-            
-            self.database = try Connection(fileUrl.path)
-        } catch {
-            print(error)
-        }
-    }
-    
-    func createTable() {
-        if !self.tableExist {
-            self.tableExist = true
-            
-            let createTable = BookingDatabaseHelper.table.create { table in
-                table.column(BookingDatabaseHelper.id, primaryKey: .autoincrement)
-                table.column(self.patientId)
-                table.column(self.doctorId)
-                table.column(self.reasonId)
-                table.column(self.fullDate)
-                table.column(self.date)
-                table.column(self.time)
-                table.column(self.bookingDate)
-                
-                // Alter table
-                table.unique([
-                    self.patientId,
-                    self.doctorId,
-                    self.reasonId,
-                    self.date,
-                    self.time
-                ])
-                
-                table.foreignKey(
-                    self.patientId,
-                    references: PatientDatabaseHelper.table, PatientDatabaseHelper.id,
-                    update: .cascade,
-                    delete: .cascade
-                )
-                
-                table.foreignKey(
-                    self.doctorId,
-                    references: DoctorDatabaseHelper.table, DoctorDatabaseHelper.id,
-                    update: .cascade,
-                    delete: .cascade
-                )
-                
-                table.foreignKey(
-                    self.reasonId,
-                    references: ReasonDatabaseHelper.table, ReasonDatabaseHelper.id,
-                    update: .cascade,
-                    delete: .cascade
-                )
-            }
-            
-            do {
-                try self.database.run(createTable)
-                print (BookingDatabaseHelper.tableName + " table was successfully created.")
-            } catch {
-                print(error)
-            }
-        }
-    }
-    
-    func dropTable() {
-        do {
-            try self.database.run(BookingDatabaseHelper.table.drop())
-        } catch {}
-    }
+    override init() {}
     
     // Insert all the bookings of the given resident in the database
     func insertBookings(resident: Resident) -> Resident {
@@ -121,16 +37,16 @@ class BookingDatabaseHelper: DatabaseHelper {
     
     // Insert a new booking in the database
     public func insertBooking(booking: Booking) -> Bool {
-        self.initTableConfig()
+        self.initDb()
         
         let query = BookingDatabaseHelper.table.insert(
-            self.patientId <- Int64(booking.GetPatientId()),
-            self.doctorId <- Int64(booking.GetDoctorId()),
-            self.reasonId <- Int64(booking.GetPatientId()),
-            self.fullDate <- booking.getFullDate(),
-            self.date <- booking.getDate(),
-            self.time <- booking.getTime(),
-            self.bookingDate <- booking.getBookingDate()
+            BookingDatabaseHelper.patientId <- Int64(booking.GetPatientId()),
+            BookingDatabaseHelper.doctorId <- Int64(booking.GetDoctorId()),
+            BookingDatabaseHelper.reasonId <- Int64(booking.GetPatientId()),
+            BookingDatabaseHelper.fullDate <- booking.getFullDate(),
+            BookingDatabaseHelper.date <- booking.getDate(),
+            BookingDatabaseHelper.time <- booking.getTime(),
+            BookingDatabaseHelper.bookingDate <- booking.getBookingDate()
         )
         
         do {
@@ -153,12 +69,12 @@ class BookingDatabaseHelper: DatabaseHelper {
     
     // Update the given booking in the database
     func updateBooking(booking: Booking) -> Bool {
-        self.initTableConfig()
+        self.initDb()
         
         let filter = BookingDatabaseHelper.table.filter(BookingDatabaseHelper.id == Int64(booking.getId()))
         let query = filter.update(
-            self.time <- booking.getTime(),
-            self.bookingDate <- booking.getBookingDate()
+            BookingDatabaseHelper.time <- booking.getTime(),
+            BookingDatabaseHelper.bookingDate <- booking.getBookingDate()
         )
         
         do {
@@ -178,7 +94,7 @@ class BookingDatabaseHelper: DatabaseHelper {
     
     // Drop the given booking from the database
     private func dropBooking(booking: Booking) -> Bool {
-        self.initTableConfig()
+        self.initDb()
         
         let filter = BookingDatabaseHelper.table.filter(BookingDatabaseHelper.id == Int64(booking.getId()))
         let query = filter.delete()
@@ -202,18 +118,18 @@ class BookingDatabaseHelper: DatabaseHelper {
     func getBookings(doctor: Doctor) -> [Booking] {
         var bookings: [Booking] = []
         
-        self.initTableConfig()
+        self.initDb()
         
         var query = BookingDatabaseHelper.table
             .select(BookingDatabaseHelper.table[*])
-            .filter(self.doctorId == Int64(doctor.getId()))
+            .filter(BookingDatabaseHelper.doctorId == Int64(doctor.getId()))
         
         do {
             for booking in try self.database.prepare(query) {
-                let patient: Patient = PatientDatabaseHelper().getPatient(patientId: Int(try booking.get(self.patientId)), email: nil, fromDoctor: true)!
+                let patient: Patient = PatientDatabaseHelper().getPatient(patientId: Int(try booking.get(BookingDatabaseHelper.patientId)), email: nil, fromDoctor: true)!
                 patient.setBookings(bookings: bookings)
                 
-                let reason: Reason = ReasonDatabaseHelper().getReason(reasonId: Int(try booking.get(self.reasonId)))!
+                let reason: Reason = ReasonDatabaseHelper().getReason(reasonId: Int(try booking.get(BookingDatabaseHelper.reasonId)))!
                 reason.setDoctor(doctor: doctor)
                 
                 bookings.append(
@@ -222,10 +138,10 @@ class BookingDatabaseHelper: DatabaseHelper {
                         patient: patient,
                         doctor: doctor,
                         reason: reason,
-                        fullDate: try booking.get(self.fullDate),
-                        date: try booking.get(self.date),
-                        time: try booking.get(self.time),
-                        bookingDate: try booking.get(self.bookingDate)
+                        fullDate: try booking.get(BookingDatabaseHelper.fullDate),
+                        date: try booking.get(BookingDatabaseHelper.date),
+                        time: try booking.get(BookingDatabaseHelper.time),
+                        bookingDate: try booking.get(BookingDatabaseHelper.bookingDate)
                     )
                 )
             }
@@ -240,7 +156,7 @@ class BookingDatabaseHelper: DatabaseHelper {
     func getBookings(patient: Patient) -> [Booking] {
         var bookings: [Booking] = []
         
-        self.initTableConfig()
+        self.initDb()
         
         let currentDate = DateTimeService.GetCurrentDate()
         let currentTime = DateTimeService.GetCurrentDate()
@@ -248,17 +164,17 @@ class BookingDatabaseHelper: DatabaseHelper {
         let query = BookingDatabaseHelper.table
             .select(BookingDatabaseHelper.table[*])
             .filter(
-                self.patientId == Int64(patient.getId())
-                && self.date > currentDate
-                || (self.date == currentDate && self.time > currentTime)
+                BookingDatabaseHelper.patientId == Int64(patient.getId())
+                && BookingDatabaseHelper.date > currentDate
+                || (BookingDatabaseHelper.date == currentDate && BookingDatabaseHelper.time > currentTime)
             )
         
         do {
             for booking in try self.database.prepare(query) {
-                let doctor: Doctor = DoctorDatabaseHelper().getDoctor(doctorId: Int(try booking.get(self.doctorId)), email: nil, fromPatient: true)!
+                let doctor: Doctor = DoctorDatabaseHelper().getDoctor(doctorId: Int(try booking.get(BookingDatabaseHelper.doctorId)), email: nil, fromPatient: true)!
                 doctor.setBookings(bookings: bookings)
                 
-                let reason: Reason = ReasonDatabaseHelper().getReason(reasonId: Int(try booking.get(self.reasonId)))!
+                let reason: Reason = ReasonDatabaseHelper().getReason(reasonId: Int(try booking.get(BookingDatabaseHelper.reasonId)))!
                 reason.setDoctor(doctor: doctor)
                 
                 bookings.append(
@@ -267,10 +183,10 @@ class BookingDatabaseHelper: DatabaseHelper {
                         patient: patient,
                         doctor: doctor,
                         reason: reason,
-                        fullDate: try booking.get(self.fullDate),
-                        date: try booking.get(self.date),
-                        time: try booking.get(self.time),
-                        bookingDate: try booking.get(self.bookingDate)
+                        fullDate: try booking.get(BookingDatabaseHelper.fullDate),
+                        date: try booking.get(BookingDatabaseHelper.date),
+                        time: try booking.get(BookingDatabaseHelper.time),
+                        bookingDate: try booking.get(BookingDatabaseHelper.bookingDate)
                     )
                 )
             }

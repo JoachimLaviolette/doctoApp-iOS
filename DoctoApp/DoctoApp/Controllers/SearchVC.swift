@@ -28,6 +28,8 @@ class SearchVC: UIViewController {
 
     // Initialize controller properties
     private func initialize() {
+        self.searchBar.delegate = self
+        
         self.searchList.delegate = self
         self.searchList.dataSource = self
         
@@ -39,14 +41,8 @@ class SearchVC: UIViewController {
         // UI setup
         self.searchBar.backgroundImage = UIImage()
         
-        // Feed models
-        self.doctors.append(Doctor(id: 0, lastname: "LAVIOLETTE", firstname: "Joachim", email: "joachim.laviolete@gmail.com", pwd: "Test", pwdSalt: "Test2X", lastLogin: "2019-12-16", picture: "", address: Address(id: 0, street1: "8 rue de la plaine", street2: "Bat A26", city: "Paris", zip: "75008", country: "France"), speciality: "Pediatrician", description: "Specialized in children auscultation", contactNumber: "0660170694", underAgreement: true, healthInsuranceCard: true, thirdPartyPayment: true, header: ""))
-        
-        self.doctors.append(Doctor(id: 0, lastname: "LAVIOLETTE", firstname: "Joachim", email: "joachim.laviolete@gmail.com", pwd: "Test", pwdSalt: "Test2X", lastLogin: "2019-12-16", picture: "", address: Address(id: 0, street1: "8 rue de la plaine", street2: "Bat A26", city: "Paris", zip: "75008", country: "France"), speciality: "Pediatrician", description: "Specialized in children auscultation", contactNumber: "0660170694", underAgreement: true, healthInsuranceCard: true, thirdPartyPayment: true, header: ""))
-        
-        self.doctors.append(Doctor(id: 0, lastname: "LAVIOLETTE", firstname: "Joachim", email: "joachim.laviolete@gmail.com", pwd: "Test", pwdSalt: "Test2X", lastLogin: "2019-12-16", picture: "", address: Address(id: 0, street1: "8 rue de la plaine", street2: "Bat A26", city: "Paris", zip: "75008", country: "France"), speciality: "Pediatrician", description: "Specialized in children auscultation", contactNumber: "0660170694", underAgreement: true, healthInsuranceCard: true, thirdPartyPayment: true, header: ""))
-    
-        self.searchList.reloadData()
+        // Get the doctors from the database according to the bar content
+        self.updateDoctorResults(needle: self.searchBar.text)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -55,6 +51,23 @@ class SearchVC: UIViewController {
             let doctorProfileVC = segue.destination as! DoctorProfileVC
             doctorProfileVC.doctor = self.doctor
         }
+    }
+    
+    // Search action triggered by the search button
+    @IBAction func search(_ sender: UIButton) {
+        self.updateDoctorResults(needle: self.searchBar.text)
+    }
+    
+    // Update the list of doctors
+    private func updateDoctorResults(needle: String?) {
+        self.doctors = self.doctorDbHelper.getDoctors(needle: needle)
+        self.searchList.reloadData()
+    }
+}
+
+extension SearchVC: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.updateDoctorResults(needle: searchText)
     }
 }
 

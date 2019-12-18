@@ -32,8 +32,13 @@ class DoctorProfileVC: UIViewController {
     var doctorMainData: [DoctorMainData] = [DoctorMainData]()
     var doctorSecondaryData: [DoctorSecondaryData] = [DoctorSecondaryData]()
     
+    private var selectedCategoryTitle: String = "" // set when we tap on a category
+    private var selectedCategoryContent: String = "" // set when we tap on a category
+    
     private static let chooseReasonSegueIdentifier: String = "choose_reason_segue"
     private static let loginSegueIdentifier: String = "login_segue"
+    private static let expandDataSegueIdentifier: String = "expand_data_segue"
+    
     private static let doctorMainDataItemCellXibFile: String = "DoctorMainDataItemCell"
     private static let doctorSecondaryDataItemCellXibFile: String = "DoctorSecondaryDataItemCell"
     private static let doctorMainDataItemCellIdentifier: String = "doctor_main_data_item_cell"
@@ -63,10 +68,10 @@ class DoctorProfileVC: UIViewController {
     }
     
     // Initialize controller properties
-    private func initialize() {        
-        // Retrieve most recent changes updating the doctor model
-        // self.doctor = doctor.update() as? Doctor
-        
+    private func initialize() {
+        // Update doctor model to get most recent changes
+        self.doctor = self.doctor.update() as? Doctor
+
         self.doctorMainDataTable.delegate = self
         self.doctorMainDataTable.dataSource = self
         self.doctorMainDataTable.rowHeight = UITableView.automaticDimension
@@ -75,8 +80,51 @@ class DoctorProfileVC: UIViewController {
         self.doctorSecondaryDataTable.delegate = self
         self.doctorSecondaryDataTable.dataSource = self
         self.doctorSecondaryDataTable.rowHeight = UITableView.automaticDimension
-        self.doctorSecondaryDataTable.separatorColor = UIColor.clear
+        self.doctorSecondaryDataTable.separatorColor = UIColor(hex: Colors.FORGOT_PASSWORD_BACKGROUND)
         
+        self.setHeaderData()
+        self.setMainData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == DoctorProfileVC.chooseReasonSegueIdentifier
+            && segue.destination is ChooseReasonVC {
+            let chooseReasonVC = segue.destination as! ChooseReasonVC
+            chooseReasonVC.doctor = self.doctor
+        } else if segue.identifier == DoctorProfileVC.expandDataSegueIdentifier 
+            && segue.destination is PopUpVC {
+            let popupVC = segue.destination as! PopUpVC
+            popupVC.hideActionButtons = true
+            popupVC.titleString = self.selectedCategoryTitle
+            popupVC.contentString = self.selectedCategoryContent
+        }
+    }
+    
+    // Set header data
+    private func setHeaderData() {
+        if self.doctor.getPicture() != nil {
+            if !self.doctor.getPicture()!.isEmpty {
+                self.doctorPicture.image = UIImage(named: self.doctor.getPicture()!)
+            }
+        }
+        
+        if self.doctor.getHeader() != nil {
+            if !self.doctor.getPicture()!.isEmpty {
+                self.doctorHeader.image = UIImage(named: self.doctor.getHeader()!)
+            }
+        }
+        
+        self.doctorHeader.addBlurEffect()
+        
+        self.doctorFullname.text = self.doctor.getFullname()
+        self.doctorSpeciality.text = self.doctor.getSpeciality()
+        
+        self.doctorPicture.layer.masksToBounds = true
+        self.doctorPicture.layer.cornerRadius = self.doctorPicture.frame.height / 2
+    }
+    
+    // Set main data
+    private func setMainData() {
         self.doctorMainData = [
             DoctorMainData(
                 sectionIcon: DoctorProfileVC.sectionAddressIcon,
@@ -117,13 +165,6 @@ class DoctorProfileVC: UIViewController {
                 sectionTitle: DoctorProfileVC.sectionExperiencesTitle
             )
         ]
-        
-        self.doctorFullname.text = self.doctor.getFullname()
-        self.doctorSpeciality.text = self.doctor.getSpeciality()
-        
-        self.doctorPicture.layer.masksToBounds = true
-        self.doctorPicture.layer.cornerRadius = self.doctorPicture.frame.height / 2
-        self.doctorHeader.addBlurEffect()
     }
 }
 
@@ -155,14 +196,40 @@ extension DoctorProfileVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if tableView == self.doctorMainDataTable { return 70 }
-        
-        return 40
+        if tableView == self.doctorMainDataTable { return 110 }
+        return 50
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tableView == self.doctorMainDataTable { }
-        else {}
+        if tableView == self.doctorMainDataTable {
+            print("Clicked main data cell")
+            self.selectedCategoryTitle = self.doctorMainData[indexPath.row].sectionTitle
+            self.selectedCategoryContent = self.doctorMainData[indexPath.row].sectionContent
+        } else {
+            print("Clicked secondary data cell")
+            self.selectedCategoryTitle = self.doctorSecondaryData[indexPath.row].sectionTitle
+            
+            switch(indexPath.row) {
+                case 0:
+                    self.selectedCategoryContent = self.doctor.getDescription()
+                    break
+                case 1:
+                    // self.selectedCategoryContent = self.doctor.getHoursAndContactsAsString() // not implented yet
+                    break
+                case 2:
+                    self.selectedCategoryContent = self.doctor.getEducationsAsString()
+                    break
+                case 3:
+                    self.selectedCategoryContent = self.doctor.getLanguagesAsString()
+                    break
+                case 4:
+                    self.selectedCategoryContent = self.doctor.getExperiencesAString()
+                    break
+                default: break
+            }
+        }
+        
+        performSegue(withIdentifier: DoctorProfileVC.expandDataSegueIdentifier, sender: nil)
     }
 }
 

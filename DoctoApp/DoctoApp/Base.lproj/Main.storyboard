@@ -69,12 +69,6 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main_background" translatesAutoresizingMaskIntoConstraints="NO" id="D5P-SU-S5G" userLabel="home_picture">
-                                <rect key="frame" x="0.0" y="426" width="375" height="241"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="241" id="fDU-NO-Ok3"/>
-                                </constraints>
-                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="RMW-kr-cq6">
                                 <rect key="frame" x="0.0" y="263" width="372" height="40"/>
                                 <subviews>
@@ -100,7 +94,7 @@
                                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <segue destination="0zs-FT-8bS" kind="show" id="kit-y6-Tmr"/>
+                                            <segue destination="0zs-FT-8bS" kind="show" identifier="search_segue" id="kit-y6-Tmr"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -108,6 +102,12 @@
                                     <constraint firstAttribute="height" constant="40" id="6QF-H6-01h"/>
                                 </constraints>
                             </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main_background" translatesAutoresizingMaskIntoConstraints="NO" id="D5P-SU-S5G" userLabel="home_picture">
+                                <rect key="frame" x="0.0" y="426" width="375" height="241"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="241" id="fDU-NO-Ok3"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" name="home_background_color"/>
                         <constraints>
@@ -119,6 +119,7 @@
                             <constraint firstItem="D5P-SU-S5G" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="JiB-gC-a0V"/>
                             <constraint firstAttribute="trailing" secondItem="Olx-O0-lH3" secondAttribute="trailing" constant="40" id="WoA-5y-PzW"/>
                             <constraint firstItem="Uey-54-ISs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Yfe-25-NaD"/>
+                            <constraint firstItem="D5P-SU-S5G" firstAttribute="top" secondItem="RMW-kr-cq6" secondAttribute="bottom" constant="123" id="deU-hB-nIM"/>
                             <constraint firstItem="RMW-kr-cq6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="dnJ-FU-QFm"/>
                             <constraint firstItem="RMW-kr-cq6" firstAttribute="top" secondItem="Olx-O0-lH3" secondAttribute="bottom" constant="12.5" id="g5X-sn-Kcy"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Uey-54-ISs" secondAttribute="trailing" constant="20" id="x4R-t2-H3h"/>
@@ -149,7 +150,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="50v-xN-gGh" userLabel="headerContainer">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wallp1" translatesAutoresizingMaskIntoConstraints="NO" id="SD9-Q4-XgH">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_header" translatesAutoresizingMaskIntoConstraints="NO" id="SD9-Q4-XgH">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="{ doctor_fullname }" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Tk-00-W4X">
@@ -168,7 +169,7 @@
                                                 <color key="shadowColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <size key="shadowOffset" width="1" height="1"/>
                                             </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" insetsLayoutMarginsFromSafeArea="NO" image="pp_test" translatesAutoresizingMaskIntoConstraints="NO" id="CEA-wD-vmU">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" insetsLayoutMarginsFromSafeArea="NO" image="default_user" translatesAutoresizingMaskIntoConstraints="NO" id="CEA-wD-vmU">
                                                 <rect key="frame" x="137.5" y="24" width="100" height="100"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="100" id="86T-Ck-YdD"/>
@@ -199,7 +200,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lWt-Ra-Ea2" userLabel="mainContainer">
-                                        <rect key="frame" x="0.0" y="200" width="375" height="488"/>
+                                        <rect key="frame" x="0.0" y="200" width="375" height="680"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5vQ-5i-T8N">
                                                 <rect key="frame" x="15" y="15" width="345" height="40"/>
@@ -211,24 +212,41 @@
                                                 <state key="normal" title="Book an appointment online">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <segue destination="ONO-v5-ywD" kind="show" identifier="choose_reason_segue" id="Oz0-dJ-klT"/>
+                                                </connections>
                                             </button>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2kc-Di-qcK">
-                                                <rect key="frame" x="15" y="70" width="345" height="210"/>
+                                                <rect key="frame" x="15" y="70" width="345" height="330"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="210" id="uUF-rN-gBS"/>
+                                                    <constraint firstAttribute="height" constant="330" id="uUF-rN-gBS"/>
                                                 </constraints>
+                                                <prototypes>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="doctor_main_data_cell" id="Kfo-jq-6OW" customClass="DoctorMainDataItemCell" customModule="DoctoApp" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="28" width="345" height="44"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Kfo-jq-6OW" id="FkY-ds-gDx">
+                                                            <rect key="frame" x="0.0" y="0.0" width="345" height="43.5"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                        </tableViewCellContentView>
+                                                        <connections>
+                                                            <segue destination="gnE-pi-1Bf" kind="presentation" identifier="expand_data_segue" id="vYl-Oy-v9f"/>
+                                                        </connections>
+                                                    </tableViewCell>
+                                                </prototypes>
                                             </tableView>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7DE-ag-Sqz">
-                                                <rect key="frame" x="15" y="300" width="345" height="200"/>
+                                                <rect key="frame" x="15" y="420" width="345" height="250"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="200" id="ixQ-EV-LwJ"/>
+                                                    <constraint firstAttribute="height" constant="250" id="AVP-bm-y7B"/>
                                                 </constraints>
                                             </tableView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="5vQ-5i-T8N" firstAttribute="top" secondItem="lWt-Ra-Ea2" secondAttribute="top" constant="15" id="0u6-iv-iZH"/>
+                                            <constraint firstAttribute="bottom" secondItem="7DE-ag-Sqz" secondAttribute="bottom" constant="10" id="DP8-f6-tWp"/>
                                             <constraint firstItem="2kc-Di-qcK" firstAttribute="leading" secondItem="lWt-Ra-Ea2" secondAttribute="leading" constant="15" id="F4n-Cg-b0k"/>
                                             <constraint firstItem="7DE-ag-Sqz" firstAttribute="leading" secondItem="lWt-Ra-Ea2" secondAttribute="leading" constant="15" id="NDf-24-62V"/>
                                             <constraint firstAttribute="trailing" secondItem="5vQ-5i-T8N" secondAttribute="trailing" constant="15" id="PrE-58-1bJ"/>
@@ -237,14 +255,13 @@
                                             <constraint firstAttribute="trailing" secondItem="2kc-Di-qcK" secondAttribute="trailing" constant="15" id="dQp-Z5-eKb"/>
                                             <constraint firstItem="5vQ-5i-T8N" firstAttribute="leading" secondItem="lWt-Ra-Ea2" secondAttribute="leading" constant="15" id="k0f-s2-b11"/>
                                             <constraint firstItem="5vQ-5i-T8N" firstAttribute="centerX" secondItem="lWt-Ra-Ea2" secondAttribute="centerX" id="q6n-eT-wqm"/>
-                                            <constraint firstAttribute="bottom" secondItem="2kc-Di-qcK" secondAttribute="bottom" constant="208" id="xT2-jF-TWV"/>
                                             <constraint firstItem="7DE-ag-Sqz" firstAttribute="top" secondItem="2kc-Di-qcK" secondAttribute="bottom" constant="20" id="yWm-hr-lfE"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="50v-xN-gGh" firstAttribute="leading" secondItem="w6J-FR-WeD" secondAttribute="leading" id="7Dx-k7-cDU"/>
-                                    <constraint firstAttribute="bottom" secondItem="lWt-Ra-Ea2" secondAttribute="bottom" constant="10" id="Dux-cl-4q5"/>
+                                    <constraint firstAttribute="bottom" secondItem="lWt-Ra-Ea2" secondAttribute="bottom" constant="10" id="KmD-1h-MOb"/>
                                     <constraint firstItem="lWt-Ra-Ea2" firstAttribute="width" secondItem="w6J-FR-WeD" secondAttribute="width" id="KqL-j2-jdF"/>
                                     <constraint firstAttribute="trailing" secondItem="lWt-Ra-Ea2" secondAttribute="trailing" id="ZRh-cZ-Vb1"/>
                                     <constraint firstAttribute="trailing" secondItem="50v-xN-gGh" secondAttribute="trailing" id="eCX-6h-CGS"/>
@@ -264,6 +281,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Q0b-YO-n3K"/>
                     </view>
+                    <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="doctorFullname" destination="7Tk-00-W4X" id="WJV-U4-p5E"/>
                         <outlet property="doctorHeader" destination="SD9-Q4-XgH" id="l8m-K0-wvi"/>
@@ -275,7 +293,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YJI-ZX-GMc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2137.68115942029" y="-1006.7934782608696"/>
+            <point key="canvasLocation" x="2216.8000000000002" y="-1149.1754122938532"/>
         </scene>
         <!--SearchVC-->
         <scene sceneID="7gg-mR-2Jc">
@@ -309,6 +327,9 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="search:" destination="0zs-FT-8bS" eventType="touchUpInside" id="uLs-BL-xfu"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -543,7 +564,7 @@
                                                             <color key="titleColor" name="login_delete_account_btn_text_color"/>
                                                         </state>
                                                         <connections>
-                                                            <segue destination="gnE-pi-1Bf" kind="presentation" id="oFw-XQ-A6D"/>
+                                                            <segue destination="gnE-pi-1Bf" kind="presentation" id="kx4-9w-nVJ"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N79-XV-IgC">
@@ -676,10 +697,10 @@
             </objects>
             <point key="canvasLocation" x="3188" y="134"/>
         </scene>
-        <!--LoginPopUpDeleteAccountVC-->
+        <!--PopUpVC-->
         <scene sceneID="IFn-Ly-Vjo">
             <objects>
-                <viewController id="gnE-pi-1Bf" userLabel="LoginPopUpDeleteAccountVC" customClass="LoginPopUpDeleteAccountVC" customModule="DoctoApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="gnE-pi-1Bf" userLabel="PopUpVC" customClass="PopUpVC" customModule="DoctoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <visualEffectView key="view" opaque="NO" contentMode="scaleToFill" id="CJC-YU-6Gb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -716,12 +737,12 @@
                                                         <constraint firstItem="baM-UF-UWQ" firstAttribute="centerX" secondItem="4My-wd-iOF" secondAttribute="centerX" id="nGn-28-5Uw"/>
                                                     </constraints>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XbW-fN-a5o">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="clip" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XbW-fN-a5o">
                                                     <rect key="frame" x="15" y="80" width="315" height="61"/>
                                                     <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                                     <string key="text">If you delete your account, you will not be able to access it anymore. However, the system will keep your data. You still can ask for its removal in which case all your informaion will be deleted.</string>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
-                                                    <color key="textColor" name="login_delete_account_popup_section_content_color"/>
+                                                    <color key="textColor" name="signup_input_text_color"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="9OK-DH-wss">
@@ -739,7 +760,7 @@
                                                                 <color key="titleColor" name="login_delete_account_popup_btn_text"/>
                                                             </state>
                                                             <connections>
-                                                                <action selector="discardDeleteAccount:" destination="gnE-pi-1Bf" eventType="touchUpInside" id="QYj-eI-sYG"/>
+                                                                <action selector="discard:" destination="gnE-pi-1Bf" eventType="touchUpInside" id="QYj-eI-sYG"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U8s-VM-c6v">
@@ -754,7 +775,7 @@
                                                                 <color key="titleColor" name="login_delete_account_popup_btn_text"/>
                                                             </state>
                                                             <connections>
-                                                                <action selector="deleteAccount:" destination="gnE-pi-1Bf" eventType="touchUpInside" id="4HG-cx-PTI"/>
+                                                                <action selector="confirm:" destination="gnE-pi-1Bf" eventType="touchUpInside" id="4HG-cx-PTI"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -794,6 +815,12 @@
                         </view>
                         <blurEffect style="light"/>
                     </visualEffectView>
+                    <connections>
+                        <outlet property="confirmButton" destination="U8s-VM-c6v" id="AXl-nQ-zE7"/>
+                        <outlet property="discardButton" destination="BZf-GD-x9N" id="rFI-uJ-nNe"/>
+                        <outlet property="popupContent" destination="XbW-fN-a5o" id="YJ4-WT-Ygf"/>
+                        <outlet property="popupTitle" destination="baM-UF-UWQ" id="tzW-iZ-WZj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gLK-kl-bKC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1479,29 +1506,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose you consultation reason" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0OP-4u-3kn">
-                                <rect key="frame" x="20" y="123" width="335" height="24"/>
+                                <rect key="frame" x="20" y="167" width="335" height="24"/>
                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
                                 <color key="textColor" name="login_delete_account_popup_section_title_color"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="yCI-Dp-SD0">
-                                <rect key="frame" x="20" y="165" width="335" height="482"/>
+                                <rect key="frame" x="20" y="209" width="335" height="438"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FNB-2K-KUO">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="482"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="438"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reason_item_cell" id="qw7-yB-Yvc" customClass="ReasonItemCell" customModule="DoctoApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="335" height="44"/>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reason_item_cell" rowHeight="40" id="qw7-yB-Yvc" customClass="ReasonItemCell" customModule="DoctoApp" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="335" height="40"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qw7-yB-Yvc" id="ppS-OZ-0Ha">
-                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="43.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="39.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kik-aB-nCs">
-                                                            <rect key="frame" x="15" y="11" width="305" height="21"/>
-                                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
-                                                            <color key="textColor" name="patient_appointment_item_header_color"/>
+                                                            <rect key="frame" x="15" y="11" width="305" height="17"/>
+                                                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="13"/>
+                                                            <color key="textColor" name="signup_input_text_color"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -1525,7 +1552,7 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Qg-f3-ohx" userLabel="Header Dashboard Subtitle" customClass="HeaderDashboardSubtitleView" customModule="DoctoApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="375" height="85"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="85"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="85" id="nA7-Oj-Oig"/>
@@ -1559,6 +1586,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="default_header" width="3040" height="1900"/>
+        <image name="default_user" width="200" height="200"/>
         <image name="ic_add_image" width="36" height="36"/>
         <image name="ic_bookings" width="36" height="36"/>
         <image name="ic_calendar" width="36" height="36"/>
@@ -1569,8 +1598,6 @@
         <image name="ic_time_2" width="36" height="36"/>
         <image name="icon-ios7-contact-512" width="512" height="512"/>
         <image name="main_background" width="469" height="322"/>
-        <image name="pp_test" width="1200" height="1600"/>
-        <image name="wallp1" width="2070" height="1164"/>
         <namedColor name="doctor_appointment_item_patient_fullname_color">
             <color red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -1630,9 +1657,6 @@
         </namedColor>
         <namedColor name="login_delete_account_popup_btn_text">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="login_delete_account_popup_section_content_color">
-            <color red="0.44705882352941179" green="0.44705882352941179" blue="0.44705882352941179" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="login_delete_account_popup_section_title_color">
             <color red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1746,4 +1770,7 @@
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="vYl-Oy-v9f"/>
+    </inferredMetricsTieBreakers>
 </document>

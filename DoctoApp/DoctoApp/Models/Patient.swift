@@ -70,6 +70,8 @@ class Patient: Resident {
             address: address,
             bookings: bookings
         )
+        
+        self.updateRelatedData()
     }
     
     func getBirthdate() -> String { return self.birthdate }
@@ -86,4 +88,11 @@ class Patient: Resident {
             fromDoctor: false
         )!; 
     }
+    
+    // Update all doctor realted data
+    func updateRelatedData() {
+        self.updateBookingsPatientId()
+    }
+    
+    func updateBookingsPatientId() { for b: Booking in self.getBookings()! { b.setPatient(patient: self) }}
 }

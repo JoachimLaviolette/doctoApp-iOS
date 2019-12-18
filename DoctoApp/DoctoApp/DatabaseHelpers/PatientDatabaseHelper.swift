@@ -10,89 +10,24 @@ import UIKit
 import Foundation
 import SQLite
 
-class PatientDatabaseHelper: DatabaseHelper {
-    var database: Connection!
-    
+class PatientDatabaseHelper: DoctoAppDatabaseHelper {
     static let tableName = "patient"
     static let table = Table("patient")
     
     // Fields
     static let id = Expression<Int64>("id")
-    private let lastname = Expression<String>("lastname")
-    private let firstname = Expression<String>("firstname")
-    private let birthdate = Expression<String>("birthdate")
-    private let email = Expression<String>("email")
-    private let pwd = Expression<String>("pwd")
-    private let pwdSalt = Expression<String>("pwd_salt")
-    private let insuranceNumber = Expression<String>("insurance_number")
-    private let addressId = Expression<Int64>("address_id")
-    private let lastLogin = Expression<String>("last_login")
-    private let picture = Expression<String>("picture")
+    static let lastname = Expression<String>("lastname")
+    static let firstname = Expression<String>("firstname")
+    static let birthdate = Expression<String>("birthdate")
+    static let email = Expression<String>("email")
+    static let pwd = Expression<String>("pwd")
+    static let pwdSalt = Expression<String>("pwd_salt")
+    static let insuranceNumber = Expression<String>("insurance_number")
+    static let addressId = Expression<Int64>("address_id")
+    static let lastLogin = Expression<String>("last_login")
+    static let picture = Expression<String>("picture")
     
-    private static var pk = 0
-    private var tableExist = false
-    
-    init() {}
-    
-    func initTableConfig() {
-        do {
-            let documentDirectory = try FileManager.default.url(
-                for: .documentDirectory,
-                in: .userDomainMask,
-                appropriateFor: nil,
-                create: true
-            )
-            
-            let fileUrl = documentDirectory
-                .appendingPathComponent(PatientDatabaseHelper.tableName)
-                .appendingPathExtension("sqlite3")
-            
-            self.database = try Connection(fileUrl.path)
-        } catch {
-            print(error)
-        }
-    }
-    
-    func createTable() {
-        if !self.tableExist {
-            self.tableExist = true
-            
-            let createTable = PatientDatabaseHelper.table.create { table in
-                table.column(PatientDatabaseHelper.id, primaryKey: .autoincrement)
-                table.column(self.lastname)
-                table.column(self.firstname)
-                table.column(self.birthdate)
-                table.column(self.email)
-                table.column(self.pwd)
-                table.column(self.pwdSalt)
-                table.column(self.insuranceNumber)
-                table.column(self.addressId, unique: true)
-                table.column(self.lastLogin)
-                table.column(self.picture)
-                
-                // Alter table
-                table.foreignKey(
-                    self.addressId,
-                    references: AddressDatabaseHelper.table, AddressDatabaseHelper.id,
-                    update: .cascade,
-                    delete: .cascade
-                )
-            }
-            
-            do {
-                try self.database.run(createTable)
-                print (PatientDatabaseHelper.tableName + " table was successfully created.")
-            } catch {
-                print(error)
-            }
-        }
-    }
-    
-    func dropTable() {
-        do {
-            try self.database.run(PatientDatabaseHelper.table.drop())
-        } catch {}
-    }
+    override init() {}
 
     // Create a new patient in the database
     func createPatient(patient: Patient) -> Bool {
@@ -113,19 +48,19 @@ class PatientDatabaseHelper: DatabaseHelper {
     
     // Insert a new patient in the database
     private func insertPatient(patient: Patient) -> Patient {
-        self.initTableConfig()
+        self.initDb()
         
         let query = PatientDatabaseHelper.table.insert(
-            self.lastname <- patient.getLastname(),
-            self.firstname <- patient.getFirstname(),
-            self.birthdate <- patient.getBirthdate(),
-            self.email <- patient.getEmail(),
-            self.pwd <- patient.getPwd(),
-            self.pwdSalt <- patient.getPwdSalt(),
-            self.insuranceNumber <- patient.getInsuranceNumber(),
-            self.addressId <- Int64(patient.GetAddressId()),
-            self.lastLogin <- patient.getLastLogin(),
-            self.picture <- patient.getPicture() == nil ? "" : patient.getPicture()!
+            PatientDatabaseHelper.lastname <- patient.getLastname(),
+            PatientDatabaseHelper.firstname <- patient.getFirstname(),
+            PatientDatabaseHelper.birthdate <- patient.getBirthdate(),
+            PatientDatabaseHelper.email <- patient.getEmail(),
+            PatientDatabaseHelper.pwd <- patient.getPwd(),
+            PatientDatabaseHelper.pwdSalt <- patient.getPwdSalt(),
+            PatientDatabaseHelper.insuranceNumber <- patient.getInsuranceNumber(),
+            PatientDatabaseHelper.addressId <- Int64(patient.GetAddressId()),
+            PatientDatabaseHelper.lastLogin <- patient.getLastLogin(),
+            PatientDatabaseHelper.picture <- patient.getPicture() == nil ? "" : patient.getPicture()!
         )
         
         do {
@@ -141,20 +76,20 @@ class PatientDatabaseHelper: DatabaseHelper {
     
     // Update the given patient data in the database
     private func updatePatientData(patient: Patient) -> Bool {
-        self.initTableConfig()
+        self.initDb()
         
         let filter = PatientDatabaseHelper.table.filter(PatientDatabaseHelper.id == Int64(patient.getId()))
         let query = filter.update(
-            self.lastname <- patient.getLastname(),
-            self.firstname <- patient.getFirstname(),
-            self.birthdate <- patient.getBirthdate(),
-            self.email <- patient.getEmail(),
-            self.pwd <- patient.getPwd(),
-            self.pwdSalt <- patient.getPwdSalt(),
-            self.insuranceNumber <- patient.getInsuranceNumber(),
-            self.addressId <- Int64(patient.GetAddressId()),
-            self.lastLogin <- patient.getLastLogin(),
-            self.picture <- patient.getPicture() == nil ? "" : patient.getPicture()!
+            PatientDatabaseHelper.lastname <- patient.getLastname(),
+            PatientDatabaseHelper.firstname <- patient.getFirstname(),
+            PatientDatabaseHelper.birthdate <- patient.getBirthdate(),
+            PatientDatabaseHelper.email <- patient.getEmail(),
+            PatientDatabaseHelper.pwd <- patient.getPwd(),
+            PatientDatabaseHelper.pwdSalt <- patient.getPwdSalt(),
+            PatientDatabaseHelper.insuranceNumber <- patient.getInsuranceNumber(),
+            PatientDatabaseHelper.addressId <- Int64(patient.GetAddressId()),
+            PatientDatabaseHelper.lastLogin <- patient.getLastLogin(),
+            PatientDatabaseHelper.picture <- patient.getPicture() == nil ? "" : patient.getPicture()!
         )
         
         do {
@@ -181,7 +116,7 @@ class PatientDatabaseHelper: DatabaseHelper {
     
     // Delete the given patient from the database
     func deletePatient(patient: Patient) -> Bool {
-        self.initTableConfig()
+        self.initDb()
         
         let filter = PatientDatabaseHelper.table.filter(PatientDatabaseHelper.id == Int64(patient.getId()))
         let query = filter.delete()
@@ -203,7 +138,7 @@ class PatientDatabaseHelper: DatabaseHelper {
     
     // Retrieve a patient by its id
     func getPatient(patientId: Int?, email: String?, fromDoctor: Bool) -> Patient? {
-        self.initTableConfig()
+        self.initDb()
         
         var query: Table? = nil
         
@@ -214,26 +149,26 @@ class PatientDatabaseHelper: DatabaseHelper {
         } else if email != nil {
             query = PatientDatabaseHelper.table
                 .select(PatientDatabaseHelper.table[*])
-                .filter(self.email == email!)
+                .filter(PatientDatabaseHelper.email == email!)
         }
         
         do {
             for p in try self.database.prepare(query!) {
                 let patient: Patient = Patient(
                     id: patientId!,
-                    lastname: try p.get(self.lastname),
-                    firstname: try p.get(self.firstname),
-                    email: try p.get(self.email),
-                    pwd: try p.get(self.pwd),
-                    pwdSalt: try p.get(self.pwdSalt),
-                    lastLogin: try p.get(self.lastLogin),
-                    picture: try p.get(self.picture),
+                    lastname: try p.get(PatientDatabaseHelper.lastname),
+                    firstname: try p.get(PatientDatabaseHelper.firstname),
+                    email: try p.get(PatientDatabaseHelper.email),
+                    pwd: try p.get(PatientDatabaseHelper.pwd),
+                    pwdSalt: try p.get(PatientDatabaseHelper.pwdSalt),
+                    lastLogin: try p.get(PatientDatabaseHelper.lastLogin),
+                    picture: try p.get(PatientDatabaseHelper.picture),
                     address: nil,
-                    birthdate: try p.get(self.birthdate),
-                    insuranceNumber: try p.get(self.insuranceNumber)
+                    birthdate: try p.get(PatientDatabaseHelper.birthdate),
+                    insuranceNumber: try p.get(PatientDatabaseHelper.insuranceNumber)
                 )
                 
-                let address: Address? = AddressDatabaseHelper().getAddress(addressId: Int(try p.get(self.addressId)))
+                let address: Address? = AddressDatabaseHelper().getAddress(addressId: Int(try p.get(PatientDatabaseHelper.addressId)))
                 
                 patient.setAddress(address: address)
                 

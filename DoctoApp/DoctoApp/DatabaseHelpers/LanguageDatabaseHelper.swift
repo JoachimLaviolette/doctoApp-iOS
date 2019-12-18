@@ -10,76 +10,15 @@ import UIKit
 import Foundation
 import SQLite
 
-class LanguageDatabaseHelper: DatabaseHelper {
-    var database: Connection!
-    
+class LanguageDatabaseHelper: DoctoAppDatabaseHelper {
     static let tableName = "language"
     static let table = Table("language")
     
     // Fields
-    private let doctorId = Expression<Int64>("doctor_id")
-    private let language = Expression<String>("language")
+    static let doctorId = Expression<Int64>("doctor_id")
+    static let language = Expression<String>("language")
     
-    private static var pk = 0
-    private var tableExist = false
-    
-    init() {}
-    
-    func initTableConfig() {
-        do {
-            let documentDirectory = try FileManager.default.url(
-                for: .documentDirectory,
-                in: .userDomainMask,
-                appropriateFor: nil,
-                create: true
-            )
-            
-            let fileUrl = documentDirectory
-                .appendingPathComponent(LanguageDatabaseHelper.tableName)
-                .appendingPathExtension("sqlite3")
-            
-            self.database = try Connection(fileUrl.path)
-        } catch {
-            print(error)
-        }
-    }
-    
-    func createTable() {
-        if !self.tableExist {
-            self.tableExist = true
-                        
-            let createTable = LanguageDatabaseHelper.table.create { table in
-                table.column(self.doctorId)
-                table.column(self.language)
-                
-                // Alter table
-                table.primaryKey(
-                    self.doctorId,
-                    self.language
-                )
-                
-                table.foreignKey(
-                    self.doctorId,
-                    references: DoctorDatabaseHelper.table, DoctorDatabaseHelper.id,
-                    update: .cascade,
-                    delete: .cascade
-                )
-            }
-            
-            do {
-                try self.database.run(createTable)
-                print (LanguageDatabaseHelper.tableName + " table was successfully created.")
-            } catch {
-                print(error)
-            }
-        }
-    }
-    
-    func dropTable() {
-        do {
-            try self.database.run(LanguageDatabaseHelper.table.drop())
-        } catch {}
-    }
+    override init() {}
     
     // Insert all the languages of the given doctor in the database
     func insertLanguages(doctor: Doctor) -> Doctor {
@@ -92,11 +31,11 @@ class LanguageDatabaseHelper: DatabaseHelper {
     
     // Insert a new language in the database related to the given doctor
     private func insertLanguage(language: Language, doctor: Doctor) {
-        self.initTableConfig()
+        self.initDb()
         
         let query = LanguageDatabaseHelper.table.insert(
-            self.doctorId <- Int64(doctor.getId()),
-            self.language <- language.rawValue
+            LanguageDatabaseHelper.doctorId <- Int64(doctor.getId()),
+            LanguageDatabaseHelper.language <- language.rawValue
         )
         
         do {
@@ -109,7 +48,7 @@ class LanguageDatabaseHelper: DatabaseHelper {
     
     // Update the languages of the given doctor in the database
     func updateLanguages(doctor: Doctor) -> Bool {
-        self.initTableConfig()
+        self.initDb()
         
         if self.dropLanguages(doctor: doctor) {
             let _ = self.insertLanguages(doctor: doctor)
@@ -120,9 +59,9 @@ class LanguageDatabaseHelper: DatabaseHelper {
     
     // Drop all the languages related to the given doctor from the database
     private func dropLanguages(doctor: Doctor) -> Bool {
-        self.initTableConfig()
+        self.initDb()
         
-        let filter = LanguageDatabaseHelper.table.filter(self.doctorId == Int64(doctor.getId()))
+        let filter = LanguageDatabaseHelper.table.filter(LanguageDatabaseHelper.doctorId == Int64(doctor.getId()))
         let query = filter.delete()
         
         do {
@@ -144,15 +83,15 @@ class LanguageDatabaseHelper: DatabaseHelper {
     func getLanguages(doctor: Doctor) -> [Language] {
         var languages: [Language] = []
         
-        self.initTableConfig()
+        self.initDb()
         
         let query = LanguageDatabaseHelper.table
             .select(LanguageDatabaseHelper.table[*])
-            .filter(self.doctorId == Int64(doctor.getId()))
+            .filter(LanguageDatabaseHelper.doctorId == Int64(doctor.getId()))
         
         do {
             for language in try self.database.prepare(query) {
-                languages.append(Language.getValueOf(languageName: try language.get(self.language))!)
+                languages.append(Language.getValueOf(languageName: try language.get(LanguageDatabaseHelper.language))!)
             }
         } catch {
             print("Something went wrong when fetching languages data.")

@@ -48,12 +48,12 @@ class Doctor: Resident {
         self.healthInsuranceCard = healthInsuranceCard
         self.thirdPartyPayment = thirdPartyPayment
         self.header = header
-        self.availabilities = [Availability]()
-        self.languages = [Language]()
-        self.paymentOptions = [PaymentOption]()
-        self.reasons = [Reason]()
-        self.educations = [Education]()
-        self.experiences = [Experience]()
+        self.availabilities = availabilities ?? [Availability]()
+        self.languages = languages ?? [Language]()
+        self.paymentOptions = paymentOptions ?? [PaymentOption]()
+        self.reasons = reasons ?? [Reason]()
+        self.educations = educations ?? [Education]()
+        self.experiences = experiences ?? [Experience]()
         
         super.init(
                 id: id,
@@ -66,6 +66,8 @@ class Doctor: Resident {
                 picture: picture,
                 address: address
         )
+
+        self.updateRelatedData()
     }
 
     init(
@@ -100,12 +102,12 @@ class Doctor: Resident {
         self.healthInsuranceCard = healthInsuranceCard
         self.thirdPartyPayment = thirdPartyPayment
         self.header = header
-        self.availabilities = availabilities
-        self.languages = languages
-        self.paymentOptions = paymentOptions
-        self.reasons = reasons
-        self.educations = educations
-        self.experiences = experiences
+        self.availabilities = availabilities ?? [Availability]()
+        self.languages = languages ?? [Language]()
+        self.paymentOptions = paymentOptions ?? [PaymentOption]()
+        self.reasons = reasons ?? [Reason]()
+        self.educations = educations ?? [Education]()
+        self.experiences = experiences ?? [Experience]()
         
         super.init(
             id: id,
@@ -117,8 +119,10 @@ class Doctor: Resident {
             lastLogin: lastLogin,
             picture: picture,
             address: address,
-            bookings: bookings
+            bookings: bookings ?? [Booking]()
         )
+
+        self.updateRelatedData()
     }
 
     init(
@@ -152,13 +156,13 @@ class Doctor: Resident {
         self.healthInsuranceCard = healthInsuranceCard
         self.thirdPartyPayment = thirdPartyPayment
         self.header = header
-        self.availabilities = availabilities
-        self.languages = languages
-        self.paymentOptions = paymentOptions
-        self.reasons = reasons
-        self.educations = educations
-        self.experiences = experiences
-        
+        self.availabilities = availabilities ?? [Availability]()
+        self.languages = languages ?? [Language]()
+        self.paymentOptions = paymentOptions ?? [PaymentOption]()
+        self.reasons = reasons ?? [Reason]()
+        self.educations = educations ?? [Education]()
+        self.experiences = experiences ?? [Experience]()
+
         super.init(
             id: id,
             lastname: lastname,
@@ -170,6 +174,8 @@ class Doctor: Resident {
             picture: picture,
             address: address
         )
+
+        self.updateRelatedData()
     }
     
     func getSpeciality() -> String { return self.speciality }
@@ -273,6 +279,21 @@ class Doctor: Resident {
             }
         }
     }
+    
+    // Update all doctor realted data
+    func updateRelatedData() {
+        self.updateAvailabilitiesDoctorId()
+        self.updateReasonsDoctorId()
+        self.updateEducationsDoctorId()
+        self.updateExperiencesDoctorId()
+        self.updateBookingsDoctorId()
+    }
+
+    func updateAvailabilitiesDoctorId() { for a: Availability in self.availabilities! { a.setDoctor(doctor: self) }}
+    func updateReasonsDoctorId() { for r: Reason in self.reasons! { r.setDoctor(doctor: self) }}
+    func updateEducationsDoctorId() { for e: Education in self.educations! { e.setDoctor(doctor: self) }}
+    func updateExperiencesDoctorId() { for e: Experience in self.experiences! { e.setDoctor(doctor: self) }}
+    func updateBookingsDoctorId() { for b: Booking in self.getBookings()! { b.setDoctor(doctor: self) }}
 
     // Super getters and setters
     func getContactNumberAsString() -> String {
@@ -451,11 +472,12 @@ class Doctor: Resident {
 
     // Update doctor data
     override func update() -> Resident {
+        print(self.getId())
         return DoctorDatabaseHelper().getDoctor(
             doctorId: self.getId(),
             email: nil,
             fromPatient: false
-        )!;
+        )!
     }
     
     // Transitive getters and setters

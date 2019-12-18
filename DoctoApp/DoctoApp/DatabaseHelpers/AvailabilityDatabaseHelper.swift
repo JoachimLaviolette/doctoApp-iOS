@@ -10,79 +10,16 @@ import UIKit
 import Foundation
 import SQLite
 
-class AvailabilityDatabaseHelper: DatabaseHelper {
-    var database: Connection!
-    
+class AvailabilityDatabaseHelper: DoctoAppDatabaseHelper {
     static let tableName = "availability"
     static let table = Table("availability")
     
     // Fields
-    private let doctorId = Expression<Int64>("doctor_id")
-    private let date = Expression<String>("date")
-    private let time = Expression<String>("time")
+    static let doctorId = Expression<Int64>("doctor_id")
+    static let date = Expression<String>("date")
+    static let time = Expression<String>("time")
     
-    private static var pk = 0
-    private var tableExist = false
-    
-    init() {}
-    
-    func initTableConfig() {
-        do {
-            let documentDirectory = try FileManager.default.url(
-                for: .documentDirectory,
-                in: .userDomainMask,
-                appropriateFor: nil,
-                create: true
-            )
-            
-            let fileUrl = documentDirectory
-                .appendingPathComponent(AvailabilityDatabaseHelper.tableName)
-                .appendingPathExtension("sqlite3")
-            
-            self.database = try Connection(fileUrl.path)
-        } catch {
-            print(error)
-        }
-    }
-    
-    func createTable() {
-        if !self.tableExist {
-            self.tableExist = true
-                        
-            let createTable = AvailabilityDatabaseHelper.table.create { table in
-                table.column(self.doctorId)
-                table.column(self.date)
-                table.column(self.time)
-                
-                // Alter table
-                table.primaryKey(
-                    self.doctorId,
-                    self.date,
-                    self.time
-                )
-                
-                table.foreignKey(
-                    self.doctorId,
-                    references: DoctorDatabaseHelper.table, DoctorDatabaseHelper.id,
-                    update: .cascade,
-                    delete: .cascade
-                )
-            }
-            
-            do {
-                try self.database.run(createTable)
-                print (AvailabilityDatabaseHelper.tableName + " table was successfully created.")
-            } catch {
-                print(error)
-            }
-        }
-    }
-    
-    func dropTable() {
-        do {
-            try self.database.run(AvailabilityDatabaseHelper.table.drop())
-        } catch {}
-    }
+    override init() {}
     
     // Insert all the availabilities of the given doctor in the database
     func insertAvailabilities(doctor: Doctor) -> Doctor {
@@ -95,12 +32,12 @@ class AvailabilityDatabaseHelper: DatabaseHelper {
     
     // Insert a new availability in the database related to the given doctor
     private func insertAvailability(availability: Availability, doctor: Doctor) {
-        self.initTableConfig()
+        self.initDb()
         
         let query = AvailabilityDatabaseHelper.table.insert(
-            self.doctorId <- Int64(doctor.getId()),
-            self.date <- availability.getDate(),
-            self.time <- availability.getTime()
+            AvailabilityDatabaseHelper.doctorId <- Int64(doctor.getId()),
+            AvailabilityDatabaseHelper.date <- availability.getDate(),
+            AvailabilityDatabaseHelper.time <- availability.getTime()
         )
         
         do {
@@ -113,7 +50,7 @@ class AvailabilityDatabaseHelper: DatabaseHelper {
     
     // Update the availabilities of the given doctor in the database
     func updateAvailabilities(doctor: Doctor) -> Bool {
-        self.initTableConfig()
+        self.initDb()
         
         if self.dropAvailabilities(doctor: doctor) {
             let _ = self.insertAvailabilities(doctor: doctor)
@@ -124,9 +61,9 @@ class AvailabilityDatabaseHelper: DatabaseHelper {
     
     // Drop all the availabilities related to the given doctor from the database
     private func dropAvailabilities(doctor: Doctor) -> Bool {
-        self.initTableConfig()
+        self.initDb()
         
-        let filter = AvailabilityDatabaseHelper.table.filter(self.doctorId == Int64(doctor.getId()))
+        let filter = AvailabilityDatabaseHelper.table.filter(AvailabilityDatabaseHelper.doctorId == Int64(doctor.getId()))
         let query = filter.delete()
         
         do {
@@ -148,19 +85,19 @@ class AvailabilityDatabaseHelper: DatabaseHelper {
     func getAvailabilities(doctor: Doctor) -> [Availability] {
         var availabilities: [Availability] = []
         
-        self.initTableConfig()
+        self.initDb()
         
         let query = AvailabilityDatabaseHelper.table
             .select(AvailabilityDatabaseHelper.table[*])
-            .filter(self.doctorId == Int64(doctor.getId()))
+            .filter(AvailabilityDatabaseHelper.doctorId == Int64(doctor.getId()))
         
         do {
             for availability in try self.database.prepare(query) {
                 availabilities.append(
                     Availability(
                         doctor: doctor,
-                        date: try availability.get(self.date),
-                        time: try availability.get(self.time)
+                        date: try availability.get(AvailabilityDatabaseHelper.date),
+                        time: try availability.get(AvailabilityDatabaseHelper.time)
                     )
                 )
             }
