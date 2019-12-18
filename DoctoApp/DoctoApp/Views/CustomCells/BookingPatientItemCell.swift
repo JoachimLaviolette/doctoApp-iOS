@@ -1,5 +1,5 @@
 //
-//  AppointmentItemTVC.swift
+//  BookingPatientItemCell.swift
 //  DoctoApp
 //
 //  Created by COPPENS EWEN on 13/12/2019.

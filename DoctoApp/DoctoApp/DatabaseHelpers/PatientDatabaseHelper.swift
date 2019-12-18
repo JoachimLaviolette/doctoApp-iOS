@@ -101,7 +101,7 @@ class PatientDatabaseHelper: DatabaseHelper {
         // Check if the address was correctly added to the database
         if p.GetAddressId() == -1 { return false }
         
-        p = self.insertPatient(patient: p) as! Patient
+        p = self.insertPatient(patient: p)
         
         // Check if the patient was correctly added to the database
         if p.getId() == -1 { return false }
@@ -116,7 +116,6 @@ class PatientDatabaseHelper: DatabaseHelper {
         self.initTableConfig()
         
         let query = PatientDatabaseHelper.table.insert(
-            PatientDatabaseHelper.id <- Int64(patient.getId()),
             self.lastname <- patient.getLastname(),
             self.firstname <- patient.getFirstname(),
             self.birthdate <- patient.getBirthdate(),

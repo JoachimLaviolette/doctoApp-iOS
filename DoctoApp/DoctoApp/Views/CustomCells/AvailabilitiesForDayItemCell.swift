@@ -27,6 +27,10 @@ class AvailabilitiesForDayItemCell: UITableViewCell {
         self.timesList.dataSource = self
     }
 
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+
     func setData(availabilitiesForDay: [String: [Availability]], reason: Reason, doctor: Doctor, patient: Patient) {   
         self.availabilitiesForDay = availabilitiesForDay
         self.reason = reason   

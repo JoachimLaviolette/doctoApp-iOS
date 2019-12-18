@@ -97,9 +97,7 @@ class AddressDatabaseHelper: DatabaseHelper {
                 let address: Address? = self.getAddress(addressId: Int(addressId))
                 resident.setAddress(address: address!)
                 print("Address insertion succeeded for resident: " + resident.getFullname())
-            }
-            
-            print("Address insertion failed for resident: " + resident.getFullname())            
+            } else { print("Address insertion failed for resident: " + resident.getFullname()) }
         } catch {
             print("Address insertion failed for resident: " + resident.getFullname())
         }

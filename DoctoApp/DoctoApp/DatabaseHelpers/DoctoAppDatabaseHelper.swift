@@ -24,7 +24,7 @@ class DoctoAppDatabaseHelper {
     
     init() {
         self.initTables()
-        self.dropTables()
+        // self.dropTables()
         self.createTables()
     }
     

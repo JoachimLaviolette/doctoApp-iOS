@@ -8,25 +8,18 @@
 
 import UIKit
 
-class ReasonItemCell: UITableViewCell {
-    var chooseReasonDelegate: ChooseReasonDelegator! // must be set by the caling view
-    
+class ReasonItemCell: UITableViewCell {    
     @IBOutlet weak var reasonDescription: UILabel!
     
-    var reason: Reason! // must be set by the calling view
-
-    func setData(reason: Reason) {
-        self.reason = reason
-        self.reasonDescription.text = self.reason.getDescription()
+    override func awakeFromNib() {
+        super.awakeFromNib()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        self.chooseAvailability()
     }
-    
-    // Display availabilities
-    private func chooseAvailability() {
-        self.chooseReasonDelegate.chooseReason(reason: self.reason)
+
+    func setData(reason: Reason) {
+        self.reasonDescription.text = reason.getDescription()
     }
 }

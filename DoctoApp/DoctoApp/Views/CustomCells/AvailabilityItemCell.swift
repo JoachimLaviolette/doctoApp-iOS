@@ -18,17 +18,21 @@ class AvailabilityItemCell: UITableViewCell {
     var patient: Patient! // must be set by the calling view
     var reason: Reason! // must be set by the calling view
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        self.confirmBooking()
+    }
+
     func setData(availability: Availability, reason: Reason, doctor: Doctor, patient: Patient) {
         self.availability = availability
         self.reason = reason
         self.doctor = doctor
         self.patient = patient
         self.availabilityTime.text = self.availability.getTime()
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        self.confirmBooking()
     }
 
     // Display booking confirmation
