@@ -8,18 +8,18 @@
 
 import UIKit
 
-protocol ConfirmBookingVCDelegator {
+protocol ShowDoctorProfileDelegator {
     func showDoctorProfile(doctor: Doctor)
 }
 
-class ConfirmBookingVC: UIViewController, ConfirmBookingVCDelegator {
+class ConfirmBookingVC: UIViewController, ShowDoctorProfileDelegator {
     @IBOutlet weak var headerDashboard: HeaderDashboardView!
     @IBOutlet weak var bookingFeedbackMessage: FeedbackMessageView!
     @IBOutlet weak var bookingDetailsView: BookingDetailsView!
     @IBOutlet weak var myBookingsBtn: UIButton!
     
     var booking: Booking! // must be set by the calling view
-    var doctor: Doctor!
+    var doctor: Doctor? // set when clicked on doctor section of the booking details subview
     
     private static let doctorProfileSegueIdentifier = "doctor_profile_segue"
     
@@ -38,9 +38,10 @@ class ConfirmBookingVC: UIViewController, ConfirmBookingVCDelegator {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == ConfirmBookingVC.doctorProfileSegueIdentifier && segue.destination is DoctorProfileVC {
             let doctorProfileVC = segue.destination as! DoctorProfileVC
-            doctorProfileVC.doctor = self.doctor
+            doctorProfileVC.doctor = self.doctor!
         }
     }
+    
     // Show doctor profile
     func showDoctorProfile(doctor: Doctor) {
         self.doctor = doctor
@@ -58,6 +59,11 @@ class ConfirmBookingVC: UIViewController, ConfirmBookingVCDelegator {
     // Set header data
     private func setHeaderData() {
         self.headerDashboard.headerTitle.text = Strings.CONFIRM_APPOINTMENT_HEADER_TITLE
+    }
+    
+    // Set view data
+    func setData(booking: Booking) {
+        self.booking = booking
     }
 
     // Set view content

@@ -14,8 +14,7 @@ class BookingDetailsView: UIView {
     @IBOutlet weak var bookingFulldate: UILabel!
     @IBOutlet weak var bookingTime: UILabel!
     @IBOutlet weak var dataTable: UITableView!
-    
-    var delegator: ConfirmBookingVCDelegator! // set by the calling view
+    var delegator: ShowDoctorProfileDelegator! // set by the calling view
     
     var booking: Booking! // must be set by the calling view
     var doctor: Doctor! // set using the booking object in setData()
@@ -48,7 +47,7 @@ class BookingDetailsView: UIView {
     }
 
     // Set view data
-    func setData(booking: Booking, delegator: ConfirmBookingVCDelegator) {
+    func setData(booking: Booking, delegator: ShowDoctorProfileDelegator) {
         self.delegator = delegator
         
         // Retrieve the models to work with

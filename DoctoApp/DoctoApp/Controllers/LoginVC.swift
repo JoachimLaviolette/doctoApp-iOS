@@ -30,21 +30,32 @@ class LoginVC: UIViewController {
     @IBOutlet weak var myProfileBtn: UIButton!
     @IBOutlet weak var myBookingsBtn: UIButton!
     
-
+    private static let myBookingsSegueIdentifier: String = "my_bookings_segue"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.initialize()
+    }
+    
+    // Initialize controller properties
+    private func initialize() {
         self.setContent()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == LoginVC.myBookingsSegueIdentifier
+            && segue.destination is MyBookingsVC {
+            let myBookingsVC = segue.destination as! MyBookingsVC
+            myBookingsVC.setData(
+                resident: self.loggedUser!
+            )
+        }
     }
     
     private func setContent() -> Void {
         self.setLoginContext()
         
-        if (self.loggedUser != nil) {
-            self.displaySuccessMsg()
-        }
-        
+        if (self.loggedUser != nil) { self.displaySuccessMsg() }
     }
     
     private func setLoginContext() -> Void {
@@ -63,7 +74,6 @@ class LoginVC: UIViewController {
         emailInput.text = ""
         passwordInput.text  = ""
         stayLogged.setOn(false, animated: false)
-        
     }
     
     @IBAction func login(_ sender: Any) {
@@ -86,7 +96,6 @@ class LoginVC: UIViewController {
         let inputPwd = passwordInput.text!
         let salt = patient?.getPwdSalt()
         let hashedInputPwd = inputPwd + salt! //TO DO: hash it with SHA1
-        let patientPwd = patient?.getPwd()
         
         // If the password isn't matched
         if (patient!.getPwd() != hashedInputPwd) { return false }

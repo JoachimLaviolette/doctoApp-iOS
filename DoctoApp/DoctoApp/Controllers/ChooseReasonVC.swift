@@ -59,15 +59,16 @@ class ChooseReasonVC: UIViewController {
         } else if segue.identifier == ChooseReasonVC.confirmBookingSegueIdentifier
             && segue.destination is ConfirmBookingVC {
             let confirmBookingVC = segue.destination as! ConfirmBookingVC
-            confirmBookingVC.booking = Booking(
-                id: -1,
-                patient: self.patient,
-                doctor: self.doctor,
-                reason: self.reason!,
-                fullDate: "Monday, December 25",
-                date: "Monday",
-                time: "15:00",
-                bookingDate: DateTimeService.GetCurrentDateTime()
+            confirmBookingVC.setData(booking: Booking(
+                    id: -1,
+                    patient: self.patient,
+                    doctor: self.doctor,
+                    reason: self.reason!,
+                    fullDate: "Monday, December 25",
+                    date: "Monday",
+                    time: "15:00",
+                    bookingDate: DateTimeService.GetCurrentDateTime()
+                )
             )
         }
     }

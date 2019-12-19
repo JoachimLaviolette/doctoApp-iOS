@@ -43,7 +43,7 @@
                             <color key="backgroundColor" name="my_bookings_header_color"/>
                             <color key="tintColor" name="my_bookings_header_color"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="30" id="PYS-O8-L4v"/>
+                                <constraint firstAttribute="width" constant="70" id="PYS-O8-L4v"/>
                             </constraints>
                         </view>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Ek4-Yl-pB2">
@@ -100,7 +100,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="269.60000000000002" y="-110.19490254872565"/>
+            <point key="canvasLocation" x="269.60000000000002" y="-110.64467766116942"/>
         </view>
     </objects>
     <resources>
