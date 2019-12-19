@@ -1,5 +1,5 @@
 //
-//  HeaderDashboardSubtitleView.swift
+//  HeaderView.swift
 //  DoctoApp
 //
 //  Created by LAVIOLETTE JOACHIM on 16/12/2019.

@@ -23,10 +23,10 @@ class HomeVC: UIViewController {
         // Remove seach bar borders
         self.searchBar.backgroundImage = UIImage()
         let _ = DoctoAppDatabaseHelper()
-        // self.createDoctors()
+        // self.createModels()
     }
     
-    private func createDoctors() {
+    private func createModels() {
         let pwd = "a94a8fe5ccb19ba61c4c0873d391e987982fbbd3"
         let pwdSalt = "7e240de74fb1ed08fa08d38063f6a6a91462a815" // aaa
         
@@ -146,32 +146,39 @@ class HomeVC: UIViewController {
         ]
 
         d1.setAvailabilities(availabilities: availD1)
-        d1.setAvailabilities(availabilities: availD2)
-        d1.setAvailabilities(availabilities: availD3)
+        d2.setAvailabilities(availabilities: availD2)
+        d3.setAvailabilities(availabilities: availD3)
 
         d1.setLanguages(languages: lanD1)
-        d1.setLanguages(languages: lanD2)
-        d1.setLanguages(languages: lanD3)
+        d2.setLanguages(languages: lanD2)
+        d3.setLanguages(languages: lanD3)
 
         d1.setPaymentOptions(paymentOptions: poD1)
-        d1.setPaymentOptions(paymentOptions: poD2)
-        d1.setPaymentOptions(paymentOptions: poD3)
+        d2.setPaymentOptions(paymentOptions: poD2)
+        d3.setPaymentOptions(paymentOptions: poD3)
 
         d1.setReasons(reasons: reasonsD1)
-        d1.setReasons(reasons: reasonsD2)
-        d1.setReasons(reasons: reasonsD3)
+        d2.setReasons(reasons: reasonsD2)
+        d3.setReasons(reasons: reasonsD3)
 
         d1.setEducations(educations: eduD1)
-        d1.setEducations(educations: eduD2)
-        d1.setEducations(educations: eduD3)
+        d2.setEducations(educations: eduD2)
+        d3.setEducations(educations: eduD3)
 
         d1.setExperiences(experiences: expD1)
-        d1.setExperiences(experiences: expD2)
-        d1.setExperiences(experiences: expD3)
+        d2.setExperiences(experiences: expD2)
+        d3.setExperiences(experiences: expD3)
 
         if !DoctorDatabaseHelper().createDoctor(doctor: d1) { return }
         if !DoctorDatabaseHelper().createDoctor(doctor: d2) { return }
         if !DoctorDatabaseHelper().createDoctor(doctor: d3) { return }
+        
+        let p1: Patient = Patient(id: -1, lastname: "FRANCO", firstname: "James", email: "james.franco@gmail.com", pwd: "Test", pwdSalt: "Test3X", lastLogin: "2019-12-16", picture: "pp4", address: Address(id: -1, street1: "3 place Henry IV", street2: "", city: "Paris", zip: "75016", country: "France"), birthdate: "1996-05-23", insuranceNumber: "02153562365602")
+        
+        let p2: Patient = Patient(id: -1, lastname: "QUILLERY", firstname: "Marion", email: "marion.quillery@gmail.com", pwd: "Test", pwdSalt: "Test", lastLogin: DateTimeService.GetCurrentDateTime(), picture: "pp5", address: Address(id: -1, street1: "10 rue des Rosières", street2: "", city: "Troyes", zip: "10000", country: "France"), birthdate: "1986-08-12", insuranceNumber: "0263563522125")
+        
+        if !PatientDatabaseHelper().createPatient(patient: p1) { return }
+        if !PatientDatabaseHelper().createPatient(patient: p2) { return }
     }
 }
 

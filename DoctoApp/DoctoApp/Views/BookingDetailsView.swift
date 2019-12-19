@@ -13,30 +13,19 @@ class BookingDetailsView: UIView {
     
     @IBOutlet weak var bookingFulldate: UILabel!
     @IBOutlet weak var bookingTime: UILabel!
-
-    @IBOutlet weak var doctorPicture: UIImageView!
-    @IBOutlet weak var doctorFullname: UILabel!
-    @IBOutlet weak var doctorSpeciality: UILabel!
-
-    @IBOutlet weak var updateBooking: UIButton! // must be displayed on my bookings details view only
-    @IBOutlet weak var cancelBooking: UIButton! // must be displayed on my bookings details view only
-
-    @IBOutlet weak var bookingReason: UILabel!
-
-    @IBOutlet weak var patientPicture: UIImageView! // must be displayed on booking confirmation view only
-    @IBOutlet weak var patientFullname: UILabel! // must be displayed on booking confirmation view only
-
-    @IBOutlet weak var warningMessageContent: UILabel!
-
-    @IBOutlet weak var doctorContactNumber: UILabel!
+    @IBOutlet weak var dataTable: UITableView!
     
-    @IBOutlet weak var doctorAddress: UILabel!
+    var delegator: ConfirmBookingVCDelegator! // set by the calling view
     
-    @IBOutlet weak var doctorPaymentOptions: UILabel!
+    var booking: Booking! // must be set by the calling view
+    var doctor: Doctor! // set using the booking object in setData()
+    var patient: Patient! // set using the booking object in setData()
+    var reason: Reason! // set using the booking object in setData()
     
-    @IBOutlet weak var doctorPricesAndRefunds: UILabel!
-
     private static let xibFile: String = "BookingDetailsView"
+    private static let bookingPreviewItemCell: String = "BookingPreviewItemCell"
+    private static let bookingOneLineElementItemCell: String = "BookingOneLineElementItemCell"
+    private static let bookingTwoLinesItemCell: String = "BookingTwoLinesElementItemCell"
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -50,41 +39,146 @@ class BookingDetailsView: UIView {
 
     // Initialize controller properties
     private func initialize() {
-        Bundle.main.loadNibNamed(BookingDetailsView.xibFile, owner: nil, options: nil)
+        Bundle.main.loadNibNamed(BookingDetailsView.xibFile, owner: self, options: nil)
         self.addSubview(self.contentView)
         self.contentView.frame = self.bounds
         self.contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        self.dataTable.delegate = self
+        self.dataTable.dataSource = self
     }
 
     // Set view data
-    func setData(booking: Booking) {
+    func setData(booking: Booking, delegator: ConfirmBookingVCDelegator) {
+        self.delegator = delegator
+        
         // Retrieve the models to work with
-        let doctor: Doctor = booking.getDoctor()
-        let patient: Patient = booking.getPatient()
-        let reason: Reason = booking.getReason()
+        self.booking = booking
+        self.doctor = self.booking.getDoctor()
+        self.patient = self.booking.getPatient()
+        self.reason = self.booking.getReason()
 
         // Set the view components values
-        self.bookingFulldate.text = booking.getFullDate()
-        self.bookingTime.text = booking.getTime()
+        self.bookingFulldate.text = self.booking.getFullDate()
+        self.bookingTime.text = self.booking.getTime()
         
-        if !doctor.getPicture()!.isEmpty { self.doctorPicture.image = UIImage(named: doctor.getPicture()!) }
-        self.doctorFullname.text = doctor.getFullname()
-        self.doctorFullname.text = doctor.getFullname()
-        self.doctorFullname.text = doctor.getFullname()
+        // Set table properties
+        self.dataTable.rowHeight = UITableView.automaticDimension
+        self.dataTable.separatorColor = UIColor.clear
+    }
+}
 
-        self.bookingReason.text = reason.getDescription()
-
-        if !patient.getPicture()!.isEmpty { self.patientPicture.image = UIImage(named: patient.getPicture()!) }
-        self.patientFullname.text = patient.getFullname()
-        
-        self.warningMessageContent.text = doctor.getWarningMessage()
-
-        self.doctorContactNumber.text = doctor.getContactNumber()
-
-        self.doctorAddress.text = doctor.GetFullAddress()
-
-        self.doctorPaymentOptions.text = doctor.getPaymentOptionsAsString()
-
-        self.doctorPricesAndRefunds.text = doctor.getPricesAndRefundsAsString()
+extension BookingDetailsView: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 8
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch (indexPath.row) {
+            case 0:
+                let cell = Bundle.main.loadNibNamed(BookingDetailsView.bookingPreviewItemCell, owner: self, options: nil)?.first as! BookingPreviewItemCell
+                cell.selectionStyle = .none
+                cell.setData(
+                    picture: self.doctor.getPicture(),
+                    fullname: self.doctor.getFullname(),
+                    description: self.doctor.getSpeciality()
+                )
+                
+                return cell
+            case 1:
+                let cell = Bundle.main.loadNibNamed(BookingDetailsView.bookingOneLineElementItemCell, owner: self, options: nil)?.first as! BookingOneLineElementItemCell
+                cell.selectionStyle = .none
+                cell.setData(
+                    content: self.reason.getDescription(),
+                    state: OneLineElementState.reason
+                )
+                
+                return cell
+            case 2:
+                let cell = Bundle.main.loadNibNamed(BookingDetailsView.bookingPreviewItemCell, owner: self, options: nil)?.first as! BookingPreviewItemCell
+                cell.selectionStyle = .none
+                cell.setData(
+                    picture: self.patient.getPicture(),
+                    fullname: nil,
+                    description: self.patient.getFullname()
+                )
+                
+                return cell
+            case 3:
+                let cell = Bundle.main.loadNibNamed(BookingDetailsView.bookingTwoLinesItemCell, owner: self, options: nil)?.first as! BookingTwoLinesElementItemCell
+                cell.selectionStyle = .none
+                cell.setData(
+                    content: self.doctor.getWarningMessage(),
+                    state: TwoLinesElementState.warningMessage
+                )
+                
+                return cell
+            case 4:
+                let cell = Bundle.main.loadNibNamed(BookingDetailsView.bookingOneLineElementItemCell, owner: self, options: nil)?.first as! BookingOneLineElementItemCell
+                cell.selectionStyle = .none
+                cell.setData(
+                    content: self.doctor.getContactNumber(),
+                    state: OneLineElementState.contactNumber
+                )
+                
+                return cell
+            case 5:
+                let cell = Bundle.main.loadNibNamed(BookingDetailsView.bookingOneLineElementItemCell, owner: self, options: nil)?.first as! BookingOneLineElementItemCell
+                cell.selectionStyle = .none
+                cell.setData(
+                    content: self.doctor.GetFullAddress(),
+                    state: OneLineElementState.address
+                )
+                
+                return cell
+            case 6:
+                let cell = Bundle.main.loadNibNamed(BookingDetailsView.bookingTwoLinesItemCell, owner: self, options: nil)?.first as! BookingTwoLinesElementItemCell
+                cell.selectionStyle = .none
+                cell.setData(
+                    content: self.doctor.getPaymentOptionsAsString(),
+                    state: TwoLinesElementState.paymentOptions
+                )
+                
+                return cell
+            case 7:
+                let cell = Bundle.main.loadNibNamed(BookingDetailsView.bookingTwoLinesItemCell, owner: self, options: nil)?.first as! BookingTwoLinesElementItemCell
+                cell.selectionStyle = .none
+                cell.setData(
+                    content: self.doctor.getPricesAndRefundsAsString(),
+                    state: TwoLinesElementState.pricesAndRefunds
+                )
+                
+                return cell
+            default: return UITableViewCell()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch (indexPath.row) {
+            case 0:
+                return 80
+            case 1:
+                return 40
+            case 2:
+                return 80
+            case 3:
+                return 80
+            case 4:
+                return 40
+            case 5: // address
+                return 80
+            case 6:
+                return 80
+            case 7:
+                return 80
+            default: return 80
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 { self.delegator.showDoctorProfile(doctor: self.doctor) }
     }
 }

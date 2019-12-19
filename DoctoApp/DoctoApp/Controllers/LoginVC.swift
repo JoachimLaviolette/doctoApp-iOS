@@ -11,7 +11,7 @@ import UIKit
 class LoginVC: UIViewController {
     
     private var loggedUser: Resident?
-    private var toRedirect: Bool!
+    private var toRedirect: Bool = false // can be setby the calling view
     
     @IBOutlet weak var loginMsg: UIView!
     @IBOutlet weak var loginMsgTitle: UILabel!
@@ -66,31 +66,21 @@ class LoginVC: UIViewController {
         
     }
     
-    
     @IBAction func login(_ sender: Any) {
-        //self.checkIfRedirect
         var success: Bool = self.tryLoginAsPatient()
-        if (!self.toRedirect) {
-            if (!success) {
-                success = self.tryLoginAsDoctor()
-            }
-        }
-        if (!success) {
-            self.displayErrorMsg()
-        }
         
+        if (!self.toRedirect && !success) { success = self.tryLoginAsDoctor() }
+        if (!success) { self.displayErrorMsg() }
     }
     
     private func tryLoginAsPatient() -> Bool {
-        let inputEmail: String = emailInput.text!
+        let inputEmail: String = emailInput.text ?? ""
         
         // Try to get a patient using the provided email
         let patient: Patient? = PatientDatabaseHelper().getPatient(patientId: nil, email: inputEmail, fromDoctor: false)
         
         // If the email isn't matched
-        if (patient == nil) {
-            return false
-        }
+        if (patient == nil) { return false }
         
         //Check the password
         let inputPwd = passwordInput.text!
@@ -99,9 +89,7 @@ class LoginVC: UIViewController {
         let patientPwd = patient?.getPwd()
         
         // If the password isn't matched
-        if ((patientPwd?.elementsEqual(hashedInputPwd))!) {
-            return false
-        }
+        if (patient!.getPwd() != hashedInputPwd) { return false }
         
         self.displaySuccessMsg()
         self.loggedUser = patient
@@ -114,7 +102,7 @@ class LoginVC: UIViewController {
     }
     
     private func tryLoginAsDoctor() -> Bool {
-        let inputEmail: String = emailInput.text!
+        let inputEmail: String = emailInput.text ?? ""
         
         // Try to get a patient using the provided email
         let doctor: Doctor? = DoctorDatabaseHelper().getDoctor(doctorId: nil, email: inputEmail, fromPatient: false)
@@ -163,7 +151,7 @@ class LoginVC: UIViewController {
         professionalSection.isHidden = true
     }
     
-    private func displayErrorMsg() -> Void {
+    private func displayErrorMsg() {
         loginMsg.isHidden = false
         loginMsg.backgroundColor = UIColor(hex: Colors.LOGIN_ERROR_MSG)
         loginMsgTitle.text = Strings.LOGIN_ERROR_MSG_TITLE
@@ -174,7 +162,4 @@ class LoginVC: UIViewController {
         self.loggedUser = nil
         self.setLoginContext()
     }
-
-    
-    
 }

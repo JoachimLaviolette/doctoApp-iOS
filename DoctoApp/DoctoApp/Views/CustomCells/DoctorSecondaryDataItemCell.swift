@@ -28,7 +28,7 @@ class DoctorSecondaryDataItemCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    // Set the cell data
+    // Set cell data
     func setData(doctorSecondaryData: DoctorSecondaryData) {
         self.sectionIcon.image = UIImage(named: doctorSecondaryData.sectionIcon)
         self.setupIcon()

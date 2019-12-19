@@ -8,17 +8,20 @@
 
 import UIKit
 
-class ConfirmBookingVC: UIViewController {
-    @IBOutlet weak var bookingErrorMessage: UIView!
-    @IBOutlet weak var bookingSuccessMessage: UIView!
-    @IBOutlet weak var bookingDetailsView: BookingDetailsView!
+protocol ConfirmBookingVCDelegator {
+    func showDoctorProfile(doctor: Doctor)
+}
 
+class ConfirmBookingVC: UIViewController, ConfirmBookingVCDelegator {
+    @IBOutlet weak var headerDashboard: HeaderDashboardView!
+    @IBOutlet weak var bookingFeedbackMessage: FeedbackMessageView!
+    @IBOutlet weak var bookingDetailsView: BookingDetailsView!
+    @IBOutlet weak var myBookingsBtn: UIButton!
+    
     var booking: Booking! // must be set by the calling view
     var doctor: Doctor!
-    var patient: Patient! 
     
-    private static let chooseReasonSegueIdentifier: String = "choose_reason_segue"
-    private static let loginSegueIdentifier: String = "login_segue"
+    private static let doctorProfileSegueIdentifier = "doctor_profile_segue"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,12 +29,35 @@ class ConfirmBookingVC: UIViewController {
     }
     
     // Initialize controller properties
-    private func initialize() {        
-        // Retrieve most recent changes updating the doctor and the patient models
-        self.doctor = self.booking.getDoctor().update() as? Doctor
-        self.patient = self.booking.getPatient().update() as? Patient
-
+    private func initialize() {
+        self.setBookingDetailsViewData()
+        self.setHeaderData()
         self.setContent()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == ConfirmBookingVC.doctorProfileSegueIdentifier && segue.destination is DoctorProfileVC {
+            let doctorProfileVC = segue.destination as! DoctorProfileVC
+            doctorProfileVC.doctor = self.doctor
+        }
+    }
+    // Show doctor profile
+    func showDoctorProfile(doctor: Doctor) {
+        self.doctor = doctor
+        performSegue(withIdentifier: ConfirmBookingVC.doctorProfileSegueIdentifier, sender: nil)
+    }
+    
+    // Set booking details view data
+    private func setBookingDetailsViewData() {
+        self.bookingDetailsView.setData(
+            booking: self.booking,
+            delegator: self
+        )
+    }
+    
+    // Set header data
+    private func setHeaderData() {
+        self.headerDashboard.headerTitle.text = Strings.CONFIRM_APPOINTMENT_HEADER_TITLE
     }
 
     // Set view content
@@ -42,11 +68,23 @@ class ConfirmBookingVC: UIViewController {
 
     // Set success content
     private func setSuccessContent() {
-        self.bookingDetailsView.setData(booking: booking)
+        self.bookingFeedbackMessage.setData(
+            title: Strings.CONFIRM_APPOINTMENT_SUCCESS_MSG_TITLE,
+            content: Strings.CONFIRM_APPOINTMENT_SUCCESS_MSG_CONTENT,
+            isErrorMsg: false
+        )
+        
+        self.myBookingsBtn.isHidden = true
     }
     
     // Set error content
     private func setErrorContent() {
+        self.bookingFeedbackMessage.setData(
+            title: Strings.CONFIRM_APPOINTMENT_ERROR_MSG_TITLE,
+            content: Strings.CONFIRM_APPOINTMENT_ERROR_MSG_CONTENT,
+            isErrorMsg: true
+        )
         
+        self.bookingDetailsView.removeFromSuperview()
     }
 }

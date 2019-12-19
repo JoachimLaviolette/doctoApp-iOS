@@ -22,7 +22,7 @@ class BookingDatabaseHelper: DoctoAppDatabaseHelper {
     static let fullDate = Expression<String>("full_date")
     static let date = Expression<String>("date")
     static let time = Expression<String>("time")
-    static let bookingDate = Expression<String>("bookingDate")
+    static let bookingDate = Expression<String>("booking_date")
     
     override init() {}
     
@@ -42,7 +42,7 @@ class BookingDatabaseHelper: DoctoAppDatabaseHelper {
         let query = BookingDatabaseHelper.table.insert(
             BookingDatabaseHelper.patientId <- Int64(booking.GetPatientId()),
             BookingDatabaseHelper.doctorId <- Int64(booking.GetDoctorId()),
-            BookingDatabaseHelper.reasonId <- Int64(booking.GetPatientId()),
+            BookingDatabaseHelper.reasonId <- Int64(booking.GetReasonId()),
             BookingDatabaseHelper.fullDate <- booking.getFullDate(),
             BookingDatabaseHelper.date <- booking.getDate(),
             BookingDatabaseHelper.time <- booking.getTime(),
@@ -120,7 +120,7 @@ class BookingDatabaseHelper: DoctoAppDatabaseHelper {
         
         self.initDb()
         
-        var query = BookingDatabaseHelper.table
+        let query = BookingDatabaseHelper.table
             .select(BookingDatabaseHelper.table[*])
             .filter(BookingDatabaseHelper.doctorId == Int64(doctor.getId()))
         

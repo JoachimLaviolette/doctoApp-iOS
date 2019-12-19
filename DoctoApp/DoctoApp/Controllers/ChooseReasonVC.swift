@@ -21,6 +21,7 @@ class ChooseReasonVC: UIViewController {
     private static let headerTitle: String = "Book an appointment"
     private static let reasonItemCellIdentifer: String = "reason_item_cell"
     private static let chooseAvailabilitySegueIdentifier: String = "choose_availability_segue"
+    private static let confirmBookingSegueIdentifier: String = "confirm_booking_segue"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +46,7 @@ class ChooseReasonVC: UIViewController {
         self.setHeaderData()
 
         // Setup patient test model
-        self.patient = Patient(id: 0, lastname: "FRANCO", firstname: "James", email: "james.franco@gmail.com", pwd: "Test", pwdSalt: "Test3X", lastLogin: "2019-12-16", picture: "pp4", address: Address(id: -1, street1: "3 place Henry IV", street2: "", city: "Paris", zip: "75016", country: "France"), birthdate: "1996-05-23", insuranceNumber: "02153562365602")
+        self.patient = PatientDatabaseHelper().getPatient(patientId: 2, email: nil, fromDoctor: false)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -55,6 +56,19 @@ class ChooseReasonVC: UIViewController {
             chooseAvailabilityVC.reason = self.reason
             chooseAvailabilityVC.doctor = self.doctor
             chooseAvailabilityVC.patient = self.patient
+        } else if segue.identifier == ChooseReasonVC.confirmBookingSegueIdentifier
+            && segue.destination is ConfirmBookingVC {
+            let confirmBookingVC = segue.destination as! ConfirmBookingVC
+            confirmBookingVC.booking = Booking(
+                id: -1,
+                patient: self.patient,
+                doctor: self.doctor,
+                reason: self.reason!,
+                fullDate: "Monday, December 25",
+                date: "Monday",
+                time: "15:00",
+                bookingDate: DateTimeService.GetCurrentDateTime()
+            )
         }
     }
     
@@ -88,5 +102,6 @@ extension ChooseReasonVC: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.reason = self.reasons[indexPath.row]
+        performSegue(withIdentifier: ChooseReasonVC.confirmBookingSegueIdentifier, sender: nil)
     }
 }

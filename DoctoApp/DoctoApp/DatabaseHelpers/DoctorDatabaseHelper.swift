@@ -215,11 +215,17 @@ class DoctorDatabaseHelper: DoctoAppDatabaseHelper {
         
         do {
             for d in try self.database.prepare(query!) {
+                var dId: Int
+                var dEmail: String
+                
+                if doctorId == nil { dId = try Int(d.get(DoctorDatabaseHelper.id)) } else { dId = doctorId! }
+                if email == nil { dEmail = try d.get(DoctorDatabaseHelper.email) } else { dEmail = email! }
+                
                 let doctor: Doctor = Doctor(
-                    id: doctorId!,
+                    id: dId,
                     lastname: try d.get(DoctorDatabaseHelper.lastname),
                     firstname: try d.get(DoctorDatabaseHelper.firstname),
-                    email: try d.get(DoctorDatabaseHelper.email),
+                    email: dEmail,
                     pwd: try d.get(DoctorDatabaseHelper.pwd),
                     pwdSalt: try d.get(DoctorDatabaseHelper.pwdSalt),
                     lastLogin: try d.get(DoctorDatabaseHelper.lastLogin),

@@ -16,7 +16,7 @@ class DoctoAppDatabaseHelper {
     
     init() {
         // self.dropTables()
-        self.createTables()
+        // self.createTables()
     }
     
     func initDb() {
@@ -54,6 +54,7 @@ class DoctoAppDatabaseHelper {
             try self.database.run(PaymentOptionDatabaseHelper.table.drop())
             try self.database.run(ReasonDatabaseHelper.table.drop())
             try self.database.run(BookingDatabaseHelper.table.drop())
+            print("All the tables were successfully dropped.")
         } catch {
             print("One of the table was not dropped (inexistant ?)")
         }

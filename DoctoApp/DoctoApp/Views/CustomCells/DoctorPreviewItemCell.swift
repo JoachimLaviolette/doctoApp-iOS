@@ -25,6 +25,7 @@ class DoctorPreviewItemCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    // Set cell data
     func setData(doctor: Doctor) {
         if !doctor.getPicture()!.isEmpty { self.doctorPicture.image = UIImage(named: doctor.getPicture()!) }
          self.doctorFullname.text = doctor.getFullname()
