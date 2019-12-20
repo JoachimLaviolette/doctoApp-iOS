@@ -54,4 +54,12 @@ class DateTimeService {
    static func GetDayFromDate(date: String) -> String {
         return date.substring(fromIndex: 0, toIndex: date.index(of: ",")!.encodedOffset)
    }
+    
+    // Return the given time in 24h format
+    static func GetTimeIn24H(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        
+        return formatter.string(from: date)
+    }
 }

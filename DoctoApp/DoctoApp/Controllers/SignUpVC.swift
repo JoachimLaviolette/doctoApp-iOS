@@ -11,6 +11,8 @@ import UIKit
 
 class SignUpVC: UIViewController {
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     @IBOutlet weak var signupMsg: UIView!
     @IBOutlet weak var signupMsgTitle: UILabel!
     @IBOutlet weak var signupMsgContent: UILabel!
@@ -115,6 +117,7 @@ class SignUpVC: UIViewController {
         signupMsg.backgroundColor = UIColor(named: "signup_error_msg_color")
         signupMsgTitle.text = Strings.SIGNUP_ERROR_MSG_TITLE
         signupMsgContent.text = Strings.SIGNUP_ERROR_MSG_CONTENT
+        self.scrollToTop()
     }
     
     // Display error msg
@@ -123,6 +126,13 @@ class SignUpVC: UIViewController {
         signupMsg.backgroundColor = UIColor(named: "signup_success_msg_color")
         signupMsgTitle.text = Strings.SIGNUP_SUCCESS_MSG_TITLE
         signupMsgContent.text = Strings.SIGNUP_SUCCESS_MSG_CONTENT
+        self.scrollToTop()
+    }
+    
+    // Scroll to the top of the scroll view
+    private func scrollToTop() {
+        let topOffset = CGPoint(x: 0, y: -self.scrollView.contentInset.top)
+        self.scrollView.setContentOffset(topOffset, animated: true)
     }
     
 }
