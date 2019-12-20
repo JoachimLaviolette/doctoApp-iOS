@@ -23,7 +23,6 @@ class ChooseReasonVC: UIViewController {
     private static let headerTitle: String = "Book an appointment"
     private static let reasonItemCellIdentifer: String = "reason_item_cell"
     private static let chooseAvailabilitySegueIdentifier: String = "choose_availability_segue"
-    private static let confirmBookingSegueIdentifier: String = "confirm_booking_segue"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +33,8 @@ class ChooseReasonVC: UIViewController {
     private func initialize() {
         // Update doctor model to get most recent changes
         self.doctor = self.doctor.update() as? Doctor
-        
+        self.loggedUser = self.loggedUser.update()
+
         // Retrieve reasons
         self.reasons = self.doctor.getReasons() ?? []
         
@@ -56,30 +56,18 @@ class ChooseReasonVC: UIViewController {
         if segue.identifier == ChooseReasonVC.chooseAvailabilitySegueIdentifier
             && segue.destination is ChooseAvailabilityVC {
             let chooseAvailabilityVC = segue.destination as! ChooseAvailabilityVC
-            chooseAvailabilityVC.reason = self.reason
-            chooseAvailabilityVC.doctor = self.doctor
-            chooseAvailabilityVC.patient = self.patient
-        } else if segue.identifier == ChooseReasonVC.confirmBookingSegueIdentifier
-            && segue.destination is ConfirmBookingVC {
-            let confirmBookingVC = segue.destination as! ConfirmBookingVC
-            confirmBookingVC.setData(booking: Booking(
-                                                        id: -1,
-                                                        patient: self.patient,
-                                                        doctor: self.doctor,
-                                                        reason: self.reason!,
-                                                        fullDate: "Monday, December 25",
-                                                        date: "Monday",
-                                                        time: "15:00",
-                                                        bookingDate: DateTimeService.GetCurrentDateTime()
-                                                    ),
-                                     loggedUser: self.loggedUser
+            chooseAvailabilityVC.setData(
+                doctor: self.doctor,
+                reason: self.reason!,
+                loggedUser: self.loggedUser
             )
         }
     }
     
     // Set view data
-    func setData(doctor: Doctor) {
+    func setData(doctor: Doctor, loggedUser: Resident? = nil) {
         self.doctor = doctor
+        if loggedUser != nil { self.loggedUser = loggedUser }
     }
     
     // Set header data
@@ -112,6 +100,6 @@ extension ChooseReasonVC: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.reason = self.reasons[indexPath.row]
-        performSegue(withIdentifier: ChooseReasonVC.confirmBookingSegueIdentifier, sender: nil)
+        performSegue(withIdentifier: ChooseReasonVC.chooseAvailabilitySegueIdentifier, sender: nil)
     }
 }

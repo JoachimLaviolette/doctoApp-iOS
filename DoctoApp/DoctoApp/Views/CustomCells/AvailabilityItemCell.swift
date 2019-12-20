@@ -8,45 +8,15 @@
 
 import UIKit
 
-class AvailabilityItemCell: UITableViewCell {
-    var chooseAvailabilityDelegate: ChooseAvailabilityDelegator! // must be set by the calling view
-    
+class AvailabilityItemCell: UICollectionViewCell {
     @IBOutlet weak var availabilityTime: UILabel!
-    
-    var availability: Availability! // must be set by the calling view
-    var doctor: Doctor! // must be set by the calling view
-    var patient: Patient! // must be set by the calling view
-    var reason: Reason! // must be set by the calling view
 
     override func awakeFromNib() {
         super.awakeFromNib()
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        self.confirmBooking()
-    }
-
-    func setData(availability: Availability, reason: Reason, doctor: Doctor, patient: Patient) {
-        self.availability = availability
-        self.reason = reason
-        self.doctor = doctor
-        self.patient = patient
-        self.availabilityTime.text = self.availability.getTime()
-    }
-
-    // Display booking confirmation
-    private func confirmBooking() {
-        self.chooseAvailabilityDelegate.confirmBooking(booking: Booking(
-                id: -1,
-                patient: self.patient,
-                doctor: self.doctor,
-                reason: self.reason,
-                fullDate: self.availability.getDate(),
-                date: self.availability.getDate(),
-                time: self.availability.getTime(),
-                bookingDate: DateTimeService.GetCurrentDateTime()
-            )
-        )
+    // Set cell data
+    func setData(availability: Availability) {
+        self.availabilityTime.text = availability.getTime()
     }
 }

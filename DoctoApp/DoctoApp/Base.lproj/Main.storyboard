@@ -417,90 +417,6 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6qs-BE-pLc">
                                         <rect key="frame" x="0.0" y="112.5" width="355" height="585"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rhi-AC-7yB">
-                                                <rect key="frame" x="10" y="10" width="355" height="93"/>
-                                                <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2nS-MT-wgc" userLabel="login_msg">
-                                                        <rect key="frame" x="0.0" y="0.0" width="355" height="93"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connexion succeeded" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xI6-Ng-li5">
-                                                                <rect key="frame" x="10" y="10" width="335" height="23.5"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <accessibility key="accessibilityConfiguration">
-                                                                    <accessibilityTraits key="traits" staticText="YES" adjustable="YES"/>
-                                                                </accessibility>
-                                                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
-                                                                <fontDescription key="fontDescription" name="Roboto-Black" family="Roboto" pointSize="17"/>
-                                                                <color key="textColor" name="login_success_msg_title_color"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are now connected. You can view your bookings and update your personnal information using the right sidebar" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4XP-G4-tq9">
-                                                                <rect key="frame" x="10" y="33.5" width="335" height="49.5"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <accessibility key="accessibilityConfiguration">
-                                                                    <accessibilityTraits key="traits" staticText="YES" adjustable="YES"/>
-                                                                </accessibility>
-                                                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
-                                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
-                                                                <color key="textColor" name="login_sucess_msg_content_color"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                        </subviews>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <edgeInsets key="layoutMargins" top="10" left="10" bottom="10" right="10"/>
-                                                    </stackView>
-                                                </subviews>
-                                                <color key="backgroundColor" name="login_success_msg_color"/>
-                                                <constraints>
-                                                    <constraint firstItem="2nS-MT-wgc" firstAttribute="top" secondItem="Rhi-AC-7yB" secondAttribute="top" id="8ni-eZ-thx"/>
-                                                    <constraint firstAttribute="bottom" secondItem="2nS-MT-wgc" secondAttribute="bottom" id="BSL-tC-ZRq"/>
-                                                    <constraint firstItem="2nS-MT-wgc" firstAttribute="leading" secondItem="Rhi-AC-7yB" secondAttribute="leading" id="enq-0d-EDV"/>
-                                                    <constraint firstAttribute="trailing" secondItem="2nS-MT-wgc" secondAttribute="trailing" id="fNC-6u-jpY"/>
-                                                </constraints>
-                                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
-                                            </view>
-                                            <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fsw-In-nbf">
-                                                <rect key="frame" x="10" y="113" width="355" height="83"/>
-                                                <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="oUa-Md-wOb" userLabel="login_delete_account_msg">
-                                                        <rect key="frame" x="0.0" y="0.0" width="355" height="83"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account removal failed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDG-Yz-s77">
-                                                                <rect key="frame" x="10" y="10" width="335" height="30"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <accessibility key="accessibilityConfiguration">
-                                                                    <accessibilityTraits key="traits" staticText="YES" adjustable="YES"/>
-                                                                </accessibility>
-                                                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
-                                                                <fontDescription key="fontDescription" name="Roboto-Black" family="Roboto" pointSize="17"/>
-                                                                <color key="textColor" name="login_success_msg_title_color"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="something went wrong when removing your account. Please contact the admin" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CdJ-pI-wT9">
-                                                                <rect key="frame" x="10" y="40" width="335" height="33"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <accessibility key="accessibilityConfiguration">
-                                                                    <accessibilityTraits key="traits" staticText="YES" adjustable="YES"/>
-                                                                </accessibility>
-                                                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
-                                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
-                                                                <color key="textColor" name="login_sucess_msg_content_color"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                        </subviews>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <edgeInsets key="layoutMargins" top="10" left="10" bottom="10" right="10"/>
-                                                    </stackView>
-                                                </subviews>
-                                                <color key="backgroundColor" name="login_delete_account_message_color"/>
-                                                <constraints>
-                                                    <constraint firstItem="oUa-Md-wOb" firstAttribute="top" secondItem="fsw-In-nbf" secondAttribute="top" id="Kse-Fq-bki"/>
-                                                    <constraint firstAttribute="trailing" secondItem="oUa-Md-wOb" secondAttribute="trailing" id="iZX-FH-IdD"/>
-                                                    <constraint firstItem="oUa-Md-wOb" firstAttribute="leading" secondItem="fsw-In-nbf" secondAttribute="leading" id="naK-ie-WOz"/>
-                                                    <constraint firstAttribute="bottom" secondItem="oUa-Md-wOb" secondAttribute="bottom" id="uRa-Bo-scc"/>
-                                                </constraints>
-                                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
-                                            </view>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="27K-32-oXD">
                                                 <rect key="frame" x="10" y="10" width="335" height="30"/>
                                                 <edgeInsets key="layoutMargins" top="10" left="10" bottom="10" right="10"/>
@@ -517,16 +433,18 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9aD-RC-Oe2">
                                                 <rect key="frame" x="10" y="90" width="335" height="31"/>
                                                 <subviews>
+                                                    <switch contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="riX-pp-Sqk">
                                                         <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     </switch>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I want to stay connected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="96k-rt-dFX">
-                                                        <rect key="frame" x="59" y="0.0" width="140.5" height="31"/>
+                                                        <rect key="frame" x="59" y="0.0" width="141" height="31"/>
                                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                                         <color key="textColor" name="login_stay_logged_color"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="gny-eK-ble">
-                                                        <rect key="frame" x="209.5" y="0.0" width="125.5" height="31"/>
+                                                        <rect key="frame" x="210" y="0.0" width="125" height="31"/>
                                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                                         <state key="normal" title="Forgotten Password ?">
                                                             <color key="titleColor" name="login_forgot_pwd_color"/>
@@ -706,7 +624,7 @@
                         <outlet property="passwordInput" destination="GEt-A9-L33" id="Elj-pu-PyI"/>
                         <outlet property="professionalSection" destination="v63-qs-NxW" id="PJt-SU-eo0"/>
                         <outlet property="signupSection" destination="Vcu-uC-8l2" id="WXQ-Px-29P"/>
-                        <outlet property="stayLogged" destination="Wqc-12-H7g" id="13R-wK-WvT"/>
+                        <outlet property="stayLogged" destination="riX-pp-Sqk" id="8Nv-Hs-Gqb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tEM-aA-BwZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2618,6 +2536,7 @@
                         <outlet property="bookingDetailsView" destination="Gwj-E7-TIe" id="jUQ-IY-r61"/>
                         <outlet property="headerDashboardSubtitle" destination="npC-0p-Mdn" id="d9d-xQ-xAf"/>
                         <segue destination="Zjk-GE-j9T" kind="show" identifier="doctor_profile_segue" id="1JN-jz-3OB"/>
+                        <segue destination="Lay-2D-PJL" kind="show" identifier="update_booking_segue" id="qWN-j7-PVN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gx5-dn-QE3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2648,7 +2567,7 @@
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZIj-G2-IJk">
                                 <rect key="frame" x="10" y="332" width="355" height="500"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="login_background_color"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" name="my_bookings_body_color"/>
@@ -2827,32 +2746,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t68-vD-ROF" userLabel="Header Dashboard Subtitle" customClass="HeaderDashboardSubtitleView" customModule="DoctoApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="375" height="80"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t68-vD-ROF" userLabel="Header Dashboard Subtitle" customClass="HeaderDashboardSubtitleView" customModule="DoctoApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="85"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="85" id="Ayw-EF-yvb"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0L9-UT-usB">
-                                <rect key="frame" x="30" y="270" width="317" height="72"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose you consultation date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GGb-Ot-Hkl">
+                                <rect key="frame" x="20" y="129" width="335" height="18"/>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
+                                <color key="textColor" name="login_delete_account_popup_section_title_color"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2QR-Sp-vIp">
+                                <rect key="frame" x="20" y="171" width="335" height="476"/>
+                                <color key="backgroundColor" name="login_background_color"/>
+                            </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="login_background_color"/>
                         <constraints>
+                            <constraint firstItem="1E9-Mu-CHk" firstAttribute="trailing" secondItem="GGb-Ot-Hkl" secondAttribute="trailing" constant="20" id="ChO-wb-4Jv"/>
                             <constraint firstItem="t68-vD-ROF" firstAttribute="top" secondItem="1E9-Mu-CHk" secondAttribute="top" id="IMu-Le-0Gg"/>
+                            <constraint firstItem="GGb-Ot-Hkl" firstAttribute="top" secondItem="t68-vD-ROF" secondAttribute="bottom" constant="24" id="L1C-ON-UU7"/>
                             <constraint firstItem="t68-vD-ROF" firstAttribute="trailing" secondItem="1E9-Mu-CHk" secondAttribute="trailing" id="Or6-IZ-JQJ"/>
+                            <constraint firstItem="GGb-Ot-Hkl" firstAttribute="leading" secondItem="1E9-Mu-CHk" secondAttribute="leading" constant="20" id="PbX-AM-9fw"/>
+                            <constraint firstItem="2QR-Sp-vIp" firstAttribute="bottom" secondItem="1E9-Mu-CHk" secondAttribute="bottom" constant="-20" id="aS1-Y7-bZS"/>
                             <constraint firstItem="t68-vD-ROF" firstAttribute="leading" secondItem="1E9-Mu-CHk" secondAttribute="leading" id="gr1-x4-Vfm"/>
+                            <constraint firstItem="2QR-Sp-vIp" firstAttribute="trailing" secondItem="1E9-Mu-CHk" secondAttribute="trailing" constant="-20" id="iVB-H7-fNr"/>
+                            <constraint firstItem="2QR-Sp-vIp" firstAttribute="top" secondItem="GGb-Ot-Hkl" secondAttribute="bottom" constant="24" id="mzd-32-1Kb"/>
+                            <constraint firstItem="2QR-Sp-vIp" firstAttribute="leading" secondItem="1E9-Mu-CHk" secondAttribute="leading" constant="20" id="w9E-h1-Tpl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1E9-Mu-CHk"/>
                     </view>
                     <connections>
+                        <outlet property="availabilityPerDayList" destination="2QR-Sp-vIp" id="UNp-mR-PFn"/>
                         <outlet property="headerDashboardSubtitle" destination="t68-vD-ROF" id="GKt-iX-DLl"/>
-                        <outlet property="labelTest" destination="0L9-UT-usB" id="RaP-0v-EwZ"/>
+                        <segue destination="Tvc-vO-d1A" kind="show" identifier="confirm_booking_segue" id="TYY-H7-oAH"/>
+                        <segue destination="vCf-41-LEZ" kind="show" identifier="my_bookings_segue" id="8AL-w0-53o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ewi-KM-bqF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2933,7 +2864,7 @@
                     <connections>
                         <outlet property="headerDashboardSubtitle" destination="9Qg-f3-ohx" id="zKR-91-FU9"/>
                         <outlet property="reasonList" destination="FNB-2K-KUO" id="C1M-be-3ae"/>
-                        <segue destination="Tvc-vO-d1A" kind="show" identifier="confirm_booking_segue" id="vdv-EB-BpZ"/>
+                        <segue destination="Lay-2D-PJL" kind="show" identifier="choose_availability_segue" id="cMQ-Zl-GBo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8HX-DG-GsB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2977,7 +2908,7 @@
                                     <color key="titleColor" name="doctor_appointment_item_fullday_color"/>
                                 </state>
                                 <connections>
-                                    <segue destination="vCf-41-LEZ" kind="show" id="XWw-dY-CRF"/>
+                                    <segue destination="vCf-41-LEZ" kind="show" identifier="my_bookings_segue" id="XWw-dY-CRF"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -3199,10 +3130,10 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bAD-6l-55o"/>
-        <segue reference="kN0-Ap-c7W"/>
+        <segue reference="qWN-j7-PVN"/>
+        <segue reference="8AL-w0-53o"/>
         <segue reference="kx4-9w-nVJ"/>
         <segue reference="dwy-YR-etg"/>
-        <segue reference="UeG-4a-PBU"/>
+        <segue reference="1JN-jz-3OB"/>
     </inferredMetricsTieBreakers>
 </document>

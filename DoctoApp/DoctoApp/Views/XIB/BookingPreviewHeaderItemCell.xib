@@ -21,106 +21,125 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BookingPreviewHeaderItemCell" customModule="DoctoApp" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="booking_preview_item_cell" rowHeight="126" id="KGk-i7-Jjw" userLabel="BookingPreviewHeaderItemCell" customClass="BookingPreviewHeaderItemCell" customModule="DoctoApp" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="476" height="126"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="booking_preview_item_cell" rowHeight="150" id="KGk-i7-Jjw" userLabel="BookingPreviewHeaderItemCell" customClass="BookingPreviewHeaderItemCell" customModule="DoctoApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="476" height="150"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="476" height="125.5"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="476" height="149.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ts6-an-Occ" userLabel="header">
-                        <rect key="frame" x="0.0" y="0.0" width="476" height="40"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R1y-GT-tI9">
+                        <rect key="frame" x="10" y="10.5" width="456" height="130"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_calendar" translatesAutoresizingMaskIntoConstraints="NO" id="HvV-Ro-oNc">
-                                <rect key="frame" x="16" y="11" width="18" height="18"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="18" id="D2l-eP-H88"/>
-                                    <constraint firstAttribute="width" constant="18" id="OGd-AK-uYb"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="{ booking_fulldate }" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QLR-hB-xye">
-                                <rect key="frame" x="43" y="11" width="148" height="18"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="148" id="cZR-9a-LSP"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
-                                <color key="textColor" name="doctor_appointment_item_fullday_color"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="{ fullname }" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NU8-yh-ClB">
+                                <rect key="frame" x="83" y="57" width="314" height="19"/>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
+                                <color key="textColor" name="doctor_appointment_item_header_color"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_time_2" translatesAutoresizingMaskIntoConstraints="NO" id="dTx-RA-YBH" userLabel="ic_time">
-                                <rect key="frame" x="211" y="11" width="18" height="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="{ content }" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pvd-yR-cXI">
+                                <rect key="frame" x="83" y="90" width="314" height="24.5"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
+                                <color key="textColor" name="patient_appointment_item_doctor_speciality_color"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_user" translatesAutoresizingMaskIntoConstraints="NO" id="hsC-aS-DUb">
+                                <rect key="frame" x="15" y="54" width="60" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="18" id="615-p5-hgG"/>
-                                    <constraint firstAttribute="width" constant="18" id="yVl-s6-Kg6"/>
+                                    <constraint firstAttribute="width" constant="60" id="4rO-bq-DM8"/>
+                                    <constraint firstAttribute="height" constant="60" id="cCE-QC-mHq"/>
+                                    <constraint firstAttribute="width" secondItem="hsC-aS-DUb" secondAttribute="height" multiplier="1:1" id="mmX-86-N8r"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="{ booking_time }" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BjG-PT-C2G">
-                                <rect key="frame" x="232" y="11" width="148" height="18"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ts6-an-Occ" userLabel="header">
+                                <rect key="frame" x="0.0" y="0.0" width="456" height="40"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_calendar" translatesAutoresizingMaskIntoConstraints="NO" id="HvV-Ro-oNc">
+                                        <rect key="frame" x="16" y="11" width="18" height="18"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="18" id="D2l-eP-H88"/>
+                                            <constraint firstAttribute="width" constant="18" id="OGd-AK-uYb"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="{ booking_fulldate }" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QLR-hB-xye">
+                                        <rect key="frame" x="42" y="12.5" width="170" height="15"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="170" id="IUq-Ak-875"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="13"/>
+                                        <color key="textColor" name="doctor_appointment_item_fullday_color"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_time_2" translatesAutoresizingMaskIntoConstraints="NO" id="dTx-RA-YBH" userLabel="ic_time">
+                                        <rect key="frame" x="242" y="11" width="18" height="18"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="18" id="615-p5-hgG"/>
+                                            <constraint firstAttribute="width" constant="18" id="yVl-s6-Kg6"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="{ booking_time }" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BjG-PT-C2G">
+                                        <rect key="frame" x="268" y="12.5" width="94" height="15"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="13"/>
+                                        <color key="textColor" name="doctor_appointment_item_fullday_color"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" name="doctor_appointment_item_header_color"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="148" id="pFK-iw-5w6"/>
+                                    <constraint firstAttribute="bottom" secondItem="QLR-hB-xye" secondAttribute="bottom" constant="12.5" id="2lQ-oa-XN3"/>
+                                    <constraint firstItem="HvV-Ro-oNc" firstAttribute="centerY" secondItem="ts6-an-Occ" secondAttribute="centerY" id="XFe-Vp-VRr"/>
+                                    <constraint firstItem="HvV-Ro-oNc" firstAttribute="leading" secondItem="ts6-an-Occ" secondAttribute="leading" constant="16" id="dAf-Or-cPF"/>
+                                    <constraint firstItem="BjG-PT-C2G" firstAttribute="centerY" secondItem="ts6-an-Occ" secondAttribute="centerY" id="gbi-pI-XbV"/>
+                                    <constraint firstItem="BjG-PT-C2G" firstAttribute="leading" secondItem="dTx-RA-YBH" secondAttribute="trailing" constant="8" id="hAU-zH-TzV"/>
+                                    <constraint firstAttribute="height" constant="40" id="hVx-Ij-2UN"/>
+                                    <constraint firstAttribute="bottom" secondItem="BjG-PT-C2G" secondAttribute="bottom" constant="12.5" id="izs-om-kXb"/>
+                                    <constraint firstItem="BjG-PT-C2G" firstAttribute="top" secondItem="ts6-an-Occ" secondAttribute="top" constant="12.5" id="jEn-fi-vIt"/>
+                                    <constraint firstItem="QLR-hB-xye" firstAttribute="leading" secondItem="HvV-Ro-oNc" secondAttribute="trailing" constant="8" id="lOY-rb-opU"/>
+                                    <constraint firstItem="dTx-RA-YBH" firstAttribute="leading" secondItem="QLR-hB-xye" secondAttribute="trailing" constant="30" id="lcy-KM-2kr"/>
+                                    <constraint firstItem="dTx-RA-YBH" firstAttribute="centerY" secondItem="ts6-an-Occ" secondAttribute="centerY" id="mKm-H8-BVf"/>
+                                    <constraint firstItem="QLR-hB-xye" firstAttribute="top" secondItem="ts6-an-Occ" secondAttribute="top" constant="12.5" id="rUJ-jx-mcz"/>
+                                    <constraint firstItem="QLR-hB-xye" firstAttribute="centerY" secondItem="ts6-an-Occ" secondAttribute="centerY" id="tUm-du-lFe"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
-                                <color key="textColor" name="doctor_appointment_item_fullday_color"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&gt;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uvl-NS-afz">
+                                <rect key="frame" x="405" y="71" width="25" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="cEG-CX-a9n"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="20"/>
+                                <color key="textColor" name="login_background_color"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" name="doctor_appointment_item_header_color"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="HvV-Ro-oNc" firstAttribute="centerY" secondItem="ts6-an-Occ" secondAttribute="centerY" id="XFe-Vp-VRr"/>
-                            <constraint firstItem="HvV-Ro-oNc" firstAttribute="leading" secondItem="ts6-an-Occ" secondAttribute="leading" constant="16" id="dAf-Or-cPF"/>
-                            <constraint firstItem="BjG-PT-C2G" firstAttribute="centerY" secondItem="ts6-an-Occ" secondAttribute="centerY" id="gbi-pI-XbV"/>
-                            <constraint firstItem="BjG-PT-C2G" firstAttribute="leading" secondItem="dTx-RA-YBH" secondAttribute="trailing" constant="3" id="hAU-zH-TzV"/>
-                            <constraint firstAttribute="height" constant="40" id="hVx-Ij-2UN"/>
-                            <constraint firstItem="QLR-hB-xye" firstAttribute="leading" secondItem="HvV-Ro-oNc" secondAttribute="trailing" constant="9" id="lOY-rb-opU"/>
-                            <constraint firstItem="dTx-RA-YBH" firstAttribute="leading" secondItem="QLR-hB-xye" secondAttribute="trailing" constant="20" id="lcy-KM-2kr"/>
-                            <constraint firstItem="dTx-RA-YBH" firstAttribute="centerY" secondItem="ts6-an-Occ" secondAttribute="centerY" id="mKm-H8-BVf"/>
-                            <constraint firstItem="QLR-hB-xye" firstAttribute="centerY" secondItem="ts6-an-Occ" secondAttribute="centerY" id="tUm-du-lFe"/>
+                            <constraint firstItem="uvl-NS-afz" firstAttribute="top" secondItem="ts6-an-Occ" secondAttribute="bottom" constant="31" id="3u2-aX-Bhs"/>
+                            <constraint firstItem="Pvd-yR-cXI" firstAttribute="leading" secondItem="hsC-aS-DUb" secondAttribute="trailing" constant="8" id="AFG-bS-fcJ"/>
+                            <constraint firstAttribute="trailing" secondItem="ts6-an-Occ" secondAttribute="trailing" id="ARF-ch-dA7"/>
+                            <constraint firstItem="uvl-NS-afz" firstAttribute="top" secondItem="NU8-yh-ClB" secondAttribute="bottom" constant="-5" id="DWY-AL-cPO"/>
+                            <constraint firstItem="NU8-yh-ClB" firstAttribute="top" secondItem="ts6-an-Occ" secondAttribute="bottom" constant="17" id="NZC-9q-i49"/>
+                            <constraint firstAttribute="height" constant="130" id="Nsk-Uh-yXm"/>
+                            <constraint firstAttribute="bottom" secondItem="uvl-NS-afz" secondAttribute="bottom" constant="33" id="PH1-6x-L2T"/>
+                            <constraint firstAttribute="trailing" secondItem="uvl-NS-afz" secondAttribute="trailing" constant="26" id="UaG-Cr-gqf"/>
+                            <constraint firstItem="NU8-yh-ClB" firstAttribute="leading" secondItem="hsC-aS-DUb" secondAttribute="trailing" constant="8" id="VRm-IQ-b45"/>
+                            <constraint firstItem="Pvd-yR-cXI" firstAttribute="top" secondItem="NU8-yh-ClB" secondAttribute="bottom" constant="14" id="baa-eK-Ra0"/>
+                            <constraint firstItem="hsC-aS-DUb" firstAttribute="leading" secondItem="R1y-GT-tI9" secondAttribute="leading" constant="15" id="gz5-cc-qVB"/>
+                            <constraint firstAttribute="bottom" secondItem="hsC-aS-DUb" secondAttribute="bottom" constant="15.5" id="luw-nF-7La"/>
+                            <constraint firstItem="ts6-an-Occ" firstAttribute="top" secondItem="R1y-GT-tI9" secondAttribute="top" id="meM-mu-prl"/>
+                            <constraint firstItem="ts6-an-Occ" firstAttribute="leading" secondItem="R1y-GT-tI9" secondAttribute="leading" id="oQe-fi-Q0y"/>
+                            <constraint firstItem="hsC-aS-DUb" firstAttribute="top" secondItem="ts6-an-Occ" secondAttribute="bottom" constant="14" id="qUY-nc-4sW"/>
+                            <constraint firstAttribute="trailing" secondItem="NU8-yh-ClB" secondAttribute="trailing" constant="59" id="sv7-Dv-aOe"/>
+                            <constraint firstAttribute="bottom" secondItem="Pvd-yR-cXI" secondAttribute="bottom" constant="15.5" id="yNY-R5-R5F"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" ambiguous="YES" text="{ fullname }" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NU8-yh-ClB">
-                        <rect key="frame" x="98" y="59" width="304" height="19"/>
-                        <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
-                        <color key="textColor" name="doctor_appointment_item_header_color"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="{ content }" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pvd-yR-cXI">
-                        <rect key="frame" x="98" y="86" width="304" height="24"/>
-                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
-                        <color key="textColor" name="patient_appointment_item_doctor_speciality_color"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&gt;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uvl-NS-afz">
-                        <rect key="frame" x="431" y="67" width="25" height="26"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="25" id="cEG-CX-a9n"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="20"/>
-                        <color key="textColor" name="login_background_color"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_user" translatesAutoresizingMaskIntoConstraints="NO" id="hsC-aS-DUb">
-                        <rect key="frame" x="20" y="48" width="62" height="62"/>
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="hsC-aS-DUb" secondAttribute="height" multiplier="1:1" id="mmX-86-N8r"/>
-                        </constraints>
-                    </imageView>
                 </subviews>
+                <color key="backgroundColor" name="login_background_color"/>
                 <constraints>
-                    <constraint firstItem="ts6-an-Occ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="4BZ-u2-iMb"/>
-                    <constraint firstItem="Pvd-yR-cXI" firstAttribute="top" secondItem="NU8-yh-ClB" secondAttribute="bottom" constant="8" id="AgR-ge-eO4"/>
-                    <constraint firstAttribute="trailing" secondItem="Pvd-yR-cXI" secondAttribute="trailing" constant="74" id="Dbe-RM-oVH"/>
-                    <constraint firstItem="uvl-NS-afz" firstAttribute="top" secondItem="ts6-an-Occ" secondAttribute="bottom" constant="27" id="E4g-nL-BEP"/>
-                    <constraint firstItem="NU8-yh-ClB" firstAttribute="top" secondItem="ts6-an-Occ" secondAttribute="bottom" constant="10" id="HhG-vG-hbe"/>
-                    <constraint firstAttribute="bottom" secondItem="Pvd-yR-cXI" secondAttribute="bottom" constant="15.5" id="Ibc-qO-MCu"/>
-                    <constraint firstAttribute="trailing" secondItem="ts6-an-Occ" secondAttribute="trailing" id="XBo-24-J5e"/>
-                    <constraint firstItem="ts6-an-Occ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Xci-li-8y0"/>
-                    <constraint firstAttribute="trailing" secondItem="uvl-NS-afz" secondAttribute="trailing" constant="20" id="b5D-CG-DAe"/>
-                    <constraint firstAttribute="bottom" secondItem="hsC-aS-DUb" secondAttribute="bottom" constant="15.5" id="cdE-UA-186"/>
-                    <constraint firstAttribute="trailing" secondItem="NU8-yh-ClB" secondAttribute="trailing" constant="74" id="gJw-HU-Ioa"/>
-                    <constraint firstItem="NU8-yh-ClB" firstAttribute="leading" secondItem="hsC-aS-DUb" secondAttribute="trailing" constant="16" id="hRE-td-XXz"/>
-                    <constraint firstItem="Pvd-yR-cXI" firstAttribute="leading" secondItem="hsC-aS-DUb" secondAttribute="trailing" constant="16" id="iFj-Zf-jrb"/>
-                    <constraint firstItem="hsC-aS-DUb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="sOE-HN-cdx"/>
-                    <constraint firstItem="hsC-aS-DUb" firstAttribute="top" secondItem="ts6-an-Occ" secondAttribute="bottom" constant="8" id="uxM-jz-jm9"/>
+                    <constraint firstItem="R1y-GT-tI9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Sdb-0w-sUy"/>
+                    <constraint firstAttribute="bottom" secondItem="R1y-GT-tI9" secondAttribute="bottom" constant="10" id="a0r-KP-bfr"/>
+                    <constraint firstAttribute="trailing" secondItem="Pvd-yR-cXI" secondAttribute="trailing" constant="69" id="asd-0I-mX3"/>
+                    <constraint firstAttribute="trailing" secondItem="R1y-GT-tI9" secondAttribute="trailing" constant="10" id="nz7-jY-aOW"/>
+                    <constraint firstItem="R1y-GT-tI9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="poM-JC-994"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -132,7 +151,7 @@
                 <outlet property="gotoIcon" destination="uvl-NS-afz" id="wpe-fb-moG"/>
                 <outlet property="picture" destination="hsC-aS-DUb" id="EfZ-ae-gQP"/>
             </connections>
-            <point key="canvasLocation" x="193.59999999999999" y="88.15592203898052"/>
+            <point key="canvasLocation" x="193.59999999999999" y="98.950524737631198"/>
         </tableViewCell>
     </objects>
     <resources>

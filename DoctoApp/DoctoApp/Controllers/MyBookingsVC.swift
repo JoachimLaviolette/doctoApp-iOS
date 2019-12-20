@@ -27,9 +27,11 @@ class MyBookingsVC: UIViewController {
     
     // Initialize controller properties
     private func initialize() {
+        self.loggedUser = self.loggedUser.update()
+        
         self.bookingsPreviewsTable.delegate = self
         self.bookingsPreviewsTable.dataSource = self
-        self.bookingsPreviewsTable.separatorColor = .clear
+        self.bookingsPreviewsTable.separatorColor = UIColor(hex: Colors.MY_BOOKINGS_BODY)
         self.bookings = self.loggedUser.getBookings()!
         self.setContent()
         self.setHeaderData()
@@ -112,7 +114,7 @@ extension MyBookingsVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 126
+        return 150
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

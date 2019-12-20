@@ -13,6 +13,8 @@ class BookingActionsItemCell: UITableViewCell {
     @IBOutlet var cancelBtn: UIButton!
     
     var booking: Booking! // must be set by the calling view
+    var delegator: MyBookingDetailsActionsDelegator!
+    var loggedUser: Resident? = nil
     
     private static let updateIcon = "ic_update"
     private static let cancelIcon = "ic_cancel"
@@ -48,7 +50,17 @@ class BookingActionsItemCell: UITableViewCell {
     }
     
     // Set cell data
-    func setData(booking: Booking) {
+    func setData(booking: Booking, loggedUser: Resident? = nil, delegator: MyBookingDetailsActionsDelegator) {
         self.booking = booking
+        self.loggedUser = loggedUser
+        self.delegator = delegator
+    }
+    
+    @IBAction func updateBooking(_ sender: UIButton) {
+        self.delegator.updateBooking(booking: self.booking, loggedUser: self.loggedUser)
+    }
+    
+    @IBAction func cancelBooking(_ sender: UIButton) {
+        self.delegator.cancelBooking(booking: self.booking, loggedUser: self.loggedUser)
     }
 }

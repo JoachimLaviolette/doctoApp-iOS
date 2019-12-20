@@ -31,6 +31,7 @@ class DoctorProfileVC: UIViewController {
     var doctor: Doctor! // must be set by the calling view
     var doctorMainData: [DoctorMainData] = [DoctorMainData]()
     var doctorSecondaryData: [DoctorSecondaryData] = [DoctorSecondaryData]()
+    var loggedUser: Resident? // can be set by the calling view or got from the user defaults
     
     private var selectedCategoryTitle: String = "" // set when we tap on a category
     private var selectedCategoryContent: String = "" // set when we tap on a category
@@ -90,7 +91,10 @@ class DoctorProfileVC: UIViewController {
         if segue.identifier == DoctorProfileVC.chooseReasonSegueIdentifier
             && segue.destination is ChooseReasonVC {
             let chooseReasonVC = segue.destination as! ChooseReasonVC
-            chooseReasonVC.setData(doctor: doctor)
+            chooseReasonVC.setData(
+                doctor: doctor,
+                loggedUser: self.loggedUser
+            )
         } else if segue.identifier == DoctorProfileVC.expandDataSegueIdentifier 
             && segue.destination is PopUpVC {
             let popupVC = segue.destination as! PopUpVC
@@ -165,6 +169,12 @@ class DoctorProfileVC: UIViewController {
                 sectionTitle: DoctorProfileVC.sectionExperiencesTitle
             )
         ]
+    }
+    
+    // Set view data
+    func setData(doctor: Doctor, loggedUser: Resident? = nil) {
+        self.doctor = doctor
+        self.loggedUser = loggedUser // we do not have to be logged to access this view so can be nil
     }
 }
 

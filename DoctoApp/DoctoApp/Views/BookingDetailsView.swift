@@ -14,7 +14,8 @@ class BookingDetailsView: UIView {
     @IBOutlet weak var bookingFulldate: UILabel!
     @IBOutlet weak var bookingTime: UILabel!
     @IBOutlet weak var dataTable: UITableView!
-    var delegator: ShowDoctorProfileDelegator! // set by the calling view
+    var showDoctorProfileDelegator: ShowDoctorProfileDelegator? = nil // set by the calling view
+    var myBookingDetailsActionsDelegator: MyBookingDetailsActionsDelegator? = nil
     
     var booking: Booking! // must be set by the calling view
     var doctor: Doctor! // set using the booking object in setData()
@@ -52,8 +53,9 @@ class BookingDetailsView: UIView {
     }
 
     // Set view data
-    func setData(booking: Booking, delegator: ShowDoctorProfileDelegator, isConfirmBooking: Bool = true, loggedUser: Resident? = nil) {
-        self.delegator = delegator
+    func setData(booking: Booking, showDoctorProfileDelegator: ShowDoctorProfileDelegator? = nil, isConfirmBooking: Bool = true, loggedUser: Resident? = nil, myBookingDetailsActionsDelegator: MyBookingDetailsActionsDelegator? = nil) {
+        self.showDoctorProfileDelegator = showDoctorProfileDelegator
+        self.myBookingDetailsActionsDelegator = myBookingDetailsActionsDelegator
         self.isConfirmBooking = isConfirmBooking
         
         if loggedUser != nil { self.loggedUser = loggedUser! }
@@ -111,7 +113,11 @@ extension BookingDetailsView: UITableViewDelegate, UITableViewDataSource {
             
                 let cell = Bundle.main.loadNibNamed(BookingDetailsView.bookingActionsItemCell, owner: self, options: nil)?.first as! BookingActionsItemCell
                 cell.selectionStyle = .none
-                cell.setData(booking: self.booking)
+                cell.setData(
+                    booking: self.booking,
+                    loggedUser: self.loggedUser,
+                    delegator: self.myBookingDetailsActionsDelegator!
+                )
                 
                 return cell
             case 2:
@@ -218,6 +224,6 @@ extension BookingDetailsView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if self.loggedUser is Patient && indexPath.row == 0 { self.delegator.showDoctorProfile(doctor: self.doctor) }
+        if self.loggedUser is Patient && indexPath.row == 0 { self.showDoctorProfileDelegator!.showDoctorProfile(doctor: self.doctor) }
     }
 }

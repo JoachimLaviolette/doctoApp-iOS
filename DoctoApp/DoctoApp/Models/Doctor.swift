@@ -407,7 +407,7 @@ class Doctor: Resident {
         var availabilitiesPerDayRef: [String: [Availability]] = [String: [Availability]]()
 
         for a: Availability in self.availabilities! {
-            if availabilitiesPerDayRef[a.getDate()] != nil {
+            if availabilitiesPerDayRef[a.getDate()] == nil {
                 availabilitiesPerDayRef[a.getDate()] = [Availability]()
             }
         }
@@ -416,7 +416,7 @@ class Doctor: Resident {
             let date: String = DateTimeService.GetDateFromCurrent(daysToAdd: x)
             
             if availabilitiesPerDayRef[DateTimeService.GetDayFromDate(date: date)] != nil {
-                availabilitiesPerDay[availabilitiesPerDay.count]![date] = [Availability]()
+                availabilitiesPerDay[availabilitiesPerDay.count] = [date: [Availability]()]
             }
         }
 
@@ -433,8 +433,8 @@ class Doctor: Resident {
             if availabilitiesPerDayRef[day] != nil {
                 for a: Availability in availabilitiesPerDayRef[day]! {
                     for x in 0...(availabilitiesPerDay.count-1) {
-                        if availabilitiesPerDay[x]![day] != nil {
-                            availabilitiesPerDay[x]![day]!.append(
+                        if availabilitiesPerDay[x]![fullDate] != nil {
+                            availabilitiesPerDay[x]![fullDate]!.append(
                                 Availability(
                                     doctor: self,
                                     date: fullDate,

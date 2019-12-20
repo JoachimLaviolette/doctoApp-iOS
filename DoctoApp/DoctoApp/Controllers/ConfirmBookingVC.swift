@@ -19,12 +19,13 @@ class ConfirmBookingVC: UIViewController, ShowDoctorProfileDelegator {
     @IBOutlet weak var myBookingsBtn: UIButton!
     
     var booking: Booking! // must be set by the calling view
-    var doctor: Doctor? // set when clicked on doctor section of the booking details subview
+    var doctor: Doctor!
     
     var loggedUser: Resident! // must be set by the calling view or got from user defaults
     
     private static let doctorProfileSegueIdentifier = "doctor_profile_segue"
-    
+    private static let myBookingsVCSegueIdentifier = "my_bookings_segue"
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initialize()
@@ -32,6 +33,9 @@ class ConfirmBookingVC: UIViewController, ShowDoctorProfileDelegator {
     
     // Initialize controller properties
     private func initialize() {
+        self.loggedUser = self.loggedUser.update()
+
+        self.doctor = self.booking.getDoctor()
         self.setBookingDetailsViewData()
         self.setHeaderData()
         self.setContent()
@@ -40,7 +44,13 @@ class ConfirmBookingVC: UIViewController, ShowDoctorProfileDelegator {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == ConfirmBookingVC.doctorProfileSegueIdentifier && segue.destination is DoctorProfileVC {
             let doctorProfileVC = segue.destination as! DoctorProfileVC
-            doctorProfileVC.doctor = self.doctor!
+            doctorProfileVC.setData(
+                doctor: self.doctor,
+                loggedUser: self.loggedUser
+            )
+        } else if segue.identifier == ConfirmBookingVC.myBookingsVCSegueIdentifier && segue.destination is MyBookingsVC {
+            let myBookingsVC = segue.destination as! MyBookingsVC
+            myBookingsVC.setData(loggedUser: self.loggedUser)
         }
     }
     
@@ -54,7 +64,7 @@ class ConfirmBookingVC: UIViewController, ShowDoctorProfileDelegator {
     private func setBookingDetailsViewData() {
         self.bookingDetailsView.setData(
             booking: self.booking,
-            delegator: self,
+            showDoctorProfileDelegator: self,
             loggedUser: self.loggedUser
         )
     }
