@@ -154,11 +154,17 @@ class PatientDatabaseHelper: DoctoAppDatabaseHelper {
         
         do {
             for p in try self.database.prepare(query!) {
+                var pId: Int
+                var pEmail: String
+                
+                if patientId == nil { pId = try Int(p.get(PatientDatabaseHelper.id)) } else { pId = patientId! }
+                if email == nil { pEmail = try p.get(PatientDatabaseHelper.email) } else { pEmail = email! }
+                
                 let patient: Patient = Patient(
-                    id: patientId!,
+                    id: pId,
                     lastname: try p.get(PatientDatabaseHelper.lastname),
                     firstname: try p.get(PatientDatabaseHelper.firstname),
-                    email: try p.get(PatientDatabaseHelper.email),
+                    email: pEmail,
                     pwd: try p.get(PatientDatabaseHelper.pwd),
                     pwdSalt: try p.get(PatientDatabaseHelper.pwdSalt),
                     lastLogin: try p.get(PatientDatabaseHelper.lastLogin),

@@ -644,4 +644,3 @@ extension SignUpProVC: UITableViewDelegate, UITableViewDataSource {
         return 50
     }
 }
-

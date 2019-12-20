@@ -33,7 +33,7 @@ class DoctorMainDataItemCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    // Set the cell data
+    // Set cell data
     func setData(doctorMainData: DoctorMainData) {
         self.sectionIcon.image = UIImage(named: doctorMainData.sectionIcon)
         self.setupIcon()
