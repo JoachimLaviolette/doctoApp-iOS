@@ -13,6 +13,7 @@ class FeedbackMessageView: UIView {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var content: UILabel!
     var isErrorMsg: Bool = false
+    var isInfoMsg: Bool = false
     
     private static let xibFile: String = "FeedbackMessage"
     
@@ -35,9 +36,13 @@ class FeedbackMessageView: UIView {
     }
     
     // Set feedback message data
-    func setData(title: String, content: String, isErrorMsg: Bool) {
-        if isErrorMsg { self.contentView.backgroundColor = UIColor(hex: Colors.CONFIRM_APPOINTMENT_ERROR_MSG) }
-        else { self.contentView.backgroundColor = UIColor(hex: Colors.CONFIRM_APPOINTMENT_SUCCESS_MSG) }
+    func setData(title: String, content: String, isErrorMsg: Bool, isInfoMsg: Bool = false) {
+        if isInfoMsg {
+            self.contentView.backgroundColor = UIColor(hex: Colors.MY_BOOKINGS_NO_BOOKING_MSG)
+        } else {
+            if isErrorMsg { self.contentView.backgroundColor = UIColor(hex: Colors.CONFIRM_APPOINTMENT_ERROR_MSG) }
+            else { self.contentView.backgroundColor = UIColor(hex: Colors.CONFIRM_APPOINTMENT_SUCCESS_MSG) }
+        }
         
         self.title.text = title
         self.content.text = content

@@ -14,9 +14,11 @@ class DoctoAppDatabaseHelper {
     var database: Connection!
     private static let dbName = "DoctoAppDatabase"
     
-    init() {
-        // self.dropTables()
-        // self.createTables()
+    init() {}
+    
+    func initDatabase() {
+        self.dropTables()
+        self.createTables()
     }
     
     func initDb() {

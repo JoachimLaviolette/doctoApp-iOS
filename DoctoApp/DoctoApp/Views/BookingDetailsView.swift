@@ -21,10 +21,15 @@ class BookingDetailsView: UIView {
     var patient: Patient! // set using the booking object in setData()
     var reason: Reason! // set using the booking object in setData()
     
+    var loggedUser: Resident! // must be set by the calling view or got from user defaults
+    
+    var isConfirmBooking: Bool = false
+    
     private static let xibFile: String = "BookingDetailsView"
     private static let bookingPreviewItemCell: String = "BookingPreviewItemCell"
     private static let bookingOneLineElementItemCell: String = "BookingOneLineElementItemCell"
     private static let bookingTwoLinesItemCell: String = "BookingTwoLinesElementItemCell"
+    private static let bookingActionsItemCell: String = "BookingActionsItemCell"
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -47,8 +52,11 @@ class BookingDetailsView: UIView {
     }
 
     // Set view data
-    func setData(booking: Booking, delegator: ShowDoctorProfileDelegator) {
+    func setData(booking: Booking, delegator: ShowDoctorProfileDelegator, isConfirmBooking: Bool = true, loggedUser: Resident? = nil) {
         self.delegator = delegator
+        self.isConfirmBooking = isConfirmBooking
+        
+        if loggedUser != nil { self.loggedUser = loggedUser! }
         
         // Retrieve the models to work with
         self.booking = booking
@@ -72,6 +80,7 @@ extension BookingDetailsView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.loggedUser is Doctor { return 3 }
         return 8
     }
     
@@ -81,28 +90,59 @@ extension BookingDetailsView: UITableViewDelegate, UITableViewDataSource {
                 let cell = Bundle.main.loadNibNamed(BookingDetailsView.bookingPreviewItemCell, owner: self, options: nil)?.first as! BookingPreviewItemCell
                 cell.selectionStyle = .none
                 cell.setData(
-                    picture: self.doctor.getPicture(),
-                    fullname: self.doctor.getFullname(),
-                    description: self.doctor.getSpeciality()
+                    picture: self.loggedUser is Patient ? self.doctor.getPicture() : self.booking.getPatient().getPicture(),
+                    fullname: self.loggedUser is Patient ? self.doctor.getFullname() : self.booking.getPatient().getFullname(),
+                    description: self.loggedUser is Patient ? self.doctor.getSpeciality() : self.booking.getPatient().getBirthdate(),
+                    loggedUser: self.loggedUser
                 )
                 
                 return cell
             case 1:
-                let cell = Bundle.main.loadNibNamed(BookingDetailsView.bookingOneLineElementItemCell, owner: self, options: nil)?.first as! BookingOneLineElementItemCell
+                if self.isConfirmBooking || self.loggedUser is Doctor {
+                    let cell = Bundle.main.loadNibNamed(BookingDetailsView.bookingOneLineElementItemCell, owner: self, options: nil)?.first as! BookingOneLineElementItemCell
+                    cell.selectionStyle = .none
+                    cell.setData(
+                        content: self.reason.getDescription(),
+                        state: OneLineElementState.reason
+                    )
+                    
+                    return cell
+                }
+            
+                let cell = Bundle.main.loadNibNamed(BookingDetailsView.bookingActionsItemCell, owner: self, options: nil)?.first as! BookingActionsItemCell
                 cell.selectionStyle = .none
-                cell.setData(
-                    content: self.reason.getDescription(),
-                    state: OneLineElementState.reason
-                )
+                cell.setData(booking: self.booking)
                 
                 return cell
             case 2:
-                let cell = Bundle.main.loadNibNamed(BookingDetailsView.bookingPreviewItemCell, owner: self, options: nil)?.first as! BookingPreviewItemCell
+                if self.isConfirmBooking {
+                    let cell = Bundle.main.loadNibNamed(BookingDetailsView.bookingPreviewItemCell, owner: self, options: nil)?.first as! BookingPreviewItemCell
+                    cell.selectionStyle = .none
+                    cell.setData(
+                        picture: self.patient.getPicture(),
+                        fullname: nil,
+                        description: self.patient.getFullname()
+                    )
+                    
+                    return cell
+                }
+                
+                if self.loggedUser is Patient {
+                    let cell = Bundle.main.loadNibNamed(BookingDetailsView.bookingOneLineElementItemCell, owner: self, options: nil)?.first as! BookingOneLineElementItemCell
+                    cell.selectionStyle = .none
+                    cell.setData(
+                        content: self.booking.getReason().getDescription(),
+                        state: OneLineElementState.reason
+                    )
+                    
+                    return cell
+                }
+                
+                let cell = Bundle.main.loadNibNamed(BookingDetailsView.bookingOneLineElementItemCell, owner: self, options: nil)?.first as! BookingOneLineElementItemCell
                 cell.selectionStyle = .none
                 cell.setData(
-                    picture: self.patient.getPicture(),
-                    fullname: nil,
-                    description: self.patient.getFullname()
+                    content: self.booking.getPatient().GetFullAddress(),
+                    state: OneLineElementState.address
                 )
                 
                 return cell
@@ -178,6 +218,6 @@ extension BookingDetailsView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0 { self.delegator.showDoctorProfile(doctor: self.doctor) }
+        if self.loggedUser is Patient && indexPath.row == 0 { self.delegator.showDoctorProfile(doctor: self.doctor) }
     }
 }

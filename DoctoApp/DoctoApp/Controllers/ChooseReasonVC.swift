@@ -17,6 +17,8 @@ class ChooseReasonVC: UIViewController {
     var doctor: Doctor! // must be set by the calling view
     var patient: Patient! // must be set by the calling view
     private var reason: Reason?
+    
+    var loggedUser: Resident!
 
     private static let headerTitle: String = "Book an appointment"
     private static let reasonItemCellIdentifer: String = "reason_item_cell"
@@ -47,6 +49,7 @@ class ChooseReasonVC: UIViewController {
 
         // Setup patient test model
         self.patient = PatientDatabaseHelper().getPatient(patientId: 2, email: nil, fromDoctor: false)
+        self.loggedUser = self.patient
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -60,17 +63,23 @@ class ChooseReasonVC: UIViewController {
             && segue.destination is ConfirmBookingVC {
             let confirmBookingVC = segue.destination as! ConfirmBookingVC
             confirmBookingVC.setData(booking: Booking(
-                    id: -1,
-                    patient: self.patient,
-                    doctor: self.doctor,
-                    reason: self.reason!,
-                    fullDate: "Monday, December 25",
-                    date: "Monday",
-                    time: "15:00",
-                    bookingDate: DateTimeService.GetCurrentDateTime()
-                )
+                                                        id: -1,
+                                                        patient: self.patient,
+                                                        doctor: self.doctor,
+                                                        reason: self.reason!,
+                                                        fullDate: "Monday, December 25",
+                                                        date: "Monday",
+                                                        time: "15:00",
+                                                        bookingDate: DateTimeService.GetCurrentDateTime()
+                                                    ),
+                                     loggedUser: self.loggedUser
             )
         }
+    }
+    
+    // Set view data
+    func setData(doctor: Doctor) {
+        self.doctor = doctor
     }
     
     // Set header data

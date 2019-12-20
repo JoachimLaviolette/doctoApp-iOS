@@ -12,7 +12,7 @@ class MyBookingDetailsVC: UIViewController, ShowDoctorProfileDelegator {
     @IBOutlet weak var headerDashboardSubtitle: HeaderDashboardSubtitleView!
     @IBOutlet weak var bookingDetailsView: BookingDetailsView!
     
-    var resident: Resident! // must be set by the calling view or got from user defaults
+    var loggedUser: Resident! // must be set by the calling view or got from user defaults
     var booking: Booking! // must be set by the calling view
     var doctor: Doctor? // set when clicked on doctor section of the booking details subview
     
@@ -25,7 +25,7 @@ class MyBookingDetailsVC: UIViewController, ShowDoctorProfileDelegator {
     
     // Initialize controller properties
     private func initialize() {
-        self.resident = self.resident.update()
+        self.loggedUser = self.loggedUser.update()
         self.setBookingDetailsViewData()
         self.setHeaderData()
     }
@@ -41,20 +41,22 @@ class MyBookingDetailsVC: UIViewController, ShowDoctorProfileDelegator {
     private func setBookingDetailsViewData() {
         self.bookingDetailsView.setData(
             booking: self.booking,
-            delegator: self
+            delegator: self,
+            isConfirmBooking: false,
+            loggedUser: loggedUser
         )
     }
     
     // Set header data
     private func setHeaderData() {
-        self.headerDashboardSubtitle.headerTitle.text = self.resident is Doctor ? Strings.MY_BOOKINGS_TITLE_DOCTOR : Strings.MY_BOOKINGS_TITLE_PATIENT
-        self.headerDashboardSubtitle.headerSubtitle.text = Strings.MY_BOOKINGS_SUBTITLE
+        self.headerDashboardSubtitle.headerTitle.text = Strings.SHOW_BOOKING_TITLE
+        self.headerDashboardSubtitle.headerSubtitle.text = Strings.SHOW_BOOKING_SUBTITLE
     }
     
     // Set view data
-    func setData(booking: Booking, resident: Resident) {
+    func setData(booking: Booking, loggedUser: Resident? = nil) {
         self.booking = booking
-        self.resident = resident
+        if loggedUser != nil { self.loggedUser = loggedUser }
     }
     
     // Show doctor profile

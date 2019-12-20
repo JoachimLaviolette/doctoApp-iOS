@@ -9,26 +9,25 @@
 import UIKit
 
 class LoginVC: UIViewController {
+    @IBOutlet weak var feedbackMessage: FeedbackMessageView!
     
-    private var loggedUser: Resident?
-    private var toRedirect: Bool = false // can be setby the calling view
-    
-    @IBOutlet weak var loginMsg: UIView!
-    @IBOutlet weak var loginMsgTitle: UILabel!
-    @IBOutlet weak var loginMsgContent: UILabel!
-    @IBOutlet weak var deleteAccountMsg: UIView!
     @IBOutlet weak var emailInput: UITextField!
     @IBOutlet weak var passwordInput: UITextField!
     @IBOutlet weak var stayLogged: UISwitch!
     @IBOutlet weak var forgotPwd: UIButton!
-    @IBOutlet weak var loginBtn: UIButton!
-    @IBOutlet weak var logoutBtn: UIButton!
+    
     @IBOutlet weak var optionsSection: UIStackView!
     @IBOutlet weak var signupSection: UIView!
-    @IBOutlet weak var deleteMyAccountBtn: UIButton!
     @IBOutlet weak var professionalSection: UIView!
+    
     @IBOutlet weak var myProfileBtn: UIButton!
     @IBOutlet weak var myBookingsBtn: UIButton!
+    @IBOutlet weak var deleteMyAccountBtn: UIButton!
+    @IBOutlet weak var loginBtn: UIButton!
+    @IBOutlet weak var logoutBtn: UIButton!
+    
+    var loggedUser: Resident? // set when a successful login was made
+    private var toRedirect: Bool = false // can be setby the calling view
     
     private static let myBookingsSegueIdentifier: String = "my_bookings_segue"
     
@@ -46,41 +45,46 @@ class LoginVC: UIViewController {
         if segue.identifier == LoginVC.myBookingsSegueIdentifier
             && segue.destination is MyBookingsVC {
             let myBookingsVC = segue.destination as! MyBookingsVC
-            myBookingsVC.setData(
-                resident: self.loggedUser!
-            )
+            myBookingsVC.setData(loggedUser: self.loggedUser!)
         }
     }
     
-    private func setContent() -> Void {
-        self.setLoginContext()
+    // Set basic view content
+    private func setContent() {
+        self.displayLoginContext()
         
-        if (self.loggedUser != nil) { self.displaySuccessMsg() }
+        if (self.loggedUser != nil) {
+            self.displaySuccessMsg()
+            self.displaySuccessContent()
+        }
     }
     
-    private func setLoginContext() -> Void {
-        emailInput.isHidden = false
-        passwordInput.isHidden = false
-        optionsSection.isHidden = false
-        loginBtn.isHidden = false
-        myProfileBtn.isHidden = true
-        myBookingsBtn.isHidden = true
-        deleteMyAccountBtn.isHidden = true
-        logoutBtn.isHidden = true
-        signupSection.isHidden = false
-        professionalSection.isHidden = false
-        loginMsg.isHidden = true
-        deleteAccountMsg.isHidden = true
-        emailInput.text = ""
-        passwordInput.text  = ""
-        stayLogged.setOn(false, animated: false)
-    }
-    
-    @IBAction func login(_ sender: Any) {
-        var success: Bool = self.tryLoginAsPatient()
+    // Display login content
+    private func displayLoginContext() {
+        self.emailInput.isHidden = false
+        self.passwordInput.isHidden = false
+        self.optionsSection.isHidden = false
+        self.loginBtn.isHidden = false
+        self.myProfileBtn.isHidden = true
+        self.myBookingsBtn.isHidden = true
+        self.deleteMyAccountBtn.isHidden = true
+        self.logoutBtn.isHidden = true
+        self.signupSection.isHidden = false
+        self.professionalSection.isHidden = false
+        self.feedbackMessage.isHidden = true
+        self.emailInput.text = ""
+        self.passwordInput.text  = ""
+        self.stayLogged.setOn(false, animated: false)
         
-        if (!self.toRedirect && !success) { success = self.tryLoginAsDoctor() }
-        if (!success) { self.displayErrorMsg() }
+        self.myProfileBtn.imageView?.contentMode = .scaleAspectFit
+        self.myBookingsBtn.imageView?.contentMode = .scaleAspectFit
+        self.deleteMyAccountBtn.imageView?.contentMode = .scaleAspectFit
+        self.logoutBtn.imageView?.contentMode = .scaleAspectFit
+        
+        self.myProfileBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 15, bottom: 30, right: 30)
+        self.myBookingsBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 15, bottom: 30, right: 30)
+        self.deleteMyAccountBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 15, bottom: 30, right: 30)
+        self.logoutBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 15, bottom: 30, right: 30)
     }
     
     private func tryLoginAsPatient() -> Bool {
@@ -99,8 +103,6 @@ class LoginVC: UIViewController {
         
         // If the password isn't matched
         if (patient!.getPwd() != hashedInputPwd) { return false }
-        
-        self.displaySuccessMsg()
         self.loggedUser = patient
         
         if (self.toRedirect) {
@@ -117,9 +119,7 @@ class LoginVC: UIViewController {
         let doctor: Doctor? = DoctorDatabaseHelper().getDoctor(doctorId: nil, email: inputEmail, fromPatient: false)
         
         // If the email isn't matched
-        if (doctor == nil) {
-            return false
-        }
+        if (doctor == nil) { return false }
         
         //Check the password
         let inputPwd = passwordInput.text!
@@ -132,43 +132,81 @@ class LoginVC: UIViewController {
             return false
         }
         
-        self.displaySuccessMsg()
         self.loggedUser = doctor
-        
-        if (self.toRedirect) {
-            //REDIRECT
-        }
         
         return true
     }
     
-    private func displaySuccessMsg() -> Void {
-        loginMsg.isHidden = false
-        loginMsg.backgroundColor = UIColor(hex: Colors.LOGIN_SUCCESS_MSG)
-        loginMsgTitle.text = Strings.LOGIN_SUCCESS_MSG_TITLE
-        loginMsgContent.text = Strings.LOGIN_SUCCESS_MSG_CONTENT
-        deleteAccountMsg.isHidden = true
-        emailInput.isHidden = true
-        passwordInput.isHidden = true
-        optionsSection.isHidden = true
-        loginBtn.isHidden = true
-        myProfileBtn.isHidden = false
-        myBookingsBtn.isHidden = false
-        deleteMyAccountBtn.isHidden = false
-        logoutBtn.isHidden = false
-        signupSection.isHidden = true
-        professionalSection.isHidden = true
+    // Display a success message after a successful login
+    private func displaySuccessMsg() {
+        self.feedbackMessage.isHidden = false
+        self.feedbackMessage.setData(
+            title: Strings.LOGIN_SUCCESS_MSG_TITLE,
+            content: Strings.LOGIN_SUCCESS_MSG_CONTENT,
+            isErrorMsg: false
+        )
     }
     
+    // Display success components after a successful login
+    private func displaySuccessContent() {
+        self.emailInput.isHidden = true
+        self.passwordInput.isHidden = true
+        self.optionsSection.isHidden = true
+        self.loginBtn.isHidden = true
+        self.myProfileBtn.isHidden = false
+        self.myBookingsBtn.isHidden = false
+        self.deleteMyAccountBtn.isHidden = false
+        self.logoutBtn.isHidden = false
+        self.signupSection.isHidden = true
+        self.professionalSection.isHidden = true
+    }
+    
+    // Display a error message after a unsuccessful login
     private func displayErrorMsg() {
-        loginMsg.isHidden = false
-        loginMsg.backgroundColor = UIColor(hex: Colors.LOGIN_ERROR_MSG)
-        loginMsgTitle.text = Strings.LOGIN_ERROR_MSG_TITLE
-        loginMsgContent.text = Strings.LOGIN_ERROR_MSG_CONTENT
+        self.feedbackMessage.isHidden = false
+        self.feedbackMessage.setData(
+            title: Strings.LOGIN_ERROR_MSG_TITLE,
+            content: Strings.LOGIN_ERROR_MSG_CONTENT,
+            isErrorMsg: true
+        )
     }
     
+    // Login the user
+    @IBAction func login(_ sender: Any) {
+        var success: Bool = self.tryLoginAsPatient()
+        
+        if (!self.toRedirect && !success) { success = self.tryLoginAsDoctor() }
+        
+        if (!success) {
+            self.displayErrorMsg()
+            
+            return
+        }
+        
+        // From here the user is logged
+        self.displaySuccessMsg()
+        self.displaySuccessContent()
+        self.addUserToUserDefaults()
+        
+        if (self.toRedirect) { self.redirectUser() }
+    }
+    
+    // Logout the current user
     @IBAction func logout(_ sender: Any) {
         self.loggedUser = nil
-        self.setLoginContext()
+        self.displayLoginContext()
+        self.addUserToUserDefaults()
+    }
+    
+    // Redirect the user to calling view
+    private func redirectUser() {
+        
+    }
+    
+    // Add the logged user to the user defaults
+    private func addUserToUserDefaults() {
+        // Check if we have to remember the user or not
+        
+        // Add to the user defaults
     }
 }

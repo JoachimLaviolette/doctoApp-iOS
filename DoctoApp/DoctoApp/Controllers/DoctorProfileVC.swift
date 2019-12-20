@@ -90,7 +90,7 @@ class DoctorProfileVC: UIViewController {
         if segue.identifier == DoctorProfileVC.chooseReasonSegueIdentifier
             && segue.destination is ChooseReasonVC {
             let chooseReasonVC = segue.destination as! ChooseReasonVC
-            chooseReasonVC.doctor = self.doctor
+            chooseReasonVC.setData(doctor: doctor)
         } else if segue.identifier == DoctorProfileVC.expandDataSegueIdentifier 
             && segue.destination is PopUpVC {
             let popupVC = segue.destination as! PopUpVC

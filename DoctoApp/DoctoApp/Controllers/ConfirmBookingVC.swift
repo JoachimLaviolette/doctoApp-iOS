@@ -21,6 +21,8 @@ class ConfirmBookingVC: UIViewController, ShowDoctorProfileDelegator {
     var booking: Booking! // must be set by the calling view
     var doctor: Doctor? // set when clicked on doctor section of the booking details subview
     
+    var loggedUser: Resident! // must be set by the calling view or got from user defaults
+    
     private static let doctorProfileSegueIdentifier = "doctor_profile_segue"
     
     override func viewDidLoad() {
@@ -52,7 +54,8 @@ class ConfirmBookingVC: UIViewController, ShowDoctorProfileDelegator {
     private func setBookingDetailsViewData() {
         self.bookingDetailsView.setData(
             booking: self.booking,
-            delegator: self
+            delegator: self,
+            loggedUser: self.loggedUser
         )
     }
     
@@ -62,8 +65,9 @@ class ConfirmBookingVC: UIViewController, ShowDoctorProfileDelegator {
     }
     
     // Set view data
-    func setData(booking: Booking) {
+    func setData(booking: Booking, loggedUser: Resident? = nil) {
         self.booking = booking
+        if loggedUser != nil { self.loggedUser = loggedUser }
     }
 
     // Set view content
@@ -77,7 +81,8 @@ class ConfirmBookingVC: UIViewController, ShowDoctorProfileDelegator {
         self.bookingFeedbackMessage.setData(
             title: Strings.CONFIRM_APPOINTMENT_SUCCESS_MSG_TITLE,
             content: Strings.CONFIRM_APPOINTMENT_SUCCESS_MSG_CONTENT,
-            isErrorMsg: false
+            isErrorMsg: false,
+            isInfoMsg: false
         )
         
         self.myBookingsBtn.isHidden = true
@@ -88,7 +93,8 @@ class ConfirmBookingVC: UIViewController, ShowDoctorProfileDelegator {
         self.bookingFeedbackMessage.setData(
             title: Strings.CONFIRM_APPOINTMENT_ERROR_MSG_TITLE,
             content: Strings.CONFIRM_APPOINTMENT_ERROR_MSG_CONTENT,
-            isErrorMsg: true
+            isErrorMsg: true,
+            isInfoMsg: false
         )
         
         self.bookingDetailsView.removeFromSuperview()

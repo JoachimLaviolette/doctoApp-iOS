@@ -11,13 +11,14 @@ import UIKit
 class MyBookingsVC: UIViewController {
     @IBOutlet weak var headerDashboardSubtitle: HeaderDashboardSubtitleView!
     @IBOutlet weak var bookingsPreviewsTable: UITableView!
+    @IBOutlet weak var feedbackMessage: FeedbackMessageView!
     
-    var resident: Resident! // logged user // must be set by the calling view or got from user defaults
+    var loggedUser: Resident! // must be set by the calling view or got from user defaults
     var bookings: [Booking] = []
     var booking: Booking? // set when clicked on one of the bookings
     
     private static let myBookingDetailsSegueIdentifier = "my_bookings_details_segue"
-    private static let bookingPreviewItemCellIdentifier = "booking_preview_item_cell"
+    private static let bookingPreviewHeaderItemCell = "BookingPreviewHeaderItemCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,9 @@ class MyBookingsVC: UIViewController {
     private func initialize() {
         self.bookingsPreviewsTable.delegate = self
         self.bookingsPreviewsTable.dataSource = self
-        self.bookings = self.resident.getBookings()!
+        self.bookingsPreviewsTable.separatorColor = .clear
+        self.bookings = self.loggedUser.getBookings()!
+        self.setContent()
         self.setHeaderData()
     }
     
@@ -38,20 +41,37 @@ class MyBookingsVC: UIViewController {
             let myBookingDetailsVC = segue.destination as! MyBookingDetailsVC
             myBookingDetailsVC.setData(
                 booking: self.booking!,
-                resident: self.resident
+                loggedUser: self.loggedUser
             )
         }
     }
     
+    // Set view content
+    private func setContent() {
+        if self.bookings.isEmpty {
+            self.bookingsPreviewsTable.removeFromSuperview()
+            self.feedbackMessage.setData(
+                title: Strings.MY_BOOKINGS_NO_BOOKING_MSG_TITLE,
+                content: Strings.MY_BOOKINGS_NO_BOOKING_MSG_CONTENT,
+                isErrorMsg: false,
+                isInfoMsg: true
+            )
+        
+            return
+        }
+        
+        self.feedbackMessage.removeFromSuperview()
+    }
+    
     // Set header data
     private func setHeaderData() {
-        self.headerDashboardSubtitle.headerTitle.text = self.resident is Doctor ? Strings.MY_BOOKINGS_TITLE_DOCTOR : Strings.MY_BOOKINGS_TITLE_PATIENT
+        self.headerDashboardSubtitle.headerTitle.text = self.loggedUser is Doctor ? Strings.MY_BOOKINGS_TITLE_DOCTOR : Strings.MY_BOOKINGS_TITLE_PATIENT
         self.headerDashboardSubtitle.headerSubtitle.text = Strings.MY_BOOKINGS_SUBTITLE
     }
     
     // Set view data
-    func setData(resident: Resident) {
-        self.resident = resident
+    func setData(loggedUser: Resident? = nil) {
+        if loggedUser != nil { self.loggedUser = loggedUser }
     }
 }
 
@@ -65,29 +85,34 @@ extension MyBookingsVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let bookingPreviewItemCell = tableView.dequeueReusableCell(withIdentifier: MyBookingsVC.bookingPreviewItemCellIdentifier) as! BookingPreviewItemCell
-        bookingPreviewItemCell.selectionStyle = .none
+        let bookingPreviewHeaderItemCell = Bundle.main.loadNibNamed(MyBookingsVC.bookingPreviewHeaderItemCell, owner: self, options: nil)?.first as! BookingPreviewHeaderItemCell
+        bookingPreviewHeaderItemCell.selectionStyle = .none
         let booking: Booking = self.bookings[indexPath.row]
         
-        if self.resident is Doctor {
-            bookingPreviewItemCell.setData(
+        if self.loggedUser is Doctor {
+            bookingPreviewHeaderItemCell.setData(
+                booking: booking,
                 picture: booking.getPatient().getPicture(),
                 fullname: booking.getPatient().getFullname(),
-                description: booking.getPatient().getBirthdate()
+                description: booking.getPatient().getBirthdate(),
+                loggedUser: self.loggedUser
             )
-        } else {
-            bookingPreviewItemCell.setData(
-                picture: booking.getDoctor().getPicture(),
-                fullname: booking.getDoctor().getFullname(),
-                description: booking.getDoctor().getSpeciality()
-            )
+            
+            return bookingPreviewHeaderItemCell
         }
         
-        return bookingPreviewItemCell
+        bookingPreviewHeaderItemCell.setData(
+            booking: booking,
+            picture: booking.getDoctor().getPicture(),
+            fullname: booking.getDoctor().getFullname(),
+            description: booking.getDoctor().getSpeciality()
+        )
+        
+        return bookingPreviewHeaderItemCell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 126
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
