@@ -65,7 +65,7 @@ class AddressDatabaseHelper: DoctoAppDatabaseHelper {
         )
         
         do {
-            if try self.database.run(query) > 0 {
+            if self.getAddress(addressId: resident.GetAddressId()) != nil && try self.database.run(query) > 0 {
                 print("Address update succeeded for resident: " + resident.getFullname())
                 
                 return true

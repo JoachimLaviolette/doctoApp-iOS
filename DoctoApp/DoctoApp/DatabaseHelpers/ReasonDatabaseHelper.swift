@@ -83,7 +83,7 @@ class ReasonDatabaseHelper: DoctoAppDatabaseHelper {
         )
         
         do {
-            if try self.database.run(query) > 0 {
+            if self.getReason(reasonId: reason.getId()) != nil && try self.database.run(query) > 0 {
                 print("Reason update succeeded.")
                 
                 return true
@@ -105,7 +105,11 @@ class ReasonDatabaseHelper: DoctoAppDatabaseHelper {
         let query = filter.delete()
         
         do {
-            if try self.database.run(query) > 0 {
+            let doctorReasonsCount: Int = self.getReasons(doctor: doctor).count
+            let queryResult: Int = try self.database.run(query)
+            
+            if (doctorReasonsCount > 0 && queryResult > 0)
+                || (doctorReasonsCount == 0 && queryResult == 0)  {
                 print("Reasons removal succeeded for doctor: " + doctor.getFullname())
                 
                 return true

@@ -93,7 +93,7 @@ class PatientDatabaseHelper: DoctoAppDatabaseHelper {
         )
         
         do {
-            if try self.database.run(query) > 0 {
+            if self.getPatient(patientId: patient.getId()) != nil && try self.database.run(query) > 0 {
                 print("Patient update succeeded.")
                 
                 return true
@@ -122,7 +122,7 @@ class PatientDatabaseHelper: DoctoAppDatabaseHelper {
         let query = filter.delete()
         
         do {
-            if try self.database.run(query) > 0 {
+            if self.getPatient(patientId: patient.getId()) != nil && try self.database.run(query) > 0 {
                 print("Patient removal succeeded for patient: " + patient.getFullname())
                 
                 return true

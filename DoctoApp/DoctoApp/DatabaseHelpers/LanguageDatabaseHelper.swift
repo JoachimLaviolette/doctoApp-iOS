@@ -65,7 +65,11 @@ class LanguageDatabaseHelper: DoctoAppDatabaseHelper {
         let query = filter.delete()
         
         do {
-            if try self.database.run(query) > 0 {
+            let doctorLanguagesCount: Int = self.getLanguages(doctor: doctor).count
+            let queryResult: Int = try self.database.run(query)
+            
+            if (doctorLanguagesCount > 0 && queryResult > 0)
+                || (doctorLanguagesCount == 0 && queryResult == 0)  {
                 print("Languages removal succeeded for doctor: " + doctor.getFullname())
                 
                 return true

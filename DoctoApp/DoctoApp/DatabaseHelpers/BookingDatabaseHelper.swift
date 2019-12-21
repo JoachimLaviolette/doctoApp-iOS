@@ -78,7 +78,7 @@ class BookingDatabaseHelper: DoctoAppDatabaseHelper {
         )
         
         do {
-            if try self.database.run(query) > 0 {
+            if self.getBooking(bookingId: booking.getId()) != nil && try self.database.run(query) > 0 {
                 print("Booking update succeeded.")
                 
                 return true
@@ -100,7 +100,7 @@ class BookingDatabaseHelper: DoctoAppDatabaseHelper {
         let query = filter.delete()
         
         do {
-            if try self.database.run(query) > 0 {
+            if self.getBooking(bookingId: booking.getId()) != nil && try self.database.run(query) > 0 {
                 print("Booking removal succeeded.")
 
                 return true
@@ -112,6 +112,39 @@ class BookingDatabaseHelper: DoctoAppDatabaseHelper {
         }
         
         return false
+    }
+
+    // Retrieve a booking by its id
+    func getBooking(bookingId: Int) -> Booking? {
+        self.initDb()
+        
+        let query = BookingDatabaseHelper.table
+            .select(BookingDatabaseHelper.table[*])
+            .filter(BookingDatabaseHelper.id == Int64(booking.getId()))
+        
+        do {
+            for booking in try self.database.prepare(query) {
+                let patient: Patient = PatientDatabaseHelper().getPatient(patientId: Int(try booking.get(BookingDatabaseHelper.patientId)), email: nil, fromDoctor: true)!
+                let doctor: Doctor = DoctorDatabaseHelper().getDoctor(doctorId: Int(try booking.get(BookingDatabaseHelper.doctorId)), email: nil, fromPatient: true)!
+                let reason: Reason = ReasonDatabaseHelper().getReason(reasonId: Int(try booking.get(BookingDatabaseHelper.reasonId)))!
+                
+                return Booking(
+                        id: try Int(booking.get(BookingDatabaseHelper.id)),
+                        patient: patient,
+                        doctor: doctor,
+                        reason: reason,
+                        fullDate: try booking.get(BookingDatabaseHelper.fullDate),
+                        date: try booking.get(BookingDatabaseHelper.date),
+                        time: try booking.get(BookingDatabaseHelper.time),
+                        bookingDate: try booking.get(BookingDatabaseHelper.bookingDate)
+                    )
+                )
+            }
+        } catch {
+            print("No booking found for the following id: " + bookingId)
+        }
+        
+        return nil
     }
     
     // Retrieve all bookings related to the given doctor
@@ -158,8 +191,8 @@ class BookingDatabaseHelper: DoctoAppDatabaseHelper {
         
         self.initDb()
         
-        let currentDate = DateTimeService.GetCurrentDate()
-        let currentTime = DateTimeService.GetCurrentDate()
+        let currentDate = DateTimeService.GetCurrentDateTime()
+        let currentTime = DateTimeService.GetCurrentTime()
         
         let query = BookingDatabaseHelper.table
             .select(BookingDatabaseHelper.table[*])

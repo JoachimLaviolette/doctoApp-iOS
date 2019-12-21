@@ -114,7 +114,7 @@ class DoctorDatabaseHelper: DoctoAppDatabaseHelper {
         )
         
         do {
-            if try self.database.run(query) > 0 {
+            if self.getDoctor(doctor: doctor) && try self.database.run(query) > 0 {
                 print("Doctor update succeeded.")
                 
                 return true
@@ -148,7 +148,7 @@ class DoctorDatabaseHelper: DoctoAppDatabaseHelper {
         let query = filter.delete()
         
         do {
-            if try self.database.run(query) > 0 {
+            if self.getDoctor(doctor: doctor) && try self.database.run(query) > 0 {
                 print("Doctor removal succeeded for doctor: " + doctor.getFullname())
                 
                 return true

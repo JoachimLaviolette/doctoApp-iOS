@@ -67,7 +67,11 @@ class EducationDatabaseHelper: DoctoAppDatabaseHelper {
         let query = filter.delete()
         
         do {
-            if try self.database.run(query) > 0 {
+            let doctorEducationsCount: Int = self.getEducations(doctor: doctor).count
+            let queryResult: Int = try self.database.run(query)
+            
+            if (doctorEducationsCount > 0 && queryResult > 0)
+                || (doctorEducationsCount == 0 && queryResult == 0)  {
                 print("Educations removal succeeded for doctor: " + doctor.getFullname())
                 
                 return true

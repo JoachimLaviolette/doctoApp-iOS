@@ -67,7 +67,11 @@ class AvailabilityDatabaseHelper: DoctoAppDatabaseHelper {
         let query = filter.delete()
         
         do {
-            if try self.database.run(query) > 0 {
+            let doctorAvailabilitiesCount: Int = self.getAvailabilities(doctor: doctor).count
+            let queryResult: Int = try self.database.run(query)
+            
+            if (doctorAvailabilitiesCount > 0 && queryResult > 0)
+                || (doctorAvailabilitiesCount == 0 && queryResult == 0)  {
                 print("Availabilities removal succeeded for doctor: " + doctor.getFullname())
                 
                 return true

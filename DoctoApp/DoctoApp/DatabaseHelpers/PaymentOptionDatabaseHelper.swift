@@ -65,7 +65,11 @@ class PaymentOptionDatabaseHelper: DoctoAppDatabaseHelper {
         let query = filter.delete()
         
         do {
-            if try self.database.run(query) > 0 {
+            let doctorPaymentOptionsCount: Int = self.getPaymentOptions(doctor: doctor).count
+            let queryResult: Int = try self.database.run(query)
+            
+            if (doctorPaymentOptionsCount > 0 && queryResult > 0)
+                || (doctorPaymentOptionsCount == 0 && queryResult == 0)  {
                 print("Payment options removal succeeded for doctor: " + doctor.getFullname())
                 
                 return true

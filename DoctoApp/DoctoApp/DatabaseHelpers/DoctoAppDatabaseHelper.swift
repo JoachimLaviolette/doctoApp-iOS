@@ -37,6 +37,15 @@ class DoctoAppDatabaseHelper {
                 .appendingPathExtension("sqlite3")
             
             self.database = try Connection(fileUrl.path)
+            // We must execute the following query to make table constraints work!
+            // Putting this here enable foreign keys each time a connection to our DB
+            // Is made so we want to work properly on tables
+            try self.database.execute("""
+                                BEGIN TRANSACTION;
+                                    PRAGMA foreign8keys = ON;    
+                                COMMIT TRANSACTION;
+                                """
+                            )
         } catch {
             print(error)
         }

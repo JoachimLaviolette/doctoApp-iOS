@@ -20,7 +20,7 @@ class DateTimeService {
     // Return the current date
     static func GetCurrentDate() -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "EEEE, MMMM d"
+        formatter.dateFormat = "yyyy-MM-dd"
 
         return formatter.string(from: Date())
     }
