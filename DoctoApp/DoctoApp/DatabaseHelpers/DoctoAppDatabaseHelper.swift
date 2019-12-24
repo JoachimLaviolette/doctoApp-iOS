@@ -40,12 +40,7 @@ class DoctoAppDatabaseHelper {
             // We must execute the following query to make table constraints work!
             // Putting this here enable foreign keys each time a connection to our DB
             // Is made so we want to work properly on tables
-            try self.database.execute("""
-                                BEGIN TRANSACTION;
-                                    PRAGMA foreign_keys = ON;    
-                                COMMIT TRANSACTION;
-                                """
-                            )
+            try self.database.execute("PRAGMA foreign_keys = ON;")
         } catch {
             print(error)
         }

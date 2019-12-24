@@ -8,7 +8,11 @@
 
 import UIKit
 
-class LoginVC: UIViewController {
+protocol PopUpActionDelegator {
+    func doAction()
+}
+
+class LoginVC: UIViewController, PopUpActionDelegator {
     @IBOutlet weak var feedbackMessage: FeedbackMessageView!
     
     @IBOutlet weak var emailInput: UITextField!
@@ -30,14 +34,32 @@ class LoginVC: UIViewController {
     private var toRedirect: Bool = false // can be setby the calling view
     
     private static let myBookingsSegueIdentifier: String = "my_bookings_segue"
+    private static let deleteAccountSegueIdentifier: String = "delete_account_segue"
+    private static let myProfilePatientSegueIdentifier: String = "my_profile_patient_segue"
+    private static let myProfileDoctorSegueIdentifier: String = "my_profile_doctor_segue"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initialize()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        if self.loggedUser == nil { self.displayLoginContext() }
+    }
+    
     // Initialize controller properties
     private func initialize() {
+        if self.loggedUser == nil {
+            if UserDefaults.standard.string(forKey: Strings.USER_TYPE_KEY) == Strings.USER_TYPE_PATIENT {
+                let patientId = UserDefaults.standard.integer(forKey: Strings.USER_ID_KEY)
+                let patient: Patient = PatientDatabaseHelper().getPatient(patientId: patientId, email: nil, fromDoctor: false)!
+                self.loggedUser = patient
+            } else if UserDefaults.standard.string(forKey: Strings.USER_TYPE_KEY) == Strings.USER_TYPE_DOCTOR {
+                let doctorId = UserDefaults.standard.integer(forKey: Strings.USER_ID_KEY)
+                let doctor: Doctor = DoctorDatabaseHelper().getDoctor(doctorId: doctorId, email: nil, fromPatient: false)!
+                self.loggedUser = doctor
+            }
+        }
         self.setContent()
     }
     
@@ -46,17 +68,25 @@ class LoginVC: UIViewController {
             && segue.destination is MyBookingsVC {
             let myBookingsVC = segue.destination as! MyBookingsVC
             myBookingsVC.setData(loggedUser: self.loggedUser!)
+        } else if segue.identifier == LoginVC.deleteAccountSegueIdentifier
+            && segue.destination is PopUpVC {
+            let popUpVC = segue.destination as! PopUpVC
+            popUpVC.setData(
+                title: Strings.LOGIN_DELETE_ACCOUNT_MSG_TITLE,
+                content: Strings.LOGIN_DELETE_ACCOUNT_MSG_CONTENT,
+                delegate: self
+            )
         }
     }
     
     // Set basic view content
     private func setContent() {
-        self.displayLoginContext()
-        
         if (self.loggedUser != nil) {
             self.displaySuccessMsg()
             self.displaySuccessContent()
         }
+        
+        self.displayLoginContext()
     }
     
     // Display login content
@@ -87,6 +117,7 @@ class LoginVC: UIViewController {
         self.logoutBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 15, bottom: 30, right: 30)
     }
     
+    // Try to login as a patient
     private func tryLoginAsPatient() -> Bool {
         let inputEmail: String = emailInput.text ?? ""
         
@@ -112,6 +143,7 @@ class LoginVC: UIViewController {
         return true
     }
     
+    // Try to login as a doctor
     private func tryLoginAsDoctor() -> Bool {
         let inputEmail: String = emailInput.text ?? ""
         
@@ -125,12 +157,12 @@ class LoginVC: UIViewController {
         let inputPwd = passwordInput.text!
         let salt = doctor?.getPwdSalt()
         let hashedInputPwd = inputPwd + salt! //TO DO: hash it with SHA1
-        let patientPwd = doctor?.getPwd()
+        
+        print("hash", hashedInputPwd)
+        print("Pwd", doctor!.getPwd())
         
         // If the password isn't matched
-        if ((patientPwd?.elementsEqual(hashedInputPwd))!) {
-            return false
-        }
+        if (doctor!.getPwd() != hashedInputPwd) { return false }
         
         self.loggedUser = doctor
         
@@ -162,23 +194,30 @@ class LoginVC: UIViewController {
     }
     
     // Display a error message after a unsuccessful login
-    private func displayErrorMsg() {
+    private func displayErrorMsg(title: String, content: String) {
         self.feedbackMessage.isHidden = false
         self.feedbackMessage.setData(
-            title: Strings.LOGIN_ERROR_MSG_TITLE,
-            content: Strings.LOGIN_ERROR_MSG_CONTENT,
+            title: title,
+            content: content,
             isErrorMsg: true
         )
     }
+    
+    @IBAction func myProfile(_ sender: Any) {
+        if self.loggedUser is Patient { performSegue(withIdentifier: LoginVC.myProfilePatientSegueIdentifier, sender: nil)}
+        else if self.loggedUser is Doctor { performSegue(withIdentifier: LoginVC.myProfileDoctorSegueIdentifier, sender: nil)}
+    }
+    
     
     // Login the user
     @IBAction func login(_ sender: Any) {
         var success: Bool = self.tryLoginAsPatient()
         
-        if (!self.toRedirect && !success) { success = self.tryLoginAsDoctor() }
         
+        if (!self.toRedirect && !success) { success = self.tryLoginAsDoctor() }
+
         if (!success) {
-            self.displayErrorMsg()
+            self.displayErrorMsg(title: Strings.LOGIN_ERROR_MSG_TITLE, content: Strings.LOGIN_ERROR_MSG_CONTENT)
             
             return
         }
@@ -195,7 +234,7 @@ class LoginVC: UIViewController {
     @IBAction func logout(_ sender: Any) {
         self.loggedUser = nil
         self.displayLoginContext()
-        self.addUserToUserDefaults()
+        self.removeUserFromUserDefaults()
     }
     
     // Redirect the user to calling view
@@ -203,10 +242,41 @@ class LoginVC: UIViewController {
         
     }
     
+    // Remove the logged user from the user defaults
+    private func removeUserFromUserDefaults() {
+        UserDefaults.standard.removeObject(forKey: Strings.USER_ID_KEY)
+        UserDefaults.standard.removeObject(forKey: Strings.USER_TYPE_KEY)
+    }
+    
     // Add the logged user to the user defaults
     private func addUserToUserDefaults() {
         // Check if we have to remember the user or not
         
         // Add to the user defaults
+        if self.loggedUser is Patient {
+            UserDefaults.standard.set(self.loggedUser?.getId(), forKey: Strings.USER_ID_KEY)
+            UserDefaults.standard.set(Strings.USER_TYPE_PATIENT, forKey: Strings.USER_TYPE_KEY)
+        }
+        if self.loggedUser is Doctor {
+            UserDefaults.standard.set(self.loggedUser?.getId(), forKey: Strings.USER_ID_KEY)
+            UserDefaults.standard.set(Strings.USER_TYPE_DOCTOR, forKey: Strings.USER_TYPE_KEY)
+        }
+    }
+    
+    // Delete Account Action
+    func doAction() {
+        var isUserDeleted: Bool = false
+        
+        if self.loggedUser is Patient { isUserDeleted = PatientDatabaseHelper().deletePatient(patient: self.loggedUser as! Patient) }
+        else { isUserDeleted = DoctorDatabaseHelper().deleteDoctor(doctor: self.loggedUser as! Doctor) }
+        
+        if isUserDeleted {
+            self.removeUserFromUserDefaults()
+            self.navigationController?.popToRootViewController(animated: true)
+            
+            return
+        }
+        
+        self.displayErrorMsg(title: Strings.LOGIN_DELETE_ACCOUNT_MSG_TITLE, content: Strings.LOGIN_DELETE_ACCOUNT_MSG_CONTENT)
     }
 }

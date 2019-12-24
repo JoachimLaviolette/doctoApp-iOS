@@ -13,9 +13,11 @@ class PopUpVC: UIViewController {
     @IBOutlet weak var confirmButton: UIButton!
     @IBOutlet weak var popupTitle: UILabel!
     @IBOutlet weak var popupContent: UILabel!
+    
     var hideActionButtons: Bool = false
     var titleString: String! // must be set by the calling view
     var contentString: String! // must be set by the calling view
+    var delegate: PopUpActionDelegator? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +26,14 @@ class PopUpVC: UIViewController {
         
         self.popupTitle.text = self.titleString
         self.popupContent.text = self.contentString
+    }
+    
+    // Set view data
+    func setData(title: String, content: String, hideButtons: Bool = false, delegate: PopUpActionDelegator? = nil) {
+        self.hideActionButtons = hideButtons
+        self.titleString = title
+        self.contentString = content
+        self.delegate = delegate
     }
     
     @IBAction func dismissPopUp(_ sender: UIButton) {
@@ -35,6 +45,7 @@ class PopUpVC: UIViewController {
     }
     
     @IBAction func confirm(_ sender: Any) {
+        self.delegate?.doAction()
         dismiss(animated: true, completion: nil)
     }
     

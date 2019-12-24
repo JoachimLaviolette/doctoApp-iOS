@@ -22,13 +22,14 @@ class HomeVC: UIViewController {
         self.searchBar.delegate = self
         // Remove seach bar borders
         self.searchBar.backgroundImage = UIImage()
-        // DoctoAppDatabaseHelper().initDatabase()
-        // self.createModels()
+         DoctoAppDatabaseHelper().initDatabase()
+         self.createModels()
     }
     
     private func createModels() {
-        let pwd = "33e9505d12942e8259a3c96fb6f88ed325b95797" // test
+        let inputPwd = "test" // test
         let pwdSalt = "7e240de74fb1ed08fa08d38063f6a6a91462a815" // aaa
+        let pwd = inputPwd + pwdSalt //TO DO: hash it with SHA1
         
         let d1 = Doctor(id: -1, lastname: "LAVIOLETTE", firstname: "Joachim", email: "joachim.laviolette@gmail.com", pwd: pwd, pwdSalt: pwdSalt, lastLogin: DateTimeService.GetCurrentDateTime(), picture: "pp1", address: Address(id: -1, street1: "8 rue de la plaine", street2: "Bat A26", city: "Paris", zip: "75008", country: "France"), speciality: "Pediatrician", description: "Specialized in children auscultation", contactNumber: "0660170694", underAgreement: true, healthInsuranceCard: true, thirdPartyPayment: true, header: "wallp1")
         

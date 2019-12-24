@@ -18,7 +18,7 @@ class ChooseReasonVC: UIViewController {
     var patient: Patient! // must be set by the calling view
     private var reason: Reason?
     
-    var loggedUser: Resident!
+    var loggedUser: Resident? = nil
 
     private static let headerTitle: String = "Book an appointment"
     private static let reasonItemCellIdentifer: String = "reason_item_cell"
@@ -48,7 +48,7 @@ class ChooseReasonVC: UIViewController {
         self.setHeaderData()
 
         // Setup patient test model
-        self.patient = PatientDatabaseHelper().getPatient(patientId: 2, email: nil, fromDoctor: false)
+        self.patient = PatientDatabaseHelper().getPatient(patientId: nil, email: "james.franco@gmail.com", fromDoctor: false)
         self.loggedUser = self.patient
     }
     

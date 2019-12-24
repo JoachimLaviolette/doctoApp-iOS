@@ -98,9 +98,11 @@ class DoctorProfileVC: UIViewController {
         } else if segue.identifier == DoctorProfileVC.expandDataSegueIdentifier 
             && segue.destination is PopUpVC {
             let popupVC = segue.destination as! PopUpVC
-            popupVC.hideActionButtons = true
-            popupVC.titleString = self.selectedCategoryTitle
-            popupVC.contentString = self.selectedCategoryContent
+            popupVC.setData(
+                title: self.selectedCategoryTitle,
+                content: self.selectedCategoryContent,
+                hideButtons: true
+            )
         }
     }
     

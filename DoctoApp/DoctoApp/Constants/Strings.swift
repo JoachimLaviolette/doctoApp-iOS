@@ -541,5 +541,11 @@ struct Strings {
     public static let MY_BOOKINGS_NO_BOOKING_MSG_CONTENT: String = "It appears you have no booking registered yet in the system.\nTo book an appointment with a doctor, use the search system from the main screen of the app."
     public static let DOCTOR_PROFILE_SPECIALITY: String = "{doctor_speciality}"
     public static let REQUEST_CODE: String = "request_code"
+    
+    // User data
+    public static let USER_ID_KEY: String = "user_id"
+    public static let USER_TYPE_KEY: String = "user_type"
+    public static let USER_TYPE_PATIENT: String = "Patient"
+    public static let USER_TYPE_DOCTOR: String = "Doctor"
 }
 
