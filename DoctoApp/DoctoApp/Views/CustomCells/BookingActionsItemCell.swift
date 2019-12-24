@@ -12,16 +12,32 @@ class BookingActionsItemCell: UITableViewCell {
     @IBOutlet var updateBtn: UIButton!
     @IBOutlet var cancelBtn: UIButton!
     
-    var booking: Booking! // must be set by the calling view
-    var delegator: MyBookingDetailsActionsDelegator!
-    var loggedUser: Resident? = nil
+    private var booking: Booking! // must be set by the calling view
+    private var delegator: MyBookingDetailsActionsDelegator!
+    private var loggedUser: Resident? = nil // can be retrieved from the user defaults
     
     private static let updateIcon = "ic_update"
     private static let cancelIcon = "ic_cancel"
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.tryGetLoggedUser()
         self.setupButtonsIconsColors()
+    }
+    
+    // Try to get a logged user id from the user defaults
+    private func tryGetLoggedUser() {
+        if self.loggedUser == nil {
+            if UserDefaults.standard.string(forKey: Strings.USER_TYPE_KEY) == Strings.USER_TYPE_PATIENT {
+                let patientId = UserDefaults.standard.integer(forKey: Strings.USER_ID_KEY)
+                let patient: Patient = PatientDatabaseHelper().getPatient(patientId: patientId, email: nil, fromDoctor: false)!
+                self.loggedUser = patient
+            } else if UserDefaults.standard.string(forKey: Strings.USER_TYPE_KEY) == Strings.USER_TYPE_DOCTOR {
+                let doctorId = UserDefaults.standard.integer(forKey: Strings.USER_ID_KEY)
+                let doctor: Doctor = DoctorDatabaseHelper().getDoctor(doctorId: doctorId, email: nil, fromPatient: false)!
+                self.loggedUser = doctor
+            }
+        }
     }
     
     // Setup actions buttons
@@ -50,9 +66,8 @@ class BookingActionsItemCell: UITableViewCell {
     }
     
     // Set cell data
-    func setData(booking: Booking, loggedUser: Resident? = nil, delegator: MyBookingDetailsActionsDelegator) {
+    func setData(booking: Booking, delegator: MyBookingDetailsActionsDelegator) {
         self.booking = booking
-        self.loggedUser = loggedUser
         self.delegator = delegator
     }
     

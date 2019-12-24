@@ -17,7 +17,9 @@ enum OneLineElementState {
 class BookingOneLineElementItemCell: UITableViewCell {
     @IBOutlet var icon: UIImageView!
     @IBOutlet var content: UILabel!
-    var state: OneLineElementState = OneLineElementState.reason
+    
+    private var state: OneLineElementState = OneLineElementState.reason
+    
     private static let icons: [OneLineElementState: String] = [
         OneLineElementState.reason: "ic_info",
         OneLineElementState.contactNumber: "ic_contact",

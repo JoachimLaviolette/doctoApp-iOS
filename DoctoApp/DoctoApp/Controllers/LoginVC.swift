@@ -30,13 +30,17 @@ class LoginVC: UIViewController, PopUpActionDelegator {
     @IBOutlet weak var loginBtn: UIButton!
     @IBOutlet weak var logoutBtn: UIButton!
     
-    var loggedUser: Resident? // set when a successful login was made
-    private var toRedirect: Bool = false // can be setby the calling view
+    private var loggedUser: Resident? = nil // set when a successful login was made
+    private var toRedirect: Bool = false // can be set by the calling view
     
     private static let myBookingsSegueIdentifier: String = "my_bookings_segue"
     private static let deleteAccountSegueIdentifier: String = "delete_account_segue"
     private static let myProfilePatientSegueIdentifier: String = "my_profile_patient_segue"
     private static let myProfileDoctorSegueIdentifier: String = "my_profile_doctor_segue"
+
+    private static let myProfileIcon = "ic_profile"
+    private static let myBookingsIcon = "ic_bookings"
+    private static let deleteMyAccountIcon = "ic_delete"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +53,13 @@ class LoginVC: UIViewController, PopUpActionDelegator {
     
     // Initialize controller properties
     private func initialize() {
+        self.tryGetLoggedUser()
+        self.setupButtonsIconsColors()
+        self.setContent()
+    }
+    
+    // Try to get a logged user id from the user defaults
+    private func tryGetLoggedUser() {
         if self.loggedUser == nil {
             if UserDefaults.standard.string(forKey: Strings.USER_TYPE_KEY) == Strings.USER_TYPE_PATIENT {
                 let patientId = UserDefaults.standard.integer(forKey: Strings.USER_ID_KEY)
@@ -60,15 +71,10 @@ class LoginVC: UIViewController, PopUpActionDelegator {
                 self.loggedUser = doctor
             }
         }
-        self.setContent()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == LoginVC.myBookingsSegueIdentifier
-            && segue.destination is MyBookingsVC {
-            let myBookingsVC = segue.destination as! MyBookingsVC
-            myBookingsVC.setData(loggedUser: self.loggedUser!)
-        } else if segue.identifier == LoginVC.deleteAccountSegueIdentifier
+        if segue.identifier == LoginVC.deleteAccountSegueIdentifier
             && segue.destination is PopUpVC {
             let popUpVC = segue.destination as! PopUpVC
             popUpVC.setData(
@@ -79,11 +85,41 @@ class LoginVC: UIViewController, PopUpActionDelegator {
         }
     }
     
+    // Setup actions buttons
+    private func setupButtonsIconsColors() {
+        var myProfileBtnIcon: UIImage? = UIImage(named: LoginVC.myProfileIcon)
+        var myBookingsBtnIcon: UIImage? = UIImage(named: LoginVC.myBookingsIcon)
+        var deleteMyAccountBtnIcon: UIImage? = UIImage(named: LoginVC.deleteMyAccountIcon)
+
+        myProfileBtnIcon = myProfileBtnIcon?.withRenderingMode(.alwaysTemplate)
+        myBookingsBtnIcon = myBookingsBtnIcon?.withRenderingMode(.alwaysTemplate)
+        deleteMyAccountBtnIcon = deleteMyAccountBtnIcon?.withRenderingMode(.alwaysTemplate)
+
+        self.myProfileBtn.setImage(myProfileBtnIcon, for: .normal)
+        self.myBookingsBtn.setImage(myBookingsBtnIcon, for: .normal)
+        self.deleteMyAccountBtn.setImage(deleteMyAccountBtnIcon, for: .normal)
+        
+        self.myProfileBtn.tintColor = UIColor(hex: Colors.SIGNUP_TAKE_PICTURE_FROM_CAMERA_TEXT)
+        self.myBookingsBtn.tintColor = UIColor(hex: Colors.SIGNUP_SELECT_PICTURE_FROM_GALLERY_TEXT)
+        self.deleteMyAccountBtn.tintColor = UIColor(hex: Colors.SIGNUP_SELECT_PICTURE_FROM_GALLERY_TEXT)
+        
+        
+        self.myProfileBtn.imageView?.contentMode = .scaleAspectFit
+        self.myBookingsBtn.imageView?.contentMode = .scaleAspectFit
+        self.deleteMyAccountBtn.imageView?.contentMode = .scaleAspectFit
+
+        self.myProfileBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 10, bottom: 30, right: 30)
+        self.myBookingsBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 15, bottom: 30, right: 30)
+        self.deleteMyAccountBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 0, bottom: 30, right: 30)
+    }
+    
     // Set basic view content
     private func setContent() {
-        if (self.loggedUser != nil) {
+        if self.loggedUser != nil {
             self.displaySuccessMsg()
             self.displaySuccessContent()
+            
+            return
         }
         
         self.displayLoginContext()
@@ -233,8 +269,8 @@ class LoginVC: UIViewController, PopUpActionDelegator {
     // Logout the current user
     @IBAction func logout(_ sender: Any) {
         self.loggedUser = nil
-        self.displayLoginContext()
         self.removeUserFromUserDefaults()
+        self.displayLoginContext()
     }
     
     // Redirect the user to calling view
@@ -254,11 +290,11 @@ class LoginVC: UIViewController, PopUpActionDelegator {
         
         // Add to the user defaults
         if self.loggedUser is Patient {
-            UserDefaults.standard.set(self.loggedUser?.getId(), forKey: Strings.USER_ID_KEY)
+            UserDefaults.standard.set(self.loggedUser!.getId(), forKey: Strings.USER_ID_KEY)
             UserDefaults.standard.set(Strings.USER_TYPE_PATIENT, forKey: Strings.USER_TYPE_KEY)
         }
         if self.loggedUser is Doctor {
-            UserDefaults.standard.set(self.loggedUser?.getId(), forKey: Strings.USER_ID_KEY)
+            UserDefaults.standard.set(self.loggedUser!.getId(), forKey: Strings.USER_ID_KEY)
             UserDefaults.standard.set(Strings.USER_TYPE_DOCTOR, forKey: Strings.USER_TYPE_KEY)
         }
     }

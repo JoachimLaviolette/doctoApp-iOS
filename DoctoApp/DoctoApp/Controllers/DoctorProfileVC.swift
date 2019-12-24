@@ -28,10 +28,10 @@ class DoctorProfileVC: UIViewController {
     @IBOutlet weak var doctorMainDataTable: UITableView!
     @IBOutlet weak var doctorSecondaryDataTable: UITableView!
     
-    var doctor: Doctor! // must be set by the calling view
-    var doctorMainData: [DoctorMainData] = [DoctorMainData]()
-    var doctorSecondaryData: [DoctorSecondaryData] = [DoctorSecondaryData]()
-    var loggedUser: Resident? // can be set by the calling view or got from the user defaults
+    private var doctor: Doctor! // must be set by the calling view
+    private var doctorMainData: [DoctorMainData] = [DoctorMainData]()
+    private var doctorSecondaryData: [DoctorSecondaryData] = [DoctorSecondaryData]()
+    private var loggedUser: Resident? // can be retrieved from the user defaults
     
     private var selectedCategoryTitle: String = "" // set when we tap on a category
     private var selectedCategoryContent: String = "" // set when we tap on a category
@@ -70,6 +70,8 @@ class DoctorProfileVC: UIViewController {
     
     // Initialize controller properties
     private func initialize() {
+        self.tryGetLoggedUser()
+        
         // Update doctor model to get most recent changes
         self.doctor = self.doctor.update() as? Doctor
 
@@ -85,6 +87,21 @@ class DoctorProfileVC: UIViewController {
         
         self.setHeaderData()
         self.setMainData()
+    }
+    
+    // Try to get a logged user id from the user defaults
+    private func tryGetLoggedUser() {
+        if self.loggedUser == nil {
+            if UserDefaults.standard.string(forKey: Strings.USER_TYPE_KEY) == Strings.USER_TYPE_PATIENT {
+                let patientId = UserDefaults.standard.integer(forKey: Strings.USER_ID_KEY)
+                let patient: Patient = PatientDatabaseHelper().getPatient(patientId: patientId, email: nil, fromDoctor: false)!
+                self.loggedUser = patient
+            } else if UserDefaults.standard.string(forKey: Strings.USER_TYPE_KEY) == Strings.USER_TYPE_DOCTOR {
+                let doctorId = UserDefaults.standard.integer(forKey: Strings.USER_ID_KEY)
+                let doctor: Doctor = DoctorDatabaseHelper().getDoctor(doctorId: doctorId, email: nil, fromPatient: false)!
+                self.loggedUser = doctor
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -104,6 +121,11 @@ class DoctorProfileVC: UIViewController {
                 hideButtons: true
             )
         }
+    }
+    
+    // Set view data
+    func setData(doctor: Doctor) {
+        self.doctor = doctor
     }
     
     // Set header data
@@ -171,12 +193,6 @@ class DoctorProfileVC: UIViewController {
                 sectionTitle: DoctorProfileVC.sectionExperiencesTitle
             )
         ]
-    }
-    
-    // Set view data
-    func setData(doctor: Doctor, loggedUser: Resident? = nil) {
-        self.doctor = doctor
-        self.loggedUser = loggedUser // we do not have to be logged to access this view so can be nil
     }
 }
 

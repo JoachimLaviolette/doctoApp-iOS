@@ -61,6 +61,8 @@ class DoctorDatabaseHelper: DoctoAppDatabaseHelper {
     private func insertDoctor(doctor: Doctor) -> Doctor {
         self.initDb()
         
+        print(Int64(doctor.GetAddressId()))
+        
         let query = DoctorDatabaseHelper.table.insert(
             DoctorDatabaseHelper.lastname <- doctor.getLastname(),
             DoctorDatabaseHelper.firstname <- doctor.getFirstname(),

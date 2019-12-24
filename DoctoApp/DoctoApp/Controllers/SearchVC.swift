@@ -16,6 +16,7 @@ class SearchVC: UIViewController {
     private var doctorDbHelper: DoctorDatabaseHelper = DoctorDatabaseHelper()
     private var doctors: [Doctor] = []
     private var doctor: Doctor?
+    private var loggedUser: Resident? = nil // can be retrieved from the user defaults
 
     private static let xibFile: String = "DoctorPreviewItemCell"
     private static let doctorPreviewItemCellIdentifer: String = "doctor_preview_item_cell"
@@ -28,6 +29,8 @@ class SearchVC: UIViewController {
 
     // Initialize controller properties
     private func initialize() {
+        self.tryGetLoggedUser()
+        
         self.searchBar.delegate = self
         
         self.searchList.delegate = self
@@ -45,11 +48,26 @@ class SearchVC: UIViewController {
         self.updateDoctorResults(needle: self.searchBar.text)
     }
     
+    // Try to get a logged user id from the user defaults
+    private func tryGetLoggedUser() {
+        if self.loggedUser == nil {
+            if UserDefaults.standard.string(forKey: Strings.USER_TYPE_KEY) == Strings.USER_TYPE_PATIENT {
+                let patientId = UserDefaults.standard.integer(forKey: Strings.USER_ID_KEY)
+                let patient: Patient = PatientDatabaseHelper().getPatient(patientId: patientId, email: nil, fromDoctor: false)!
+                self.loggedUser = patient
+            } else if UserDefaults.standard.string(forKey: Strings.USER_TYPE_KEY) == Strings.USER_TYPE_DOCTOR {
+                let doctorId = UserDefaults.standard.integer(forKey: Strings.USER_ID_KEY)
+                let doctor: Doctor = DoctorDatabaseHelper().getDoctor(doctorId: doctorId, email: nil, fromPatient: false)!
+                self.loggedUser = doctor
+            }
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == SearchVC.doctorProfileSegueIdentifier
             && segue.destination is DoctorProfileVC {
             let doctorProfileVC = segue.destination as! DoctorProfileVC
-            doctorProfileVC.doctor = self.doctor
+            doctorProfileVC.setData(doctor: self.doctor!)
         }
     }
     

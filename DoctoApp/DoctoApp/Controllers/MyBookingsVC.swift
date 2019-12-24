@@ -13,9 +13,9 @@ class MyBookingsVC: UIViewController {
     @IBOutlet weak var bookingsPreviewsTable: UITableView!
     @IBOutlet weak var feedbackMessage: FeedbackMessageView!
     
-    var loggedUser: Resident! // must be set by the calling view or got from user defaults
-    var bookings: [Booking] = []
-    var booking: Booking? // set when clicked on one of the bookings
+    private var loggedUser: Resident! // must be retrieved from the user defaults
+    private var bookings: [Booking] = []
+    private var booking: Booking? // set when clicked on one of the bookings
     
     private static let myBookingDetailsSegueIdentifier = "my_bookings_details_segue"
     private static let bookingPreviewHeaderItemCell = "BookingPreviewHeaderItemCell"
@@ -27,7 +27,7 @@ class MyBookingsVC: UIViewController {
     
     // Initialize controller properties
     private func initialize() {
-        self.loggedUser = self.loggedUser.update()
+        self.tryGetLoggedUser()
         
         self.bookingsPreviewsTable.delegate = self
         self.bookingsPreviewsTable.dataSource = self
@@ -37,14 +37,26 @@ class MyBookingsVC: UIViewController {
         self.setHeaderData()
     }
     
+    // Try to get a logged user id from the user defaults
+    private func tryGetLoggedUser() {
+        if self.loggedUser == nil {
+            if UserDefaults.standard.string(forKey: Strings.USER_TYPE_KEY) == Strings.USER_TYPE_PATIENT {
+                let patientId = UserDefaults.standard.integer(forKey: Strings.USER_ID_KEY)
+                let patient: Patient = PatientDatabaseHelper().getPatient(patientId: patientId, email: nil, fromDoctor: false)!
+                self.loggedUser = patient
+            } else if UserDefaults.standard.string(forKey: Strings.USER_TYPE_KEY) == Strings.USER_TYPE_DOCTOR {
+                let doctorId = UserDefaults.standard.integer(forKey: Strings.USER_ID_KEY)
+                let doctor: Doctor = DoctorDatabaseHelper().getDoctor(doctorId: doctorId, email: nil, fromPatient: false)!
+                self.loggedUser = doctor
+            }
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == MyBookingsVC.myBookingDetailsSegueIdentifier
             && segue.destination is MyBookingDetailsVC {
             let myBookingDetailsVC = segue.destination as! MyBookingDetailsVC
-            myBookingDetailsVC.setData(
-                booking: self.booking!,
-                loggedUser: self.loggedUser
-            )
+            myBookingDetailsVC.setData(booking: self.booking!)
         }
     }
     
@@ -70,11 +82,6 @@ class MyBookingsVC: UIViewController {
         self.headerDashboardSubtitle.headerTitle.text = self.loggedUser is Doctor ? Strings.MY_BOOKINGS_TITLE_DOCTOR : Strings.MY_BOOKINGS_TITLE_PATIENT
         self.headerDashboardSubtitle.headerSubtitle.text = Strings.MY_BOOKINGS_SUBTITLE
     }
-    
-    // Set view data
-    func setData(loggedUser: Resident? = nil) {
-        if loggedUser != nil { self.loggedUser = loggedUser }
-    }
 }
 
 extension MyBookingsVC: UITableViewDelegate, UITableViewDataSource {
@@ -96,8 +103,7 @@ extension MyBookingsVC: UITableViewDelegate, UITableViewDataSource {
                 booking: booking,
                 picture: booking.getPatient().getPicture(),
                 fullname: booking.getPatient().getFullname(),
-                description: booking.getPatient().getBirthdate(),
-                loggedUser: self.loggedUser
+                description: booking.getPatient().getBirthdate()
             )
             
             return bookingPreviewHeaderItemCell

@@ -9,40 +9,56 @@
 import UIKit
 
 class AvailabilitiesForDayItemCell: UITableViewCell {
-    var delegator: ChooseAvailabilityDelegator! // must be set by the calling view
+    private var delegator: ChooseAvailabilityDelegator! // must be set by the calling view
     
     @IBOutlet weak var availabilitiesFullDate: UILabel!
     @IBOutlet weak var timesList: UICollectionView!
     
-    var availabilitiesForDay: [String: [Availability]]! // must be set by the calling view
-    var reason: Reason! // must be set by the calling view
-    var doctor: Doctor! // must be set by the calling view
-    var loggedUser: Resident! // must be set by the calling view
-    var isBookingUpdate: Bool? = false
-    var booking: Booking? = nil
+    private var availabilitiesForDay: [String: [Availability]]! // must be set by the calling view
+    private var reason: Reason! // must be set by the calling view
+    private var doctor: Doctor! // must be set by the calling view
+    private var loggedUser: Resident! // can be retrieved from the user defaults
+    private var isBookingUpdate: Bool? = false
+    private var booking: Booking? = nil
 
     private static let availabilityItemCellIdentifier: String = "availability_item_cell"
     private static let availabilityItemCellXibFile: String = "AvailabilityItemCell"
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.tryGetLoggedUser()
         self.timesList.delegate = self
         self.timesList.dataSource = self
         self.timesList.register(UINib(nibName: AvailabilitiesForDayItemCell.availabilityItemCellXibFile, bundle: nil), forCellWithReuseIdentifier: AvailabilitiesForDayItemCell.availabilityItemCellIdentifier)
+    }
+    
+    // Try to get a logged user id from the user defaults
+    private func tryGetLoggedUser() {
+        if self.loggedUser == nil {
+            if UserDefaults.standard.string(forKey: Strings.USER_TYPE_KEY) == Strings.USER_TYPE_PATIENT {
+                let patientId = UserDefaults.standard.integer(forKey: Strings.USER_ID_KEY)
+                let patient: Patient = PatientDatabaseHelper().getPatient(patientId: patientId, email: nil, fromDoctor: false)!
+                self.loggedUser = patient
+            } else if UserDefaults.standard.string(forKey: Strings.USER_TYPE_KEY) == Strings.USER_TYPE_DOCTOR {
+                let doctorId = UserDefaults.standard.integer(forKey: Strings.USER_ID_KEY)
+                let doctor: Doctor = DoctorDatabaseHelper().getDoctor(doctorId: doctorId, email: nil, fromPatient: false)!
+                self.loggedUser = doctor
+            }
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
 
-    func setData(availabilitiesForDay: [String: [Availability]], reason: Reason, doctor: Doctor, loggedUser: Resident? = nil, delegator: ChooseAvailabilityDelegator, isBookingUpdate: Bool? = false, booking: Booking? = nil) {
+    // Set cell data
+    func setData(availabilitiesForDay: [String: [Availability]], reason: Reason, doctor: Doctor, delegator: ChooseAvailabilityDelegator, isBookingUpdate: Bool? = false, booking: Booking? = nil) {
         self.delegator = delegator
         self.isBookingUpdate = isBookingUpdate
         self.booking = booking
         self.availabilitiesForDay = availabilitiesForDay
         self.reason = reason   
         self.doctor = doctor
-        if loggedUser != nil { self.loggedUser = loggedUser! }
         self.availabilitiesFullDate.text = availabilitiesForDay.first?.key
     }
 }
@@ -81,13 +97,13 @@ extension AvailabilitiesForDayItemCell: UICollectionViewDelegate, UICollectionVi
                 time: availability.getTime(),
                 bookingDate: DateTimeService.GetCurrentDateTime()
             )
-            self.delegator.confirmBooking(booking: booking, loggedUser: self.loggedUser)
+            self.delegator.confirmBooking(booking: booking)
             
             return
         }
         
         self.booking!.setTime(time: availability.getTime())
-        self.delegator.updateBooking(booking: self.booking!, loggedUser: self.loggedUser)
+        self.delegator.updateBooking(booking: self.booking!)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

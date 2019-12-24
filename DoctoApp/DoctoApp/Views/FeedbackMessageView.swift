@@ -12,8 +12,9 @@ class FeedbackMessageView: UIView {
     @IBOutlet var contentView: FeedbackMessageView!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var content: UILabel!
-    var isErrorMsg: Bool = false
-    var isInfoMsg: Bool = false
+    
+    private var isErrorMsg: Bool = false
+    private var isInfoMsg: Bool = false
     
     private static let xibFile: String = "FeedbackMessage"
     

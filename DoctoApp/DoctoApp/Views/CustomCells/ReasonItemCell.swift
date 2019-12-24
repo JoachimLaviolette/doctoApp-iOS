@@ -19,6 +19,7 @@ class ReasonItemCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
+    // Set cell data
     func setData(reason: Reason) {
         self.reasonDescription.text = reason.getDescription()
     }

@@ -99,7 +99,7 @@ class DoctoAppDatabaseHelper {
             // Alter table
             table.foreignKey(
                 DoctorDatabaseHelper.addressId,
-                references: DoctorDatabaseHelper.table, DoctorDatabaseHelper.id,
+                references: AddressDatabaseHelper.table, AddressDatabaseHelper.id,
                 update: .cascade,
                 delete: .cascade
             )

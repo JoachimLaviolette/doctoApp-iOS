@@ -9,7 +9,6 @@
 import UIKit
 
 class DoctorPreviewItemCell: UITableViewCell {
-    
     @IBOutlet var doctorPicture: UIImageView!
     @IBOutlet var doctorAddress: UILabel!
     @IBOutlet var doctorFullname: UILabel!

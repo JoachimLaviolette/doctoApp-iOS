@@ -10,11 +10,15 @@ import UIKit
 
 
 class SignUpVC: UIViewController {
-    
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var feedbackMessage: FeedbackMessageView!
+    
     @IBOutlet weak var patientProfilePicture: UIImageView!
+    
+    @IBOutlet weak var selectPictureBtn: UIButton!
+    @IBOutlet weak var takePictureBtn: UIButton!
+    
     @IBOutlet weak var patientEmail: UITextField!
     @IBOutlet weak var patientFirstName: UITextField!
     @IBOutlet weak var patientLastName: UITextField!
@@ -29,35 +33,62 @@ class SignUpVC: UIViewController {
     @IBOutlet weak var patientCountry: UITextField!
     @IBOutlet weak var signupBtn: UIButton!
     
-    var loggedUser: Resident? = nil
-    
     private var patientDbHelper: PatientDatabaseHelper = PatientDatabaseHelper()
     private var patient: Patient?
+    private var loggedUser: Resident? = nil // can be retrieved from the user defaults
+
+   private static let photoIcon = "ic_take_picture"
+    private static let galleryIcon = "ic_add_image"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.initialize()
     }
     
     private func initialize() {
-        //Check the user defaults
+        self.tryGetLoggedUser()
+        
+        // Make a circle profile picture
+        self.patientProfilePicture.layer.masksToBounds = true
+        self.patientProfilePicture.layer.cornerRadius = patientProfilePicture.frame.width / 2
+        self.setupButtonsIconsColors()
+        self.setContent()
+    }
+    
+    // Try to get a logged user id from the user defaults
+    private func tryGetLoggedUser() {
         if self.loggedUser == nil {
             if UserDefaults.standard.string(forKey: Strings.USER_TYPE_KEY) == Strings.USER_TYPE_PATIENT {
                 let patientId = UserDefaults.standard.integer(forKey: Strings.USER_ID_KEY)
                 let patient: Patient = PatientDatabaseHelper().getPatient(patientId: patientId, email: nil, fromDoctor: false)!
                 self.loggedUser = patient
+            } else if UserDefaults.standard.string(forKey: Strings.USER_TYPE_KEY) == Strings.USER_TYPE_DOCTOR {
+                let doctorId = UserDefaults.standard.integer(forKey: Strings.USER_ID_KEY)
+                let doctor: Doctor = DoctorDatabaseHelper().getDoctor(doctorId: doctorId, email: nil, fromPatient: false)!
+                self.loggedUser = doctor
             }
         }
-        
-        // Make a circle profile picture
-        self.patientProfilePicture.layer.masksToBounds = true
-        self.patientProfilePicture.layer.cornerRadius = patientProfilePicture.frame.width / 2
-        self.setContent()
     }
     
-    func setData(loggedUser: Resident? = nil) {
-        self.loggedUser = loggedUser
+    // Setup actions buttons
+    private func setupButtonsIconsColors() {
+        var takePictureBtnIcon: UIImage? = UIImage(named: SignUpVC.photoIcon)
+        var selectFromGalleryIcon: UIImage? = UIImage(named: SignUpVC.galleryIcon)
+        
+        takePictureBtnIcon = takePictureBtnIcon?.withRenderingMode(.alwaysTemplate)
+        selectFromGalleryIcon = selectFromGalleryIcon?.withRenderingMode(.alwaysTemplate)
+
+        self.takePictureBtn.setImage(takePictureBtnIcon, for: .normal)
+        self.selectPictureBtn.setImage(selectFromGalleryIcon, for: .normal)
+        
+        self.takePictureBtn.tintColor = UIColor(hex: Colors.SIGNUP_TAKE_PICTURE_FROM_CAMERA_TEXT)
+        self.selectPictureBtn.tintColor = UIColor(hex: Colors.SIGNUP_SELECT_PICTURE_FROM_GALLERY_TEXT)
+        
+        self.takePictureBtn.imageView?.contentMode = .scaleAspectFit
+        self.selectPictureBtn.imageView?.contentMode = .scaleAspectFit
+        
+        self.takePictureBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 15, bottom: 30, right: 30)
+        self.selectPictureBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 15, bottom: 30, right: 30)
     }
     
     private func setContent() {
@@ -68,7 +99,7 @@ class SignUpVC: UIViewController {
     private func setSignupContext() {
         self.feedbackMessage.isHidden = true
         self.signupBtn.setTitle(Strings.SIGNUP_PRO_BTN, for: .normal)
-        self.patientProfilePicture.image = UIImage(named: "icon-ios7-contact-512")
+        
         self.patientEmail.text = ""
         self.patientFirstName.text = ""
         self.patientLastName.text = ""
@@ -86,8 +117,14 @@ class SignUpVC: UIViewController {
     private func setSignupContextForPatient() {
         let patient: Patient = self.loggedUser as! Patient
         self.feedbackMessage.isHidden = true
-        self.signupBtn.setTitle(Strings.MY_PROFILE_PRO_UPDATE_BTN, for: .normal)
-        // self.patientProfilePicture.image = UIImage(named: patient.getPicture()!)
+        self.signupBtn.titleLabel!.text = Strings.MY_PROFILE_PRO_UPDATE_BTN.uppercased()
+        
+        if patient.getPicture() != nil {
+            if !patient.getPicture()!.isEmpty {
+                self.patientProfilePicture.image = UIImage(named: patient.getPicture()!)
+            }
+        }
+        
         self.patientEmail.text = patient.getEmail()
         self.patientFirstName.text = patient.getFirstname()
         self.patientLastName.text = patient.getLastname()
@@ -102,7 +139,7 @@ class SignUpVC: UIViewController {
         self.patientCountry.text = patient.GetCountry()
     }
     
-    @IBAction private func Signup(_ sender: Any) {
+    @IBAction private func signup(_ sender: Any) {
         if (!allFieldsCorrect()){
             self.displayErrorMsg()
             return

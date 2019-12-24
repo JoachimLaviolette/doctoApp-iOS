@@ -14,11 +14,10 @@ class ChooseReasonVC: UIViewController {
     
     private var reasons: [Reason] = []
 
-    var doctor: Doctor! // must be set by the calling view
-    var patient: Patient! // must be set by the calling view
+    private var doctor: Doctor! // must be set by the calling view
+    private var patient: Patient! // must be retrieved from the user defaults
     private var reason: Reason?
-    
-    var loggedUser: Resident? = nil
+    private var loggedUser: Resident? = nil
 
     private static let headerTitle: String = "Book an appointment"
     private static let reasonItemCellIdentifer: String = "reason_item_cell"
@@ -31,9 +30,10 @@ class ChooseReasonVC: UIViewController {
     
     // Initialize controller properties
     private func initialize() {
+        self.tryGetLoggedUser()
+        
         // Update doctor model to get most recent changes
         self.doctor = self.doctor.update() as? Doctor
-        self.loggedUser = self.loggedUser?.update()
 
         // Retrieve reasons
         self.reasons = self.doctor.getReasons() ?? []
@@ -48,8 +48,22 @@ class ChooseReasonVC: UIViewController {
         self.setHeaderData()
 
         // Setup patient test model
-        self.patient = PatientDatabaseHelper().getPatient(patientId: nil, email: "james.franco@gmail.com", fromDoctor: false)
-        self.loggedUser = self.patient
+        // self.patient = PatientDatabaseHelper().getPatient(patientId: nil, email: "james.franco@gmail.com", fromDoctor: false)
+    }
+    
+    // Try to get a logged user id from the user defaults
+    private func tryGetLoggedUser() {
+        if self.loggedUser == nil {
+            if UserDefaults.standard.string(forKey: Strings.USER_TYPE_KEY) == Strings.USER_TYPE_PATIENT {
+                let patientId = UserDefaults.standard.integer(forKey: Strings.USER_ID_KEY)
+                let patient: Patient = PatientDatabaseHelper().getPatient(patientId: patientId, email: nil, fromDoctor: false)!
+                self.loggedUser = patient
+            } else if UserDefaults.standard.string(forKey: Strings.USER_TYPE_KEY) == Strings.USER_TYPE_DOCTOR {
+                let doctorId = UserDefaults.standard.integer(forKey: Strings.USER_ID_KEY)
+                let doctor: Doctor = DoctorDatabaseHelper().getDoctor(doctorId: doctorId, email: nil, fromPatient: false)!
+                self.loggedUser = doctor
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -58,8 +72,7 @@ class ChooseReasonVC: UIViewController {
             let chooseAvailabilityVC = segue.destination as! ChooseAvailabilityVC
             chooseAvailabilityVC.setData(
                 doctor: self.doctor,
-                reason: self.reason!,
-                loggedUser: self.loggedUser
+                reason: self.reason!
             )
         }
     }

@@ -9,8 +9,8 @@
 import UIKit
 
 protocol ChooseAvailabilityDelegator {
-    func confirmBooking(booking: Booking, loggedUser: Resident?)
-    func updateBooking(booking: Booking, loggedUser: Resident?)
+    func confirmBooking(booking: Booking)
+    func updateBooking(booking: Booking)
 }
 
 class ChooseAvailabilityVC: UIViewController, ChooseAvailabilityDelegator {
@@ -20,13 +20,12 @@ class ChooseAvailabilityVC: UIViewController, ChooseAvailabilityDelegator {
     private var availabilitiesPerDay: [Int: [String: [Availability]]] = [Int: [String: [Availability]]]()
     private var availabilitiesForDay: [String: [Availability]] = [String: [Availability]]()
 
-    var reason: Reason! // must be set by the calling view
-    var doctor: Doctor! // must be set by the calling view
-    var patient: Patient! // must be set by the calling view
-    var booking: Booking?
-    var isBookingUpdate: Bool? = false
-    
-    var loggedUser: Resident! // must be set by the calling view or go from the user defaults
+    private var reason: Reason! // must be set by the calling view
+    private var doctor: Doctor! // must be set by the calling view
+    private var patient: Patient! // must be set by the calling view
+    private var booking: Booking?
+    private var isBookingUpdate: Bool? = false
+    private var loggedUser: Resident! // must be retrieved from the user defaults
 
     private static let weeksNumber: Int = 2
     
@@ -42,7 +41,7 @@ class ChooseAvailabilityVC: UIViewController, ChooseAvailabilityDelegator {
     
     // Initialize controller properties
     private func initialize() {
-        self.loggedUser = self.loggedUser.update()
+        self.tryGetLoggedUser()
         
         self.availabilityPerDayList.delegate = self
         self.availabilityPerDayList.dataSource = self
@@ -55,27 +54,34 @@ class ChooseAvailabilityVC: UIViewController, ChooseAvailabilityDelegator {
         self.headerDashboardSubtitle.headerSubtitle.text = self.doctor.getFullname()
     }
     
+    // Try to get a logged user id from the user defaults
+    private func tryGetLoggedUser() {
+        if self.loggedUser == nil {
+            if UserDefaults.standard.string(forKey: Strings.USER_TYPE_KEY) == Strings.USER_TYPE_PATIENT {
+                let patientId = UserDefaults.standard.integer(forKey: Strings.USER_ID_KEY)
+                let patient: Patient = PatientDatabaseHelper().getPatient(patientId: patientId, email: nil, fromDoctor: false)!
+                self.loggedUser = patient
+            } else if UserDefaults.standard.string(forKey: Strings.USER_TYPE_KEY) == Strings.USER_TYPE_DOCTOR {
+                let doctorId = UserDefaults.standard.integer(forKey: Strings.USER_ID_KEY)
+                let doctor: Doctor = DoctorDatabaseHelper().getDoctor(doctorId: doctorId, email: nil, fromPatient: false)!
+                self.loggedUser = doctor
+            }
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == ChooseAvailabilityVC.confirmBookingSegueIdentifier
             && segue.destination is ConfirmBookingVC {
             let confirmBookingVC = segue.destination as! ConfirmBookingVC
-            confirmBookingVC.setData(
-                booking: self.booking!,
-                loggedUser: self.loggedUser
-            )
-        } else if segue.identifier == ChooseAvailabilityVC.myBookingsSegueIdentifier
-        && segue.destination is MyBookingsVC {
-            let myBookingsVC = segue.destination as! MyBookingsVC
-            myBookingsVC.setData(loggedUser: self.loggedUser)
+            confirmBookingVC.setData(booking: self.booking!)
         }
     }
     
     // Set view data
-    func setData(doctor: Doctor? = nil, reason: Reason? = nil, loggedUser: Resident? = nil, booking: Booking? = nil, isBookingUpdate: Bool? = false) {
+    func setData(doctor: Doctor? = nil, reason: Reason? = nil, booking: Booking? = nil, isBookingUpdate: Bool? = false) {
         if doctor != nil { self.doctor = doctor }
         if reason != nil { self.reason = reason! }
         
-        self.loggedUser = loggedUser
         self.booking = booking
         self.isBookingUpdate = isBookingUpdate ?? false
         
@@ -83,16 +89,14 @@ class ChooseAvailabilityVC: UIViewController, ChooseAvailabilityDelegator {
     }
     
     // Jump to confirm booking view
-    func confirmBooking(booking: Booking, loggedUser: Resident? = nil) {
+    func confirmBooking(booking: Booking) {
         self.booking = booking
-        self.loggedUser = loggedUser
         performSegue(withIdentifier: ChooseAvailabilityVC.confirmBookingSegueIdentifier, sender: nil)
     }
     
     // Jump to my bookings view
-    func updateBooking(booking: Booking, loggedUser: Resident? = nil) {
+    func updateBooking(booking: Booking) {
         self.booking = booking
-        self.loggedUser = loggedUser
         BookingDatabaseHelper().updateBooking(booking: self.booking!)
         performSegue(withIdentifier: ChooseAvailabilityVC.myBookingsSegueIdentifier, sender: nil)
     }
@@ -112,7 +116,6 @@ extension ChooseAvailabilityVC: UITableViewDelegate, UITableViewDataSource {
                 availabilitiesForDay: availabilitiesForDay,
                 reason: self.reason,
                 doctor: self.doctor,
-                loggedUser: self.loggedUser,
                 delegator: self
             )
             
@@ -124,7 +127,6 @@ extension ChooseAvailabilityVC: UITableViewDelegate, UITableViewDataSource {
             availabilitiesForDay: self.availabilitiesForDay,
             reason: self.booking!.getReason(),
             doctor: self.doctor,
-            loggedUser: self.loggedUser,
             delegator: self,
             isBookingUpdate: true,
             booking: self.booking

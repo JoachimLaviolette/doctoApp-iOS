@@ -11,6 +11,8 @@ import UIKit
 class HomeVC: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     
+    private var loggedUser: Resident? = nil // can be retrieved from the user defaults
+    
     static let searchSegueIdentifier: String = "search_segue"
     
     override func viewDidLoad() {
@@ -19,11 +21,31 @@ class HomeVC: UIViewController {
     }
     
     private func initialize() {
+        self.tryGetLoggedUser()
+        
         self.searchBar.delegate = self
         // Remove seach bar borders
         self.searchBar.backgroundImage = UIImage()
-         DoctoAppDatabaseHelper().initDatabase()
-         self.createModels()
+        
+        // DoctoAppDatabaseHelper().initDatabase()
+        // self.createModels()
+        // UserDefaults.standard.removeObject(forKey: Strings.USER_ID_KEY)
+        // UserDefaults.standard.removeObject(forKey: Strings.USER_TYPE_KEY)
+    }
+    
+    // Try to get a logged user id from the user defaults
+    private func tryGetLoggedUser() {
+        if self.loggedUser == nil {
+            if UserDefaults.standard.string(forKey: Strings.USER_TYPE_KEY) == Strings.USER_TYPE_PATIENT {
+                let patientId = UserDefaults.standard.integer(forKey: Strings.USER_ID_KEY)
+                let patient: Patient = PatientDatabaseHelper().getPatient(patientId: patientId, email: nil, fromDoctor: false)!
+                self.loggedUser = patient
+            } else if UserDefaults.standard.string(forKey: Strings.USER_TYPE_KEY) == Strings.USER_TYPE_DOCTOR {
+                let doctorId = UserDefaults.standard.integer(forKey: Strings.USER_ID_KEY)
+                let doctor: Doctor = DoctorDatabaseHelper().getDoctor(doctorId: doctorId, email: nil, fromPatient: false)!
+                self.loggedUser = doctor
+            }
+        }
     }
     
     private func createModels() {

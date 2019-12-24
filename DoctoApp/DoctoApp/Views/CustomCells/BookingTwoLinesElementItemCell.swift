@@ -19,7 +19,7 @@ class BookingTwoLinesElementItemCell: UITableViewCell {
     @IBOutlet var title: UILabel!
     @IBOutlet var content: UILabel!
     
-    var state: TwoLinesElementState = TwoLinesElementState.warningMessage
+    private var state: TwoLinesElementState = TwoLinesElementState.warningMessage
     
     private static let icons: [TwoLinesElementState: [String: String]] = [
         TwoLinesElementState.warningMessage: ["title": Strings.APPOINTMENT_SUMMARY_WARNING_MSG_TITLE, "icon": "ic_error"],

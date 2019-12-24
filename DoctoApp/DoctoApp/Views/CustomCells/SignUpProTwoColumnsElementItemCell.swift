@@ -22,14 +22,12 @@ class SignUpProTwoColumnsElementItemCell: UITableViewCell {
     @IBOutlet weak var item2: UILabel!
     @IBOutlet weak var deleteIcon: UIButton!
     
-    var index: Int! // must be set by the calling view
-    var itemType: ItemType! // must be set by the calling view
-    
-    var delegator: SignUpProVCDelegator! // must be set by the calling view
+    private var index: Int! // must be set by the calling view
+    private var itemType: ItemType! // must be set by the calling view
+    private var delegator: SignUpProVCDelegator! // must be set by the calling view
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         let origImage = UIImage(named: "ic_delete")
         let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
         self.deleteIcon.setImage(tintedImage, for: .normal)

@@ -17,14 +17,14 @@ class BookingDetailsView: UIView {
     var showDoctorProfileDelegator: ShowDoctorProfileDelegator? = nil // set by the calling view
     var myBookingDetailsActionsDelegator: MyBookingDetailsActionsDelegator? = nil
     
-    var booking: Booking! // must be set by the calling view
-    var doctor: Doctor! // set using the booking object in setData()
-    var patient: Patient! // set using the booking object in setData()
-    var reason: Reason! // set using the booking object in setData()
+    private var booking: Booking! // must be set by the calling view
+    private var doctor: Doctor! // set using the booking object in setData()
+    private var patient: Patient! // set using the booking object in setData()
+    private var reason: Reason! // set using the booking object in setData()
     
-    var loggedUser: Resident! // must be set by the calling view or got from user defaults
+    private var loggedUser: Resident! // must be retrieved from the user defaults
     
-    var isConfirmBooking: Bool = false
+    private var isConfirmBooking: Bool = false
     
     private static let xibFile: String = "BookingDetailsView"
     private static let bookingPreviewItemCell: String = "BookingPreviewItemCell"
@@ -44,6 +44,7 @@ class BookingDetailsView: UIView {
 
     // Initialize controller properties
     private func initialize() {
+        self.tryGetLoggedUser()
         Bundle.main.loadNibNamed(BookingDetailsView.xibFile, owner: self, options: nil)
         self.addSubview(self.contentView)
         self.contentView.frame = self.bounds
@@ -51,14 +52,27 @@ class BookingDetailsView: UIView {
         self.dataTable.delegate = self
         self.dataTable.dataSource = self
     }
+    
+    // Try to get a logged user id from the user defaults
+    private func tryGetLoggedUser() {
+        if self.loggedUser == nil {
+            if UserDefaults.standard.string(forKey: Strings.USER_TYPE_KEY) == Strings.USER_TYPE_PATIENT {
+                let patientId = UserDefaults.standard.integer(forKey: Strings.USER_ID_KEY)
+                let patient: Patient = PatientDatabaseHelper().getPatient(patientId: patientId, email: nil, fromDoctor: false)!
+                self.loggedUser = patient
+            } else if UserDefaults.standard.string(forKey: Strings.USER_TYPE_KEY) == Strings.USER_TYPE_DOCTOR {
+                let doctorId = UserDefaults.standard.integer(forKey: Strings.USER_ID_KEY)
+                let doctor: Doctor = DoctorDatabaseHelper().getDoctor(doctorId: doctorId, email: nil, fromPatient: false)!
+                self.loggedUser = doctor
+            }
+        }
+    }
 
     // Set view data
-    func setData(booking: Booking, showDoctorProfileDelegator: ShowDoctorProfileDelegator? = nil, isConfirmBooking: Bool = true, loggedUser: Resident? = nil, myBookingDetailsActionsDelegator: MyBookingDetailsActionsDelegator? = nil) {
+    func setData(booking: Booking, showDoctorProfileDelegator: ShowDoctorProfileDelegator? = nil, isConfirmBooking: Bool = true, myBookingDetailsActionsDelegator: MyBookingDetailsActionsDelegator? = nil) {
         self.showDoctorProfileDelegator = showDoctorProfileDelegator
         self.myBookingDetailsActionsDelegator = myBookingDetailsActionsDelegator
         self.isConfirmBooking = isConfirmBooking
-        
-        if loggedUser != nil { self.loggedUser = loggedUser! }
         
         // Retrieve the models to work with
         self.booking = booking
@@ -82,8 +96,7 @@ extension BookingDetailsView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.loggedUser is Doctor { return 3 }
-        return 8
+        return self.loggedUser is Doctor ? 3 : 8
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -94,8 +107,7 @@ extension BookingDetailsView: UITableViewDelegate, UITableViewDataSource {
                 cell.setData(
                     picture: self.loggedUser is Patient ? self.doctor.getPicture() : self.booking.getPatient().getPicture(),
                     fullname: self.loggedUser is Patient ? self.doctor.getFullname() : self.booking.getPatient().getFullname(),
-                    description: self.loggedUser is Patient ? self.doctor.getSpeciality() : self.booking.getPatient().getBirthdate(),
-                    loggedUser: self.loggedUser
+                    description: self.loggedUser is Patient ? self.doctor.getSpeciality() : self.booking.getPatient().getBirthdate()
                 )
                 
                 return cell
@@ -115,7 +127,6 @@ extension BookingDetailsView: UITableViewDelegate, UITableViewDataSource {
                 cell.selectionStyle = .none
                 cell.setData(
                     booking: self.booking,
-                    loggedUser: self.loggedUser,
                     delegator: self.myBookingDetailsActionsDelegator!
                 )
                 

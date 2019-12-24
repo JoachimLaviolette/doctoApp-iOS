@@ -311,7 +311,7 @@ struct Strings {
     public static let MY_PROFILE_PRO_TRAINING_ERROR: String = "An error occurred when adding the training.\nPlease check the fields.\nMake sure you have not already added it."
     public static let MY_PROFILE_PRO_LANGUAGE_ERROR: String = "An error occurred when adding the language.\nPlease make sure you have not already added it."
     public static let MY_PROFILE_PRO_PAYMENT_OPTION_ERROR: String = "An error occurred when adding the payment option.\nPlease make sure you have not already added it."
-    public static let MY_PROFILE_PRO_UPDATE_BTN: String = "Update profile"
+    public static let MY_PROFILE_PRO_UPDATE_BTN: String = "Update my profile"
     public static let MY_PROFILE_PRO_SUCCESS_MSG_TITLE: String = "Update succeeded"
     public static let MY_PROFILE_PRO_SUCCESS_MSG_CONTENT: String = "Your professional profile has been successfully updated with the provided information. You can anytime change the information of your profile."
     public static let MY_PROFILE_PRO_ERROR_MSG_TITLE: String = "Update failed"

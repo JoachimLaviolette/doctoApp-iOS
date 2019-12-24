@@ -14,13 +14,17 @@ protocol SignUpProVCDelegator {
 }
 
 class SignUpProVC: UIViewController, SignUpProVCDelegator {
-    
     @IBOutlet weak var scrollView: UIScrollView!
 
     @IBOutlet weak var feedbackMessage: FeedbackMessageView!
     
-    @IBOutlet weak var signupProDoctorPicture: UIImageView!
-    @IBOutlet weak var signupProDoctorHeader: UIImageView!
+    @IBOutlet weak var doctorProfilePicture: UIImageView!
+    @IBOutlet weak var doctorHeader: UIImageView!
+    
+    @IBOutlet weak var selectHeaderBtn: UIButton!
+    @IBOutlet weak var takeHeaderBtn: UIButton!
+    @IBOutlet weak var selectPictureBtn: UIButton!
+    @IBOutlet weak var takePictureBtn: UIButton!
     
     @IBOutlet weak var doctorProfileSection: UIStackView!
     @IBOutlet weak var doctorEmail: UITextField!
@@ -89,10 +93,9 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
     
     @IBOutlet weak var privateSection: UIView!
     
-    var loggedUser: Resident?
-    
-    private var doctorDbHelper: DoctorDatabaseHelper = DoctorDatabaseHelper()
+    private var loggedUser: Resident? = nil // can be retrieved from the user defaults
     private var doctor: Doctor?
+    private let doctorDbHelper: DoctorDatabaseHelper = DoctorDatabaseHelper()
     
     private var availabilities: [Availability]?
     private var reasons: [Reason]?
@@ -127,6 +130,9 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
     static let oneColumnElementItemCellIdentifier: String = "signup_pro_one_column_element_item_cell"
     static let twoColumnsElementItemCellIdentifier: String = "signup_pro_two_columns_element_item_cell"
     
+    private static let photoIcon = "ic_take_picture"
+    private static let galleryIcon = "ic_add_image"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -134,17 +140,7 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
     }
     
     private func initialize() {
-        
-        // Check the UserDefaults
-        if self.loggedUser == nil {
-            if UserDefaults.standard.string(forKey: Strings.USER_TYPE_KEY) == Strings.USER_TYPE_DOCTOR {
-                let doctorId = UserDefaults.standard.integer(forKey: Strings.USER_ID_KEY)
-                let doctor: Doctor = DoctorDatabaseHelper().getDoctor(doctorId: doctorId, email: nil, fromPatient: false)!
-                self.loggedUser = doctor
-            }
-        }
-        
-        self.loggedUser = self.loggedUser?.update()
+        self.tryGetLoggedUser()
         
         //intitalize different pickers
         self.doctorLanguagesPicker.delegate = self
@@ -184,8 +180,48 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
         self.paymentOptionsTableView.rowHeight = UITableView.automaticDimension
         self.paymentOptionsTableView.separatorColor = UIColor.clear
     
-        
+        self.setupButtonsIconsColors()
         self.setContent()
+    }
+    
+    // Try to get a logged user id from the user defaults
+    private func tryGetLoggedUser() {
+        if self.loggedUser == nil {
+            if UserDefaults.standard.string(forKey: Strings.USER_TYPE_KEY) == Strings.USER_TYPE_DOCTOR {
+                let doctorId = UserDefaults.standard.integer(forKey: Strings.USER_ID_KEY)
+                let doctor: Doctor = DoctorDatabaseHelper().getDoctor(doctorId: doctorId, email: nil, fromPatient: false)!
+                self.loggedUser = doctor
+            }
+        }
+    }
+    
+    // Setup actions buttons
+    private func setupButtonsIconsColors() {
+        var takePictureBtnIcon: UIImage? = UIImage(named: SignUpProVC.photoIcon)
+        var selectFromGalleryIcon: UIImage? = UIImage(named: SignUpProVC.galleryIcon)
+        
+        takePictureBtnIcon = takePictureBtnIcon?.withRenderingMode(.alwaysTemplate)
+        selectFromGalleryIcon = selectFromGalleryIcon?.withRenderingMode(.alwaysTemplate)
+
+        self.takePictureBtn.setImage(takePictureBtnIcon, for: .normal)
+        self.selectPictureBtn.setImage(selectFromGalleryIcon, for: .normal)
+        self.takeHeaderBtn.setImage(takePictureBtnIcon, for: .normal)
+        self.selectHeaderBtn.setImage(selectFromGalleryIcon, for: .normal)
+        
+        self.takePictureBtn.tintColor = UIColor(hex: Colors.SIGNUP_PRO_TAKE_PICTURE_FROM_CAMERA_TEXT)
+        self.selectPictureBtn.tintColor = UIColor(hex: Colors.SIGNUP_PRO_SELECT_PICTURE_FROM_GALLERY_TEXT)
+        self.takeHeaderBtn.tintColor = UIColor(hex: Colors.SIGNUP_PRO_TAKE_HEADER_FROM_CAMERA_TEXT)
+        self.selectHeaderBtn.tintColor = UIColor(hex: Colors.SIGNUP_PRO_SELECT_HEADER_FROM_GALLERY_TEXT)
+        
+        self.takePictureBtn.imageView?.contentMode = .scaleAspectFit
+        self.selectPictureBtn.imageView?.contentMode = .scaleAspectFit
+        self.takeHeaderBtn.imageView?.contentMode = .scaleAspectFit
+        self.selectHeaderBtn.imageView?.contentMode = .scaleAspectFit
+        
+        self.takePictureBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 15, bottom: 30, right: 30)
+        self.selectPictureBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 15, bottom: 30, right: 30)
+        self.takeHeaderBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 15, bottom: 30, right: 30)
+        self.selectHeaderBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 15, bottom: 30, right: 30)
     }
     
     private func setContent() {
@@ -249,10 +285,6 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
         self.paymentOptionsErrorMsg.text = Strings.SIGNUP_PRO_PAYMENT_OPTION_ERROR
     }
     
-    func setData(loggedUser: Resident? = nil) {
-        self.loggedUser = loggedUser
-    }
-    
     // Set Sign up context
     private func setSignupContext() {
         self.doctorProfileSection.isHidden = false
@@ -266,8 +298,7 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
         self.experienceErrorView.isHidden = true
         self.paymentOptionsErrorView.isHidden = true
         self.signupBtn.setTitle(Strings.SIGNUP_PRO_BTN, for: .normal)
-        self.signupProDoctorPicture.image = UIImage(named: "icon-ios7-contact-512")
-        self.signupProDoctorHeader.image = UIImage(named: "wallp1")
+
         self.doctorLastName.text = ""
         self.doctorFirstName.text = ""
         self.doctorSpeciality.text = ""
@@ -309,9 +340,20 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
         self.languagesErrorView.isHidden = true
         self.experienceErrorView.isHidden = true
         self.paymentOptionsErrorView.isHidden = true
-        self.signupBtn.setTitle(Strings.MY_PROFILE_PRO_UPDATE_BTN, for: .normal)
-        // self.signupProDoctorPicture.image = UIImage(named: doctor.getPicture())
-        // self.signupProDoctorHeader.image = UIImage(named: doctor.getHeader())
+        self.signupBtn.titleLabel!.text = Strings.MY_PROFILE_PRO_UPDATE_BTN.uppercased()
+        
+        if doctor.getPicture() != nil {
+            if !doctor.getPicture()!.isEmpty {
+                self.doctorProfilePicture.image = UIImage(named: doctor.getPicture()!)
+            }
+        }
+        
+        if doctor.getHeader() != nil {
+            if !doctor.getHeader()!.isEmpty {
+                self.doctorHeader.image = UIImage(named: doctor.getHeader()!)
+            }
+        }
+        
         self.doctorLastName.text = doctor.getLastname()
         self.doctorFirstName.text = doctor.getFirstname()
         self.doctorSpeciality.text = doctor.getSpeciality()

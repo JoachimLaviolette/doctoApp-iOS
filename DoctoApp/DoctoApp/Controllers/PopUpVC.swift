@@ -14,10 +14,10 @@ class PopUpVC: UIViewController {
     @IBOutlet weak var popupTitle: UILabel!
     @IBOutlet weak var popupContent: UILabel!
     
-    var hideActionButtons: Bool = false
-    var titleString: String! // must be set by the calling view
-    var contentString: String! // must be set by the calling view
-    var delegate: PopUpActionDelegator? = nil
+    private var hideActionButtons: Bool = false
+    private var titleString: String! // must be set by the calling view
+    private var contentString: String! // must be set by the calling view
+    private var delegate: PopUpActionDelegator? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -17,9 +17,9 @@ class MyBookingDetailsVC: UIViewController, ShowDoctorProfileDelegator, MyBookin
     @IBOutlet weak var headerDashboardSubtitle: HeaderDashboardSubtitleView!
     @IBOutlet weak var bookingDetailsView: BookingDetailsView!
     
-    var loggedUser: Resident! // must be set by the calling view or got from user defaults
-    var booking: Booking! // must be set by the calling view
-    var doctor: Doctor? // set when clicked on doctor section of the booking details subview
+    private var loggedUser: Resident! // must be retrieved from the user defaults
+    private var booking: Booking! // must be set by the calling view
+    private var doctor: Doctor? // set when clicked on doctor section of the booking details subview
     
     private static let doctorProfileSegueIdentifier = "doctor_profile_segue"
     private static let updateBookingSegueIdentifier = "update_booking_segue"
@@ -32,9 +32,24 @@ class MyBookingDetailsVC: UIViewController, ShowDoctorProfileDelegator, MyBookin
     
     // Initialize controller properties
     private func initialize() {
-        self.loggedUser = self.loggedUser.update()
+        self.tryGetLoggedUser()
         self.setBookingDetailsViewData()
         self.setHeaderData()
+    }
+    
+    // Try to get a logged user id from the user defaults
+    private func tryGetLoggedUser() {
+        if self.loggedUser == nil {
+            if UserDefaults.standard.string(forKey: Strings.USER_TYPE_KEY) == Strings.USER_TYPE_PATIENT {
+                let patientId = UserDefaults.standard.integer(forKey: Strings.USER_ID_KEY)
+                let patient: Patient = PatientDatabaseHelper().getPatient(patientId: patientId, email: nil, fromDoctor: false)!
+                self.loggedUser = patient
+            } else if UserDefaults.standard.string(forKey: Strings.USER_TYPE_KEY) == Strings.USER_TYPE_DOCTOR {
+                let doctorId = UserDefaults.standard.integer(forKey: Strings.USER_ID_KEY)
+                let doctor: Doctor = DoctorDatabaseHelper().getDoctor(doctorId: doctorId, email: nil, fromPatient: false)!
+                self.loggedUser = doctor
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -43,7 +58,7 @@ class MyBookingDetailsVC: UIViewController, ShowDoctorProfileDelegator, MyBookin
             doctorProfileVC.setData(doctor: self.doctor!)
         } else if segue.identifier == MyBookingDetailsVC.updateBookingSegueIdentifier && segue.destination is ChooseAvailabilityVC {
             let chooseAvailabilityVC = segue.destination as! ChooseAvailabilityVC
-            chooseAvailabilityVC.setData(loggedUser: self.loggedUser, booking: self.booking, isBookingUpdate: true)
+            chooseAvailabilityVC.setData(booking: self.booking, isBookingUpdate: true)
         } else if segue.identifier == MyBookingDetailsVC.cancelBookingSegueIdentifier && segue.destination is ChooseAvailabilityVC {
             let popupVC = segue.destination as! PopUpVC
             /*popupVC.setData(
@@ -60,7 +75,6 @@ class MyBookingDetailsVC: UIViewController, ShowDoctorProfileDelegator, MyBookin
             booking: self.booking,
             showDoctorProfileDelegator: self,
             isConfirmBooking: false,
-            loggedUser: self.loggedUser,
             myBookingDetailsActionsDelegator: self
         )
     }
@@ -72,9 +86,8 @@ class MyBookingDetailsVC: UIViewController, ShowDoctorProfileDelegator, MyBookin
     }
     
     // Set view data
-    func setData(booking: Booking, loggedUser: Resident? = nil) {
+    func setData(booking: Booking) {
         self.booking = booking
-        if loggedUser != nil { self.loggedUser = loggedUser }
     }
     
     // Show doctor profile

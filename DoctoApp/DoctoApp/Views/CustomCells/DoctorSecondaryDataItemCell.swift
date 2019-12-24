@@ -34,5 +34,4 @@ class DoctorSecondaryDataItemCell: UITableViewCell {
         self.setupIcon()
         self.sectionTitle.text = doctorSecondaryData.sectionTitle
     }
-    
 }
