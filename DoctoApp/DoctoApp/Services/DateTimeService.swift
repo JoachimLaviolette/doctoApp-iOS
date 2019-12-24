@@ -9,10 +9,16 @@
 import Foundation
 
 class DateTimeService {
+    static let FORMAT_YYYY_MM_DD: String = "yyyy-MM-dd"
+    static let FORMAT_YYYY_MM_DD_HH_MM_SS: String = "yyyy-MM-dd HH:mm:ss"
+    static let FORMAT_HH_MM: String = "HH:mm"
+    static let FORMAT_YYYY: String = "yyyy"
+    static let FORMAT_EEEE_MM_DD_YYYY: String = "EEEE, MMMM d, yyyy"
+    
     // Return the current date
     static func GetCurrentDateTime() -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        formatter.dateFormat = FORMAT_YYYY_MM_DD_HH_MM_SS
 
         return formatter.string(from: Date())
     }
@@ -20,7 +26,7 @@ class DateTimeService {
     // Return the current date
     static func GetCurrentDate() -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.dateFormat = FORMAT_YYYY_MM_DD
 
         return formatter.string(from: Date())
     }
@@ -28,15 +34,31 @@ class DateTimeService {
     // Return the current time
     static func GetCurrentTime() -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm"
+        formatter.dateFormat = FORMAT_HH_MM
 
         return formatter.string(from: Date())
+    }
+    
+    // Return the current date as a date
+    static func GetCurrentDate() -> Date {
+        let formatter = DateFormatter()
+        formatter.dateFormat = FORMAT_YYYY_MM_DD
+
+        return formatter.date(from: formatter.string(from: Date()))!
+    }
+
+    // Return the current time as a date
+    static func GetCurrentTime() -> Date {
+        let formatter = DateFormatter()
+        formatter.dateFormat = FORMAT_HH_MM
+
+        return formatter.date(from: formatter.string(from: Date()))!
     }
 
     // Return the current year
     private func GetCurrentYear() -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy"
+        formatter.dateFormat = DateTimeService.FORMAT_YYYY
         
         return formatter.string(from: Date())
     }
@@ -45,7 +67,7 @@ class DateTimeService {
     static func GetDateFromCurrent(daysToAdd: Int) -> String {
         let date = Calendar.current.date(byAdding: .day, value: daysToAdd, to: Date())!
         let formatter = DateFormatter()
-        formatter.dateFormat = "EEEE, MMMM d"
+        formatter.dateFormat = FORMAT_EEEE_MM_DD_YYYY
         
         return formatter.string(from: date)
     }
@@ -58,8 +80,58 @@ class DateTimeService {
     // Return the given time in 24h format
     static func GetTimeIn24H(date: Date) -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm"
+        formatter.dateFormat = FORMAT_HH_MM
         
         return formatter.string(from: date)
+    }
+    
+    // Get the provided date in the provided format
+    static func GetDateTimeInFormat(date: Date, format: String = FORMAT_YYYY_MM_DD) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        
+        return formatter.string(from: date)
+    }
+    
+    // Get the provided date in the provided format
+    static func GetDateTimeInFormat(date: String, fromFormat: String = FORMAT_EEEE_MM_DD_YYYY, toFormat: String = FORMAT_YYYY_MM_DD) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = fromFormat
+        var date: Date = formatter.date(from: date)!
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month, .day, .hour], from: date)
+        date = calendar.date(from: components)!
+
+        formatter.dateFormat = toFormat
+        
+        return formatter.string(from: date)
+    }
+    
+    static func GetDateTimeInFormat(date: String, format: String = FORMAT_YYYY_MM_DD) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        var date: Date = formatter.date(from: date)!
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month, .day, .hour], from: date)
+        date = calendar.date(from: components)!
+        
+        return formatter.string(from: date)
+    }
+    
+    // Get the provided date in the provided format
+    static func GetDateTimeInFormat(date: String, format: String = FORMAT_YYYY_MM_DD) -> Date {
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        
+        return formatter.date(from: date)!
+    }
+    
+    // Get the provided date in the provided format
+    static func GetDateTimeInFormat(date: Date, format: String = FORMAT_YYYY_MM_DD) -> Date {
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        let date = formatter.string(from: date)
+        
+        return formatter.date(from: date)!
     }
 }

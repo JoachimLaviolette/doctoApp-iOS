@@ -72,18 +72,18 @@ extension AvailabilitiesForDayItemCell: UICollectionViewDelegate, UICollectionVi
         
         if !self.isBookingUpdate! {
             let booking = Booking(
-                    id: -1,
-                    patient: self.loggedUser as! Patient,
-                    doctor: self.doctor,
-                    reason: self.reason,
-                    fullDate: availability.getDate(),
-                    date: availability.getDate(),
-                    time: availability.getTime(),
-                    bookingDate: DateTimeService.GetCurrentDateTime()
-                )
+                id: -1,
+                patient: self.loggedUser as! Patient,
+                doctor: self.doctor,
+                reason: self.reason,
+                fullDate: availability.getDate(),
+                date: DateTimeService.GetDateTimeInFormat(date: availability.getDate(), fromFormat: DateTimeService.FORMAT_EEEE_MM_DD_YYYY, toFormat: DateTimeService.FORMAT_YYYY_MM_DD),
+                time: availability.getTime(),
+                bookingDate: DateTimeService.GetCurrentDateTime()
+            )
             self.delegator.confirmBooking(booking: booking, loggedUser: self.loggedUser)
             
-                return
+            return
         }
         
         self.booking!.setTime(time: availability.getTime())

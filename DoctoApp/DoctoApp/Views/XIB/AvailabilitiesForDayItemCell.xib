@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -22,20 +20,20 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qek-EC-DPT">
                         <rect key="frame" x="10" y="10" width="355" height="130"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="{ fullDate }" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUU-Ex-RBv">
-                                <rect key="frame" x="15" y="11" width="188" height="17"/>
+                                <rect key="frame" x="15" y="11" width="330" height="17"/>
                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>
                                 <color key="textColor" name="doctor_appointment_item_header_color"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="aua-jG-Kti">
-                                <rect key="frame" x="10" y="52" width="335" height="108.5"/>
+                                <rect key="frame" x="10" y="52" width="335" height="108"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yqM-Vd-4oX">
                                     <size key="itemSize" width="50" height="50"/>
@@ -45,7 +43,7 @@
                                 </collectionViewFlowLayout>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pOl-x8-hRW">
-                                <rect key="frame" x="0.0" y="41" width="355" height="1"/>
+                                <rect key="frame" x="0.0" y="37" width="355" height="1"/>
                                 <color key="backgroundColor" name="login_background_color"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="OOE-12-wbY"/>
@@ -59,11 +57,11 @@
                             <constraint firstAttribute="bottom" secondItem="aua-jG-Kti" secondAttribute="bottom" constant="10" id="MlR-Ga-7J0"/>
                             <constraint firstItem="pOl-x8-hRW" firstAttribute="leading" secondItem="qek-EC-DPT" secondAttribute="leading" id="OQi-j8-XZh"/>
                             <constraint firstAttribute="height" constant="170" id="Oxl-bU-Mao"/>
-                            <constraint firstAttribute="trailing" secondItem="dUU-Ex-RBv" secondAttribute="trailing" constant="152" id="UfA-Db-T8D"/>
+                            <constraint firstAttribute="trailing" secondItem="dUU-Ex-RBv" secondAttribute="trailing" constant="10" id="Zui-SU-lTO"/>
                             <constraint firstAttribute="trailing" secondItem="pOl-x8-hRW" secondAttribute="trailing" id="cYs-0C-PWx"/>
-                            <constraint firstItem="aua-jG-Kti" firstAttribute="top" secondItem="pOl-x8-hRW" secondAttribute="bottom" constant="10" id="cbx-rP-0Dn"/>
+                            <constraint firstItem="aua-jG-Kti" firstAttribute="top" secondItem="pOl-x8-hRW" secondAttribute="bottom" constant="14" id="cbx-rP-0Dn"/>
                             <constraint firstAttribute="trailing" secondItem="aua-jG-Kti" secondAttribute="trailing" constant="10" id="ghr-M3-awh"/>
-                            <constraint firstItem="pOl-x8-hRW" firstAttribute="top" secondItem="dUU-Ex-RBv" secondAttribute="bottom" constant="13" id="j9P-KJ-I6K"/>
+                            <constraint firstItem="pOl-x8-hRW" firstAttribute="top" secondItem="dUU-Ex-RBv" secondAttribute="bottom" constant="9" id="j9P-KJ-I6K"/>
                             <constraint firstItem="dUU-Ex-RBv" firstAttribute="top" secondItem="qek-EC-DPT" secondAttribute="top" constant="11" id="vo7-GF-x27"/>
                         </constraints>
                     </view>

@@ -19,10 +19,10 @@ class BookingDatabaseHelper: DoctoAppDatabaseHelper {
     static let patientId = Expression<Int64>("patient_id")
     static let doctorId = Expression<Int64>("doctor_id")
     static let reasonId = Expression<Int64>("reason_id")
-    static let fullDate = Expression<String>("full_date")
-    static let date = Expression<String>("date")
-    static let time = Expression<String>("time")
-    static let bookingDate = Expression<String>("booking_date")
+    static let fullDate = Expression<String>("full_date") // used just for representation no compute needed on it at all
+    static let date = Expression<Date>("date")
+    static let time = Expression<Date>("time")
+    static let bookingDate = Expression<Date>("booking_date")
     
     override init() {}
     
@@ -44,9 +44,9 @@ class BookingDatabaseHelper: DoctoAppDatabaseHelper {
             BookingDatabaseHelper.doctorId <- Int64(booking.GetDoctorId()),
             BookingDatabaseHelper.reasonId <- Int64(booking.GetReasonId()),
             BookingDatabaseHelper.fullDate <- booking.getFullDate(),
-            BookingDatabaseHelper.date <- booking.getDate(),
-            BookingDatabaseHelper.time <- booking.getTime(),
-            BookingDatabaseHelper.bookingDate <- booking.getBookingDate()
+            BookingDatabaseHelper.date <- DateTimeService.GetDateTimeInFormat(date: booking.getDate(), format: DateTimeService.FORMAT_YYYY_MM_DD),
+            BookingDatabaseHelper.time <- DateTimeService.GetDateTimeInFormat(date: booking.getTime(), format: DateTimeService.FORMAT_HH_MM),
+            BookingDatabaseHelper.bookingDate <- DateTimeService.GetDateTimeInFormat(date: booking.getBookingDate(), format: DateTimeService.FORMAT_YYYY_MM_DD_HH_MM_SS)
         )
         
         do {
@@ -73,8 +73,8 @@ class BookingDatabaseHelper: DoctoAppDatabaseHelper {
         
         let filter = BookingDatabaseHelper.table.filter(BookingDatabaseHelper.id == Int64(booking.getId()))
         let query = filter.update(
-            BookingDatabaseHelper.time <- booking.getTime(),
-            BookingDatabaseHelper.bookingDate <- booking.getBookingDate()
+            BookingDatabaseHelper.time <- DateTimeService.GetDateTimeInFormat(date: booking.getTime(), format: DateTimeService.FORMAT_HH_MM),
+            BookingDatabaseHelper.bookingDate <- DateTimeService.GetDateTimeInFormat(date: booking.getBookingDate(), format: DateTimeService.FORMAT_YYYY_MM_DD_HH_MM_SS)
         )
         
         do {
@@ -138,9 +138,9 @@ class BookingDatabaseHelper: DoctoAppDatabaseHelper {
                     doctor: doctor,
                     reason: reason,
                     fullDate: try booking.get(BookingDatabaseHelper.fullDate),
-                    date: try booking.get(BookingDatabaseHelper.date),
-                    time: try booking.get(BookingDatabaseHelper.time),
-                    bookingDate: try booking.get(BookingDatabaseHelper.bookingDate)
+                    date: try DateTimeService.GetDateTimeInFormat(date: booking.get(BookingDatabaseHelper.date), format: DateTimeService.FORMAT_YYYY_MM_DD),
+                    time: try DateTimeService.GetDateTimeInFormat(date: booking.get(BookingDatabaseHelper.time), format: DateTimeService.FORMAT_HH_MM),
+                    bookingDate: try DateTimeService.GetDateTimeInFormat(date: booking.get(BookingDatabaseHelper.bookingDate), format: DateTimeService.FORMAT_YYYY_MM_DD_HH_MM_SS)
                 )
             }
         } catch {
@@ -175,9 +175,9 @@ class BookingDatabaseHelper: DoctoAppDatabaseHelper {
                         doctor: doctor,
                         reason: reason,
                         fullDate: try booking.get(BookingDatabaseHelper.fullDate),
-                        date: try booking.get(BookingDatabaseHelper.date),
-                        time: try booking.get(BookingDatabaseHelper.time),
-                        bookingDate: try booking.get(BookingDatabaseHelper.bookingDate)
+                        date: try DateTimeService.GetDateTimeInFormat(date: booking.get(BookingDatabaseHelper.date), format: DateTimeService.FORMAT_YYYY_MM_DD),
+                        time: try DateTimeService.GetDateTimeInFormat(date: booking.get(BookingDatabaseHelper.time), format: DateTimeService.FORMAT_HH_MM),
+                        bookingDate: try DateTimeService.GetDateTimeInFormat(date: booking.get(BookingDatabaseHelper.bookingDate), format: DateTimeService.FORMAT_YYYY_MM_DD_HH_MM_SS)
                     )
                 )
             }
@@ -194,17 +194,14 @@ class BookingDatabaseHelper: DoctoAppDatabaseHelper {
         
         self.initDb()
         
-        let currentDate = DateTimeService.GetCurrentDateTime()
-        let currentTime = DateTimeService.GetCurrentTime()
+        let currentDate: Date = DateTimeService.GetCurrentDate()
+        let currentTime: Date = DateTimeService.GetCurrentTime()
         
         let query = BookingDatabaseHelper.table
             .select(BookingDatabaseHelper.table[*])
-            .filter(
-                BookingDatabaseHelper.patientId == Int64(patient.getId())
-                && BookingDatabaseHelper.date > currentDate
-                || (BookingDatabaseHelper.date == currentDate && BookingDatabaseHelper.time > currentTime)
-            )
-        
+            .filter(BookingDatabaseHelper.patientId == Int64(patient.getId()))
+            /*&& (BookingDatabaseHelper.date > currentDate || (BookingDatabaseHelper.date == currentDate && BookingDatabaseHelper.time > currentTime))*/
+            
         do {
             for booking in try self.database.prepare(query) {
                 let doctor: Doctor = DoctorDatabaseHelper().getDoctor(doctorId: Int(try booking.get(BookingDatabaseHelper.doctorId)), email: nil, fromPatient: true)!
@@ -213,18 +210,24 @@ class BookingDatabaseHelper: DoctoAppDatabaseHelper {
                 let reason: Reason = ReasonDatabaseHelper().getReason(reasonId: Int(try booking.get(BookingDatabaseHelper.reasonId)))!
                 reason.setDoctor(doctor: doctor)
                 
-                bookings.append(
-                    Booking(
-                        id: try Int(booking.get(BookingDatabaseHelper.id)),
-                        patient: patient,
-                        doctor: doctor,
-                        reason: reason,
-                        fullDate: try booking.get(BookingDatabaseHelper.fullDate),
-                        date: try booking.get(BookingDatabaseHelper.date),
-                        time: try booking.get(BookingDatabaseHelper.time),
-                        bookingDate: try booking.get(BookingDatabaseHelper.bookingDate)
+                let bookingDate: Date = try DateTimeService.GetDateTimeInFormat(date: booking.get(BookingDatabaseHelper.date), format: DateTimeService.FORMAT_YYYY_MM_DD)
+                let bookingTime: Date = try DateTimeService.GetDateTimeInFormat(date: booking.get(BookingDatabaseHelper.date), format: DateTimeService.FORMAT_HH_MM)
+                
+                if bookingDate > currentDate
+                    || (bookingDate == currentDate && bookingTime >= currentTime) {
+                    bookings.append(
+                        Booking(
+                            id: try Int(booking.get(BookingDatabaseHelper.id)),
+                            patient: patient,
+                            doctor: doctor,
+                            reason: reason,
+                            fullDate: try booking.get(BookingDatabaseHelper.fullDate),
+                            date: try DateTimeService.GetDateTimeInFormat(date: booking.get(BookingDatabaseHelper.date), format: DateTimeService.FORMAT_YYYY_MM_DD),
+                            time: try DateTimeService.GetDateTimeInFormat(date: booking.get(BookingDatabaseHelper.time), format: DateTimeService.FORMAT_HH_MM),
+                            bookingDate: try DateTimeService.GetDateTimeInFormat(date: booking.get(BookingDatabaseHelper.bookingDate), format: DateTimeService.FORMAT_YYYY_MM_DD_HH_MM_SS)
+                        )
                     )
-                )
+                }
             }
         } catch {
             print("Something went wrong when fetching bookings data for patient: " + patient.getFullname())

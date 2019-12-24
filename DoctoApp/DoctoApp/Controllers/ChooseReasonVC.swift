@@ -33,7 +33,7 @@ class ChooseReasonVC: UIViewController {
     private func initialize() {
         // Update doctor model to get most recent changes
         self.doctor = self.doctor.update() as? Doctor
-        self.loggedUser = self.loggedUser.update()
+        self.loggedUser = self.loggedUser?.update()
 
         // Retrieve reasons
         self.reasons = self.doctor.getReasons() ?? []

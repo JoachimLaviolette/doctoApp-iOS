@@ -28,7 +28,7 @@ class ChooseAvailabilityVC: UIViewController, ChooseAvailabilityDelegator {
     
     var loggedUser: Resident! // must be set by the calling view or go from the user defaults
 
-    private static let weeksNumber: Int = 1
+    private static let weeksNumber: Int = 2
     
     private static let headerTitle: String = "Book an appointment"
     private static let availabilitiesForDayItemCellXibFile: String = "AvailabilitiesForDayItemCell"
