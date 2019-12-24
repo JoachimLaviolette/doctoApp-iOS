@@ -2,7 +2,7 @@ import Foundation
 
 class EncryptionService {
     // SHA1 the given string
-    static SHA1(string: String) -> String {
+    static func SHA1(string: String) -> String {
         var encryptedString: String = string
         
 
@@ -11,7 +11,7 @@ class EncryptionService {
     }
 
     // Create a unique random and ecrypted salt
-    static func SALT() {
+    static func SALT() -> String {
         return EncryptionService.SHA1(string: UUID().uuidString)
     }
 }

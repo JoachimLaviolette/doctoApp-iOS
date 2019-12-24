@@ -93,10 +93,12 @@ class PatientDatabaseHelper: DoctoAppDatabaseHelper {
         )
         
         do {
-            if self.getPatient(patientId: patient.getId()) != nil && try self.database.run(query) > 0 {
-                print("Patient update succeeded.")
-                
-                return true
+            if self.getPatient(patientId: patient.getId(), email: nil, fromDoctor: false) != nil {
+                if try self.database.run(query) > 0 {
+                    print("Patient update succeeded.")
+                    
+                    return true
+                }
             }
             
             print("Patient update failed.")
@@ -122,10 +124,12 @@ class PatientDatabaseHelper: DoctoAppDatabaseHelper {
         let query = filter.delete()
         
         do {
-            if self.getPatient(patientId: patient.getId()) != nil && try self.database.run(query) > 0 {
-                print("Patient removal succeeded for patient: " + patient.getFullname())
-                
-                return true
+            if self.getPatient(patientId: patient.getId(), email: nil, fromDoctor: false) != nil {
+                if try self.database.run(query) > 0 {
+                    print("Patient removal succeeded for patient: " + patient.getFullname())
+                    
+                    return true
+                }
             }
             
             print("Patient removal failed for patient: " + patient.getFullname())

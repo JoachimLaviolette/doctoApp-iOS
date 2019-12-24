@@ -42,7 +42,7 @@ class DoctoAppDatabaseHelper {
             // Is made so we want to work properly on tables
             try self.database.execute("""
                                 BEGIN TRANSACTION;
-                                    PRAGMA foreign8keys = ON;    
+                                    PRAGMA foreign_keys = ON;    
                                 COMMIT TRANSACTION;
                                 """
                             )

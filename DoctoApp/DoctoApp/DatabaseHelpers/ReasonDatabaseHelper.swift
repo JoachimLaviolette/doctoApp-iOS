@@ -83,10 +83,12 @@ class ReasonDatabaseHelper: DoctoAppDatabaseHelper {
         )
         
         do {
-            if self.getReason(reasonId: reason.getId()) != nil && try self.database.run(query) > 0 {
-                print("Reason update succeeded.")
-                
-                return true
+            if self.getReason(reasonId: reason.getId()) != nil {
+                if try self.database.run(query) > 0 {
+                    print("Reason update succeeded.")
+                    
+                    return true
+                }
             }
             
             print("Reason update succeeded.")

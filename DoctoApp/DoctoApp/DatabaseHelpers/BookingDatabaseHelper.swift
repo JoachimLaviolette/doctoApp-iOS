@@ -78,10 +78,12 @@ class BookingDatabaseHelper: DoctoAppDatabaseHelper {
         )
         
         do {
-            if self.getBooking(bookingId: booking.getId()) != nil && try self.database.run(query) > 0 {
-                print("Booking update succeeded.")
-                
-                return true
+            if self.getBooking(bookingId: booking.getId()) != nil {
+                if try self.database.run(query) > 0 {
+                    print("Booking update succeeded.")
+                    
+                    return true
+                }
             }
             
             print("Booking update failed.")
@@ -100,10 +102,12 @@ class BookingDatabaseHelper: DoctoAppDatabaseHelper {
         let query = filter.delete()
         
         do {
-            if self.getBooking(bookingId: booking.getId()) != nil && try self.database.run(query) > 0 {
-                print("Booking removal succeeded.")
-
-                return true
+            if self.getBooking(bookingId: booking.getId()) != nil {
+                if try self.database.run(query) > 0 {
+                    print("Booking removal succeeded.")
+                    
+                    return true
+                }
             }
             
             print("Booking removal failed.")
@@ -120,7 +124,7 @@ class BookingDatabaseHelper: DoctoAppDatabaseHelper {
         
         let query = BookingDatabaseHelper.table
             .select(BookingDatabaseHelper.table[*])
-            .filter(BookingDatabaseHelper.id == Int64(booking.getId()))
+            .filter(BookingDatabaseHelper.id == Int64(bookingId))
         
         do {
             for booking in try self.database.prepare(query) {
@@ -129,19 +133,18 @@ class BookingDatabaseHelper: DoctoAppDatabaseHelper {
                 let reason: Reason = ReasonDatabaseHelper().getReason(reasonId: Int(try booking.get(BookingDatabaseHelper.reasonId)))!
                 
                 return Booking(
-                        id: try Int(booking.get(BookingDatabaseHelper.id)),
-                        patient: patient,
-                        doctor: doctor,
-                        reason: reason,
-                        fullDate: try booking.get(BookingDatabaseHelper.fullDate),
-                        date: try booking.get(BookingDatabaseHelper.date),
-                        time: try booking.get(BookingDatabaseHelper.time),
-                        bookingDate: try booking.get(BookingDatabaseHelper.bookingDate)
-                    )
+                    id: try Int(booking.get(BookingDatabaseHelper.id)),
+                    patient: patient,
+                    doctor: doctor,
+                    reason: reason,
+                    fullDate: try booking.get(BookingDatabaseHelper.fullDate),
+                    date: try booking.get(BookingDatabaseHelper.date),
+                    time: try booking.get(BookingDatabaseHelper.time),
+                    bookingDate: try booking.get(BookingDatabaseHelper.bookingDate)
                 )
             }
         } catch {
-            print("No booking found for the following id: " + bookingId)
+            print("No booking found for the following id: \(bookingId)")
         }
         
         return nil
