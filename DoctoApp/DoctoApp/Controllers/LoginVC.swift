@@ -15,6 +15,8 @@ protocol PopUpActionDelegator {
 class LoginVC: UIViewController, PopUpActionDelegator {
     @IBOutlet weak var feedbackMessage: FeedbackMessageView!
     
+    @IBOutlet weak var caption: UILabel!
+    
     @IBOutlet weak var emailInput: UITextField!
     @IBOutlet weak var passwordInput: UITextField!
     @IBOutlet weak var stayLogged: UISwitch!
@@ -115,12 +117,14 @@ class LoginVC: UIViewController, PopUpActionDelegator {
 
         self.myProfileBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 5, bottom: 30, right: 30)
         self.myBookingsBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 5, bottom: 30, right: 30)
-        self.deleteMyAccountBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 5, bottom: 30, right: 30)
+        self.deleteMyAccountBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: -5, bottom: 30, right: 30)
         self.logoutBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 5, bottom: 30, right: 30)
     }
     
     // Set basic view content
     private func setContent() {
+        self.caption.font = UIFont.preferredFont(forTextStyle: .footnote).italic() 
+
         if self.loggedUser != nil {
             self.displaySuccessMsg()
             self.displaySuccessContent()
@@ -167,18 +171,18 @@ class LoginVC: UIViewController, PopUpActionDelegator {
         let patient: Patient? = PatientDatabaseHelper().getPatient(patientId: nil, email: inputEmail, fromDoctor: false)
         
         // If the email isn't matched
-        if (patient == nil) { return false }
+        if patient == nil { return false }
         
-        //Check the password
+        // Check the password
         let inputPwd = passwordInput.text!
-        let salt = patient?.getPwdSalt()
-        let hashedInputPwd = inputPwd + salt! //TO DO: hash it with SHA1
-        
-        // If the password isn't matched
-        if (patient!.getPwd() != hashedInputPwd) { return false }
+        let salt = patient!.getPwdSalt()
+        let hashedInputPwd = EncryptionService.SHA1(string: inputPwd + salt)
+
+        // If the password does not match
+        if patient!.getPwd() != hashedInputPwd { return false }
         self.loggedUser = patient
         
-        if (self.toRedirect) {
+        if self.toRedirect {
              //REDIRECT
         }
         
@@ -193,17 +197,14 @@ class LoginVC: UIViewController, PopUpActionDelegator {
         let doctor: Doctor? = DoctorDatabaseHelper().getDoctor(doctorId: nil, email: inputEmail, fromPatient: false)
         
         // If the email isn't matched
-        if (doctor == nil) { return false }
+        if doctor == nil { return false }
         
-        //Check the password
-        let inputPwd = passwordInput.text!
-        let salt = doctor?.getPwdSalt()
-        let hashedInputPwd = inputPwd + salt! //TO DO: hash it with SHA1
+        // Check the password
+        let inputPwd: String = passwordInput.text!
+        let salt: String = doctor!.getPwdSalt()
+        let hashedInputPwd = EncryptionService.SHA1(string: inputPwd + salt)
         
-        print("hash", hashedInputPwd)
-        print("Pwd", doctor!.getPwd())
-        
-        // If the password isn't matched
+        // If the password does not match
         if (doctor!.getPwd() != hashedInputPwd) { return false }
         
         self.loggedUser = doctor
@@ -255,10 +256,9 @@ class LoginVC: UIViewController, PopUpActionDelegator {
     @IBAction func login(_ sender: Any) {
         var success: Bool = self.tryLoginAsPatient()
         
-        
-        if (!self.toRedirect && !success) { success = self.tryLoginAsDoctor() }
+        if !self.toRedirect && !success { success = self.tryLoginAsDoctor() }
 
-        if (!success) {
+        if !success {
             self.displayErrorMsg(title: Strings.LOGIN_ERROR_MSG_TITLE, content: Strings.LOGIN_ERROR_MSG_CONTENT)
             
             return
@@ -269,7 +269,7 @@ class LoginVC: UIViewController, PopUpActionDelegator {
         self.displaySuccessContent()
         self.addUserToUserDefaults()
         
-        if (self.toRedirect) { self.redirectUser() }
+        if self.toRedirect { self.redirectUser() }
     }
     
     // Logout the current user
@@ -299,6 +299,7 @@ class LoginVC: UIViewController, PopUpActionDelegator {
             UserDefaults.standard.set(self.loggedUser!.getId(), forKey: Strings.USER_ID_KEY)
             UserDefaults.standard.set(Strings.USER_TYPE_PATIENT, forKey: Strings.USER_TYPE_KEY)
         }
+        
         if self.loggedUser is Doctor {
             UserDefaults.standard.set(self.loggedUser!.getId(), forKey: Strings.USER_ID_KEY)
             UserDefaults.standard.set(Strings.USER_TYPE_DOCTOR, forKey: Strings.USER_TYPE_KEY)

@@ -50,6 +50,7 @@ class SignUpVC: UIViewController {
         self.initialize()
     }
     
+    // Initialize view components and properties
     private func initialize() {
         self.tryGetLoggedUser()
         
@@ -67,10 +68,6 @@ class SignUpVC: UIViewController {
                 let patientId = UserDefaults.standard.integer(forKey: Strings.USER_ID_KEY)
                 let patient: Patient = PatientDatabaseHelper().getPatient(patientId: patientId, email: nil, fromDoctor: false)!
                 self.loggedUser = patient
-            } else if UserDefaults.standard.string(forKey: Strings.USER_TYPE_KEY) == Strings.USER_TYPE_DOCTOR {
-                let doctorId = UserDefaults.standard.integer(forKey: Strings.USER_ID_KEY)
-                let doctor: Doctor = DoctorDatabaseHelper().getDoctor(doctorId: doctorId, email: nil, fromPatient: false)!
-                self.loggedUser = doctor
             }
         }
     }
@@ -96,11 +93,19 @@ class SignUpVC: UIViewController {
         self.selectPictureBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 15, bottom: 30, right: 30)
     }
     
+    // Set view content
     private func setContent() {
-        if (self.loggedUser != nil) { self.setSignupContextForPatient()}
-        else { self.setSignupContext() }
+        self.caption.font = UIFont.preferredFont(forTextStyle: .footnote).italic()
+        
+        if self.loggedUser != nil { self.setSignupContextForPatient()
+            
+            return
+        }
+        
+        self.setSignupContext()
     }
     
+    // Set signup context content
     private func setSignupContext() {
         self.feedbackMessage.isHidden = true
         self.signupBtn.titleLabel!.text = Strings.SIGNUP_BTN.uppercased()
@@ -119,6 +124,7 @@ class SignUpVC: UIViewController {
         self.patientCountry.text = ""
     }
     
+    // Set update context in case a parient is logged-in
     private func setSignupContextForPatient() {
         self.feedbackMessage.isHidden = true
         self.caption.text = Strings.MY_PROFILE_CAPTION
@@ -148,19 +154,70 @@ class SignUpVC: UIViewController {
         self.patientCountry.text = patient.GetCountry()
     }
     
+    // Action triggered when form button is clicked
     @IBAction private func signup(_ sender: Any) {
-        if (!allFieldsCorrect()){
-            self.displayErrorMsg()
+        if self.loggedUser != nil {
+            self.updatePatient()
+            
             return
         }
         
-        //hash the password and salt
-        let inputPwd = self.patientPwd.text!
-        let salt = inputPwd.isEmpty ? self.loggedUser?.getPwdSalt() : UUID().uuidString
-        let hashedInputPwd = inputPwd.isEmpty ? self.loggedUser?.getPwd() : inputPwd + salt! //TO DO: hash it with SHA1
+        self.signup()
+    }
+    
+    // Update the logged-in patient
+    private func updatePatient() {
+        if !allFieldsCorrect(forUpdate: true) {
+            self.displayErrorMsg()
+            
+            return
+        }
+        
+        if !self.patientPwd.text!.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            let inputPwd = self.patientPwd.text!
+            let salt = EncryptionService.SALT()
+            self.loggedUser!.setPwdSalt(pwdSalt: salt)
+            self.loggedUser!.setPwd(pwd: EncryptionService.SHA1(string: inputPwd + salt))
+        }
+        
+        let address: Address = self.loggedUser!.getAddress()!
+        address.setStreet1(street1: StringFormatterService.CapitalizeOnly(str: self.patientStreet1.text!.trimmingCharacters(in: .whitespacesAndNewlines)))
+        address.setStreet2(street2: StringFormatterService.CapitalizeOnly(str: self.patientStreet2.text!.trimmingCharacters(in: .whitespacesAndNewlines)))
+        address.setCity(city: StringFormatterService.CapitalizeOnly(str: self.patientCity.text!.trimmingCharacters(in: .whitespacesAndNewlines)))
+        address.setZip(zip: self.patientZip.text!.trimmingCharacters(in: .whitespacesAndNewlines))
+        address.setCountry(country: StringFormatterService.Capitalize(str: self.patientCountry.text!.trimmingCharacters(in: .whitespacesAndNewlines)))
+        
+        self.loggedUser!.setLastname(lastname: StringFormatterService.CapitalizeOnly(str: self.patientLastName.text!.trimmingCharacters(in: .whitespacesAndNewlines)))
+        self.loggedUser!.setFirstname(firstname: StringFormatterService.CapitalizeOnly(str: self.patientFirstName.text!.trimmingCharacters(in: .whitespacesAndNewlines)))
+        self.loggedUser!.setEmail(email: self.patientEmail.text!.trimmingCharacters(in: .whitespacesAndNewlines))
+        self.loggedUser!.setLastLogin(lastLogin: DateTimeService.GetCurrentDateTime())
+        // self.loggedUser!.setPicture(picture: self.patientProfilePicture.name)
+        (self.loggedUser as! Patient).setBirthdate(birthdate: self.patientBirthDate.text!.trimmingCharacters(in: .whitespacesAndNewlines))
+        (self.loggedUser as! Patient).setInsuranceNumber(insuranceNumber: self.patientInsuranceNumber.text!.trimmingCharacters(in: .whitespacesAndNewlines))
+        
+        if self.patientDbHelper.updatePatient(patient: self.loggedUser as! Patient) {
+            self.displaySuccessMsg()
+            
+            return
+        }
+        
+        self.displayErrorMsg()
+    }
+    
+    // Sign up the  patient
+    private func signup() {
+        if !allFieldsCorrect() {
+            self.displayErrorMsg()
+            
+            return
+        }
+        
+        let inputPwd: String = self.patientPwd.text!
+        let salt: String = EncryptionService.SALT()
+        let hashedInputPwd = EncryptionService.SHA1(string: inputPwd + salt)
         
         let address: Address = Address(
-            id: self.loggedUser == nil ? -1 : (self.loggedUser?.GetAddressId())!,
+            id: -1,
             street1: StringFormatterService.CapitalizeOnly(str: self.patientStreet1.text!.trimmingCharacters(in: .whitespacesAndNewlines)),
             street2: StringFormatterService.CapitalizeOnly(str: self.patientStreet2.text!.trimmingCharacters(in: .whitespacesAndNewlines)),
             city: StringFormatterService.CapitalizeOnly(str: self.patientCity.text!.trimmingCharacters(in: .whitespacesAndNewlines)),
@@ -169,12 +226,12 @@ class SignUpVC: UIViewController {
         )
         
         let patient = Patient(
-            id: self.loggedUser == nil ? -1 : (self.loggedUser?.getId())!,
+            id: -1,
             lastname: StringFormatterService.CapitalizeOnly(str: self.patientLastName.text!.trimmingCharacters(in: .whitespacesAndNewlines)),
             firstname: StringFormatterService.CapitalizeOnly(str: self.patientFirstName.text!.trimmingCharacters(in: .whitespacesAndNewlines)),
             email: self.patientEmail.text!.trimmingCharacters(in: .whitespacesAndNewlines),
-            pwd: hashedInputPwd!,
-            pwdSalt: salt!,
+            pwd: hashedInputPwd,
+            pwdSalt: salt,
             lastLogin: DateTimeService.GetCurrentDateTime(),
             picture: "",
             address: address,
@@ -182,38 +239,30 @@ class SignUpVC: UIViewController {
             insuranceNumber: self.patientInsuranceNumber.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         )
         
-        if self.loggedUser == nil {
-            if self.patientDbHelper.createPatient(patient: patient) {
-                self.displaySuccessMsg()
-                
-                return
-            }
-        } else {
-            if self.patientDbHelper.updatePatient(patient: patient) {
-                self.displaySuccessMsg()
-                
-                return
-            }
+        if self.patientDbHelper.createPatient(patient: patient) {
+            self.displaySuccessMsg()
+            
+            return
         }
         
         self.displayErrorMsg()
-        
     }
     
     // Check that all the fields are filled properly
-    private func allFieldsCorrect() -> Bool {
-        let isOneFieldEmpty: Bool = self.loggedUser == nil
+    private func allFieldsCorrect(forUpdate: Bool = false) -> Bool {
+        let isOneFieldEmpty: Bool = !forUpdate
             ? (self.patientLastName.text?.isEmpty)! || (self.patientFirstName.text?.isEmpty)! || (self.patientBirthDate.text?.isEmpty)! || (self.patientEmail.text?.isEmpty)! || (self.patientPwd.text?.isEmpty)! || (self.patientConfirmPwd.text?.isEmpty)! || (self.patientInsuranceNumber.text?.isEmpty)! || (self.patientStreet1.text?.isEmpty)! || (self.patientCity.text?.isEmpty)! || (self.patientZip.text?.isEmpty)! || (self.patientCountry.text?.isEmpty)!
             : (self.patientLastName.text?.isEmpty)! || (self.patientFirstName.text?.isEmpty)! || (self.patientBirthDate.text?.isEmpty)! || (self.patientEmail.text?.isEmpty)! || (self.patientInsuranceNumber.text?.isEmpty)! || (self.patientStreet1.text?.isEmpty)! || (self.patientCity.text?.isEmpty)! || (self.patientZip.text?.isEmpty)! || (self.patientCountry.text?.isEmpty)!
         
         // One of the fields is empty
-        if (isOneFieldEmpty) { return false }
+        if isOneFieldEmpty { return false }
         
-        if self.loggedUser == nil || (self.loggedUser != nil && !(self.patientPwd.text?.isEmpty)!) {
-            let bothPwdEqual: Bool = (self.patientPwd.text?.elementsEqual(self.patientConfirmPwd.text!))!
+        if !forUpdate
+            || (forUpdate && !self.patientPwd.text!.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty) {
+            let bothPwdEqual: Bool = patientPwd.text! == patientConfirmPwd.text!
             
-            //Both passwords do not correspond
-            if (!bothPwdEqual) { return false }
+            // Both passwords do not correspond
+            if !bothPwdEqual { return false }
         }
         
         // TO DO: Check the Birthdate format

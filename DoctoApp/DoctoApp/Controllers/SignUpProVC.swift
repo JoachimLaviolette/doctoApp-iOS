@@ -149,13 +149,8 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
     
     private func initialize() {
         self.tryGetLoggedUser()
-        
-        // Resize switches
-        self.isUnderAgreement.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
-        self.isThirdPartyPayment.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
-        self.isHealthInsuranceCard.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
 
-        // Take  in charge all pickers
+        // Take in charge all the subcomponents
         self.doctorLanguagesPicker.delegate = self
         self.doctorLanguagesPicker.dataSource = self
         self.doctorPaymentOptionsPicker.delegate = self
@@ -263,68 +258,78 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
         self.addPaymentOptionBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: -5, bottom: 30, right: 30)
     }
     
+    // Set view content
     private func setContent() {
+        // Resize switches
+        self.isUnderAgreement.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
+        self.isThirdPartyPayment.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
+        self.isHealthInsuranceCard.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
+        
+        self.caption.font = UIFont.preferredFont(forTextStyle: .footnote).italic()
+        self.doctorHeader.addBlurEffect()
+        
         self.displayAvailibilityInfo()
         self.displayAvailibilityError()
         self.displayReasonError()
-        self.displayTrainingError()
+        self.displayEducationError()
         self.displayExperienceError()
         self.displayLanguageError()
         self.displayPaymentOptionsError()
+        
         if self.loggedUser != nil { self.setSignupContextForDoctor() }
         else { self.setSignupContext() }
     }
     
-    // display the availibility info message correctly
+    // Display availibility info message
     private func displayAvailibilityInfo() {
         self.availibilityInfoIcon.image = self.availibilityInfoIcon.image?.withRenderingMode(.alwaysTemplate)
         self.availibilityInfoIcon.tintColor = UIColor(hex: Colors.SIGNUP_PRO_INFO_MSG)
         self.availibilityInfoMsg.text = Strings.SIGNUP_PRO_AVAILABILITY_INFO
     }
     
-    // display the availibility error message correctly
+    // Display availibility error message
     private func displayAvailibilityError() {
         self.availibilityErrorIcon.image = self.availibilityErrorIcon.image?.withRenderingMode(.alwaysTemplate)
         self.availibilityErrorIcon.tintColor = UIColor(hex: Colors.SIGNUP_PRO_ERROR_MSG)
         self.availibilityErrorMsg.text = Strings.SIGNUP_PRO_AVAILABILITY_ERROR
     }
     
-    // display the reasons error message correctly
+    // Display reason error message
     private func displayReasonError() {
         self.reasonErrorIcon.image = self.reasonErrorIcon.image?.withRenderingMode(.alwaysTemplate)
         self.reasonErrorIcon.tintColor = UIColor(hex: Colors.SIGNUP_PRO_ERROR_MSG)
         self.reasonErrorMsg.text = Strings.SIGNUP_PRO_REASON_ERROR
     }
     
-    // display the training error message correctly
-    private func displayTrainingError() {
+    // Display eudcation error message
+    private func displayEducationError() {
         self.educationErrorIcon.image = self.educationErrorIcon.image?.withRenderingMode(.alwaysTemplate)
         self.educationErrorIcon.tintColor = UIColor(hex: Colors.SIGNUP_PRO_ERROR_MSG)
         self.educationErrorMsg.text = Strings.SIGNUP_PRO_TRAINING_ERROR
     }
     
-    // display the experience error message correctly
+    // Display experience error message
     private func displayExperienceError() {
         self.experienceErrorIcon.image = self.experienceErrorIcon.image?.withRenderingMode(.alwaysTemplate)
         self.experienceErrorIcon.tintColor = UIColor(hex: Colors.SIGNUP_PRO_ERROR_MSG)
         self.experienceErrorMsg.text = Strings.SIGNUP_PRO_EXPERIENCE_ERROR
     }
     
-    // display the language error message correctly
+    // display the language error message
     private func displayLanguageError() {
         self.languagesErrorIcon.image = self.languagesErrorIcon.image?.withRenderingMode(.alwaysTemplate)
         self.languagesErrorIcon.tintColor = UIColor(hex: Colors.SIGNUP_PRO_ERROR_MSG)
         self.languagesErrorMsg.text = Strings.SIGNUP_PRO_LANGUAGE_ERROR
     }
     
-    // display the Payment options error message correctly
+    // Display payment options error message
     private func displayPaymentOptionsError() {
         self.paymentOptionsErrorIcon.image = self.paymentOptionsErrorIcon.image?.withRenderingMode(.alwaysTemplate)
         self.paymentOptionsErrorIcon.tintColor = UIColor(hex: Colors.SIGNUP_PRO_ERROR_MSG)
         self.paymentOptionsErrorMsg.text = Strings.SIGNUP_PRO_PAYMENT_OPTION_ERROR
     }
     
-    // Set Sign up context
+    // Set sign up context
     private func setSignupContext() {
         self.doctorProfileSection.isHidden = false
         self.doctorAddressSection.isHidden = false
@@ -363,10 +368,9 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
         self.experienceTableView.reloadData()
         self.languagesTableView.reloadData()
         self.paymentOptionsTableView.reloadData()
-        
     }
         
-    // Set Sign up context for Doctor
+    // Set sign up context when a doctor is  currently logged-in
     private func setSignupContextForDoctor() {
         self.feedbackMessage.isHidden = true
         self.caption.text = Strings.MY_PROFILE_PRO_CAPTION
@@ -423,6 +427,9 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
         self.experienceTableView.reloadData()
         self.languagesTableView.reloadData()
         self.paymentOptionsTableView.reloadData()
+        self.isUnderAgreement.isOn = (self.loggedUser! as! Doctor).isUnderAgreement()
+        self.isThirdPartyPayment.isOn = (self.loggedUser! as! Doctor).isThirdPartyPayment()
+        self.isHealthInsuranceCard.isOn = (self.loggedUser! as! Doctor).isHealthInsuranceCard()
     }
     
     // Display a success message to notify the registration succeeded
@@ -455,8 +462,8 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
         
         let a: Availability = Availability(doctor: nil, date: day, time: time)
         
-        //If already added
-        if (self.availabilities!.contains(a)) {
+        // If already added
+        if self.availabilities!.contains(a)  {
             self.availibilityErrorView.isHidden = false
             
             return
@@ -464,16 +471,16 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
         
         self.availibilityErrorView.isHidden = true
         
-        //Add it to the list of availibilities
+        // Add it to the list of availibilities
         self.availabilities!.append(a)
         
-        //Add it to the view's list of availibities
+        // Add it to the view's list of availibities
         self.availabilityTableView.reloadData()
     }
     
-    // Add the educations chosen by the doctor
+    // Add the education chosen by the doctor
     @IBAction func addEducation(_ sender: Any) {
-        if(!self.checkEducationFields()) {
+        if !self.checkEducationFields() {
             self.educationErrorView.isHidden = false
             
             return
@@ -484,8 +491,8 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
         
         let e: Education = Education(doctor: nil, year: year!, degree: desc!)
         
-        //If already added
-        if(self.educations!.contains(e)) {
+        // If already added
+        if self.educations!.contains(e) {
             self.educationErrorView.isHidden = false
             
             return
@@ -493,10 +500,10 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
         
         self.educationErrorView.isHidden = true
         
-        //Add it to the list of educations
+        // Add it to the list of educations
         self.educations!.append(e)
         
-        //Add it to the view's list of educations
+        // Add it to the view's list of educations
         self.educationTableView.reloadData()
     }
     
@@ -519,8 +526,8 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
         
         let e: Experience = Experience(doctor: nil, year: year!, description: desc!)
         
-        //If already added
-        if(self.experiences!.contains(e)) {
+        // If already added
+        if self.experiences!.contains(e) {
             self.experienceErrorView.isHidden = false
             
             return
@@ -528,20 +535,20 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
         
         self.educationErrorView.isHidden = true
         
-        //Add it to the list of educations
+        // Add it to the list of educations
         self.experiences!.append(e)
         
-        //Add it to the view's list of educations
+        // Add it to the view's list of educations
         self.experienceTableView.reloadData()
     }
     
-    //Check if the Experience fields are filled properly
+    // Check if the experience fields are filled properly
     private func checkExperienceFields() -> Bool {
         // TO DO Check if the text match with a date format
         return !(self.experienceYear.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)! && !(self.experienceYear.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)!
     }
     
-    // Add the reasons chosen by the doctor
+    // Add the reason chosen by the doctor
     @IBAction func addReason(_ sender: Any) {
         if(!self.checkReasonFields()) {
             self.reasonErrorView.isHidden = false
@@ -553,8 +560,8 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
         
         let r: Reason = Reason(id: -1, doctor: nil, description: desc!)
         
-        //If already added
-        if(self.reasons!.contains(r)) {
+        // If already added
+        if self.reasons!.contains(r) {
             self.reasonErrorView.isHidden = false
             
             return
@@ -562,24 +569,24 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
         
         self.reasonErrorView.isHidden = true
         
-        //Add it to the list of educations
+        // Add it to the list of educations
         self.reasons!.append(r)
         
-        //Add it to the view's list of educations
+        // Add it to the view's list of educations
         self.reasonTableView.reloadData()
     }
     
+    // Check reason fields are filled properly
     private func checkReasonFields() -> Bool {
-        return !((self.reasonDescription.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)!)
+        return !(self.reasonDescription.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)!
     }
     
-    //Add the language spoken by the doctor
+    // Add the language chosen by the doctor
     @IBAction func addLanguage(_ sender: Any) {
-        
         let l: Language = Language.getValueOf(languageName: SignUpProVC.languages[self.doctorLanguagesPicker.selectedRow(inComponent: 0)].trimmingCharacters(in: .whitespacesAndNewlines))!
         
-        //If already added
-        if(self.languages!.contains(l)) {
+        // If already added
+        if self.languages!.contains(l) {
             self.languagesErrorView.isHidden = false
             
             return
@@ -587,20 +594,19 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
         
         self.languagesErrorView.isHidden = true
         
-        //Add it to the list of educations
+        // Add it to the list of languages
         self.languages!.append(l)
         
-        //Add it to the view's list of educations
+        // Add it to the view's list of languages
         self.languagesTableView.reloadData()
     }
     
-    // Add the paiement option chosen by the doctor
+    // Add the payment option chosen by the doctor
     @IBAction func addPaymentOption(_ sender: Any) {
-        
         let po: PaymentOption = PaymentOption.getValueOf(paymentOptionName: SignUpProVC.paymentOptions[self.doctorPaymentOptionsPicker.selectedRow(inComponent: 0)].trimmingCharacters(in: .whitespacesAndNewlines))!
         
-        //If already added
-        if(self.paymentOptions!.contains(po)) {
+        // If already added
+        if self.paymentOptions!.contains(po) {
             self.paymentOptionsErrorView.isHidden = false
             
             return
@@ -608,29 +614,89 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
         
         self.paymentOptionsErrorView.isHidden = true
         
-        //Add it to the list of educations
+        // Add it to the list of payment options
         self.paymentOptions!.append(po)
         
-        //Add it to the view's list of educations
+        // Add it to the view's list of payment options
         self.paymentOptionsTableView.reloadData()
     }
     
     // Execute the signup process
     @IBAction func signUpPro(_ sender: Any) {
-        if (!allFieldsCorrect()) {
+        if self.loggedUser != nil {
+            self.updateProfilePro()
+            
+            return
+        }
+        
+        self.signupPro()
+    }
+    
+    // Update the logged-in doctor profile
+    private func updateProfilePro() {
+        if !allFieldsCorrect(forUpdate: true) {
             self.displayErrorMsg()
             
             return
         }
         
+        if !self.doctorPwd.text!.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            let inputPwd = self.doctorPwd.text!
+            let salt = EncryptionService.SALT()
+            self.loggedUser!.setPwdSalt(pwdSalt: salt)
+            self.loggedUser!.setPwd(pwd: EncryptionService.SHA1(string: inputPwd + salt))
+        }
         
-        //hash the password and salt
+        let address: Address = self.loggedUser!.getAddress()!
+        address.setStreet1(street1: StringFormatterService.CapitalizeOnly(str: self.doctorStreet1.text!.trimmingCharacters(in: .whitespacesAndNewlines)))
+        address.setStreet2(street2: StringFormatterService.CapitalizeOnly(str: self.doctorStreet2.text!.trimmingCharacters(in: .whitespacesAndNewlines)))
+        address.setCity(city: StringFormatterService.CapitalizeOnly(str: self.doctorCity.text!.trimmingCharacters(in: .whitespacesAndNewlines)))
+        address.setZip(zip: self.doctorZip.text!.trimmingCharacters(in: .whitespacesAndNewlines))
+        address.setCountry(country: StringFormatterService.Capitalize(str: self.doctorCountry.text!.trimmingCharacters(in: .whitespacesAndNewlines)))
+        
+        self.loggedUser!.setLastname(lastname: StringFormatterService.CapitalizeOnly(str: self.doctorLastName.text!.trimmingCharacters(in: .whitespacesAndNewlines)))
+        self.loggedUser!.setFirstname(firstname: StringFormatterService.CapitalizeOnly(str: self.doctorFirstName.text!.trimmingCharacters(in: .whitespacesAndNewlines)))
+        self.loggedUser!.setEmail(email: self.doctorEmail.text!.trimmingCharacters(in: .whitespacesAndNewlines))
+        self.loggedUser!.setLastLogin(lastLogin: DateTimeService.GetCurrentDateTime())
+        // self.loggedUser!.setPicture(picture: self.doctorProfilePicture.name)
+        (self.loggedUser! as! Doctor).setSpeciality(speciality: StringFormatterService.CapitalizeOnly(str: self.doctorSpeciality.text!.trimmingCharacters(in: .whitespacesAndNewlines)))
+        (self.loggedUser! as! Doctor).setDescription(description: StringFormatterService.CapitalizeOnly(str: self.doctorDescription.text!.trimmingCharacters(in: .whitespacesAndNewlines)))
+        (self.loggedUser! as! Doctor).setContactNumber(contactNumber: StringFormatterService.CapitalizeOnly(str: self.doctorContactNumber.text!.trimmingCharacters(in: .whitespacesAndNewlines)))
+        (self.loggedUser! as! Doctor).setUnderAgreement(underAgreement: self.isUnderAgreement.isOn)
+        (self.loggedUser! as! Doctor).setHealthInsuranceCard(healthInsuranceCard: self.isHealthInsuranceCard.isOn)
+        (self.loggedUser! as! Doctor).setThirdPartyPayment(thirdPartyPayment: self.isThirdPartyPayment.isOn)
+        // (self.loggedUser! as! Doctor).setHeader(header: self.doctorHeader.name)
+        (self.loggedUser! as! Doctor).setAvailabilities(availabilities: self.availabilities)
+        (self.loggedUser! as! Doctor).setLanguages(languages: self.languages)
+        (self.loggedUser! as! Doctor).setPaymentOptions(paymentOptions: self.paymentOptions)
+        (self.loggedUser! as! Doctor).setReasons(reasons: self.reasons)
+        (self.loggedUser! as! Doctor).setEducations(educations: self.educations)
+        (self.loggedUser! as! Doctor).setExperiences(experiences: self.experiences)
+        
+        if self.doctorDbHelper.updateDoctor(doctor: self.loggedUser as! Doctor) {
+            self.displaySuccessMsg()
+            
+            return
+        }
+        
+        self.displayErrorMsg()
+        self.loggedUser = self.loggedUser!.update()
+    }
+    
+    // Sign-up the doctor
+    private func signupPro() {
+        if !allFieldsCorrect() {
+            self.displayErrorMsg()
+            
+            return
+        }
+        
         let inputPwd = self.doctorPwd.text!
-        let salt = inputPwd.isEmpty ? self.loggedUser?.getPwdSalt() : UUID().uuidString
-        let hashedInputPwd = inputPwd.isEmpty ? self.loggedUser?.getPwd() : inputPwd + salt! //TO DO: hash it with SHA1
+        let salt = EncryptionService.SALT()
+        let hashedInputPwd = EncryptionService.SHA1(string: inputPwd + salt)
         
         let address: Address = Address(
-            id: self.loggedUser == nil ? -1 : (self.loggedUser?.GetAddressId())!,
+            id: -1,
             street1: StringFormatterService.CapitalizeOnly(str: self.doctorStreet1.text!.trimmingCharacters(in: .whitespacesAndNewlines)),
             street2: StringFormatterService.CapitalizeOnly(str: self.doctorStreet2.text!.trimmingCharacters(in: .whitespacesAndNewlines)),
             city: StringFormatterService.CapitalizeOnly(str: self.doctorCity.text!.trimmingCharacters(in: .whitespacesAndNewlines)),
@@ -639,12 +705,12 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
         )
         
         let doctor: Doctor = Doctor(
-            id: self.loggedUser == nil ? -1 : (self.loggedUser?.getId())!,
+            id: -1,
             lastname: StringFormatterService.CapitalizeOnly(str: self.doctorLastName.text!.trimmingCharacters(in: .whitespacesAndNewlines)),
             firstname: StringFormatterService.CapitalizeOnly(str: self.doctorFirstName.text!.trimmingCharacters(in: .whitespacesAndNewlines)),
             email: self.doctorEmail.text!.trimmingCharacters(in: .whitespacesAndNewlines),
-            pwd: hashedInputPwd!,
-            pwdSalt: salt!,
+            pwd: hashedInputPwd,
+            pwdSalt: salt,
             lastLogin: DateTimeService.GetCurrentDateTime(),
             picture: "",
             address: address,
@@ -663,38 +729,30 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
             experiences: self.experiences
         )
         
-        if self.loggedUser == nil {
-            if self.doctorDbHelper.createDoctor(doctor: doctor) {
-                self.displaySuccessMsg()
-                
-                return
-            }
-        } else {
-            if self.doctorDbHelper.updateDoctor(doctor: doctor) {
-                self.displaySuccessMsg()
-                self.loggedUser = doctor
-                
-                return
-            }
+        if self.doctorDbHelper.createDoctor(doctor: doctor) {
+            self.displaySuccessMsg()
+            
+            return
         }
         
         self.displayErrorMsg()
     }
     
     // Check that all the fields are filled properly
-    private func allFieldsCorrect() -> Bool {
-        let isOneFieldEmpty: Bool = self.loggedUser == nil
+    private func allFieldsCorrect(forUpdate: Bool = false) -> Bool {
+        let isOneFieldEmpty: Bool = !forUpdate
             ? ((doctorLastName.text?.isEmpty)! || (doctorFirstName.text?.isEmpty)! || (doctorSpeciality.text?.isEmpty)! || (doctorEmail.text?.isEmpty)! || (doctorPwd.text?.isEmpty)! || (doctorConfirmPwd.text?.isEmpty)! || (doctorContactNumber.text?.isEmpty)! || (doctorStreet1.text?.isEmpty)! || (doctorCity.text?.isEmpty)! || (doctorZip.text?.isEmpty)! || (doctorCountry.text?.isEmpty)!)
             : ((doctorLastName.text?.isEmpty)! || (doctorFirstName.text?.isEmpty)! || (doctorSpeciality.text?.isEmpty)! || (doctorEmail.text?.isEmpty)! || (doctorContactNumber.text?.isEmpty)! || (doctorStreet1.text?.isEmpty)! || (doctorCity.text?.isEmpty)! || (doctorZip.text?.isEmpty)! || (doctorCountry.text?.isEmpty)!)
         
         // One of the fields is empty
-        if (isOneFieldEmpty) { return false }
+        if isOneFieldEmpty { return false }
         
-        if self.loggedUser == nil || (self.loggedUser != nil && !(self.doctorPwd.text?.isEmpty)!) {
-            let bothPwdEqual: Bool = (doctorPwd.text?.elementsEqual(doctorConfirmPwd.text!))!
+        if !forUpdate
+            || (forUpdate && !self.doctorPwd.text!.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty) {
+            let bothPwdEqual: Bool = doctorPwd.text! == doctorConfirmPwd.text!
             
-            //Both passwords do not correspond
-            if (!bothPwdEqual) { return false }
+            // Both passwords do not correspond
+            if !bothPwdEqual { return false }
         }
         
         // TO DO: Check the Birthdate format
