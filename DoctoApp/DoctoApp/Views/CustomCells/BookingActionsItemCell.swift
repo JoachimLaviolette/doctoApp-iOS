@@ -72,10 +72,10 @@ class BookingActionsItemCell: UITableViewCell {
     }
     
     @IBAction func updateBooking(_ sender: UIButton) {
-        self.delegator.updateBooking(booking: self.booking, loggedUser: self.loggedUser)
+        self.delegator.updateBooking(booking: self.booking)
     }
     
     @IBAction func cancelBooking(_ sender: UIButton) {
-        self.delegator.cancelBooking(booking: self.booking, loggedUser: self.loggedUser)
+        self.delegator.cancelBooking(booking: self.booking)
     }
 }

@@ -95,7 +95,7 @@ class BookingDatabaseHelper: DoctoAppDatabaseHelper {
     }
     
     // Drop the given booking from the database
-    private func dropBooking(booking: Booking) -> Bool {
+    func dropBooking(booking: Booking) -> Bool {
         self.initDb()
         
         let filter = BookingDatabaseHelper.table.filter(BookingDatabaseHelper.id == Int64(booking.getId()))

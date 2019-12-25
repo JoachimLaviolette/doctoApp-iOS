@@ -9,11 +9,15 @@
 import UIKit
 
 protocol MyBookingDetailsActionsDelegator {
-    func updateBooking(booking: Booking, loggedUser: Resident?)
-    func cancelBooking(booking: Booking, loggedUser: Resident?)
+    func updateBooking(booking: Booking)
+    func cancelBooking(booking: Booking)
 }
 
-class MyBookingDetailsVC: UIViewController, ShowDoctorProfileDelegator, MyBookingDetailsActionsDelegator {
+protocol PopUpBookingCancellationActionDelegator {
+    func confirmBookingCancellation()
+}
+
+class MyBookingDetailsVC: UIViewController, ShowDoctorProfileDelegator, MyBookingDetailsActionsDelegator, PopUpBookingCancellationActionDelegator {
     @IBOutlet weak var headerDashboardSubtitle: HeaderDashboardSubtitleView!
     @IBOutlet weak var bookingDetailsView: BookingDetailsView!
     
@@ -24,6 +28,7 @@ class MyBookingDetailsVC: UIViewController, ShowDoctorProfileDelegator, MyBookin
     private static let doctorProfileSegueIdentifier = "doctor_profile_segue"
     private static let updateBookingSegueIdentifier = "update_booking_segue"
     private static let cancelBookingSegueIdentifier = "cancel_booking_segue"
+    private static let myBookingsSegueIdentifier: String = "my_bookings_segue"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,14 +63,16 @@ class MyBookingDetailsVC: UIViewController, ShowDoctorProfileDelegator, MyBookin
             doctorProfileVC.setData(doctor: self.doctor!)
         } else if segue.identifier == MyBookingDetailsVC.updateBookingSegueIdentifier && segue.destination is ChooseAvailabilityVC {
             let chooseAvailabilityVC = segue.destination as! ChooseAvailabilityVC
-            chooseAvailabilityVC.setData(booking: self.booking, isBookingUpdate: true)
-        } else if segue.identifier == MyBookingDetailsVC.cancelBookingSegueIdentifier && segue.destination is ChooseAvailabilityVC {
-            let popupVC = segue.destination as! PopUpVC
-            /*popupVC.setData(
-                title: Strings.PATIENT_APPOINTMENT_ITEM_CANCEL_APPOINTMENT,
-                content: Strings.SHOW_BOOKING_APPOINTMENT_CANCEL_APPOINTMENT,
-                delegate: self
-            )*/
+            chooseAvailabilityVC.setData(
+                booking: self.booking,
+                isBookingUpdate: true
+            )
+        } else if segue.identifier == MyBookingDetailsVC.cancelBookingSegueIdentifier && segue.destination is PopUpBookingCancellationVC {
+            let popupBookingCancellationVC = segue.destination as! PopUpBookingCancellationVC
+            popupBookingCancellationVC.setData(
+                booking: self.booking,
+                delegator: self
+            )
         }
     }
     
@@ -97,16 +104,20 @@ class MyBookingDetailsVC: UIViewController, ShowDoctorProfileDelegator, MyBookin
     }
     
     // Update the given booking
-    func updateBooking(booking: Booking, loggedUser: Resident? = nil) {
+    func updateBooking(booking: Booking) {
         self.booking = booking
-        self.loggedUser = loggedUser
         performSegue(withIdentifier: MyBookingDetailsVC.updateBookingSegueIdentifier, sender: nil)
     }
     
     // Cancel the given booking
-    func cancelBooking(booking: Booking, loggedUser: Resident? = nil) {
+    func cancelBooking(booking: Booking) {
         self.booking = booking
-        self.loggedUser = loggedUser
         performSegue(withIdentifier: MyBookingDetailsVC.cancelBookingSegueIdentifier, sender: nil)
+    }
+    
+    // Perform the action triggered when CONFIRM button is clicked from the called popup
+    func confirmBookingCancellation() {
+        BookingDatabaseHelper().dropBooking(booking: self.booking)
+        performSegue(withIdentifier: MyBookingDetailsVC.myBookingsSegueIdentifier, sender: nil)
     }
 }

@@ -81,8 +81,8 @@ class LoginVC: UIViewController, PopUpActionDelegator {
             && segue.destination is PopUpVC {
             let popUpVC = segue.destination as! PopUpVC
             popUpVC.setData(
-                title: Strings.LOGIN_DELETE_ACCOUNT_MSG_TITLE,
-                content: Strings.LOGIN_DELETE_ACCOUNT_MSG_CONTENT,
+                title: Strings.LOGIN_DELETE_ACCOUNT_POPUP_TITLE,
+                content: Strings.LOGIN_DELETE_ACCOUNT_POPUP_CONTENT,
                 delegate: self
             )
         }
@@ -157,10 +157,7 @@ class LoginVC: UIViewController, PopUpActionDelegator {
         self.deleteMyAccountBtn.imageView?.contentMode = .scaleAspectFit
         self.logoutBtn.imageView?.contentMode = .scaleAspectFit
         
-        self.myProfileBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 15, bottom: 30, right: 30)
-        self.myBookingsBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 15, bottom: 30, right: 30)
-        self.deleteMyAccountBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 15, bottom: 30, right: 30)
-        self.logoutBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 15, bottom: 30, right: 30)
+        self.setupButtonsIconsColors()
     }
     
     // Try to login as a patient
@@ -234,6 +231,8 @@ class LoginVC: UIViewController, PopUpActionDelegator {
         self.logoutBtn.isHidden = false
         self.signupSection.isHidden = true
         self.professionalSection.isHidden = true
+        
+        self.setupButtonsIconsColors()
     }
     
     // Display a error message after a unsuccessful login

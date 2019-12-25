@@ -294,6 +294,155 @@
             </objects>
             <point key="canvasLocation" x="2216.8000000000002" y="-1149.1754122938532"/>
         </scene>
+        <!--PopUpBookingCancellationVC-->
+        <scene sceneID="eY0-3Z-fMp">
+            <objects>
+                <viewController id="Jwa-Xp-zZI" userLabel="PopUpBookingCancellationVC" customClass="PopUpBookingCancellationVC" customModule="DoctoApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <visualEffectView key="view" opaque="NO" contentMode="scaleToFill" id="PoM-TT-K4f">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ddU-Yh-PJs">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eWc-05-MHa">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                                    <connections>
+                                        <action selector="dismissPopUp:" destination="Jwa-Xp-zZI" eventType="touchUpInside" id="54L-su-eAK"/>
+                                    </connections>
+                                </button>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KCp-pj-5Uw">
+                                    <rect key="frame" x="15" y="193.5" width="345" height="260"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="5cQ-fQ-iYv">
+                                            <rect key="frame" x="0.0" y="0.0" width="345" height="260"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6rv-JL-vuK">
+                                                    <rect key="frame" x="0.0" y="0.0" width="345" height="50"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cancel your booking" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yiW-12-hQy">
+                                                            <rect key="frame" x="89.5" y="14.5" width="166.5" height="21"/>
+                                                            <fontDescription key="fontDescription" name="Roboto-Black" family="Roboto" pointSize="18"/>
+                                                            <color key="textColor" name="login_delete_account_popup_title_color"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" name="login_delete_account_popup_title_background_color"/>
+                                                    <constraints>
+                                                        <constraint firstItem="yiW-12-hQy" firstAttribute="centerX" secondItem="6rv-JL-vuK" secondAttribute="centerX" id="bHp-1T-QZW"/>
+                                                        <constraint firstAttribute="height" constant="50" id="r6E-cB-oLW"/>
+                                                        <constraint firstItem="yiW-12-hQy" firstAttribute="centerY" secondItem="6rv-JL-vuK" secondAttribute="centerY" id="tEb-Nt-BV6"/>
+                                                    </constraints>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do you want to cancel the following booking?" textAlignment="center" lineBreakMode="clip" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mSu-xQ-Xeo">
+                                                    <rect key="frame" x="15" y="70" width="315" height="15.5"/>
+                                                    <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                                    <color key="textColor" name="signup_input_text_color"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="on {booking_fulldate}" lineBreakMode="clip" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ob8-5b-2Uc">
+                                                    <rect key="frame" x="111" y="105.5" width="123.5" height="15.5"/>
+                                                    <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="13"/>
+                                                    <color key="textColor" name="signup_login_link_color"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="at {booking_time}" lineBreakMode="clip" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DBt-Hc-1AQ">
+                                                    <rect key="frame" x="121.5" y="141" width="102" height="15.5"/>
+                                                    <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="13"/>
+                                                    <color key="textColor" name="signup_login_link_color"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="with Dr {doctor_fullname}" lineBreakMode="clip" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhu-IP-lE4">
+                                                    <rect key="frame" x="99" y="176.5" width="147.5" height="15.5"/>
+                                                    <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="13"/>
+                                                    <color key="textColor" name="signup_login_link_color"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="dFn-h4-4GR">
+                                                    <rect key="frame" x="15" y="212" width="315" height="48"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mse-0k-ZAT">
+                                                            <rect key="frame" x="0.0" y="6.5" width="150" height="35"/>
+                                                            <color key="backgroundColor" name="login_delete_account_btn_background_color"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="35" id="NSS-i2-nk9"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="13"/>
+                                                            <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
+                                                            <state key="normal" title="DISCARD">
+                                                                <color key="titleColor" name="login_delete_account_popup_btn_text"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="discard:" destination="Jwa-Xp-zZI" eventType="touchUpInside" id="u8n-CI-vZo"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Jl-yI-3NZ">
+                                                            <rect key="frame" x="165" y="6.5" width="150" height="35"/>
+                                                            <color key="backgroundColor" name="login_delete_account_btn_background_color"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="35" id="nHx-D3-mIN"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="13"/>
+                                                            <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
+                                                            <state key="normal" title="CONFIRM">
+                                                                <color key="titleColor" name="login_delete_account_popup_btn_text"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="confirm:" destination="Jwa-Xp-zZI" eventType="touchUpInside" id="ZtZ-8R-se6"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="mSu-xQ-Xeo" firstAttribute="leading" secondItem="5cQ-fQ-iYv" secondAttribute="leading" constant="15" id="1aH-8h-iaB"/>
+                                                <constraint firstAttribute="trailing" secondItem="mSu-xQ-Xeo" secondAttribute="trailing" constant="15" id="5ib-5m-dCE"/>
+                                                <constraint firstItem="6rv-JL-vuK" firstAttribute="leading" secondItem="5cQ-fQ-iYv" secondAttribute="leading" id="BGh-Hc-SOi"/>
+                                                <constraint firstAttribute="height" constant="260" id="Lf1-Ib-g1l"/>
+                                                <constraint firstAttribute="trailing" secondItem="6rv-JL-vuK" secondAttribute="trailing" id="RSF-Sr-Rvy"/>
+                                                <constraint firstAttribute="trailing" secondItem="dFn-h4-4GR" secondAttribute="trailing" constant="15" id="h4t-oF-L14"/>
+                                                <constraint firstItem="dFn-h4-4GR" firstAttribute="leading" secondItem="5cQ-fQ-iYv" secondAttribute="leading" constant="15" id="w8J-JU-3XQ"/>
+                                            </constraints>
+                                        </stackView>
+                                    </subviews>
+                                    <color key="backgroundColor" name="login_delete_account_popup_background_color"/>
+                                    <constraints>
+                                        <constraint firstItem="5cQ-fQ-iYv" firstAttribute="leading" secondItem="KCp-pj-5Uw" secondAttribute="leading" id="ENJ-TV-LOK"/>
+                                        <constraint firstAttribute="height" constant="260" id="F2c-Iz-8Jp"/>
+                                        <constraint firstAttribute="trailing" secondItem="5cQ-fQ-iYv" secondAttribute="trailing" id="TDr-lx-rAa"/>
+                                        <constraint firstItem="5cQ-fQ-iYv" firstAttribute="centerY" secondItem="KCp-pj-5Uw" secondAttribute="centerY" id="Z3g-g3-wuQ"/>
+                                        <constraint firstItem="5cQ-fQ-iYv" firstAttribute="centerX" secondItem="KCp-pj-5Uw" secondAttribute="centerX" id="cbK-cO-Zu2"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="KCp-pj-5Uw" secondAttribute="trailing" constant="15" id="7nI-SD-N0f"/>
+                                <constraint firstAttribute="trailing" secondItem="eWc-05-MHa" secondAttribute="trailing" id="AXF-Ru-IcF"/>
+                                <constraint firstItem="eWc-05-MHa" firstAttribute="top" secondItem="ddU-Yh-PJs" secondAttribute="top" id="DZg-U0-68Z"/>
+                                <constraint firstItem="eWc-05-MHa" firstAttribute="leading" secondItem="ddU-Yh-PJs" secondAttribute="leading" id="HNY-LO-UYs"/>
+                                <constraint firstItem="KCp-pj-5Uw" firstAttribute="leading" secondItem="ddU-Yh-PJs" secondAttribute="leading" constant="15" id="JvI-Uu-m9W"/>
+                                <constraint firstItem="KCp-pj-5Uw" firstAttribute="centerX" secondItem="ddU-Yh-PJs" secondAttribute="centerX" id="MEL-ug-2QD"/>
+                                <constraint firstItem="KCp-pj-5Uw" firstAttribute="centerY" secondItem="ddU-Yh-PJs" secondAttribute="centerY" id="pBL-QB-SuO"/>
+                                <constraint firstAttribute="bottom" secondItem="eWc-05-MHa" secondAttribute="bottom" id="rfx-vd-g2c"/>
+                            </constraints>
+                        </view>
+                        <blurEffect style="dark"/>
+                    </visualEffectView>
+                    <navigationItem key="navigationItem" id="Qtg-96-WOa"/>
+                    <connections>
+                        <outlet property="bookingFullDate" destination="Ob8-5b-2Uc" id="vnz-2m-Edu"/>
+                        <outlet property="bookingTime" destination="DBt-Hc-1AQ" id="4Ox-ak-fjG"/>
+                        <outlet property="doctorFullname" destination="uhu-IP-lE4" id="IMg-Zb-WoQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="34U-aF-7fe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="636" y="-667.01649175412297"/>
+        </scene>
         <!--SearchVC-->
         <scene sceneID="7gg-mR-2Jc">
             <objects>
@@ -694,9 +843,9 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="35" id="5dA-3N-G03"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="13"/>
                                                             <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
-                                                            <state key="normal" title="Discard">
+                                                            <state key="normal" title="DISCARD">
                                                                 <color key="titleColor" name="login_delete_account_popup_btn_text"/>
                                                             </state>
                                                             <connections>
@@ -709,9 +858,9 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="35" id="Etz-aB-Htn"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="13"/>
                                                             <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
-                                                            <state key="normal" title="Confirm">
+                                                            <state key="normal" title="CONFIRM">
                                                                 <color key="titleColor" name="login_delete_account_popup_btn_text"/>
                                                             </state>
                                                             <connections>
@@ -753,8 +902,9 @@
                                 <constraint firstItem="Q0d-HW-KWU" firstAttribute="leading" secondItem="b5I-7s-xVe" secondAttribute="leading" id="swD-xY-EHz"/>
                             </constraints>
                         </view>
-                        <blurEffect style="light"/>
+                        <blurEffect style="dark"/>
                     </visualEffectView>
+                    <navigationItem key="navigationItem" id="AnY-ol-u9E"/>
                     <connections>
                         <outlet property="confirmButton" destination="U8s-VM-c6v" id="AXl-nQ-zE7"/>
                         <outlet property="discardButton" destination="BZf-GD-x9N" id="rFI-uJ-nNe"/>
@@ -2539,6 +2689,8 @@
                         <outlet property="headerDashboardSubtitle" destination="npC-0p-Mdn" id="d9d-xQ-xAf"/>
                         <segue destination="Zjk-GE-j9T" kind="show" identifier="doctor_profile_segue" id="1JN-jz-3OB"/>
                         <segue destination="Lay-2D-PJL" kind="show" identifier="update_booking_segue" id="qWN-j7-PVN"/>
+                        <segue destination="vCf-41-LEZ" kind="show" identifier="my_bookings_segue" id="jER-pD-wr8"/>
+                        <segue destination="Jwa-Xp-zZI" kind="presentation" identifier="cancel_booking_segue" id="fWt-Eg-o4d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gx5-dn-QE3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3097,10 +3249,10 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="qWN-j7-PVN"/>
-        <segue reference="kN0-Ap-c7W"/>
+        <segue reference="jER-pD-wr8"/>
         <segue reference="RId-5V-KQL"/>
         <segue reference="FUG-5J-oNA"/>
-        <segue reference="vYl-Oy-v9f"/>
+        <segue reference="kx4-9w-nVJ"/>
         <segue reference="dwy-YR-etg"/>
         <segue reference="1JN-jz-3OB"/>
     </inferredMetricsTieBreakers>
