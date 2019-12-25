@@ -41,7 +41,8 @@ class LoginVC: UIViewController, PopUpActionDelegator {
     private static let myProfileIcon = "ic_profile"
     private static let myBookingsIcon = "ic_bookings"
     private static let deleteMyAccountIcon = "ic_delete"
-    
+    private static let logoutBtnIcon = "ic_logout"
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initialize()
@@ -90,27 +91,32 @@ class LoginVC: UIViewController, PopUpActionDelegator {
         var myProfileBtnIcon: UIImage? = UIImage(named: LoginVC.myProfileIcon)
         var myBookingsBtnIcon: UIImage? = UIImage(named: LoginVC.myBookingsIcon)
         var deleteMyAccountBtnIcon: UIImage? = UIImage(named: LoginVC.deleteMyAccountIcon)
+        var logoutBtnIcon: UIImage? = UIImage(named: LoginVC.logoutBtnIcon)
 
         myProfileBtnIcon = myProfileBtnIcon?.withRenderingMode(.alwaysTemplate)
         myBookingsBtnIcon = myBookingsBtnIcon?.withRenderingMode(.alwaysTemplate)
         deleteMyAccountBtnIcon = deleteMyAccountBtnIcon?.withRenderingMode(.alwaysTemplate)
+        logoutBtnIcon = logoutBtnIcon?.withRenderingMode(.alwaysTemplate)
 
         self.myProfileBtn.setImage(myProfileBtnIcon, for: .normal)
         self.myBookingsBtn.setImage(myBookingsBtnIcon, for: .normal)
         self.deleteMyAccountBtn.setImage(deleteMyAccountBtnIcon, for: .normal)
-        
+        self.logoutBtn.setImage(logoutBtnIcon, for: .normal)
+
         self.myProfileBtn.tintColor = UIColor(hex: Colors.SIGNUP_TAKE_PICTURE_FROM_CAMERA_TEXT)
         self.myBookingsBtn.tintColor = UIColor(hex: Colors.SIGNUP_SELECT_PICTURE_FROM_GALLERY_TEXT)
         self.deleteMyAccountBtn.tintColor = UIColor(hex: Colors.SIGNUP_SELECT_PICTURE_FROM_GALLERY_TEXT)
-        
-        
+        self.logoutBtn.tintColor = UIColor(hex: Colors.SIGNUP_SELECT_PICTURE_FROM_GALLERY_TEXT)
+
         self.myProfileBtn.imageView?.contentMode = .scaleAspectFit
         self.myBookingsBtn.imageView?.contentMode = .scaleAspectFit
         self.deleteMyAccountBtn.imageView?.contentMode = .scaleAspectFit
+        self.logoutBtn.imageView?.contentMode = .scaleAspectFit
 
-        self.myProfileBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 10, bottom: 30, right: 30)
-        self.myBookingsBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 15, bottom: 30, right: 30)
-        self.deleteMyAccountBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 0, bottom: 30, right: 30)
+        self.myProfileBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 5, bottom: 30, right: 30)
+        self.myBookingsBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 5, bottom: 30, right: 30)
+        self.deleteMyAccountBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 5, bottom: 30, right: 30)
+        self.logoutBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 5, bottom: 30, right: 30)
     }
     
     // Set basic view content

@@ -16,6 +16,8 @@ protocol SignUpProVCDelegator {
 class SignUpProVC: UIViewController, SignUpProVCDelegator {
     @IBOutlet weak var scrollView: UIScrollView!
 
+    @IBOutlet weak var caption: UILabel!
+    
     @IBOutlet weak var feedbackMessage: FeedbackMessageView!
     
     @IBOutlet weak var doctorProfilePicture: UIImageView!
@@ -25,6 +27,12 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
     @IBOutlet weak var takeHeaderBtn: UIButton!
     @IBOutlet weak var selectPictureBtn: UIButton!
     @IBOutlet weak var takePictureBtn: UIButton!
+    @IBOutlet weak var addAvailabilityBtn: UIButton!
+    @IBOutlet weak var addReasonBtn: UIButton!
+    @IBOutlet weak var addEducationBtn: UIButton!
+    @IBOutlet weak var addExperienceBtn: UIButton!
+    @IBOutlet weak var addLanguageBtn: UIButton!
+    @IBOutlet weak var addPaymentOptionBtn: UIButton!
     
     @IBOutlet weak var doctorProfileSection: UIStackView!
     @IBOutlet weak var doctorEmail: UITextField!
@@ -81,7 +89,6 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
     @IBOutlet weak var paymentOptionsErrorIcon: UIImageView!
     @IBOutlet weak var paymentOptionsErrorMsg: UILabel!
     
-    
     @IBOutlet weak var doctorAddressSection: UIStackView!
     @IBOutlet weak var doctorStreet1: UITextField!
     @IBOutlet weak var doctorStreet2: UITextField!
@@ -91,7 +98,8 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
     
     @IBOutlet weak var signupBtn: UIButton!
     
-    @IBOutlet weak var privateSection: UIView!
+    @IBOutlet weak var signInSection: UIView!
+    @IBOutlet weak var signUpSection: UIView!
     
     private var loggedUser: Resident? = nil // can be retrieved from the user defaults
     private var doctor: Doctor?
@@ -132,17 +140,22 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
     
     private static let photoIcon = "ic_take_picture"
     private static let galleryIcon = "ic_add_image"
-    
+    private static let addIcon = "ic_add"
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.initialize()
     }
     
     private func initialize() {
         self.tryGetLoggedUser()
         
-        //intitalize different pickers
+        // Resize switches
+        self.isUnderAgreement.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
+        self.isThirdPartyPayment.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
+        self.isHealthInsuranceCard.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
+
+        // Take  in charge all pickers
         self.doctorLanguagesPicker.delegate = self
         self.doctorLanguagesPicker.dataSource = self
         self.doctorPaymentOptionsPicker.delegate = self
@@ -199,29 +212,55 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
     private func setupButtonsIconsColors() {
         var takePictureBtnIcon: UIImage? = UIImage(named: SignUpProVC.photoIcon)
         var selectFromGalleryIcon: UIImage? = UIImage(named: SignUpProVC.galleryIcon)
+        var addIcon: UIImage? = UIImage(named: SignUpProVC.addIcon)
         
         takePictureBtnIcon = takePictureBtnIcon?.withRenderingMode(.alwaysTemplate)
         selectFromGalleryIcon = selectFromGalleryIcon?.withRenderingMode(.alwaysTemplate)
+        addIcon = addIcon?.withRenderingMode(.alwaysTemplate)
 
         self.takePictureBtn.setImage(takePictureBtnIcon, for: .normal)
         self.selectPictureBtn.setImage(selectFromGalleryIcon, for: .normal)
         self.takeHeaderBtn.setImage(takePictureBtnIcon, for: .normal)
         self.selectHeaderBtn.setImage(selectFromGalleryIcon, for: .normal)
+        self.addAvailabilityBtn.setImage(addIcon, for: .normal)
+        self.addReasonBtn.setImage(addIcon, for: .normal)
+        self.addEducationBtn.setImage(addIcon, for: .normal)
+        self.addExperienceBtn.setImage(addIcon, for: .normal)
+        self.addLanguageBtn.setImage(addIcon, for: .normal)
+        self.addPaymentOptionBtn.setImage(addIcon, for: .normal)
         
         self.takePictureBtn.tintColor = UIColor(hex: Colors.SIGNUP_PRO_TAKE_PICTURE_FROM_CAMERA_TEXT)
         self.selectPictureBtn.tintColor = UIColor(hex: Colors.SIGNUP_PRO_SELECT_PICTURE_FROM_GALLERY_TEXT)
         self.takeHeaderBtn.tintColor = UIColor(hex: Colors.SIGNUP_PRO_TAKE_HEADER_FROM_CAMERA_TEXT)
         self.selectHeaderBtn.tintColor = UIColor(hex: Colors.SIGNUP_PRO_SELECT_HEADER_FROM_GALLERY_TEXT)
+        self.addAvailabilityBtn.tintColor = UIColor(hex: Colors.SIGNUP_PRO_SELECT_HEADER_FROM_GALLERY_TEXT)
+        self.addReasonBtn.tintColor = UIColor(hex: Colors.SIGNUP_PRO_SELECT_HEADER_FROM_GALLERY_TEXT)
+        self.addEducationBtn.tintColor = UIColor(hex: Colors.SIGNUP_PRO_SELECT_HEADER_FROM_GALLERY_TEXT)
+        self.addExperienceBtn.tintColor = UIColor(hex: Colors.SIGNUP_PRO_SELECT_HEADER_FROM_GALLERY_TEXT)
+        self.addLanguageBtn.tintColor = UIColor(hex: Colors.SIGNUP_PRO_SELECT_HEADER_FROM_GALLERY_TEXT)
+        self.addPaymentOptionBtn.tintColor = UIColor(hex: Colors.SIGNUP_PRO_SELECT_HEADER_FROM_GALLERY_TEXT)
         
         self.takePictureBtn.imageView?.contentMode = .scaleAspectFit
         self.selectPictureBtn.imageView?.contentMode = .scaleAspectFit
         self.takeHeaderBtn.imageView?.contentMode = .scaleAspectFit
         self.selectHeaderBtn.imageView?.contentMode = .scaleAspectFit
+        self.addAvailabilityBtn.imageView?.contentMode = .scaleAspectFit
+        self.addReasonBtn.imageView?.contentMode = .scaleAspectFit
+        self.addEducationBtn.imageView?.contentMode = .scaleAspectFit
+        self.addExperienceBtn.imageView?.contentMode = .scaleAspectFit
+        self.addLanguageBtn.imageView?.contentMode = .scaleAspectFit
+        self.addPaymentOptionBtn.imageView?.contentMode = .scaleAspectFit
         
         self.takePictureBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 15, bottom: 30, right: 30)
         self.selectPictureBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 15, bottom: 30, right: 30)
         self.takeHeaderBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 15, bottom: 30, right: 30)
         self.selectHeaderBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 15, bottom: 30, right: 30)
+        self.addAvailabilityBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: -5, bottom: 30, right: 30)
+        self.addReasonBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: -5, bottom: 30, right: 30)
+        self.addEducationBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: -5, bottom: 30, right: 30)
+        self.addExperienceBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: -5, bottom: 30, right: 30)
+        self.addLanguageBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: -5, bottom: 30, right: 30)
+        self.addPaymentOptionBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: -5, bottom: 30, right: 30)
     }
     
     private func setContent() {
@@ -232,7 +271,7 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
         self.displayExperienceError()
         self.displayLanguageError()
         self.displayPaymentOptionsError()
-        if (self.loggedUser != nil) { self.setSignupContextForDoctor()}
+        if self.loggedUser != nil { self.setSignupContextForDoctor() }
         else { self.setSignupContext() }
     }
     
@@ -289,7 +328,7 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
     private func setSignupContext() {
         self.doctorProfileSection.isHidden = false
         self.doctorAddressSection.isHidden = false
-        self.privateSection.isHidden = false
+        self.signUpSection.isHidden = false
         self.feedbackMessage.isHidden = true
         self.availibilityErrorView.isHidden = true
         self.reasonErrorView.isHidden = true
@@ -297,7 +336,7 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
         self.languagesErrorView.isHidden = true
         self.experienceErrorView.isHidden = true
         self.paymentOptionsErrorView.isHidden = true
-        self.signupBtn.setTitle(Strings.SIGNUP_PRO_BTN, for: .normal)
+        self.signupBtn.titleLabel!.text = Strings.SIGNUP_PRO_BTN.uppercased()
 
         self.doctorLastName.text = ""
         self.doctorFirstName.text = ""
@@ -329,10 +368,15 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
         
     // Set Sign up context for Doctor
     private func setSignupContextForDoctor() {
+        self.feedbackMessage.isHidden = true
+        self.caption.text = Strings.MY_PROFILE_PRO_CAPTION
+        self.signInSection.isHidden = true
+        self.signUpSection.isHidden = true
+        
         let doctor: Doctor = self.loggedUser as! Doctor
         self.doctorProfileSection.isHidden = false
         self.doctorAddressSection.isHidden = false
-        self.privateSection.isHidden = true
+        self.signUpSection.isHidden = true
         self.feedbackMessage.isHidden = true
         self.availibilityErrorView.isHidden = true
         self.reasonErrorView.isHidden = true
@@ -389,7 +433,7 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
             content: Strings.SIGNUP_PRO_SUCCESS_MSG_CONTENT,
             isErrorMsg: false
         )
-        self.privateSection.isHidden = true
+        self.signUpSection.isHidden = true
         self.scrollToTop()
     }
     
@@ -706,31 +750,30 @@ extension SignUpProVC: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if pickerView == self.doctorPaymentOptionsPicker {
-            
-            return SignUpProVC.paymentOptions.count
-        }
-        if pickerView == self.availibilityDayPicker {
-            
-            return SignUpProVC.days.count
-        }
-        return SignUpProVC.languages.count
+        if pickerView == self.doctorPaymentOptionsPicker { return SignUpProVC.paymentOptions.count }
+        if pickerView == self.availibilityDayPicker { return SignUpProVC.days.count }
         
+        return SignUpProVC.languages.count
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if pickerView == self.doctorPaymentOptionsPicker {
-            
-            return SignUpProVC.paymentOptions[row]
-        }
-        if pickerView == self.availibilityDayPicker {
-            
-            return SignUpProVC.days[row]
-        }
-        return SignUpProVC.languages[row]
+        if pickerView == self.doctorPaymentOptionsPicker { return SignUpProVC.paymentOptions[row] }
+        if pickerView == self.availibilityDayPicker { return SignUpProVC.days[row] }
         
+        return SignUpProVC.languages[row]
     }
-
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        var label = UILabel()
+        if let v = view as? UILabel { label = v }
+        label.font = UIFont (name: "Roboto", size: 14)
+        if pickerView == self.doctorPaymentOptionsPicker { label.text =  SignUpProVC.paymentOptions[row] }
+        else if pickerView == self.availibilityDayPicker { label.text = SignUpProVC.days[row] }
+        else { label.text = SignUpProVC.languages[row] }
+        label.textAlignment = .center
+        
+        return label
+    }
 }
 
 extension SignUpProVC: UITableViewDelegate, UITableViewDataSource {
@@ -777,6 +820,6 @@ extension SignUpProVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 30
     }
 }

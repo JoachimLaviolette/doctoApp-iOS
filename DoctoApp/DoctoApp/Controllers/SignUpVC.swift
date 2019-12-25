@@ -12,6 +12,8 @@ import UIKit
 class SignUpVC: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     
+    @IBOutlet weak var caption: UILabel!
+    
     @IBOutlet weak var feedbackMessage: FeedbackMessageView!
     
     @IBOutlet weak var patientProfilePicture: UIImageView!
@@ -32,6 +34,9 @@ class SignUpVC: UIViewController {
     @IBOutlet weak var patientZip: UITextField!
     @IBOutlet weak var patientCountry: UITextField!
     @IBOutlet weak var signupBtn: UIButton!
+    
+    @IBOutlet weak var signInSection: UIView!
+    @IBOutlet weak var signUpProSection: UIView!
     
     private var patientDbHelper: PatientDatabaseHelper = PatientDatabaseHelper()
     private var patient: Patient?
@@ -98,7 +103,7 @@ class SignUpVC: UIViewController {
     
     private func setSignupContext() {
         self.feedbackMessage.isHidden = true
-        self.signupBtn.setTitle(Strings.SIGNUP_PRO_BTN, for: .normal)
+        self.signupBtn.titleLabel!.text = Strings.SIGNUP_BTN.uppercased()
         
         self.patientEmail.text = ""
         self.patientFirstName.text = ""
@@ -115,8 +120,12 @@ class SignUpVC: UIViewController {
     }
     
     private func setSignupContextForPatient() {
-        let patient: Patient = self.loggedUser as! Patient
         self.feedbackMessage.isHidden = true
+        self.caption.text = Strings.MY_PROFILE_CAPTION
+        self.signInSection.isHidden = true
+        self.signUpProSection.isHidden = true
+        
+        let patient: Patient = self.loggedUser as! Patient
         self.signupBtn.titleLabel!.text = Strings.MY_PROFILE_PRO_UPDATE_BTN.uppercased()
         
         if patient.getPicture() != nil {
