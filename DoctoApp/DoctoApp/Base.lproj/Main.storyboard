@@ -3027,11 +3027,11 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8zp-CG-I0h" customClass="BookingDetailsView" customModule="DoctoApp" customModuleProvider="target">
-                                <rect key="frame" x="20" y="278" width="335" height="144"/>
+                                <rect key="frame" x="20" y="278" width="335" height="154"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1S9-nJ-lCk">
-                                <rect key="frame" x="20" y="442" width="335" height="40"/>
+                                <rect key="frame" x="20" y="452" width="335" height="30"/>
                                 <color key="backgroundColor" name="confirm_booking_my_bookings_btn_background"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="4Ok-lw-pfb"/>

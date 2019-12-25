@@ -7,15 +7,12 @@
 //
 
 import Foundation
+import CryptoSwift
 
 class EncryptionService {
     // SHA1 the given string
     static func SHA1(string: String) -> String {
-        var encryptedString: String = string
-        
-
-
-        return encryptedString
+        return string.sha1()
     }
 
     // Create a unique random and ecrypted salt
