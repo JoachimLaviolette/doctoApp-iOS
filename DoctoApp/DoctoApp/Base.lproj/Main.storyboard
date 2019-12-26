@@ -2709,6 +2709,7 @@
                         <segue destination="Lay-2D-PJL" kind="show" identifier="update_booking_segue" id="qWN-j7-PVN"/>
                         <segue destination="vCf-41-LEZ" kind="show" identifier="my_bookings_segue" id="jER-pD-wr8"/>
                         <segue destination="Jwa-Xp-zZI" kind="presentation" identifier="cancel_booking_segue" id="fWt-Eg-o4d"/>
+                        <segue destination="7wN-8F-i2Q" kind="show" identifier="login_segue" id="pT9-GA-gd6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gx5-dn-QE3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2763,6 +2764,7 @@
                         <outlet property="feedbackMessage" destination="New-og-lnm" id="VuC-27-6Xx"/>
                         <outlet property="headerDashboardSubtitle" destination="iaz-l7-HH7" id="YCg-Je-n8C"/>
                         <segue destination="OQH-WQ-HYo" kind="show" identifier="my_bookings_details_segue" id="VLW-8o-yev"/>
+                        <segue destination="7wN-8F-i2Q" kind="show" identifier="login_segue" id="FNn-bZ-tJN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vJb-Rr-YiA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2933,6 +2935,7 @@
                         <outlet property="headerDashboardSubtitle" destination="t68-vD-ROF" id="GKt-iX-DLl"/>
                         <segue destination="Tvc-vO-d1A" kind="show" identifier="confirm_booking_segue" id="TYY-H7-oAH"/>
                         <segue destination="vCf-41-LEZ" kind="show" identifier="my_bookings_segue" id="8AL-w0-53o"/>
+                        <segue destination="7wN-8F-i2Q" kind="show" identifier="login_segue" id="2AK-wV-LxA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ewi-KM-bqF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3015,6 +3018,7 @@
                         <outlet property="headerDashboardSubtitle" destination="9Qg-f3-ohx" id="zKR-91-FU9"/>
                         <outlet property="reasonList" destination="FNB-2K-KUO" id="C1M-be-3ae"/>
                         <segue destination="Lay-2D-PJL" kind="show" identifier="choose_availability_segue" id="cMQ-Zl-GBo"/>
+                        <segue destination="7wN-8F-i2Q" kind="show" identifier="login_segue" id="I5H-xK-Tcm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8HX-DG-GsB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3089,6 +3093,7 @@
                         <outlet property="headerDashboard" destination="vOL-09-IDO" id="7QI-oR-0Eo"/>
                         <outlet property="myBookingsBtn" destination="1S9-nJ-lCk" id="6yO-lt-xwO"/>
                         <segue destination="Zjk-GE-j9T" kind="show" identifier="doctor_profile_segue" id="UeG-4a-PBU"/>
+                        <segue destination="7wN-8F-i2Q" kind="show" identifier="login_segue" id="zqi-7j-ent"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x3Y-Jm-6Iv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3265,11 +3270,11 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="qWN-j7-PVN"/>
-        <segue reference="kN0-Ap-c7W"/>
+        <segue reference="XWw-dY-CRF"/>
         <segue reference="73u-aW-kbK"/>
         <segue reference="FUG-5J-oNA"/>
         <segue reference="vYl-Oy-v9f"/>
-        <segue reference="zNH-Ug-xTu"/>
-        <segue reference="1JN-jz-3OB"/>
+        <segue reference="zqi-7j-ent"/>
+        <segue reference="UeG-4a-PBU"/>
     </inferredMetricsTieBreakers>
 </document>

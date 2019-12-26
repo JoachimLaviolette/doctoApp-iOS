@@ -29,7 +29,6 @@ class ChooseAvailabilityVC: UIViewController, ChooseAvailabilityDelegator {
 
     private static let weeksNumber: Int = 2
     
-    private static let headerTitle: String = "Book an appointment"
     private static let availabilitiesForDayItemCellXibFile: String = "AvailabilitiesForDayItemCell"
     private static let confirmBookingSegueIdentifier: String = "confirm_booking_segue"
     private static let myBookingsSegueIdentifier: String = "my_bookings_segue"
@@ -50,8 +49,7 @@ class ChooseAvailabilityVC: UIViewController, ChooseAvailabilityDelegator {
         if self.isBookingUpdate! { self.availabilitiesForDay = self.doctor.getAvailabilitiesForDay(bookingFullDate: self.booking!.getFullDate()) }
         else { self.availabilitiesPerDay = self.doctor.getAvailabilitiesPerDay(weeksNumber: ChooseAvailabilityVC.weeksNumber) }
         
-        self.headerDashboardSubtitle.headerTitle.text = ChooseAvailabilityVC.headerTitle
-        self.headerDashboardSubtitle.headerSubtitle.text = self.doctor.getFullname()
+        self.setHeaderData()
     }
     
     // Try to get a logged user id from the user defaults
@@ -75,6 +73,15 @@ class ChooseAvailabilityVC: UIViewController, ChooseAvailabilityDelegator {
             let confirmBookingVC = segue.destination as! ConfirmBookingVC
             confirmBookingVC.setData(booking: self.booking!)
         }
+    }
+    
+    // Set header data
+    func setHeaderData() {
+        self.headerDashboardSubtitle.setData(
+            headerDelegator: self,
+            headerTitle: Strings.CHOOSE_DATE_TIME_TITLE_1,
+            headerSubtitle: self.doctor.getFullname()
+        )
     }
     
     // Set view data

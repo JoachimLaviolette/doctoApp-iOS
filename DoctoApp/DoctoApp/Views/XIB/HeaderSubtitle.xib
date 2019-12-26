@@ -36,6 +36,9 @@
                                     <rect key="frame" x="17" y="27" width="25" height="25"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" image="ic_home"/>
+                                    <connections>
+                                        <action selector="home:" destination="-1" eventType="touchUpInside" id="D5J-E2-t5Z"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" name="my_bookings_header_color"/>

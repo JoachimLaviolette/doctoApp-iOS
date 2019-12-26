@@ -46,9 +46,6 @@ class ChooseReasonVC: UIViewController {
         self.reasonList.separatorColor = UIColor(hex: Colors.FORGOT_PASSWORD_BACKGROUND)
         
         self.setHeaderData()
-
-        // Setup patient test model
-        // self.patient = PatientDatabaseHelper().getPatient(patientId: nil, email: "james.franco@gmail.com", fromDoctor: false)
     }
     
     // Try to get a logged user id from the user defaults
@@ -83,9 +80,12 @@ class ChooseReasonVC: UIViewController {
     }
     
     // Set header data
-    private func setHeaderData() {
-        self.headerDashboardSubtitle.headerTitle.text = ChooseReasonVC.headerTitle
-        self.headerDashboardSubtitle.headerSubtitle.text = self.doctor.getFullname()
+    func setHeaderData() {
+        self.headerDashboardSubtitle.setData(
+            headerDelegator: self,
+            headerTitle: Strings.CHOOSE_REASON_TITLE_1,
+            headerSubtitle: self.doctor.getFullname()
+        )
     }
 }
 

@@ -12,6 +12,8 @@ class HeaderDashboardView: UIView {
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var headerTitle: UILabel!
     
+    private var headerDelegator: HeaderDelegator! // must be set by the calling view
+    
     private static let xibFile: String = "HeaderDashboard"
     
     override init(frame: CGRect) {
@@ -30,5 +32,21 @@ class HeaderDashboardView: UIView {
         self.addSubview(self.contentView)
         self.contentView.frame = self.bounds
         self.contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+    }
+    
+    // Set view data
+    func setData(headerDelegator: HeaderDelegator, headerTitle: String) {
+        self.headerDelegator = headerDelegator
+        self.headerTitle.text = headerTitle
+    }
+    
+    // Action triggered when home button is clicked
+    @IBAction func home(_ sender: UIButton) {
+        self.headerDelegator.home()
+    }
+    
+    // Action triggered when dashboard button is clicked
+    @IBAction func dashboard(_ sender: UIButton) {
+        self.headerDelegator.dashboard()
     }
 }

@@ -77,7 +77,10 @@ class ConfirmBookingVC: UIViewController, ShowDoctorProfileDelegator {
     
     // Set header data
     private func setHeaderData() {
-        self.headerDashboard.headerTitle.text = Strings.CONFIRM_APPOINTMENT_HEADER_TITLE
+        self.headerDashboard.setData(
+            headerDelegator: self,
+            headerTitle: Strings.CONFIRM_APPOINTMENT_HEADER_TITLE
+        )
     }
     
     // Set view data

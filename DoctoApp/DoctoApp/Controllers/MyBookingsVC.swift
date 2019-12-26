@@ -78,9 +78,12 @@ class MyBookingsVC: UIViewController {
     }
     
     // Set header data
-    private func setHeaderData() {
-        self.headerDashboardSubtitle.headerTitle.text = self.loggedUser is Doctor ? Strings.MY_BOOKINGS_TITLE_DOCTOR : Strings.MY_BOOKINGS_TITLE_PATIENT
-        self.headerDashboardSubtitle.headerSubtitle.text = Strings.MY_BOOKINGS_SUBTITLE
+    func setHeaderData() {
+        self.headerDashboardSubtitle.setData(
+            headerDelegator: self,
+            headerTitle: self.loggedUser is Doctor ? Strings.MY_BOOKINGS_TITLE_DOCTOR : Strings.MY_BOOKINGS_TITLE_PATIENT,
+            headerSubtitle: Strings.MY_BOOKINGS_SUBTITLE
+        )
     }
 }
 

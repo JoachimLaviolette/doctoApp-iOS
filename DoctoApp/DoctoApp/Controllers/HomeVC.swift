@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol HeaderDelegator {
+    func home()
+    func dashboard()
+}
+
 class HomeVC: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -214,5 +219,20 @@ extension HomeVC: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         self.searchBar.endEditing(true)
         performSegue(withIdentifier: HomeVC.searchSegueIdentifier, sender: nil)
+    }
+}
+
+extension UIViewController: HeaderDelegator {
+    private static let loginSegueIdentifier: String = "login_segue"
+    
+    // Go to to root view
+    func home() {
+        self.dismiss(animated: true, completion: {})
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+    
+    // Go to dashboard view
+    func dashboard() {
+        performSegue(withIdentifier: UIViewController.loginSegueIdentifier, sender: nil)
     }
 }

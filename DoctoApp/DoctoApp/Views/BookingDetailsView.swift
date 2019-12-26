@@ -10,12 +10,12 @@ import UIKit
 
 class BookingDetailsView: UIView {
     @IBOutlet var contentView: UIView!
-    
     @IBOutlet weak var bookingFulldate: UILabel!
     @IBOutlet weak var bookingTime: UILabel!
     @IBOutlet weak var dataTable: UITableView!
-    var showDoctorProfileDelegator: ShowDoctorProfileDelegator? = nil // set by the calling view
-    var myBookingDetailsActionsDelegator: MyBookingDetailsActionsDelegator? = nil
+    
+    private var showDoctorProfileDelegator: ShowDoctorProfileDelegator? = nil // set by the calling view
+    private var myBookingDetailsActionsDelegator: MyBookingDetailsActionsDelegator? = nil
     
     private var booking: Booking! // must be set by the calling view
     private var doctor: Doctor! // set using the booking object in setData()

@@ -88,8 +88,11 @@ class MyBookingDetailsVC: UIViewController, ShowDoctorProfileDelegator, MyBookin
     
     // Set header data
     private func setHeaderData() {
-        self.headerDashboardSubtitle.headerTitle.text = Strings.SHOW_BOOKING_TITLE
-        self.headerDashboardSubtitle.headerSubtitle.text = Strings.SHOW_BOOKING_SUBTITLE
+        self.headerDashboardSubtitle.setData(
+            headerDelegator: self,
+            headerTitle: Strings.SHOW_BOOKING_TITLE,
+            headerSubtitle: Strings.SHOW_BOOKING_SUBTITLE
+        )
     }
     
     // Set view data
