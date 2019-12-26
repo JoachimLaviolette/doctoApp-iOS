@@ -233,7 +233,7 @@ extension DoctorProfileVC: UITableViewDelegate, UITableViewDataSource {
                     self.selectedCategoryContent = self.doctor.getDescription()
                     break
                 case 1:
-                    // self.selectedCategoryContent = self.doctor.getHoursAndContactsAsString() // not implented yet
+                    self.selectedCategoryContent = self.doctor.getContactNumber()
                     break
                 case 2:
                     self.selectedCategoryContent = self.doctor.getEducationsAsString()

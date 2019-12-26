@@ -43,8 +43,11 @@ class SignUpVC: UIViewController {
     
     private var picturePicker: UIImagePickerController!
     
-    private static let photoIcon = "ic_take_picture"
-    private static let galleryIcon = "ic_add_image"
+    private static let photoIcon: String = "ic_take_picture"
+    private static let galleryIcon: String = "ic_add_image"
+    
+    private static let regexBirthdate = "\\d{4}-(01|02|03|04|05|06|07|08|09|10|11|12)-\\d{2}"
+    private static let regexInsuranceNumber = "^[0-9]*$"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -282,13 +285,11 @@ class SignUpVC: UIViewController {
             if !bothPwdEqual { return false }
         }
         
-        // TO DO: Check the Birthdate format
-        /* let range = NSRange(location: 0, length: patientBirthDate.text!.utf16.count)
-        let regex = try! NSRegularExpression(pattern: "\\d{4}-{01|02|03|04|05|06|07|08|09|10|11|12}-\\d{2}")
-        let isBirthDateCorrectFormat = regex.firstMatch(in: patientBirthDate.text!, options: [], range: range) != nil
-        */
+        let isBirthdateConform = self.patientBirthDate.text! ~= SignUpVC.regexBirthdate
         
-        return true
+        if !isBirthdateConform { return false }
+        
+        return self.patientInsuranceNumber.text! ~= SignUpVC.regexInsuranceNumber
     }
     
     // Display success msg
@@ -341,5 +342,30 @@ extension SignUpVC: UINavigationControllerDelegate, UIImagePickerControllerDeleg
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
+    }
+}
+
+extension NSRegularExpression {
+    convenience init(_ pattern: String) {
+        do {
+            try self.init(pattern: pattern)
+        } catch {
+            preconditionFailure("Illegal regular expression: \(pattern).")
+        }
+    }
+}
+
+extension NSRegularExpression {
+    func matches(_ string: String) -> Bool {
+        let range = NSRange(location: 0, length: string.utf16.count)
+        return firstMatch(in: string, options: [], range: range) != nil
+    }
+}
+
+extension String {
+    static func ~= (lhs: String, rhs: String) -> Bool {
+        guard let regex = try? NSRegularExpression(pattern: rhs) else { return false }
+        let range = NSRange(location: 0, length: lhs.utf16.count)
+        return regex.firstMatch(in: lhs, options: [], range: range) != nil
     }
 }

@@ -141,10 +141,12 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
     static let oneColumnElementItemCellIdentifier: String = "signup_pro_one_column_element_item_cell"
     static let twoColumnsElementItemCellIdentifier: String = "signup_pro_two_columns_element_item_cell"
     
-    private static let photoIcon = "ic_take_picture"
-    private static let galleryIcon = "ic_add_image"
-    private static let addIcon = "ic_add"
+    private static let photoIcon: String = "ic_take_picture"
+    private static let galleryIcon: String = "ic_add_image"
+    private static let addIcon: String = "ic_add"
 
+    private static let regexContactNumber = "^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initialize()
@@ -665,7 +667,7 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
         // self.loggedUser!.setPicture(picture: self.doctorProfilePicture.name)
         (self.loggedUser! as! Doctor).setSpeciality(speciality: StringFormatterService.CapitalizeOnly(str: self.doctorSpeciality.text!.trimmingCharacters(in: .whitespacesAndNewlines)))
         (self.loggedUser! as! Doctor).setDescription(description: StringFormatterService.CapitalizeOnly(str: self.doctorDescription.text!.trimmingCharacters(in: .whitespacesAndNewlines)))
-        (self.loggedUser! as! Doctor).setContactNumber(contactNumber: StringFormatterService.CapitalizeOnly(str: self.doctorContactNumber.text!.trimmingCharacters(in: .whitespacesAndNewlines)))
+        (self.loggedUser! as! Doctor).setContactNumber(contactNumber: StringFormatterService.CapitalizeOnly(str: self.doctorContactNumber.text!.replacingOccurrences(of: " ", with: "")))
         (self.loggedUser! as! Doctor).setUnderAgreement(underAgreement: self.isUnderAgreement.isOn)
         (self.loggedUser! as! Doctor).setHealthInsuranceCard(healthInsuranceCard: self.isHealthInsuranceCard.isOn)
         (self.loggedUser! as! Doctor).setThirdPartyPayment(thirdPartyPayment: self.isThirdPartyPayment.isOn)
@@ -736,7 +738,7 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
             address: address,
             speciality: StringFormatterService.CapitalizeOnly(str: self.doctorSpeciality.text!.trimmingCharacters(in: .whitespacesAndNewlines)),
             description: StringFormatterService.CapitalizeOnly(str: self.doctorDescription.text!.trimmingCharacters(in: .whitespacesAndNewlines)),
-            contactNumber: StringFormatterService.CapitalizeOnly(str: self.doctorContactNumber.text!.trimmingCharacters(in: .whitespacesAndNewlines)),
+            contactNumber: StringFormatterService.CapitalizeOnly(str: self.doctorContactNumber.text!.replacingOccurrences(of: " ", with: "")),
             underAgreement: self.isUnderAgreement.isOn,
             healthInsuranceCard: self.isHealthInsuranceCard.isOn,
             thirdPartyPayment: self.isThirdPartyPayment.isOn,
@@ -791,13 +793,7 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
             if !bothPwdEqual { return false }
         }
         
-        // TO DO: Check the Birthdate format
-        /* let range = NSRange(location: 0, length: patientBirthDate.text!.utf16.count)
-         let regex = try! NSRegularExpression(pattern: "\\d{4}-{01|02|03|04|05|06|07|08|09|10|11|12}-\\d{2}")
-         let isBirthDateCorrectFormat = regex.firstMatch(in: patientBirthDate.text!, options: [], range: range) != nil
-         */
-        
-        return true
+        return self.doctorContactNumber.text! ~= SignUpProVC.regexContactNumber
     }
     
     
