@@ -34,6 +34,7 @@ class LoginVC: UIViewController, PopUpActionDelegator {
     
     private var loggedUser: Resident? = nil // set when a successful login was made
     private var toRedirect: Bool = false // can be set by the calling view
+    private var toRedirectDelegator: ToRedirectDelegator? = nil // can be set by the calling view
     
     private static let myBookingsSegueIdentifier: String = "my_bookings_segue"
     private static let deleteAccountSegueIdentifier: String = "delete_account_segue"
@@ -281,7 +282,7 @@ class LoginVC: UIViewController, PopUpActionDelegator {
     
     // Redirect the user to calling view
     private func redirectUser() {
-        
+        self.toRedirectDelegator?.redirect()
     }
     
     // Remove the logged user from the user defaults
@@ -332,5 +333,11 @@ class LoginVC: UIViewController, PopUpActionDelegator {
             title: Strings.LOGIN_DELETE_ACCOUNT_MSG_TITLE,
             content: Strings.LOGIN_DELETE_ACCOUNT_MSG_CONTENT
         )
+    }
+    
+    // Set controller data
+    func setData(toRedirect: Bool = false, toRedirectDelegator: ToRedirectDelegator? = nil) {
+        self.toRedirect = toRedirect
+        self.toRedirectDelegator = toRedirectDelegator
     }
 }

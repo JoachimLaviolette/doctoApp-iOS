@@ -78,9 +78,8 @@ class ChooseReasonVC: UIViewController {
     }
     
     // Set view data
-    func setData(doctor: Doctor, loggedUser: Resident? = nil) {
+    func setData(doctor: Doctor) {
         self.doctor = doctor
-        if loggedUser != nil { self.loggedUser = loggedUser }
     }
     
     // Set header data

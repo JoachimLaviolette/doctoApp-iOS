@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+protocol ToRedirectDelegator {
+    func redirect()
+}
+
 struct DoctorMainData {
     let sectionIcon: String!
     let sectionTitle: String!
@@ -20,7 +24,7 @@ struct DoctorSecondaryData {
     let sectionTitle: String!
 }
 
-class DoctorProfileVC: UIViewController {
+class DoctorProfileVC: UIViewController, ToRedirectDelegator {
     @IBOutlet weak var doctorPicture: UIImageView!
     @IBOutlet weak var doctorHeader: UIImageView!
     @IBOutlet weak var doctorFullname: UILabel!
@@ -105,13 +109,17 @@ class DoctorProfileVC: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == DoctorProfileVC.chooseReasonSegueIdentifier
+        if segue.identifier == DoctorProfileVC.loginSegueIdentifier
+            && segue.destination is LoginVC {
+            let loginVC = segue.destination as! LoginVC
+            loginVC.setData(
+                toRedirect: true,
+                toRedirectDelegator: self
+            )
+        } else if segue.identifier == DoctorProfileVC.chooseReasonSegueIdentifier
             && segue.destination is ChooseReasonVC {
             let chooseReasonVC = segue.destination as! ChooseReasonVC
-            chooseReasonVC.setData(
-                doctor: doctor,
-                loggedUser: self.loggedUser
-            )
+            chooseReasonVC.setData(doctor: doctor)
         } else if segue.identifier == DoctorProfileVC.expandDataSegueIdentifier 
             && segue.destination is PopUpVC {
             let popupVC = segue.destination as! PopUpVC
@@ -185,6 +193,22 @@ class DoctorProfileVC: UIViewController {
             )
         ]
     }
+    
+    // Action triggered when book appointment online button is clicked
+    @IBAction func bookAppointment(_ sender: UIButton) {
+        if self.loggedUser != nil {
+            performSegue(withIdentifier: DoctorProfileVC.chooseReasonSegueIdentifier, sender: nil)
+        } else {
+            performSegue(withIdentifier: DoctorProfileVC.loginSegueIdentifier, sender: nil)
+        }
+    }
+    
+    // Redirect the logged user to ChooseReasonVC
+    func redirect() {
+        self.tryGetLoggedUser()
+        performSegue(withIdentifier: DoctorProfileVC.chooseReasonSegueIdentifier, sender: nil)
+    }
+    
 }
 
 extension DoctorProfileVC: UITableViewDelegate, UITableViewDataSource {
