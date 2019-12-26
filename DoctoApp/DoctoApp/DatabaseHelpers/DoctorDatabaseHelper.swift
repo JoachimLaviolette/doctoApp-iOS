@@ -77,8 +77,8 @@ class DoctorDatabaseHelper: DoctoAppDatabaseHelper {
             DoctorDatabaseHelper.isThirdPartyPayment <- doctor.isThirdPartyPayment(),
             DoctorDatabaseHelper.addressId <- Int64(doctor.GetAddressId()),
             DoctorDatabaseHelper.lastLogin <- doctor.getLastLogin(),
-            DoctorDatabaseHelper.picture <- doctor.getPicture() == nil ? "" : doctor.getPicture()!,
-            DoctorDatabaseHelper.header <- doctor.getHeader() == nil ? "" : doctor.getHeader()!
+            DoctorDatabaseHelper.picture <- doctor.getPicture()!,
+            DoctorDatabaseHelper.header <- doctor.getHeader()!
         )
         
         do {
@@ -111,8 +111,8 @@ class DoctorDatabaseHelper: DoctoAppDatabaseHelper {
             DoctorDatabaseHelper.isThirdPartyPayment <- doctor.isThirdPartyPayment(),
             DoctorDatabaseHelper.addressId <- Int64(doctor.GetAddressId()),
             DoctorDatabaseHelper.lastLogin <- doctor.getLastLogin(),
-            DoctorDatabaseHelper.picture <- doctor.getPicture() == nil ? "" : doctor.getPicture()!,
-            DoctorDatabaseHelper.header <- doctor.getHeader() == nil ? "" : doctor.getHeader()!
+            DoctorDatabaseHelper.picture <- doctor.getPicture()!,
+            DoctorDatabaseHelper.header <- doctor.getHeader()!
         )
         
         do {

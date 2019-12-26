@@ -29,8 +29,13 @@ class HomeVC: UIViewController {
         
         // DoctoAppDatabaseHelper().initDatabase()
         // self.createModels()
-        // UserDefaults.standard.removeObject(forKey: Strings.USER_ID_KEY)
-        // UserDefaults.standard.removeObject(forKey: Strings.USER_TYPE_KEY)
+        // self.removeUserFromUserDefaults()
+    }
+    
+    // Remove the logged user from the user defaults
+    private func removeUserFromUserDefaults() {
+        UserDefaults.standard.removeObject(forKey: Strings.USER_ID_KEY)
+        UserDefaults.standard.removeObject(forKey: Strings.USER_TYPE_KEY)
     }
     
     // Try to get a logged user id from the user defaults

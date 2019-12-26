@@ -206,6 +206,13 @@ class Doctor: Resident {
     func setEducations(educations: [Education]?) { self.educations = educations }
     func setExperiences(experiences: [Experience]?) { self.experiences = experiences }
 
+    func getHeader() -> UIImage? {
+        return ImageService().retrieve(
+            key: Strings.LOGGED_USER_DOCTOR_HEADER + "\(self.getId())",
+            storageType: StorageType.UserDefaults
+        )
+    }
+    
     // Add methods
     func addAvailability(a: Availability) {
         self.availabilities!.append(a)

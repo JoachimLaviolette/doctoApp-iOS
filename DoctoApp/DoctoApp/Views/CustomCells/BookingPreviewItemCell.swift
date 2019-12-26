@@ -48,9 +48,9 @@ class BookingPreviewItemCell: UITableViewCell {
     }
 
     // Set cell data
-    func setData(picture: String?, fullname: String?, description: String?) {
+    func setData(picture: UIImage?, fullname: String?, description: String?) {
         self.tryGetLoggedUser()
-        self.picture.image = UIImage(named: picture ?? "")
+        if picture != nil { self.picture.image = picture }
         self.fullname.text = fullname ?? Strings.APPOINTMENT_SUMMARY_PATIENT_TITLE
         self.content.text = description == nil ? fullname :
             self.loggedUser is Doctor ? Strings.SHOW_BOOKING_APPOINTMENT_PATIENT_BIRTHDATE_PREFIX + description! : description!

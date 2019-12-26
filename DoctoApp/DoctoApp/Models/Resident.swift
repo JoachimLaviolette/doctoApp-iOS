@@ -90,6 +90,13 @@ class Resident {
     func setAddress(address: Address?) { self.address = address }
     func setBookings(bookings: [Booking]?) { self.bookings = bookings }
 
+    func getPicture() -> UIImage? {
+        return ImageService().retrieve(
+            key: (self is Patient ? Strings.LOGGED_USER_PATIENT_PICTURE : Strings.LOGGED_USER_DOCTOR_PICTURE) + "\(self.id)",
+            storageType: StorageType.UserDefaults
+        )
+    }
+    
     // Add methods
     func addBooking(b: Booking) {
         self.bookings!.append(b)

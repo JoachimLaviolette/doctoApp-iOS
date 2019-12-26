@@ -40,7 +40,6 @@
 		AAD4BA3423B27BD000CCF457 /* SignUpProTwoColumnsElementItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B9E023B27BCF00CCF457 /* SignUpProTwoColumnsElementItemCell.swift */; };
 		AAD4BA3523B27BD000CCF457 /* SignUpProOneColumnElementItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B9E123B27BCF00CCF457 /* SignUpProOneColumnElementItemCell.swift */; };
 		AAD4BA3623B27BD000CCF457 /* ReasonItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B9E223B27BCF00CCF457 /* ReasonItemCell.swift */; };
-		AAD4BA3723B27BD000CCF457 /* BookingPatientItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B9E323B27BCF00CCF457 /* BookingPatientItemCell.swift */; };
 		AAD4BA3823B27BD000CCF457 /* BookingActionsItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B9E423B27BCF00CCF457 /* BookingActionsItemCell.swift */; };
 		AAD4BA3923B27BD000CCF457 /* AvailabilitiesForDayItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B9E523B27BCF00CCF457 /* AvailabilitiesForDayItemCell.swift */; };
 		AAD4BA3A23B27BD000CCF457 /* DoctorSecondaryDataItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B9E623B27BCF00CCF457 /* DoctorSecondaryDataItemCell.swift */; };
@@ -264,7 +263,6 @@
 		AAD4B9E023B27BCF00CCF457 /* SignUpProTwoColumnsElementItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpProTwoColumnsElementItemCell.swift; sourceTree = "<group>"; };
 		AAD4B9E123B27BCF00CCF457 /* SignUpProOneColumnElementItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpProOneColumnElementItemCell.swift; sourceTree = "<group>"; };
 		AAD4B9E223B27BCF00CCF457 /* ReasonItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReasonItemCell.swift; sourceTree = "<group>"; };
-		AAD4B9E323B27BCF00CCF457 /* BookingPatientItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingPatientItemCell.swift; sourceTree = "<group>"; };
 		AAD4B9E423B27BCF00CCF457 /* BookingActionsItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingActionsItemCell.swift; sourceTree = "<group>"; };
 		AAD4B9E523B27BCF00CCF457 /* AvailabilitiesForDayItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailabilitiesForDayItemCell.swift; sourceTree = "<group>"; };
 		AAD4B9E623B27BCF00CCF457 /* DoctorSecondaryDataItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoctorSecondaryDataItemCell.swift; sourceTree = "<group>"; };
@@ -491,7 +489,6 @@
 				AAD4B9E023B27BCF00CCF457 /* SignUpProTwoColumnsElementItemCell.swift */,
 				AAD4B9E123B27BCF00CCF457 /* SignUpProOneColumnElementItemCell.swift */,
 				AAD4B9E223B27BCF00CCF457 /* ReasonItemCell.swift */,
-				AAD4B9E323B27BCF00CCF457 /* BookingPatientItemCell.swift */,
 				AAD4B9E423B27BCF00CCF457 /* BookingActionsItemCell.swift */,
 				AAD4B9E523B27BCF00CCF457 /* AvailabilitiesForDayItemCell.swift */,
 				AAD4B9E623B27BCF00CCF457 /* DoctorSecondaryDataItemCell.swift */,
@@ -893,7 +890,6 @@
 				AAD4BA5C23B27BD000CCF457 /* HomeVC.swift in Sources */,
 				AAD4BA3F23B27BD000CCF457 /* BookingPreviewItemCell.swift in Sources */,
 				AAD4BA5823B27BD000CCF457 /* SignUpProVC.swift in Sources */,
-				AAD4BA3723B27BD000CCF457 /* BookingPatientItemCell.swift in Sources */,
 				AAD4BA4523B27BD000CCF457 /* BookingDetailsView.swift in Sources */,
 				AAD4BA5A23B27BD000CCF457 /* SearchVC.swift in Sources */,
 				AAD4BA5723B27BD000CCF457 /* MyBookingDetailsVC.swift in Sources */,

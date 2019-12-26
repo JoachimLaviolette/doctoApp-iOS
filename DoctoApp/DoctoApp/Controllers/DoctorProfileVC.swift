@@ -130,17 +130,8 @@ class DoctorProfileVC: UIViewController {
     
     // Set header data
     private func setHeaderData() {
-        if self.doctor.getPicture() != nil {
-            if !self.doctor.getPicture()!.isEmpty {
-                self.doctorPicture.image = UIImage(named: self.doctor.getPicture()!)
-            }
-        }
-        
-        if self.doctor.getHeader() != nil {
-            if !self.doctor.getPicture()!.isEmpty {
-                self.doctorHeader.image = UIImage(named: self.doctor.getHeader()!)
-            }
-        }
+        if let picture: UIImage = self.doctor.getPicture() { self.doctorPicture.image = picture }
+        if let header: UIImage = self.doctor.getHeader() { self.doctorHeader.image = header }
         
         self.doctorHeader.addBlurEffect()
         

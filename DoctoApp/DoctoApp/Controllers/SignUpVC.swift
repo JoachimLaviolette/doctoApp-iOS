@@ -140,13 +140,7 @@ class SignUpVC: UIViewController {
         let patient: Patient = self.loggedUser as! Patient
         self.signupBtn.titleLabel!.text = Strings.MY_PROFILE_PRO_UPDATE_BTN.uppercased()
         
-        if let userPicture: UIImage = ImageService().retrieve(
-            key: Strings.LOGGED_USER_PATIENT_PICTURE + "\(self.loggedUser!.getId())",
-            storageType: StorageType.UserDefaults
-        ) {
-            self.patientProfilePicture.image = userPicture
-        }
-        
+        if let picture: UIImage = self.loggedUser!.getPicture() { self.patientProfilePicture.image = picture }
         self.patientEmail.text = patient.getEmail()
         self.patientFirstName.text = patient.getFirstname()
         self.patientLastName.text = patient.getLastname()

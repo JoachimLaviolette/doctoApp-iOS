@@ -403,19 +403,8 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
         self.paymentOptionsErrorView.isHidden = true
         self.signupBtn.titleLabel!.text = Strings.MY_PROFILE_PRO_UPDATE_BTN.uppercased()
         
-        if let userPicture: UIImage = ImageService().retrieve(
-            key: Strings.LOGGED_USER_DOCTOR_PICTURE + "\(self.loggedUser!.getId())",
-            storageType: StorageType.UserDefaults
-        ) {
-            self.doctorProfilePicture.image = userPicture
-        }
-        
-        if let userPicture: UIImage = ImageService().retrieve(
-            key: Strings.LOGGED_USER_DOCTOR_HEADER + "\(self.loggedUser!.getId())",
-            storageType: StorageType.UserDefaults
-        ) {
-            self.doctorHeader.image = userPicture
-        }
+        if let picture: UIImage = self.loggedUser!.getPicture() { self.doctorProfilePicture.image = picture }
+        if let header: UIImage = (self.loggedUser! as! Doctor).getHeader() { self.doctorHeader.image = header }
         
         self.doctorLastName.text = doctor.getLastname()
         self.doctorFirstName.text = doctor.getFirstname()

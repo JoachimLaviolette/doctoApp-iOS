@@ -101,7 +101,7 @@
                                 </constraints>
                             </stackView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main_background" translatesAutoresizingMaskIntoConstraints="NO" id="D5P-SU-S5G" userLabel="home_picture">
-                                <rect key="frame" x="0.0" y="426" width="375" height="241"/>
+                                <rect key="frame" x="0.0" y="426" width="375" height="241.00000000000006"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="241" id="fDU-NO-Ok3"/>
                                 </constraints>
@@ -321,7 +321,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="345" height="50"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cancel your booking" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yiW-12-hQy">
-                                                            <rect key="frame" x="89.5" y="14.5" width="166.5" height="21"/>
+                                                            <rect key="frame" x="89.5" y="14.5" width="166.5" height="21.5"/>
                                                             <fontDescription key="fontDescription" name="Roboto-Black" family="Roboto" pointSize="18"/>
                                                             <color key="textColor" name="login_delete_account_popup_title_color"/>
                                                             <nil key="highlightedColor"/>
@@ -582,11 +582,11 @@
                                                 <rect key="frame" x="10" y="98" width="335" height="31"/>
                                                 <subviews>
                                                     <switch contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="riX-pp-Sqk">
-                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="31"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     </switch>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I want to stay connected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="96k-rt-dFX">
-                                                        <rect key="frame" x="58" y="0.0" width="170" height="31"/>
+                                                        <rect key="frame" x="59" y="0.0" width="170" height="31"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="170" id="wCz-PA-ijV"/>
                                                         </constraints>
@@ -595,7 +595,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="gny-eK-ble">
-                                                        <rect key="frame" x="238" y="0.0" width="97" height="31"/>
+                                                        <rect key="frame" x="239" y="0.0" width="96" height="31"/>
                                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                                         <state key="normal" title="Forgotten Password ?">
                                                             <color key="titleColor" name="login_forgot_pwd_color"/>
@@ -638,7 +638,7 @@
                                                         <color key="backgroundColor" name="login_delete_account_btn_background_color"/>
                                                         <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="13"/>
                                                         <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
-                                                        <state key="normal" title="DELETE MY PROFILE" image="ic_delete">
+                                                        <state key="normal" title="DELETE PROFILE" image="ic_delete">
                                                             <color key="titleColor" name="login_delete_account_btn_text_color"/>
                                                         </state>
                                                         <connections>
@@ -661,7 +661,7 @@
                                                         <rect key="frame" x="75" y="204" width="185" height="35"/>
                                                         <color key="backgroundColor" name="login_btn_background_color"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="35" id="Hxp-jg-4au"/>
+                                                            <constraint firstAttribute="height" constant="35" id="EGo-dr-pc8"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="13"/>
                                                         <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
@@ -682,13 +682,13 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="335" height="88.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not registered yet ?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vGI-EI-7dR">
-                                                                <rect key="frame" x="110.5" y="20" width="114.5" height="15.5"/>
+                                                                <rect key="frame" x="111" y="20" width="113.5" height="15.5"/>
                                                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="13"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7O6-vb-ykl">
-                                                                <rect key="frame" x="94" y="40.5" width="147" height="28"/>
+                                                                <rect key="frame" x="95.5" y="40.5" width="144" height="28"/>
                                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                                                 <state key="normal" title="Create your account now">
                                                                     <color key="titleColor" name="login_signup_link_color"/>
@@ -716,13 +716,13 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="335" height="88.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are a professional ?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAB-qZ-8js">
-                                                                <rect key="frame" x="98" y="20" width="139" height="15.5"/>
+                                                                <rect key="frame" x="98" y="20" width="139.5" height="15.5"/>
                                                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="13"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Ph-5G-0X1">
-                                                                <rect key="frame" x="56.5" y="40.5" width="222" height="28"/>
+                                                                <rect key="frame" x="57.5" y="40.5" width="220" height="28"/>
                                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                                                 <state key="normal" title="Create your professional account here">
                                                                     <color key="titleColor" name="login_signup_link_color"/>
@@ -1290,10 +1290,10 @@
                                         <rect key="frame" x="10" y="243" width="355" height="170"/>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9Mk-F4-hwn">
-                                        <rect key="frame" x="10" y="423" width="355" height="72"/>
+                                        <rect key="frame" x="10" y="423" width="355" height="36"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJm-kE-85N">
-                                                <rect key="frame" x="0.0" y="0.0" width="172.5" height="72"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="172.5" height="36"/>
                                                 <color key="backgroundColor" name="signup_take_picture_from_camera_color"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="13"/>
                                                 <state key="normal" title="TAKE A PICTURE" image="ic_take_picture">
@@ -1304,7 +1304,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tca-lB-yHe">
-                                                <rect key="frame" x="182.5" y="0.0" width="172.5" height="72"/>
+                                                <rect key="frame" x="182.5" y="0.0" width="172.5" height="36"/>
                                                 <color key="backgroundColor" name="signup_select_picture_from_gallery_color"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="13"/>
                                                 <state key="normal" title="SELECT A PICTURE" image="ic_add_image">
@@ -1317,10 +1317,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="SXJ-VK-gMs">
-                                        <rect key="frame" x="10" y="505" width="355" height="72"/>
+                                        <rect key="frame" x="10" y="469" width="355" height="36"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HUw-oP-LF4">
-                                                <rect key="frame" x="0.0" y="0.0" width="172.5" height="72"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="172.5" height="36"/>
                                                 <color key="backgroundColor" name="signup_take_picture_from_camera_color"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="13"/>
                                                 <state key="normal" title="TAKE A HEADER" image="ic_take_picture">
@@ -1331,7 +1331,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LcI-Wd-f4Y">
-                                                <rect key="frame" x="182.5" y="0.0" width="172.5" height="72"/>
+                                                <rect key="frame" x="182.5" y="0.0" width="172.5" height="36"/>
                                                 <color key="backgroundColor" name="signup_select_picture_from_gallery_color"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="13"/>
                                                 <state key="normal" title="SELECT A HEADER" image="ic_add_image">
@@ -1344,7 +1344,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="T03-G5-4ks">
-                                        <rect key="frame" x="10" y="587" width="355" height="342"/>
+                                        <rect key="frame" x="10" y="515" width="355" height="342"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IbZ-Gy-tjC">
                                                 <rect key="frame" x="0.0" y="0.0" width="355" height="34"/>
@@ -1397,7 +1397,7 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qek-md-gfl">
-                                        <rect key="frame" x="10" y="939" width="355" height="175"/>
+                                        <rect key="frame" x="10" y="867" width="355" height="175"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prices and refunds options" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="emR-6w-FWj">
                                                 <rect key="frame" x="10" y="10" width="335" height="30"/>
@@ -1460,7 +1460,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VWe-78-kiD">
-                                        <rect key="frame" x="10" y="1124" width="355" height="435"/>
+                                        <rect key="frame" x="10" y="1052" width="355" height="435"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Availibilities" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ys9-TZ-5py">
                                                 <rect key="frame" x="10" y="10" width="335" height="30"/>
@@ -1525,7 +1525,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2jz-uE-oMn">
-                                                                    <rect key="frame" x="130" y="7" width="34.5" height="16.5"/>
+                                                                    <rect key="frame" x="130" y="7" width="34" height="16.5"/>
                                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                                                     <color key="textColor" name="forgot_password_input_text_color"/>
                                                                     <nil key="highlightedColor"/>
@@ -1590,7 +1590,7 @@
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vkR-g4-QSF">
-                                                <rect key="frame" x="78" y="390" width="199" height="35"/>
+                                                <rect key="frame" x="96" y="390" width="163" height="35"/>
                                                 <color key="backgroundColor" name="signup_btn_background_color"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="kXg-Hj-t18"/>
@@ -1648,7 +1648,7 @@
                                         </variation>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r82-f9-7Av">
-                                        <rect key="frame" x="10" y="1569" width="355" height="360"/>
+                                        <rect key="frame" x="10" y="1497" width="355" height="360"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Consultation reasons" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fUc-M9-ZX3">
                                                 <rect key="frame" x="10" y="10" width="335" height="30"/>
@@ -1746,7 +1746,7 @@
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bw4-ch-hb1">
-                                                <rect key="frame" x="89.5" y="315" width="176" height="35"/>
+                                                <rect key="frame" x="109.5" y="315" width="136" height="35"/>
                                                 <color key="backgroundColor" name="signup_btn_background_color"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="vCO-SM-P2X"/>
@@ -1785,7 +1785,7 @@
                                         </variation>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B66-kr-NxI">
-                                        <rect key="frame" x="10" y="1939" width="355" height="351.5"/>
+                                        <rect key="frame" x="10" y="1867" width="355" height="351.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Education" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J0s-xi-nfX">
                                                 <rect key="frame" x="10" y="10" width="335" height="30"/>
@@ -1895,7 +1895,7 @@
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NqS-z1-T7G">
-                                                <rect key="frame" x="79.5" y="306.5" width="196" height="35"/>
+                                                <rect key="frame" x="99.5" y="306.5" width="156" height="35"/>
                                                 <color key="backgroundColor" name="signup_btn_background_color"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="uc4-SS-HHx"/>
@@ -1943,7 +1943,7 @@
                                         </variation>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VVV-3A-aDJ">
-                                        <rect key="frame" x="10" y="2300.5" width="355" height="350"/>
+                                        <rect key="frame" x="10" y="2228.5" width="355" height="350"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Experience" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WWi-g3-Q4t">
                                                 <rect key="frame" x="10" y="10" width="335" height="30"/>
@@ -2018,11 +2018,12 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="NOd-IR-NTN"/>
                                                 </constraints>
+                                                <color key="textColor" name="forgot_password_input_text_color"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ie. 2013" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yB4-fL-Yo3">
-                                                <rect key="frame" x="8" y="210" width="77" height="30"/>
+                                                <rect key="frame" x="10" y="210" width="77" height="30"/>
                                                 <color key="textColor" name="signup_pro_input_text_color"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -2058,7 +2059,7 @@
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rBU-Or-EvL">
-                                                <rect key="frame" x="76.5" y="305" width="202" height="35"/>
+                                                <rect key="frame" x="97" y="305" width="161" height="35"/>
                                                 <color key="backgroundColor" name="signup_btn_background_color"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="0qe-cy-T0l"/>
@@ -2100,7 +2101,7 @@
                                         </variation>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NnZ-TK-Pla">
-                                        <rect key="frame" x="10" y="2660.5" width="355" height="399.5"/>
+                                        <rect key="frame" x="10" y="2588.5" width="355" height="399.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spoken languages" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fdH-63-Zb7">
                                                 <rect key="frame" x="10" y="10" width="335" height="30"/>
@@ -2165,7 +2166,7 @@
                                                 </constraints>
                                             </pickerView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LDg-nO-uYN">
-                                                <rect key="frame" x="81" y="354.5" width="193" height="35"/>
+                                                <rect key="frame" x="101.5" y="354.5" width="152" height="35"/>
                                                 <color key="backgroundColor" name="signup_btn_background_color"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="bob-GY-okD"/>
@@ -2234,7 +2235,7 @@
                                         </variation>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vsF-MD-LFv">
-                                        <rect key="frame" x="87.5" y="3736.5" width="200" height="35"/>
+                                        <rect key="frame" x="87.5" y="3664.5" width="200" height="35"/>
                                         <color key="backgroundColor" name="signup_btn_background_color"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="mwS-ZC-2Rb"/>
@@ -2250,19 +2251,19 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hdo-U6-fAC">
-                                        <rect key="frame" x="10" y="3791.5" width="355" height="89.5"/>
+                                        <rect key="frame" x="10" y="3719.5" width="355" height="89.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="PkM-sf-K3Y">
                                                 <rect key="frame" x="0.0" y="0.0" width="355" height="89.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an account ?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nHs-dH-hto">
-                                                        <rect key="frame" x="94.5" y="20" width="166" height="16.5"/>
+                                                        <rect key="frame" x="95.5" y="20" width="164" height="16.5"/>
                                                         <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>
                                                         <color key="textColor" name="signup_caption_color"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IQ7-ZA-3C0">
-                                                        <rect key="frame" x="147" y="41.5" width="61" height="28"/>
+                                                        <rect key="frame" x="147.5" y="41.5" width="60" height="28"/>
                                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                                         <state key="normal" title="Login now">
                                                             <color key="titleColor" name="signup_login_link_color"/>
@@ -2283,19 +2284,19 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QAQ-Kl-otb">
-                                        <rect key="frame" x="10" y="3891" width="355" height="89.5"/>
+                                        <rect key="frame" x="10" y="3819" width="355" height="89.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="RgR-dR-IKs">
                                                 <rect key="frame" x="0.0" y="0.0" width="355" height="89.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are a private ?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hrX-xJ-Z5q">
-                                                        <rect key="frame" x="119.5" y="20" width="116.5" height="16.5"/>
+                                                        <rect key="frame" x="120" y="20" width="115" height="16.5"/>
                                                         <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>
                                                         <color key="textColor" name="signup_caption_color"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hHA-sP-C69">
-                                                        <rect key="frame" x="94.5" y="41.5" width="166" height="28"/>
+                                                        <rect key="frame" x="95.5" y="41.5" width="164" height="28"/>
                                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                                         <state key="normal" title="Access your patient account">
                                                             <color key="titleColor" name="signup_login_link_color"/>
@@ -2316,7 +2317,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1yC-cd-qDu">
-                                        <rect key="frame" x="10" y="3070" width="355" height="395"/>
+                                        <rect key="frame" x="10" y="2998" width="355" height="395"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Allowed payment options" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fl8-cv-HdU">
                                                 <rect key="frame" x="10" y="10" width="335" height="30"/>
@@ -2381,7 +2382,7 @@
                                                 </constraints>
                                             </pickerView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mU8-TE-CN7">
-                                                <rect key="frame" x="60.5" y="350" width="234" height="35"/>
+                                                <rect key="frame" x="80.5" y="350" width="194" height="35"/>
                                                 <color key="backgroundColor" name="signup_btn_background_color"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="ynT-fb-Eb4"/>
@@ -2450,7 +2451,7 @@
                                         </variation>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="qyR-qt-CDh">
-                                        <rect key="frame" x="10" y="3480" width="355" height="236.5"/>
+                                        <rect key="frame" x="10" y="3408" width="355" height="236.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address data" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XhX-sg-hDt">
                                                 <rect key="frame" x="0.0" y="0.0" width="355" height="16.5"/>
@@ -3264,7 +3265,7 @@
         <segue reference="qWN-j7-PVN"/>
         <segue reference="kN0-Ap-c7W"/>
         <segue reference="73u-aW-kbK"/>
-        <segue reference="bAD-6l-55o"/>
+        <segue reference="FUG-5J-oNA"/>
         <segue reference="kx4-9w-nVJ"/>
         <segue reference="XCf-uN-Mbh"/>
         <segue reference="1JN-jz-3OB"/>

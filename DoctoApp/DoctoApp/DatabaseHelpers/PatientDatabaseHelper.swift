@@ -60,7 +60,7 @@ class PatientDatabaseHelper: DoctoAppDatabaseHelper {
             PatientDatabaseHelper.insuranceNumber <- patient.getInsuranceNumber(),
             PatientDatabaseHelper.addressId <- Int64(patient.GetAddressId()),
             PatientDatabaseHelper.lastLogin <- patient.getLastLogin(),
-            PatientDatabaseHelper.picture <- patient.getPicture() == nil ? "" : patient.getPicture()!
+            PatientDatabaseHelper.picture <- patient.getPicture()!
         )
         
         do {
@@ -89,7 +89,7 @@ class PatientDatabaseHelper: DoctoAppDatabaseHelper {
             PatientDatabaseHelper.insuranceNumber <- patient.getInsuranceNumber(),
             PatientDatabaseHelper.addressId <- Int64(patient.GetAddressId()),
             PatientDatabaseHelper.lastLogin <- patient.getLastLogin(),
-            PatientDatabaseHelper.picture <- patient.getPicture() == nil ? "" : patient.getPicture()!
+            PatientDatabaseHelper.picture <- patient.getPicture()!
         )
         
         do {

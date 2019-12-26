@@ -26,9 +26,9 @@ class DoctorPreviewItemCell: UITableViewCell {
     
     // Set cell data
     func setData(doctor: Doctor) {
-        if !doctor.getPicture()!.isEmpty { self.doctorPicture.image = UIImage(named: doctor.getPicture()!) }
-         self.doctorFullname.text = doctor.getFullname()
-         self.doctorSpeciality.text = doctor.getSpeciality()
-         self.doctorAddress.text = doctor.GetCityCountry()
+        if let picture: UIImage = doctor.getPicture() { self.doctorPicture.image = picture }
+        self.doctorFullname.text = doctor.getFullname()
+        self.doctorSpeciality.text = doctor.getSpeciality()
+        self.doctorAddress.text = doctor.GetCityCountry()
     }
 }
