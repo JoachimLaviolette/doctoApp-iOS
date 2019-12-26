@@ -125,7 +125,7 @@ class PatientDatabaseHelper: DoctoAppDatabaseHelper {
         
         do {
             if self.getPatient(patientId: patient.getId(), email: nil, fromDoctor: false) != nil {
-                if try self.database.run(query) > 0 {
+                if try self.database.run(query) > 0 && AddressDatabaseHelper().deleteAddress(address: patient.getAddress()!) {
                     print("Patient removal succeeded for patient: " + patient.getFullname())
                     
                     return true

@@ -106,4 +106,28 @@ class AddressDatabaseHelper: DoctoAppDatabaseHelper {
         
         return nil
     }
+    
+    // Delete the given address from the database
+    func deleteAddress(address: Address) -> Bool {
+        self.initDb()
+        
+        let filter = AddressDatabaseHelper.table.filter(AddressDatabaseHelper.id == Int64(address.getId()))
+        let query = filter.delete()
+        
+        do {
+            if self.getAddress(addressId: address.getId()) != nil {
+                    if try self.database.run(query) > 0 {
+                    print("Address removal succeeded.")
+                    
+                    return true
+                }
+            }
+            
+            print("Address removal failed.")
+        } catch {
+            print("Address removal failed.")
+        }
+        
+        return false
+    }
 }

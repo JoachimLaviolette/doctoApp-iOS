@@ -36,14 +36,17 @@ class PopUpVC: UIViewController {
         self.delegate = delegate
     }
     
+    // Action triggered when the background is clicked
     @IBAction func dismissPopUp(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
     
+    // Action triggered when discard button is clicked
     @IBAction func discard(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
+    // Action triggered when confirm button is clicked
     @IBAction func confirm(_ sender: Any) {
         self.delegate?.doAction()
         dismiss(animated: true, completion: nil)

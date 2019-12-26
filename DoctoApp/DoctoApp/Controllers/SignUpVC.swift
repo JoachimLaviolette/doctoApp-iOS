@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class SignUpVC: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -41,8 +40,10 @@ class SignUpVC: UIViewController {
     private var patientDbHelper: PatientDatabaseHelper = PatientDatabaseHelper()
     private var patient: Patient?
     private var loggedUser: Resident? = nil // can be retrieved from the user defaults
-
-   private static let photoIcon = "ic_take_picture"
+    
+    private var picturePicker: UIImagePickerController!
+    
+    private static let photoIcon = "ic_take_picture"
     private static let galleryIcon = "ic_add_image"
     
     override func viewDidLoad() {
@@ -54,10 +55,9 @@ class SignUpVC: UIViewController {
     private func initialize() {
         self.tryGetLoggedUser()
         
-        // Make a circle profile picture
-        self.patientProfilePicture.layer.masksToBounds = true
-        self.patientProfilePicture.layer.cornerRadius = patientProfilePicture.frame.width / 2
-        self.setupButtonsIconsColors()
+        self.picturePicker = UIImagePickerController()
+        self.picturePicker.delegate = self
+        
         self.setContent()
     }
     
@@ -70,6 +70,24 @@ class SignUpVC: UIViewController {
                 self.loggedUser = patient
             }
         }
+    }
+    
+    // Set view content
+    private func setContent() {
+        self.setupButtonsIconsColors()
+        self.caption.font = UIFont.preferredFont(forTextStyle: .footnote).italic()
+        
+        // Make a circle profile picture
+        self.patientProfilePicture.layer.masksToBounds = true
+        self.patientProfilePicture.layer.cornerRadius = patientProfilePicture.frame.width / 2
+        
+        if self.loggedUser != nil {
+            self.setSignupContextForPatient()
+            
+            return
+        }
+        
+        self.setSignupContext()
     }
     
     // Setup actions buttons
@@ -91,18 +109,6 @@ class SignUpVC: UIViewController {
         
         self.takePictureBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 15, bottom: 30, right: 30)
         self.selectPictureBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 15, bottom: 30, right: 30)
-    }
-    
-    // Set view content
-    private func setContent() {
-        self.caption.font = UIFont.preferredFont(forTextStyle: .footnote).italic()
-        
-        if self.loggedUser != nil { self.setSignupContextForPatient()
-            
-            return
-        }
-        
-        self.setSignupContext()
     }
     
     // Set signup context content
@@ -134,10 +140,11 @@ class SignUpVC: UIViewController {
         let patient: Patient = self.loggedUser as! Patient
         self.signupBtn.titleLabel!.text = Strings.MY_PROFILE_PRO_UPDATE_BTN.uppercased()
         
-        if patient.getPicture() != nil {
-            if !patient.getPicture()!.isEmpty {
-                self.patientProfilePicture.image = UIImage(named: patient.getPicture()!)
-            }
+        if let userPicture: UIImage = ImageService().retrieve(
+            key: Strings.LOGGED_USER_PATIENT_PICTURE + "\(self.loggedUser!.getId())",
+            storageType: StorageType.UserDefaults
+        ) {
+            self.patientProfilePicture.image = userPicture
         }
         
         self.patientEmail.text = patient.getEmail()
@@ -198,6 +205,14 @@ class SignUpVC: UIViewController {
         if self.patientDbHelper.updatePatient(patient: self.loggedUser as! Patient) {
             self.displaySuccessMsg()
             
+            if self.patientProfilePicture.image != nil {
+                ImageService().store(
+                    image: self.patientProfilePicture.image!,
+                    key: Strings.LOGGED_USER_PATIENT_PICTURE + "\(self.loggedUser!.getId())",
+                    storageType: StorageType.UserDefaults
+                )
+            }
+            
             return
         }
         
@@ -241,6 +256,14 @@ class SignUpVC: UIViewController {
         
         if self.patientDbHelper.createPatient(patient: patient) {
             self.displaySuccessMsg()
+            
+            if self.patientProfilePicture.image != nil {
+                ImageService().store(
+                    image: self.patientProfilePicture.image!,
+                    key: Strings.LOGGED_USER_PATIENT_PICTURE + "\(patient.getId())",
+                    storageType: StorageType.UserDefaults
+                )
+            }
             
             return
         }
@@ -302,4 +325,27 @@ class SignUpVC: UIViewController {
         self.scrollView.setContentOffset(topOffset, animated: true)
     }
     
+    // Action triggered when select picture button is clicked
+    @IBAction func selectPicture(_ sender: UIButton) {
+        self.picturePicker.allowsEditing = false
+        self.picturePicker.sourceType = .photoLibrary
+        present(self.picturePicker, animated: true, completion: nil)
+    }
+    
+    // Action triggered when take picture button is clicked
+    @IBAction func takePicture(_ sender: UIButton) {
+        self.picturePicker.sourceType = .camera
+        present(self.picturePicker, animated: true, completion: nil)
+    }
+}
+
+extension SignUpVC: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        dismiss(animated: true, completion: nil)
+        self.patientProfilePicture.image = info[.originalImage] as? UIImage
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
 }

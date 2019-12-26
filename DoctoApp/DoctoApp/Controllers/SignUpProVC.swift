@@ -112,6 +112,9 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
     private var languages: [Language]?
     private var paymentOptions: [PaymentOption]?
     
+    private var picturePicker: UIImagePickerController!
+    private var headerPicker: UIImagePickerController!
+    
     static let languages: [String] = [
         Language.FR.rawValue,
         Language.EN.rawValue,
@@ -149,7 +152,7 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
     
     private func initialize() {
         self.tryGetLoggedUser()
-
+        
         // Take in charge all the subcomponents
         self.doctorLanguagesPicker.delegate = self
         self.doctorLanguagesPicker.dataSource = self
@@ -187,8 +190,12 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
         self.paymentOptionsTableView.dataSource = self
         self.paymentOptionsTableView.rowHeight = UITableView.automaticDimension
         self.paymentOptionsTableView.separatorColor = UIColor.clear
-    
-        self.setupButtonsIconsColors()
+        
+        self.picturePicker = UIImagePickerController()
+        self.picturePicker.delegate = self
+        self.headerPicker = UIImagePickerController()
+        self.headerPicker.delegate = self
+        
         self.setContent()
     }
     
@@ -201,6 +208,34 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
                 self.loggedUser = doctor
             }
         }
+    }
+    
+    // Set view content
+    private func setContent() {
+        // Make a circle profile picture
+        self.doctorProfilePicture.layer.masksToBounds = true
+        self.doctorProfilePicture.layer.cornerRadius = doctorProfilePicture.frame.width / 2
+        
+        self.setupButtonsIconsColors()
+        
+        // Resize switches
+        self.isUnderAgreement.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
+        self.isThirdPartyPayment.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
+        self.isHealthInsuranceCard.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
+        
+        self.caption.font = UIFont.preferredFont(forTextStyle: .footnote).italic()
+        self.doctorHeader.addBlurEffect()
+        
+        self.displayAvailibilityInfo()
+        self.displayAvailibilityError()
+        self.displayReasonError()
+        self.displayEducationError()
+        self.displayExperienceError()
+        self.displayLanguageError()
+        self.displayPaymentOptionsError()
+        
+        if self.loggedUser != nil { self.setSignupContextForDoctor() }
+        else { self.setSignupContext() }
     }
     
     // Setup actions buttons
@@ -256,28 +291,6 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
         self.addExperienceBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: -5, bottom: 30, right: 30)
         self.addLanguageBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: -5, bottom: 30, right: 30)
         self.addPaymentOptionBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: -5, bottom: 30, right: 30)
-    }
-    
-    // Set view content
-    private func setContent() {
-        // Resize switches
-        self.isUnderAgreement.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
-        self.isThirdPartyPayment.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
-        self.isHealthInsuranceCard.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
-        
-        self.caption.font = UIFont.preferredFont(forTextStyle: .footnote).italic()
-        self.doctorHeader.addBlurEffect()
-        
-        self.displayAvailibilityInfo()
-        self.displayAvailibilityError()
-        self.displayReasonError()
-        self.displayEducationError()
-        self.displayExperienceError()
-        self.displayLanguageError()
-        self.displayPaymentOptionsError()
-        
-        if self.loggedUser != nil { self.setSignupContextForDoctor() }
-        else { self.setSignupContext() }
     }
     
     // Display availibility info message
@@ -390,16 +403,18 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
         self.paymentOptionsErrorView.isHidden = true
         self.signupBtn.titleLabel!.text = Strings.MY_PROFILE_PRO_UPDATE_BTN.uppercased()
         
-        if doctor.getPicture() != nil {
-            if !doctor.getPicture()!.isEmpty {
-                self.doctorProfilePicture.image = UIImage(named: doctor.getPicture()!)
-            }
+        if let userPicture: UIImage = ImageService().retrieve(
+            key: Strings.LOGGED_USER_DOCTOR_PICTURE + "\(self.loggedUser!.getId())",
+            storageType: StorageType.UserDefaults
+        ) {
+            self.doctorProfilePicture.image = userPicture
         }
         
-        if doctor.getHeader() != nil {
-            if !doctor.getHeader()!.isEmpty {
-                self.doctorHeader.image = UIImage(named: doctor.getHeader()!)
-            }
+        if let userPicture: UIImage = ImageService().retrieve(
+            key: Strings.LOGGED_USER_DOCTOR_HEADER + "\(self.loggedUser!.getId())",
+            storageType: StorageType.UserDefaults
+        ) {
+            self.doctorHeader.image = userPicture
         }
         
         self.doctorLastName.text = doctor.getLastname()
@@ -676,6 +691,22 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
         if self.doctorDbHelper.updateDoctor(doctor: self.loggedUser as! Doctor) {
             self.displaySuccessMsg()
             
+            if self.doctorProfilePicture.image != nil {
+                ImageService().store(
+                    image: self.doctorProfilePicture.image!,
+                    key: Strings.LOGGED_USER_DOCTOR_PICTURE + "\(self.loggedUser!.getId())",
+                    storageType: StorageType.UserDefaults
+                )
+            }
+            
+            if self.doctorHeader.image != nil {
+                ImageService().store(
+                    image: self.doctorHeader.image!,
+                    key: Strings.LOGGED_USER_DOCTOR_HEADER + "\(self.loggedUser!.getId())",
+                    storageType: StorageType.UserDefaults
+                )
+            }
+            
             return
         }
         
@@ -731,6 +762,22 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
         
         if self.doctorDbHelper.createDoctor(doctor: doctor) {
             self.displaySuccessMsg()
+            
+            if self.doctorProfilePicture.image != nil {
+                ImageService().store(
+                    image: self.doctorProfilePicture.image!,
+                    key: Strings.LOGGED_USER_DOCTOR_PICTURE + "\(doctor.getId())",
+                    storageType: StorageType.UserDefaults
+                )
+            }
+            
+            if self.doctorHeader.image != nil {
+                ImageService().store(
+                    image: self.doctorHeader.image!,
+                    key: Strings.LOGGED_USER_DOCTOR_HEADER + "\(doctor.getId())",
+                    storageType: StorageType.UserDefaults
+                )
+            }
             
             return
         }
@@ -799,6 +846,45 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
     private func scrollToTop() {
         let topOffset = CGPoint(x: 0, y: -self.scrollView.contentInset.top)
         self.scrollView.setContentOffset(topOffset, animated: true)
+    }
+    
+    // Action triggered when select picture button is clicked
+    @IBAction func selectPicture(_ sender: UIButton) {
+        self.picturePicker.allowsEditing = false
+        self.picturePicker.sourceType = .photoLibrary
+        present(self.picturePicker, animated: true, completion: nil)
+    }
+    
+    // Action triggered when take picture button is clicked
+    @IBAction func takePicture(_ sender: UIButton) {
+        self.picturePicker.sourceType = .camera
+        present(self.picturePicker, animated: true, completion: nil)
+    }
+    
+    // Action triggered when select header button is clicked
+    @IBAction func selectHeader(_ sender: UIButton) {
+        self.headerPicker.allowsEditing = false
+        self.headerPicker.sourceType = .photoLibrary
+        present(self.headerPicker, animated: true, completion: nil)
+    }
+    
+    // Action triggered when take header button is clicked
+    @IBAction func takeHeader(_ sender: UIButton) {
+        self.headerPicker.sourceType = .camera
+        present(self.headerPicker, animated: true, completion: nil)
+    }
+}
+    
+extension SignUpProVC: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        dismiss(animated: true, completion: nil)
+        
+        if picker == self.picturePicker { self.doctorProfilePicture.image = info[.originalImage] as? UIImage }
+        else { self.doctorHeader.image = info[.originalImage] as? UIImage }
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
     }
 }
 

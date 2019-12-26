@@ -9,7 +9,7 @@
 import UIKit
 
 class ForgotPasswordVC: UIViewController {
-    
+    @IBOutlet weak var caption: UILabel!
     @IBOutlet weak var feedbackMessage: FeedbackMessageView!
     @IBOutlet weak var emailInput: UITextField!
     @IBOutlet weak var passwordInput: UITextField!
@@ -20,25 +20,28 @@ class ForgotPasswordVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.initialize()
     }
     
+    // Initialize controller properties
     private func initialize() {
         self.setContent()
     }
     
+    // Set view content
     private func setContent() {
         self.feedbackMessage.isHidden = true
+        self.caption.font = UIFont.preferredFont(forTextStyle: .footnote).italic()
     }
     
-    private func resetInput() {
+    // Reset input fields
+    private func resetInputs() {
         self.emailInput.text = ""
         self.passwordInput.text = ""
         self.confirmPasswordInput.text = ""
     }
     
-    //Try to set the password associated to the given email address
+    // Try to set the password associated to the given email address
     @IBAction func setNewPassword(_ sender: Any) {
         if(!self.allFieldsCorrect()) {
             self.displayErrorMessage()
@@ -79,7 +82,7 @@ class ForgotPasswordVC: UIViewController {
         }
         
         self.displaySuccessMessage()
-        self.resetInput()
+        self.resetInputs()
     }
     
     // Try to login as a patient
@@ -107,16 +110,17 @@ class ForgotPasswordVC: UIViewController {
         let isOneFieldEmpty: Bool = (emailInput.text?.isEmpty)! || (passwordInput.text?.isEmpty)! || (confirmPasswordInput.text?.isEmpty)!
         
         // One of the fields is empty
-        if (isOneFieldEmpty) { return false }
+        if isOneFieldEmpty { return false }
         
         let bothPwdEqual: Bool = (passwordInput.text?.elementsEqual(confirmPasswordInput.text!))!
         
         //Both passwords do not correspond
-        if (!bothPwdEqual) { return false }
+        if !bothPwdEqual { return false }
         
         return true
     }
     
+    // Display success message
     private func displaySuccessMessage() {
         self.feedbackMessage.setData(
             title: Strings.FORGOT_PASSWORD_SUCCESS_MSG_TITLE,
@@ -126,6 +130,7 @@ class ForgotPasswordVC: UIViewController {
         self.feedbackMessage.isHidden = false
     }
     
+    // Display error message
     private func displayErrorMessage() {
         self.feedbackMessage.setData(
             title: Strings.FORGOT_PASSWORD_ERROR_MSG_TITLE,

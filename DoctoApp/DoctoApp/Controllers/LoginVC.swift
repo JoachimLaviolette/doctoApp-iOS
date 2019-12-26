@@ -57,7 +57,6 @@ class LoginVC: UIViewController, PopUpActionDelegator {
     // Initialize controller properties
     private func initialize() {
         self.tryGetLoggedUser()
-        self.setupButtonsIconsColors()
         self.setContent()
     }
     
@@ -86,6 +85,22 @@ class LoginVC: UIViewController, PopUpActionDelegator {
                 delegate: self
             )
         }
+    }
+    
+    // Set basic view content
+    private func setContent() {
+        self.caption.font = UIFont.preferredFont(forTextStyle: .footnote).italic()
+        self.stayLogged.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
+        self.setupButtonsIconsColors()
+        
+        if self.loggedUser != nil {
+            self.displaySuccessMsg()
+            self.displaySuccessContent()
+            
+            return
+        }
+        
+        self.displayLoginContext()
     }
     
     // Setup actions buttons
@@ -119,20 +134,6 @@ class LoginVC: UIViewController, PopUpActionDelegator {
         self.myBookingsBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 5, bottom: 30, right: 30)
         self.deleteMyAccountBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: -5, bottom: 30, right: 30)
         self.logoutBtn.imageEdgeInsets = UIEdgeInsets(top: 30, left: 5, bottom: 30, right: 30)
-    }
-    
-    // Set basic view content
-    private func setContent() {
-        self.caption.font = UIFont.preferredFont(forTextStyle: .footnote).italic() 
-
-        if self.loggedUser != nil {
-            self.displaySuccessMsg()
-            self.displaySuccessContent()
-            
-            return
-        }
-        
-        self.displayLoginContext()
     }
     
     // Display login content
@@ -289,6 +290,13 @@ class LoginVC: UIViewController, PopUpActionDelegator {
         UserDefaults.standard.removeObject(forKey: Strings.USER_TYPE_KEY)
     }
     
+    // Delete the logged user data from the user defaults
+    private func deleteUserDataFromUserDefaults() {
+        UserDefaults.standard.removeObject(forKey: Strings.LOGGED_USER_PATIENT_PICTURE + "\(self.loggedUser!.getId())")
+        UserDefaults.standard.removeObject(forKey: Strings.LOGGED_USER_DOCTOR_PICTURE + "\(self.loggedUser!.getId())")
+        UserDefaults.standard.removeObject(forKey: Strings.LOGGED_USER_DOCTOR_HEADER + "\(self.loggedUser!.getId())")
+    }
+    
     // Add the logged user to the user defaults
     private func addUserToUserDefaults() {
         // Check if we have to remember the user or not
@@ -314,11 +322,15 @@ class LoginVC: UIViewController, PopUpActionDelegator {
         
         if isUserDeleted {
             self.removeUserFromUserDefaults()
+            self.deleteUserDataFromUserDefaults()
             self.navigationController?.popToRootViewController(animated: true)
             
             return
         }
         
-        self.displayErrorMsg(title: Strings.LOGIN_DELETE_ACCOUNT_MSG_TITLE, content: Strings.LOGIN_DELETE_ACCOUNT_MSG_CONTENT)
+        self.displayErrorMsg(
+            title: Strings.LOGIN_DELETE_ACCOUNT_MSG_TITLE,
+            content: Strings.LOGIN_DELETE_ACCOUNT_MSG_CONTENT
+        )
     }
 }

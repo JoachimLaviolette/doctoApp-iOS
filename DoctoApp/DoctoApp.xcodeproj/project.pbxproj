@@ -17,87 +17,90 @@
 		869CC03A238D884600EA27C8 /* roboto_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 869CC037238D884600EA27C8 /* roboto_medium.ttf */; };
 		869CC03B238D884600EA27C8 /* roboto_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 869CC038238D884600EA27C8 /* roboto_bold.ttf */; };
 		869CC03D238D887F00EA27C8 /* boogaloo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 869CC03C238D887E00EA27C8 /* boogaloo.ttf */; };
-		86DA0C3223AD898400755B44 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0BDC23AD898400755B44 /* Address.swift */; };
-		86DA0C3323AD898400755B44 /* Availability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0BDD23AD898400755B44 /* Availability.swift */; };
-		86DA0C3423AD898400755B44 /* Booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0BDE23AD898400755B44 /* Booking.swift */; };
-		86DA0C3523AD898400755B44 /* Doctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0BDF23AD898400755B44 /* Doctor.swift */; };
-		86DA0C3623AD898400755B44 /* Education.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0BE023AD898400755B44 /* Education.swift */; };
-		86DA0C3723AD898400755B44 /* Experience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0BE123AD898400755B44 /* Experience.swift */; };
-		86DA0C3823AD898400755B44 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0BE223AD898400755B44 /* Language.swift */; };
-		86DA0C3923AD898400755B44 /* Patient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0BE323AD898400755B44 /* Patient.swift */; };
-		86DA0C3A23AD898400755B44 /* PaymentOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0BE423AD898400755B44 /* PaymentOption.swift */; };
-		86DA0C3B23AD898400755B44 /* Reason.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0BE523AD898400755B44 /* Reason.swift */; };
-		86DA0C3C23AD898400755B44 /* Resident.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0BE623AD898400755B44 /* Resident.swift */; };
-		86DA0C3D23AD898400755B44 /* DateTimeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0BE823AD898400755B44 /* DateTimeService.swift */; };
-		86DA0C3E23AD898400755B44 /* EncryptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0BE923AD898400755B44 /* EncryptionService.swift */; };
-		86DA0C3F23AD898400755B44 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0BEA23AD898400755B44 /* ImageService.swift */; };
-		86DA0C4023AD898400755B44 /* StringFormatterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0BEB23AD898400755B44 /* StringFormatterService.swift */; };
-		86DA0C4123AD898400755B44 /* ErrorCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0BED23AD898400755B44 /* ErrorCode.swift */; };
-		86DA0C4223AD898400755B44 /* AddressDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0BEF23AD898400755B44 /* AddressDatabaseHelper.swift */; };
-		86DA0C4323AD898400755B44 /* AvailabilityDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0BF023AD898400755B44 /* AvailabilityDatabaseHelper.swift */; };
-		86DA0C4423AD898400755B44 /* BookingDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0BF123AD898400755B44 /* BookingDatabaseHelper.swift */; };
-		86DA0C4523AD898400755B44 /* DoctoAppDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0BF223AD898400755B44 /* DoctoAppDatabaseHelper.swift */; };
-		86DA0C4623AD898400755B44 /* DoctorDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0BF323AD898400755B44 /* DoctorDatabaseHelper.swift */; };
-		86DA0C4723AD898400755B44 /* EducationDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0BF423AD898400755B44 /* EducationDatabaseHelper.swift */; };
-		86DA0C4823AD898400755B44 /* ExperienceDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0BF523AD898400755B44 /* ExperienceDatabaseHelper.swift */; };
-		86DA0C4923AD898400755B44 /* LanguageDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0BF623AD898400755B44 /* LanguageDatabaseHelper.swift */; };
-		86DA0C4A23AD898400755B44 /* PatientDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0BF723AD898400755B44 /* PatientDatabaseHelper.swift */; };
-		86DA0C4B23AD898400755B44 /* PaymentOptionDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0BF823AD898400755B44 /* PaymentOptionDatabaseHelper.swift */; };
-		86DA0C4C23AD898400755B44 /* ReasonDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0BF923AD898400755B44 /* ReasonDatabaseHelper.swift */; };
-		86DA0C4D23AD898400755B44 /* BookingDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0BFB23AD898400755B44 /* BookingDetailsView.swift */; };
-		86DA0C4E23AD898400755B44 /* AvailabilitiesForDayItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0BFD23AD898400755B44 /* AvailabilitiesForDayItemCell.swift */; };
-		86DA0C4F23AD898400755B44 /* AvailabilityItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0BFE23AD898400755B44 /* AvailabilityItemCell.swift */; };
-		86DA0C5023AD898400755B44 /* BookingActionsItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0BFF23AD898400755B44 /* BookingActionsItemCell.swift */; };
-		86DA0C5123AD898400755B44 /* BookingOneLineElementItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0C0023AD898400755B44 /* BookingOneLineElementItemCell.swift */; };
-		86DA0C5223AD898400755B44 /* BookingPatientItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0C0123AD898400755B44 /* BookingPatientItemCell.swift */; };
-		86DA0C5323AD898400755B44 /* BookingPreviewHeaderItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0C0223AD898400755B44 /* BookingPreviewHeaderItemCell.swift */; };
-		86DA0C5423AD898400755B44 /* BookingPreviewItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0C0323AD898400755B44 /* BookingPreviewItemCell.swift */; };
-		86DA0C5523AD898400755B44 /* BookingTwoLinesElementItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0C0423AD898400755B44 /* BookingTwoLinesElementItemCell.swift */; };
-		86DA0C5623AD898400755B44 /* DoctorMainDataItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0C0523AD898400755B44 /* DoctorMainDataItemCell.swift */; };
-		86DA0C5723AD898400755B44 /* DoctorPreviewItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0C0623AD898400755B44 /* DoctorPreviewItemCell.swift */; };
-		86DA0C5823AD898400755B44 /* DoctorSecondaryDataItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0C0723AD898400755B44 /* DoctorSecondaryDataItemCell.swift */; };
-		86DA0C5923AD898400755B44 /* ReasonItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0C0823AD898400755B44 /* ReasonItemCell.swift */; };
-		86DA0C5A23AD898400755B44 /* SignUpProOneColumnElementItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0C0923AD898400755B44 /* SignUpProOneColumnElementItemCell.swift */; };
-		86DA0C5B23AD898400755B44 /* SignUpProTwoColumnsElementItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0C0A23AD898400755B44 /* SignUpProTwoColumnsElementItemCell.swift */; };
-		86DA0C5C23AD898400755B44 /* FeedbackMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0C0B23AD898400755B44 /* FeedbackMessageView.swift */; };
-		86DA0C5D23AD898400755B44 /* HeaderDashboardSubtitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0C0C23AD898400755B44 /* HeaderDashboardSubtitleView.swift */; };
-		86DA0C5E23AD898400755B44 /* HeaderDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0C0D23AD898400755B44 /* HeaderDashboardView.swift */; };
-		86DA0C5F23AD898400755B44 /* HeaderSubtitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0C0E23AD898400755B44 /* HeaderSubtitleView.swift */; };
-		86DA0C6023AD898400755B44 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0C0F23AD898400755B44 /* HeaderView.swift */; };
-		86DA0C6123AD898400755B44 /* AvailabilitiesForDayItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DA0C1123AD898400755B44 /* AvailabilitiesForDayItemCell.xib */; };
-		86DA0C6223AD898400755B44 /* AvailabilityItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DA0C1223AD898400755B44 /* AvailabilityItemCell.xib */; };
-		86DA0C6323AD898400755B44 /* BookingActionsItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DA0C1323AD898400755B44 /* BookingActionsItemCell.xib */; };
-		86DA0C6423AD898400755B44 /* BookingDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DA0C1423AD898400755B44 /* BookingDetailsView.xib */; };
-		86DA0C6523AD898400755B44 /* BookingOneLineElementItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DA0C1523AD898400755B44 /* BookingOneLineElementItemCell.xib */; };
-		86DA0C6623AD898400755B44 /* BookingPreviewHeaderItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DA0C1623AD898400755B44 /* BookingPreviewHeaderItemCell.xib */; };
-		86DA0C6723AD898400755B44 /* BookingPreviewItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DA0C1723AD898400755B44 /* BookingPreviewItemCell.xib */; };
-		86DA0C6823AD898400755B44 /* BookingTwoLinesElementItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DA0C1823AD898400755B44 /* BookingTwoLinesElementItemCell.xib */; };
-		86DA0C6923AD898400755B44 /* DoctorMainDataItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DA0C1923AD898400755B44 /* DoctorMainDataItemCell.xib */; };
-		86DA0C6A23AD898400755B44 /* DoctorPreviewItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DA0C1A23AD898400755B44 /* DoctorPreviewItemCell.xib */; };
-		86DA0C6B23AD898400755B44 /* DoctorSecondaryDataItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DA0C1B23AD898400755B44 /* DoctorSecondaryDataItemCell.xib */; };
-		86DA0C6C23AD898400755B44 /* FeedbackMessage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DA0C1C23AD898400755B44 /* FeedbackMessage.xib */; };
-		86DA0C6D23AD898400755B44 /* Header.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DA0C1D23AD898400755B44 /* Header.xib */; };
-		86DA0C6E23AD898400755B44 /* HeaderDashboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DA0C1E23AD898400755B44 /* HeaderDashboard.xib */; };
-		86DA0C6F23AD898400755B44 /* HeaderDashboardSubtitle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DA0C1F23AD898400755B44 /* HeaderDashboardSubtitle.xib */; };
-		86DA0C7023AD898400755B44 /* HeaderSubtitle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DA0C2023AD898400755B44 /* HeaderSubtitle.xib */; };
-		86DA0C7123AD898400755B44 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0C2223AD898400755B44 /* Colors.swift */; };
-		86DA0C7223AD898400755B44 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0C2323AD898400755B44 /* Strings.swift */; };
-		86DA0C7323AD898400755B44 /* ChooseAvailabilityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0C2523AD898400755B44 /* ChooseAvailabilityVC.swift */; };
-		86DA0C7423AD898400755B44 /* ChooseReasonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0C2623AD898400755B44 /* ChooseReasonVC.swift */; };
-		86DA0C7523AD898400755B44 /* ConfirmBookingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0C2723AD898400755B44 /* ConfirmBookingVC.swift */; };
-		86DA0C7623AD898400755B44 /* DoctorProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0C2823AD898400755B44 /* DoctorProfileVC.swift */; };
-		86DA0C7723AD898400755B44 /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0C2923AD898400755B44 /* ForgotPasswordVC.swift */; };
-		86DA0C7823AD898400755B44 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0C2A23AD898400755B44 /* HomeVC.swift */; };
-		86DA0C7923AD898400755B44 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0C2B23AD898400755B44 /* LoginVC.swift */; };
-		86DA0C7A23AD898400755B44 /* MyBookingDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0C2C23AD898400755B44 /* MyBookingDetailsVC.swift */; };
-		86DA0C7B23AD898400755B44 /* MyBookingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0C2D23AD898400755B44 /* MyBookingsVC.swift */; };
-		86DA0C7C23AD898400755B44 /* PopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0C2E23AD898400755B44 /* PopUpVC.swift */; };
-		86DA0C7D23AD898400755B44 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0C2F23AD898400755B44 /* SearchVC.swift */; };
-		86DA0C7E23AD898400755B44 /* SignUpProVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0C3023AD898400755B44 /* SignUpProVC.swift */; };
-		86DA0C7F23AD898400755B44 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0C3123AD898400755B44 /* SignUpVC.swift */; };
 		86DC1A8D23A3CA3500E6DFC6 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86DC1A7F23A3CA2A00E6DFC6 /* SQLite.framework */; };
 		86DC1A8E23A3CA3C00E6DFC6 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86DC1A7F23A3CA2A00E6DFC6 /* SQLite.framework */; };
 		86DC1A8F23A3CA3C00E6DFC6 /* SQLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 86DC1A7F23A3CA2A00E6DFC6 /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AAD4BA2323B27BD000CCF457 /* FeedbackMessage.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAD4B9CE23B27BCF00CCF457 /* FeedbackMessage.xib */; };
+		AAD4BA2423B27BD000CCF457 /* AvailabilitiesForDayItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAD4B9CF23B27BCF00CCF457 /* AvailabilitiesForDayItemCell.xib */; };
+		AAD4BA2523B27BD000CCF457 /* HeaderSubtitle.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAD4B9D023B27BCF00CCF457 /* HeaderSubtitle.xib */; };
+		AAD4BA2623B27BD000CCF457 /* BookingPreviewItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAD4B9D123B27BCF00CCF457 /* BookingPreviewItemCell.xib */; };
+		AAD4BA2723B27BD000CCF457 /* DoctorPreviewItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAD4B9D223B27BCF00CCF457 /* DoctorPreviewItemCell.xib */; };
+		AAD4BA2823B27BD000CCF457 /* BookingOneLineElementItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAD4B9D323B27BCF00CCF457 /* BookingOneLineElementItemCell.xib */; };
+		AAD4BA2923B27BD000CCF457 /* BookingPreviewHeaderItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAD4B9D423B27BCF00CCF457 /* BookingPreviewHeaderItemCell.xib */; };
+		AAD4BA2A23B27BD000CCF457 /* DoctorMainDataItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAD4B9D523B27BCF00CCF457 /* DoctorMainDataItemCell.xib */; };
+		AAD4BA2B23B27BD000CCF457 /* HeaderDashboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAD4B9D623B27BCF00CCF457 /* HeaderDashboard.xib */; };
+		AAD4BA2C23B27BD000CCF457 /* BookingTwoLinesElementItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAD4B9D723B27BCF00CCF457 /* BookingTwoLinesElementItemCell.xib */; };
+		AAD4BA2D23B27BD000CCF457 /* DoctorSecondaryDataItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAD4B9D823B27BCF00CCF457 /* DoctorSecondaryDataItemCell.xib */; };
+		AAD4BA2E23B27BD000CCF457 /* HeaderDashboardSubtitle.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAD4B9D923B27BCF00CCF457 /* HeaderDashboardSubtitle.xib */; };
+		AAD4BA2F23B27BD000CCF457 /* BookingActionsItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAD4B9DA23B27BCF00CCF457 /* BookingActionsItemCell.xib */; };
+		AAD4BA3023B27BD000CCF457 /* Header.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAD4B9DB23B27BCF00CCF457 /* Header.xib */; };
+		AAD4BA3123B27BD000CCF457 /* BookingDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAD4B9DC23B27BCF00CCF457 /* BookingDetailsView.xib */; };
+		AAD4BA3223B27BD000CCF457 /* AvailabilityItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAD4B9DD23B27BCF00CCF457 /* AvailabilityItemCell.xib */; };
+		AAD4BA3323B27BD000CCF457 /* HeaderSubtitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B9DE23B27BCF00CCF457 /* HeaderSubtitleView.swift */; };
+		AAD4BA3423B27BD000CCF457 /* SignUpProTwoColumnsElementItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B9E023B27BCF00CCF457 /* SignUpProTwoColumnsElementItemCell.swift */; };
+		AAD4BA3523B27BD000CCF457 /* SignUpProOneColumnElementItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B9E123B27BCF00CCF457 /* SignUpProOneColumnElementItemCell.swift */; };
+		AAD4BA3623B27BD000CCF457 /* ReasonItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B9E223B27BCF00CCF457 /* ReasonItemCell.swift */; };
+		AAD4BA3723B27BD000CCF457 /* BookingPatientItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B9E323B27BCF00CCF457 /* BookingPatientItemCell.swift */; };
+		AAD4BA3823B27BD000CCF457 /* BookingActionsItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B9E423B27BCF00CCF457 /* BookingActionsItemCell.swift */; };
+		AAD4BA3923B27BD000CCF457 /* AvailabilitiesForDayItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B9E523B27BCF00CCF457 /* AvailabilitiesForDayItemCell.swift */; };
+		AAD4BA3A23B27BD000CCF457 /* DoctorSecondaryDataItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B9E623B27BCF00CCF457 /* DoctorSecondaryDataItemCell.swift */; };
+		AAD4BA3B23B27BD000CCF457 /* BookingPreviewHeaderItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B9E723B27BCF00CCF457 /* BookingPreviewHeaderItemCell.swift */; };
+		AAD4BA3C23B27BD000CCF457 /* DoctorPreviewItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B9E823B27BCF00CCF457 /* DoctorPreviewItemCell.swift */; };
+		AAD4BA3D23B27BD000CCF457 /* AvailabilityItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B9E923B27BCF00CCF457 /* AvailabilityItemCell.swift */; };
+		AAD4BA3E23B27BD000CCF457 /* BookingOneLineElementItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B9EA23B27BCF00CCF457 /* BookingOneLineElementItemCell.swift */; };
+		AAD4BA3F23B27BD000CCF457 /* BookingPreviewItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B9EB23B27BCF00CCF457 /* BookingPreviewItemCell.swift */; };
+		AAD4BA4023B27BD000CCF457 /* BookingTwoLinesElementItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B9EC23B27BCF00CCF457 /* BookingTwoLinesElementItemCell.swift */; };
+		AAD4BA4123B27BD000CCF457 /* DoctorMainDataItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B9ED23B27BCF00CCF457 /* DoctorMainDataItemCell.swift */; };
+		AAD4BA4223B27BD000CCF457 /* FeedbackMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B9EE23B27BCF00CCF457 /* FeedbackMessageView.swift */; };
+		AAD4BA4323B27BD000CCF457 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B9EF23B27BCF00CCF457 /* HeaderView.swift */; };
+		AAD4BA4423B27BD000CCF457 /* HeaderDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B9F023B27BCF00CCF457 /* HeaderDashboardView.swift */; };
+		AAD4BA4523B27BD000CCF457 /* BookingDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B9F123B27BCF00CCF457 /* BookingDetailsView.swift */; };
+		AAD4BA4623B27BD000CCF457 /* HeaderDashboardSubtitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B9F223B27BCF00CCF457 /* HeaderDashboardSubtitleView.swift */; };
+		AAD4BA4723B27BD000CCF457 /* Experience.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B9F423B27BCF00CCF457 /* Experience.swift */; };
+		AAD4BA4823B27BD000CCF457 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B9F523B27BCF00CCF457 /* Language.swift */; };
+		AAD4BA4923B27BD000CCF457 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B9F623B27BCF00CCF457 /* Address.swift */; };
+		AAD4BA4A23B27BD000CCF457 /* PaymentOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B9F723B27BCF00CCF457 /* PaymentOption.swift */; };
+		AAD4BA4B23B27BD000CCF457 /* Booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B9F823B27BCF00CCF457 /* Booking.swift */; };
+		AAD4BA4C23B27BD000CCF457 /* Reason.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B9F923B27BCF00CCF457 /* Reason.swift */; };
+		AAD4BA4D23B27BD000CCF457 /* Doctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B9FA23B27BCF00CCF457 /* Doctor.swift */; };
+		AAD4BA4E23B27BD000CCF457 /* Patient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B9FB23B27BCF00CCF457 /* Patient.swift */; };
+		AAD4BA4F23B27BD000CCF457 /* Availability.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B9FC23B27BCF00CCF457 /* Availability.swift */; };
+		AAD4BA5023B27BD000CCF457 /* Resident.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B9FD23B27BCF00CCF457 /* Resident.swift */; };
+		AAD4BA5123B27BD000CCF457 /* Education.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4B9FE23B27BCF00CCF457 /* Education.swift */; };
+		AAD4BA5223B27BD000CCF457 /* ConfirmBookingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4BA0023B27BCF00CCF457 /* ConfirmBookingVC.swift */; };
+		AAD4BA5323B27BD000CCF457 /* DoctorProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4BA0123B27BCF00CCF457 /* DoctorProfileVC.swift */; };
+		AAD4BA5423B27BD000CCF457 /* PopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4BA0223B27BCF00CCF457 /* PopUpVC.swift */; };
+		AAD4BA5523B27BD000CCF457 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4BA0323B27BCF00CCF457 /* LoginVC.swift */; };
+		AAD4BA5623B27BD000CCF457 /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4BA0423B27BCF00CCF457 /* ForgotPasswordVC.swift */; };
+		AAD4BA5723B27BD000CCF457 /* MyBookingDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4BA0523B27BCF00CCF457 /* MyBookingDetailsVC.swift */; };
+		AAD4BA5823B27BD000CCF457 /* SignUpProVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4BA0623B27BCF00CCF457 /* SignUpProVC.swift */; };
+		AAD4BA5923B27BD000CCF457 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4BA0723B27BCF00CCF457 /* SignUpVC.swift */; };
+		AAD4BA5A23B27BD000CCF457 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4BA0823B27BCF00CCF457 /* SearchVC.swift */; };
+		AAD4BA5B23B27BD000CCF457 /* ChooseAvailabilityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4BA0923B27BCF00CCF457 /* ChooseAvailabilityVC.swift */; };
+		AAD4BA5C23B27BD000CCF457 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4BA0A23B27BCF00CCF457 /* HomeVC.swift */; };
+		AAD4BA5D23B27BD000CCF457 /* MyBookingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4BA0B23B27BCF00CCF457 /* MyBookingsVC.swift */; };
+		AAD4BA5E23B27BD000CCF457 /* ChooseReasonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4BA0C23B27BCF00CCF457 /* ChooseReasonVC.swift */; };
+		AAD4BA5F23B27BD000CCF457 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4BA0E23B27BD000CCF457 /* Strings.swift */; };
+		AAD4BA6023B27BD000CCF457 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4BA0F23B27BD000CCF457 /* Colors.swift */; };
+		AAD4BA6123B27BD000CCF457 /* AddressDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4BA1123B27BD000CCF457 /* AddressDatabaseHelper.swift */; };
+		AAD4BA6223B27BD000CCF457 /* ExperienceDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4BA1223B27BD000CCF457 /* ExperienceDatabaseHelper.swift */; };
+		AAD4BA6323B27BD000CCF457 /* EducationDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4BA1323B27BD000CCF457 /* EducationDatabaseHelper.swift */; };
+		AAD4BA6423B27BD000CCF457 /* LanguageDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4BA1423B27BD000CCF457 /* LanguageDatabaseHelper.swift */; };
+		AAD4BA6523B27BD000CCF457 /* BookingDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4BA1523B27BD000CCF457 /* BookingDatabaseHelper.swift */; };
+		AAD4BA6623B27BD000CCF457 /* AvailabilityDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4BA1623B27BD000CCF457 /* AvailabilityDatabaseHelper.swift */; };
+		AAD4BA6723B27BD000CCF457 /* DoctorDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4BA1723B27BD000CCF457 /* DoctorDatabaseHelper.swift */; };
+		AAD4BA6823B27BD000CCF457 /* DoctoAppDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4BA1823B27BD000CCF457 /* DoctoAppDatabaseHelper.swift */; };
+		AAD4BA6923B27BD000CCF457 /* PatientDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4BA1923B27BD000CCF457 /* PatientDatabaseHelper.swift */; };
+		AAD4BA6A23B27BD000CCF457 /* ReasonDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4BA1A23B27BD000CCF457 /* ReasonDatabaseHelper.swift */; };
+		AAD4BA6B23B27BD000CCF457 /* PaymentOptionDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4BA1B23B27BD000CCF457 /* PaymentOptionDatabaseHelper.swift */; };
+		AAD4BA6C23B27BD000CCF457 /* ErrorCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4BA1D23B27BD000CCF457 /* ErrorCode.swift */; };
+		AAD4BA6D23B27BD000CCF457 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4BA1F23B27BD000CCF457 /* ImageService.swift */; };
+		AAD4BA6E23B27BD000CCF457 /* StringFormatterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4BA2023B27BD000CCF457 /* StringFormatterService.swift */; };
+		AAD4BA6F23B27BD000CCF457 /* DateTimeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4BA2123B27BD000CCF457 /* DateTimeService.swift */; };
+		AAD4BA7023B27BD000CCF457 /* EncryptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4BA2223B27BD000CCF457 /* EncryptionService.swift */; };
+		AAD4BA7423B30D8200CCF457 /* PopUpBookingCancellationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD4BA7323B30D8200CCF457 /* PopUpBookingCancellationVC.swift */; };
+		AAD4BA9423B3184000CCF457 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD4BA8523B3182D00CCF457 /* CryptoSwift.framework */; };
+		AAD4BA9523B3184000CCF457 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AAD4BA8523B3182D00CCF457 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -171,6 +174,41 @@
 			remoteGlobalIDString = EE247AD21C3F04ED00AE3E12;
 			remoteInfo = "SQLite iOS";
 		};
+		AAD4BA8423B3182D00CCF457 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AAD4BA7C23B3182D00CCF457 /* CryptoSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 754BE45519693E190098E6F3;
+			remoteInfo = CryptoSwift;
+		};
+		AAD4BA8623B3182D00CCF457 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AAD4BA7C23B3182D00CCF457 /* CryptoSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 75211F92207249D8004E41F8;
+			remoteInfo = "CryptoSwift-TestHostApp";
+		};
+		AAD4BA8823B3182D00CCF457 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AAD4BA7C23B3182D00CCF457 /* CryptoSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 754BE46019693E190098E6F3;
+			remoteInfo = CryptoSwiftTests;
+		};
+		AAD4BA8A23B3182D00CCF457 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AAD4BA7C23B3182D00CCF457 /* CryptoSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7595C14A2072E48C00EA1A5F;
+			remoteInfo = "TestsPerformance-Mac";
+		};
+		AAD4BA8C23B3182D00CCF457 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AAD4BA7C23B3182D00CCF457 /* CryptoSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7564F0602072EAEB00CA5A96;
+			remoteInfo = "TestsPerformance-iOS";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -181,6 +219,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				86DC1A8F23A3CA3C00E6DFC6 /* SQLite.framework in Embed Frameworks */,
+				AAD4BA9523B3184000CCF457 /* CryptoSwift.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -204,85 +243,87 @@
 		869CC037238D884600EA27C8 /* roboto_medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = roboto_medium.ttf; sourceTree = "<group>"; };
 		869CC038238D884600EA27C8 /* roboto_bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = roboto_bold.ttf; sourceTree = "<group>"; };
 		869CC03C238D887E00EA27C8 /* boogaloo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = boogaloo.ttf; sourceTree = "<group>"; };
-		86DA0BDC23AD898400755B44 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
-		86DA0BDD23AD898400755B44 /* Availability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Availability.swift; sourceTree = "<group>"; };
-		86DA0BDE23AD898400755B44 /* Booking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Booking.swift; sourceTree = "<group>"; };
-		86DA0BDF23AD898400755B44 /* Doctor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Doctor.swift; sourceTree = "<group>"; };
-		86DA0BE023AD898400755B44 /* Education.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Education.swift; sourceTree = "<group>"; };
-		86DA0BE123AD898400755B44 /* Experience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Experience.swift; sourceTree = "<group>"; };
-		86DA0BE223AD898400755B44 /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
-		86DA0BE323AD898400755B44 /* Patient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Patient.swift; sourceTree = "<group>"; };
-		86DA0BE423AD898400755B44 /* PaymentOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentOption.swift; sourceTree = "<group>"; };
-		86DA0BE523AD898400755B44 /* Reason.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reason.swift; sourceTree = "<group>"; };
-		86DA0BE623AD898400755B44 /* Resident.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resident.swift; sourceTree = "<group>"; };
-		86DA0BE823AD898400755B44 /* DateTimeService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTimeService.swift; sourceTree = "<group>"; };
-		86DA0BE923AD898400755B44 /* EncryptionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionService.swift; sourceTree = "<group>"; };
-		86DA0BEA23AD898400755B44 /* ImageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
-		86DA0BEB23AD898400755B44 /* StringFormatterService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringFormatterService.swift; sourceTree = "<group>"; };
-		86DA0BED23AD898400755B44 /* ErrorCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorCode.swift; sourceTree = "<group>"; };
-		86DA0BEF23AD898400755B44 /* AddressDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressDatabaseHelper.swift; sourceTree = "<group>"; };
-		86DA0BF023AD898400755B44 /* AvailabilityDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailabilityDatabaseHelper.swift; sourceTree = "<group>"; };
-		86DA0BF123AD898400755B44 /* BookingDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingDatabaseHelper.swift; sourceTree = "<group>"; };
-		86DA0BF223AD898400755B44 /* DoctoAppDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoctoAppDatabaseHelper.swift; sourceTree = "<group>"; };
-		86DA0BF323AD898400755B44 /* DoctorDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoctorDatabaseHelper.swift; sourceTree = "<group>"; };
-		86DA0BF423AD898400755B44 /* EducationDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EducationDatabaseHelper.swift; sourceTree = "<group>"; };
-		86DA0BF523AD898400755B44 /* ExperienceDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperienceDatabaseHelper.swift; sourceTree = "<group>"; };
-		86DA0BF623AD898400755B44 /* LanguageDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageDatabaseHelper.swift; sourceTree = "<group>"; };
-		86DA0BF723AD898400755B44 /* PatientDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatientDatabaseHelper.swift; sourceTree = "<group>"; };
-		86DA0BF823AD898400755B44 /* PaymentOptionDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentOptionDatabaseHelper.swift; sourceTree = "<group>"; };
-		86DA0BF923AD898400755B44 /* ReasonDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReasonDatabaseHelper.swift; sourceTree = "<group>"; };
-		86DA0BFB23AD898400755B44 /* BookingDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingDetailsView.swift; sourceTree = "<group>"; };
-		86DA0BFD23AD898400755B44 /* AvailabilitiesForDayItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailabilitiesForDayItemCell.swift; sourceTree = "<group>"; };
-		86DA0BFE23AD898400755B44 /* AvailabilityItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailabilityItemCell.swift; sourceTree = "<group>"; };
-		86DA0BFF23AD898400755B44 /* BookingActionsItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingActionsItemCell.swift; sourceTree = "<group>"; };
-		86DA0C0023AD898400755B44 /* BookingOneLineElementItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingOneLineElementItemCell.swift; sourceTree = "<group>"; };
-		86DA0C0123AD898400755B44 /* BookingPatientItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingPatientItemCell.swift; sourceTree = "<group>"; };
-		86DA0C0223AD898400755B44 /* BookingPreviewHeaderItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingPreviewHeaderItemCell.swift; sourceTree = "<group>"; };
-		86DA0C0323AD898400755B44 /* BookingPreviewItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingPreviewItemCell.swift; sourceTree = "<group>"; };
-		86DA0C0423AD898400755B44 /* BookingTwoLinesElementItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingTwoLinesElementItemCell.swift; sourceTree = "<group>"; };
-		86DA0C0523AD898400755B44 /* DoctorMainDataItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoctorMainDataItemCell.swift; sourceTree = "<group>"; };
-		86DA0C0623AD898400755B44 /* DoctorPreviewItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoctorPreviewItemCell.swift; sourceTree = "<group>"; };
-		86DA0C0723AD898400755B44 /* DoctorSecondaryDataItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoctorSecondaryDataItemCell.swift; sourceTree = "<group>"; };
-		86DA0C0823AD898400755B44 /* ReasonItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReasonItemCell.swift; sourceTree = "<group>"; };
-		86DA0C0923AD898400755B44 /* SignUpProOneColumnElementItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpProOneColumnElementItemCell.swift; sourceTree = "<group>"; };
-		86DA0C0A23AD898400755B44 /* SignUpProTwoColumnsElementItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpProTwoColumnsElementItemCell.swift; sourceTree = "<group>"; };
-		86DA0C0B23AD898400755B44 /* FeedbackMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackMessageView.swift; sourceTree = "<group>"; };
-		86DA0C0C23AD898400755B44 /* HeaderDashboardSubtitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderDashboardSubtitleView.swift; sourceTree = "<group>"; };
-		86DA0C0D23AD898400755B44 /* HeaderDashboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderDashboardView.swift; sourceTree = "<group>"; };
-		86DA0C0E23AD898400755B44 /* HeaderSubtitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderSubtitleView.swift; sourceTree = "<group>"; };
-		86DA0C0F23AD898400755B44 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
-		86DA0C1123AD898400755B44 /* AvailabilitiesForDayItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AvailabilitiesForDayItemCell.xib; sourceTree = "<group>"; };
-		86DA0C1223AD898400755B44 /* AvailabilityItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AvailabilityItemCell.xib; sourceTree = "<group>"; };
-		86DA0C1323AD898400755B44 /* BookingActionsItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookingActionsItemCell.xib; sourceTree = "<group>"; };
-		86DA0C1423AD898400755B44 /* BookingDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookingDetailsView.xib; sourceTree = "<group>"; };
-		86DA0C1523AD898400755B44 /* BookingOneLineElementItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookingOneLineElementItemCell.xib; sourceTree = "<group>"; };
-		86DA0C1623AD898400755B44 /* BookingPreviewHeaderItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookingPreviewHeaderItemCell.xib; sourceTree = "<group>"; };
-		86DA0C1723AD898400755B44 /* BookingPreviewItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookingPreviewItemCell.xib; sourceTree = "<group>"; };
-		86DA0C1823AD898400755B44 /* BookingTwoLinesElementItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookingTwoLinesElementItemCell.xib; sourceTree = "<group>"; };
-		86DA0C1923AD898400755B44 /* DoctorMainDataItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DoctorMainDataItemCell.xib; sourceTree = "<group>"; };
-		86DA0C1A23AD898400755B44 /* DoctorPreviewItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DoctorPreviewItemCell.xib; sourceTree = "<group>"; };
-		86DA0C1B23AD898400755B44 /* DoctorSecondaryDataItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DoctorSecondaryDataItemCell.xib; sourceTree = "<group>"; };
-		86DA0C1C23AD898400755B44 /* FeedbackMessage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedbackMessage.xib; sourceTree = "<group>"; };
-		86DA0C1D23AD898400755B44 /* Header.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Header.xib; sourceTree = "<group>"; };
-		86DA0C1E23AD898400755B44 /* HeaderDashboard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderDashboard.xib; sourceTree = "<group>"; };
-		86DA0C1F23AD898400755B44 /* HeaderDashboardSubtitle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderDashboardSubtitle.xib; sourceTree = "<group>"; };
-		86DA0C2023AD898400755B44 /* HeaderSubtitle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderSubtitle.xib; sourceTree = "<group>"; };
-		86DA0C2223AD898400755B44 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		86DA0C2323AD898400755B44 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
-		86DA0C2523AD898400755B44 /* ChooseAvailabilityVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseAvailabilityVC.swift; sourceTree = "<group>"; };
-		86DA0C2623AD898400755B44 /* ChooseReasonVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseReasonVC.swift; sourceTree = "<group>"; };
-		86DA0C2723AD898400755B44 /* ConfirmBookingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmBookingVC.swift; sourceTree = "<group>"; };
-		86DA0C2823AD898400755B44 /* DoctorProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoctorProfileVC.swift; sourceTree = "<group>"; };
-		86DA0C2923AD898400755B44 /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
-		86DA0C2A23AD898400755B44 /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
-		86DA0C2B23AD898400755B44 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
-		86DA0C2C23AD898400755B44 /* MyBookingDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBookingDetailsVC.swift; sourceTree = "<group>"; };
-		86DA0C2D23AD898400755B44 /* MyBookingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBookingsVC.swift; sourceTree = "<group>"; };
-		86DA0C2E23AD898400755B44 /* PopUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpVC.swift; sourceTree = "<group>"; };
-		86DA0C2F23AD898400755B44 /* SearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
-		86DA0C3023AD898400755B44 /* SignUpProVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpProVC.swift; sourceTree = "<group>"; };
-		86DA0C3123AD898400755B44 /* SignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		86DC1A7423A3CA2A00E6DFC6 /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = DoctoApp/Frameworks/SQLite/SQLite.xcodeproj; sourceTree = "<group>"; };
+		AAD4B9CE23B27BCF00CCF457 /* FeedbackMessage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedbackMessage.xib; sourceTree = "<group>"; };
+		AAD4B9CF23B27BCF00CCF457 /* AvailabilitiesForDayItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AvailabilitiesForDayItemCell.xib; sourceTree = "<group>"; };
+		AAD4B9D023B27BCF00CCF457 /* HeaderSubtitle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderSubtitle.xib; sourceTree = "<group>"; };
+		AAD4B9D123B27BCF00CCF457 /* BookingPreviewItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookingPreviewItemCell.xib; sourceTree = "<group>"; };
+		AAD4B9D223B27BCF00CCF457 /* DoctorPreviewItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DoctorPreviewItemCell.xib; sourceTree = "<group>"; };
+		AAD4B9D323B27BCF00CCF457 /* BookingOneLineElementItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookingOneLineElementItemCell.xib; sourceTree = "<group>"; };
+		AAD4B9D423B27BCF00CCF457 /* BookingPreviewHeaderItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookingPreviewHeaderItemCell.xib; sourceTree = "<group>"; };
+		AAD4B9D523B27BCF00CCF457 /* DoctorMainDataItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DoctorMainDataItemCell.xib; sourceTree = "<group>"; };
+		AAD4B9D623B27BCF00CCF457 /* HeaderDashboard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderDashboard.xib; sourceTree = "<group>"; };
+		AAD4B9D723B27BCF00CCF457 /* BookingTwoLinesElementItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookingTwoLinesElementItemCell.xib; sourceTree = "<group>"; };
+		AAD4B9D823B27BCF00CCF457 /* DoctorSecondaryDataItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DoctorSecondaryDataItemCell.xib; sourceTree = "<group>"; };
+		AAD4B9D923B27BCF00CCF457 /* HeaderDashboardSubtitle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderDashboardSubtitle.xib; sourceTree = "<group>"; };
+		AAD4B9DA23B27BCF00CCF457 /* BookingActionsItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookingActionsItemCell.xib; sourceTree = "<group>"; };
+		AAD4B9DB23B27BCF00CCF457 /* Header.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Header.xib; sourceTree = "<group>"; };
+		AAD4B9DC23B27BCF00CCF457 /* BookingDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookingDetailsView.xib; sourceTree = "<group>"; };
+		AAD4B9DD23B27BCF00CCF457 /* AvailabilityItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AvailabilityItemCell.xib; sourceTree = "<group>"; };
+		AAD4B9DE23B27BCF00CCF457 /* HeaderSubtitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderSubtitleView.swift; sourceTree = "<group>"; };
+		AAD4B9E023B27BCF00CCF457 /* SignUpProTwoColumnsElementItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpProTwoColumnsElementItemCell.swift; sourceTree = "<group>"; };
+		AAD4B9E123B27BCF00CCF457 /* SignUpProOneColumnElementItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpProOneColumnElementItemCell.swift; sourceTree = "<group>"; };
+		AAD4B9E223B27BCF00CCF457 /* ReasonItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReasonItemCell.swift; sourceTree = "<group>"; };
+		AAD4B9E323B27BCF00CCF457 /* BookingPatientItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingPatientItemCell.swift; sourceTree = "<group>"; };
+		AAD4B9E423B27BCF00CCF457 /* BookingActionsItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingActionsItemCell.swift; sourceTree = "<group>"; };
+		AAD4B9E523B27BCF00CCF457 /* AvailabilitiesForDayItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailabilitiesForDayItemCell.swift; sourceTree = "<group>"; };
+		AAD4B9E623B27BCF00CCF457 /* DoctorSecondaryDataItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoctorSecondaryDataItemCell.swift; sourceTree = "<group>"; };
+		AAD4B9E723B27BCF00CCF457 /* BookingPreviewHeaderItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingPreviewHeaderItemCell.swift; sourceTree = "<group>"; };
+		AAD4B9E823B27BCF00CCF457 /* DoctorPreviewItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoctorPreviewItemCell.swift; sourceTree = "<group>"; };
+		AAD4B9E923B27BCF00CCF457 /* AvailabilityItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailabilityItemCell.swift; sourceTree = "<group>"; };
+		AAD4B9EA23B27BCF00CCF457 /* BookingOneLineElementItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingOneLineElementItemCell.swift; sourceTree = "<group>"; };
+		AAD4B9EB23B27BCF00CCF457 /* BookingPreviewItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingPreviewItemCell.swift; sourceTree = "<group>"; };
+		AAD4B9EC23B27BCF00CCF457 /* BookingTwoLinesElementItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingTwoLinesElementItemCell.swift; sourceTree = "<group>"; };
+		AAD4B9ED23B27BCF00CCF457 /* DoctorMainDataItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoctorMainDataItemCell.swift; sourceTree = "<group>"; };
+		AAD4B9EE23B27BCF00CCF457 /* FeedbackMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackMessageView.swift; sourceTree = "<group>"; };
+		AAD4B9EF23B27BCF00CCF457 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		AAD4B9F023B27BCF00CCF457 /* HeaderDashboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderDashboardView.swift; sourceTree = "<group>"; };
+		AAD4B9F123B27BCF00CCF457 /* BookingDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingDetailsView.swift; sourceTree = "<group>"; };
+		AAD4B9F223B27BCF00CCF457 /* HeaderDashboardSubtitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderDashboardSubtitleView.swift; sourceTree = "<group>"; };
+		AAD4B9F423B27BCF00CCF457 /* Experience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Experience.swift; sourceTree = "<group>"; };
+		AAD4B9F523B27BCF00CCF457 /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		AAD4B9F623B27BCF00CCF457 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		AAD4B9F723B27BCF00CCF457 /* PaymentOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentOption.swift; sourceTree = "<group>"; };
+		AAD4B9F823B27BCF00CCF457 /* Booking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Booking.swift; sourceTree = "<group>"; };
+		AAD4B9F923B27BCF00CCF457 /* Reason.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reason.swift; sourceTree = "<group>"; };
+		AAD4B9FA23B27BCF00CCF457 /* Doctor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Doctor.swift; sourceTree = "<group>"; };
+		AAD4B9FB23B27BCF00CCF457 /* Patient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Patient.swift; sourceTree = "<group>"; };
+		AAD4B9FC23B27BCF00CCF457 /* Availability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Availability.swift; sourceTree = "<group>"; };
+		AAD4B9FD23B27BCF00CCF457 /* Resident.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resident.swift; sourceTree = "<group>"; };
+		AAD4B9FE23B27BCF00CCF457 /* Education.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Education.swift; sourceTree = "<group>"; };
+		AAD4BA0023B27BCF00CCF457 /* ConfirmBookingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmBookingVC.swift; sourceTree = "<group>"; };
+		AAD4BA0123B27BCF00CCF457 /* DoctorProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoctorProfileVC.swift; sourceTree = "<group>"; };
+		AAD4BA0223B27BCF00CCF457 /* PopUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpVC.swift; sourceTree = "<group>"; };
+		AAD4BA0323B27BCF00CCF457 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		AAD4BA0423B27BCF00CCF457 /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
+		AAD4BA0523B27BCF00CCF457 /* MyBookingDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBookingDetailsVC.swift; sourceTree = "<group>"; };
+		AAD4BA0623B27BCF00CCF457 /* SignUpProVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpProVC.swift; sourceTree = "<group>"; };
+		AAD4BA0723B27BCF00CCF457 /* SignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
+		AAD4BA0823B27BCF00CCF457 /* SearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
+		AAD4BA0923B27BCF00CCF457 /* ChooseAvailabilityVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseAvailabilityVC.swift; sourceTree = "<group>"; };
+		AAD4BA0A23B27BCF00CCF457 /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		AAD4BA0B23B27BCF00CCF457 /* MyBookingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBookingsVC.swift; sourceTree = "<group>"; };
+		AAD4BA0C23B27BCF00CCF457 /* ChooseReasonVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseReasonVC.swift; sourceTree = "<group>"; };
+		AAD4BA0E23B27BD000CCF457 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		AAD4BA0F23B27BD000CCF457 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		AAD4BA1123B27BD000CCF457 /* AddressDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressDatabaseHelper.swift; sourceTree = "<group>"; };
+		AAD4BA1223B27BD000CCF457 /* ExperienceDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperienceDatabaseHelper.swift; sourceTree = "<group>"; };
+		AAD4BA1323B27BD000CCF457 /* EducationDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EducationDatabaseHelper.swift; sourceTree = "<group>"; };
+		AAD4BA1423B27BD000CCF457 /* LanguageDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageDatabaseHelper.swift; sourceTree = "<group>"; };
+		AAD4BA1523B27BD000CCF457 /* BookingDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingDatabaseHelper.swift; sourceTree = "<group>"; };
+		AAD4BA1623B27BD000CCF457 /* AvailabilityDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailabilityDatabaseHelper.swift; sourceTree = "<group>"; };
+		AAD4BA1723B27BD000CCF457 /* DoctorDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoctorDatabaseHelper.swift; sourceTree = "<group>"; };
+		AAD4BA1823B27BD000CCF457 /* DoctoAppDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoctoAppDatabaseHelper.swift; sourceTree = "<group>"; };
+		AAD4BA1923B27BD000CCF457 /* PatientDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatientDatabaseHelper.swift; sourceTree = "<group>"; };
+		AAD4BA1A23B27BD000CCF457 /* ReasonDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReasonDatabaseHelper.swift; sourceTree = "<group>"; };
+		AAD4BA1B23B27BD000CCF457 /* PaymentOptionDatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentOptionDatabaseHelper.swift; sourceTree = "<group>"; };
+		AAD4BA1D23B27BD000CCF457 /* ErrorCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorCode.swift; sourceTree = "<group>"; };
+		AAD4BA1F23B27BD000CCF457 /* ImageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
+		AAD4BA2023B27BD000CCF457 /* StringFormatterService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringFormatterService.swift; sourceTree = "<group>"; };
+		AAD4BA2123B27BD000CCF457 /* DateTimeService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTimeService.swift; sourceTree = "<group>"; };
+		AAD4BA2223B27BD000CCF457 /* EncryptionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionService.swift; sourceTree = "<group>"; };
+		AAD4BA7323B30D8200CCF457 /* PopUpBookingCancellationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpBookingCancellationVC.swift; sourceTree = "<group>"; };
+		AAD4BA7C23B3182D00CCF457 /* CryptoSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CryptoSwift.xcodeproj; path = DoctoApp/Frameworks/CryptoSwift/CryptoSwift.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -290,6 +331,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAD4BA9423B3184000CCF457 /* CryptoSwift.framework in Frameworks */,
 				86DC1A8E23A3CA3C00E6DFC6 /* SQLite.framework in Frameworks */,
 				86DC1A8D23A3CA3500E6DFC6 /* SQLite.framework in Frameworks */,
 			);
@@ -315,6 +357,7 @@
 		8656734A238D2E1A00BC38D8 = {
 			isa = PBXGroup;
 			children = (
+				AAD4BA7C23B3182D00CCF457 /* CryptoSwift.xcodeproj */,
 				86DC1A7423A3CA2A00E6DFC6 /* SQLite.xcodeproj */,
 				86567355238D2E1B00BC38D8 /* DoctoApp */,
 				8656736A238D2E1C00BC38D8 /* DoctoAppTests */,
@@ -337,13 +380,13 @@
 		86567355238D2E1B00BC38D8 /* DoctoApp */ = {
 			isa = PBXGroup;
 			children = (
-				86DA0BEC23AD898400755B44 /* Codes */,
-				86DA0C2123AD898400755B44 /* Constants */,
-				86DA0C2423AD898400755B44 /* Controllers */,
-				86DA0BEE23AD898400755B44 /* DatabaseHelpers */,
-				86DA0BDB23AD898400755B44 /* Models */,
-				86DA0BE723AD898400755B44 /* Services */,
-				86DA0BFA23AD898400755B44 /* Views */,
+				AAD4BA1C23B27BD000CCF457 /* Codes */,
+				AAD4BA0D23B27BD000CCF457 /* Constants */,
+				AAD4B9FF23B27BCF00CCF457 /* Controllers */,
+				AAD4BA1023B27BD000CCF457 /* DatabaseHelpers */,
+				AAD4B9F323B27BCF00CCF457 /* Models */,
+				AAD4BA1E23B27BD000CCF457 /* Services */,
+				AAD4B9CC23B27BCF00CCF457 /* Views */,
 				869CC031238D81AB00EA27C8 /* Fonts */,
 				86567356238D2E1B00BC38D8 /* AppDelegate.swift */,
 				8656735A238D2E1B00BC38D8 /* Main.storyboard */,
@@ -383,149 +426,6 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		86DA0BDB23AD898400755B44 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				86DA0BDC23AD898400755B44 /* Address.swift */,
-				86DA0BDD23AD898400755B44 /* Availability.swift */,
-				86DA0BDE23AD898400755B44 /* Booking.swift */,
-				86DA0BDF23AD898400755B44 /* Doctor.swift */,
-				86DA0BE023AD898400755B44 /* Education.swift */,
-				86DA0BE123AD898400755B44 /* Experience.swift */,
-				86DA0BE223AD898400755B44 /* Language.swift */,
-				86DA0BE323AD898400755B44 /* Patient.swift */,
-				86DA0BE423AD898400755B44 /* PaymentOption.swift */,
-				86DA0BE523AD898400755B44 /* Reason.swift */,
-				86DA0BE623AD898400755B44 /* Resident.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		86DA0BE723AD898400755B44 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				86DA0BE823AD898400755B44 /* DateTimeService.swift */,
-				86DA0BE923AD898400755B44 /* EncryptionService.swift */,
-				86DA0BEA23AD898400755B44 /* ImageService.swift */,
-				86DA0BEB23AD898400755B44 /* StringFormatterService.swift */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		86DA0BEC23AD898400755B44 /* Codes */ = {
-			isa = PBXGroup;
-			children = (
-				86DA0BED23AD898400755B44 /* ErrorCode.swift */,
-			);
-			path = Codes;
-			sourceTree = "<group>";
-		};
-		86DA0BEE23AD898400755B44 /* DatabaseHelpers */ = {
-			isa = PBXGroup;
-			children = (
-				86DA0BEF23AD898400755B44 /* AddressDatabaseHelper.swift */,
-				86DA0BF023AD898400755B44 /* AvailabilityDatabaseHelper.swift */,
-				86DA0BF123AD898400755B44 /* BookingDatabaseHelper.swift */,
-				86DA0BF223AD898400755B44 /* DoctoAppDatabaseHelper.swift */,
-				86DA0BF323AD898400755B44 /* DoctorDatabaseHelper.swift */,
-				86DA0BF423AD898400755B44 /* EducationDatabaseHelper.swift */,
-				86DA0BF523AD898400755B44 /* ExperienceDatabaseHelper.swift */,
-				86DA0BF623AD898400755B44 /* LanguageDatabaseHelper.swift */,
-				86DA0BF723AD898400755B44 /* PatientDatabaseHelper.swift */,
-				86DA0BF823AD898400755B44 /* PaymentOptionDatabaseHelper.swift */,
-				86DA0BF923AD898400755B44 /* ReasonDatabaseHelper.swift */,
-			);
-			path = DatabaseHelpers;
-			sourceTree = "<group>";
-		};
-		86DA0BFA23AD898400755B44 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				86DA0BFB23AD898400755B44 /* BookingDetailsView.swift */,
-				86DA0BFC23AD898400755B44 /* CustomCells */,
-				86DA0C0B23AD898400755B44 /* FeedbackMessageView.swift */,
-				86DA0C0C23AD898400755B44 /* HeaderDashboardSubtitleView.swift */,
-				86DA0C0D23AD898400755B44 /* HeaderDashboardView.swift */,
-				86DA0C0E23AD898400755B44 /* HeaderSubtitleView.swift */,
-				86DA0C0F23AD898400755B44 /* HeaderView.swift */,
-				86DA0C1023AD898400755B44 /* XIB */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		86DA0BFC23AD898400755B44 /* CustomCells */ = {
-			isa = PBXGroup;
-			children = (
-				86DA0BFD23AD898400755B44 /* AvailabilitiesForDayItemCell.swift */,
-				86DA0BFE23AD898400755B44 /* AvailabilityItemCell.swift */,
-				86DA0BFF23AD898400755B44 /* BookingActionsItemCell.swift */,
-				86DA0C0023AD898400755B44 /* BookingOneLineElementItemCell.swift */,
-				86DA0C0123AD898400755B44 /* BookingPatientItemCell.swift */,
-				86DA0C0223AD898400755B44 /* BookingPreviewHeaderItemCell.swift */,
-				86DA0C0323AD898400755B44 /* BookingPreviewItemCell.swift */,
-				86DA0C0423AD898400755B44 /* BookingTwoLinesElementItemCell.swift */,
-				86DA0C0523AD898400755B44 /* DoctorMainDataItemCell.swift */,
-				86DA0C0623AD898400755B44 /* DoctorPreviewItemCell.swift */,
-				86DA0C0723AD898400755B44 /* DoctorSecondaryDataItemCell.swift */,
-				86DA0C0823AD898400755B44 /* ReasonItemCell.swift */,
-				86DA0C0923AD898400755B44 /* SignUpProOneColumnElementItemCell.swift */,
-				86DA0C0A23AD898400755B44 /* SignUpProTwoColumnsElementItemCell.swift */,
-			);
-			path = CustomCells;
-			sourceTree = "<group>";
-		};
-		86DA0C1023AD898400755B44 /* XIB */ = {
-			isa = PBXGroup;
-			children = (
-				86DA0C1123AD898400755B44 /* AvailabilitiesForDayItemCell.xib */,
-				86DA0C1223AD898400755B44 /* AvailabilityItemCell.xib */,
-				86DA0C1323AD898400755B44 /* BookingActionsItemCell.xib */,
-				86DA0C1423AD898400755B44 /* BookingDetailsView.xib */,
-				86DA0C1523AD898400755B44 /* BookingOneLineElementItemCell.xib */,
-				86DA0C1623AD898400755B44 /* BookingPreviewHeaderItemCell.xib */,
-				86DA0C1723AD898400755B44 /* BookingPreviewItemCell.xib */,
-				86DA0C1823AD898400755B44 /* BookingTwoLinesElementItemCell.xib */,
-				86DA0C1923AD898400755B44 /* DoctorMainDataItemCell.xib */,
-				86DA0C1A23AD898400755B44 /* DoctorPreviewItemCell.xib */,
-				86DA0C1B23AD898400755B44 /* DoctorSecondaryDataItemCell.xib */,
-				86DA0C1C23AD898400755B44 /* FeedbackMessage.xib */,
-				86DA0C1D23AD898400755B44 /* Header.xib */,
-				86DA0C1E23AD898400755B44 /* HeaderDashboard.xib */,
-				86DA0C1F23AD898400755B44 /* HeaderDashboardSubtitle.xib */,
-				86DA0C2023AD898400755B44 /* HeaderSubtitle.xib */,
-			);
-			path = XIB;
-			sourceTree = "<group>";
-		};
-		86DA0C2123AD898400755B44 /* Constants */ = {
-			isa = PBXGroup;
-			children = (
-				86DA0C2223AD898400755B44 /* Colors.swift */,
-				86DA0C2323AD898400755B44 /* Strings.swift */,
-			);
-			path = Constants;
-			sourceTree = "<group>";
-		};
-		86DA0C2423AD898400755B44 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				86DA0C2523AD898400755B44 /* ChooseAvailabilityVC.swift */,
-				86DA0C2623AD898400755B44 /* ChooseReasonVC.swift */,
-				86DA0C2723AD898400755B44 /* ConfirmBookingVC.swift */,
-				86DA0C2823AD898400755B44 /* DoctorProfileVC.swift */,
-				86DA0C2923AD898400755B44 /* ForgotPasswordVC.swift */,
-				86DA0C2A23AD898400755B44 /* HomeVC.swift */,
-				86DA0C2B23AD898400755B44 /* LoginVC.swift */,
-				86DA0C2C23AD898400755B44 /* MyBookingDetailsVC.swift */,
-				86DA0C2D23AD898400755B44 /* MyBookingsVC.swift */,
-				86DA0C2E23AD898400755B44 /* PopUpVC.swift */,
-				86DA0C2F23AD898400755B44 /* SearchVC.swift */,
-				86DA0C3023AD898400755B44 /* SignUpProVC.swift */,
-				86DA0C3123AD898400755B44 /* SignUpVC.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
 		86DC1A7523A3CA2A00E6DFC6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -545,6 +445,162 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AAD4B9CC23B27BCF00CCF457 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AAD4B9CD23B27BCF00CCF457 /* XIB */,
+				AAD4B9DF23B27BCF00CCF457 /* CustomCells */,
+				AAD4B9EE23B27BCF00CCF457 /* FeedbackMessageView.swift */,
+				AAD4B9EF23B27BCF00CCF457 /* HeaderView.swift */,
+				AAD4B9DE23B27BCF00CCF457 /* HeaderSubtitleView.swift */,
+				AAD4B9F023B27BCF00CCF457 /* HeaderDashboardView.swift */,
+				AAD4B9F123B27BCF00CCF457 /* BookingDetailsView.swift */,
+				AAD4B9F223B27BCF00CCF457 /* HeaderDashboardSubtitleView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AAD4B9CD23B27BCF00CCF457 /* XIB */ = {
+			isa = PBXGroup;
+			children = (
+				AAD4B9CE23B27BCF00CCF457 /* FeedbackMessage.xib */,
+				AAD4B9CF23B27BCF00CCF457 /* AvailabilitiesForDayItemCell.xib */,
+				AAD4B9D023B27BCF00CCF457 /* HeaderSubtitle.xib */,
+				AAD4B9D123B27BCF00CCF457 /* BookingPreviewItemCell.xib */,
+				AAD4B9D223B27BCF00CCF457 /* DoctorPreviewItemCell.xib */,
+				AAD4B9D323B27BCF00CCF457 /* BookingOneLineElementItemCell.xib */,
+				AAD4B9D423B27BCF00CCF457 /* BookingPreviewHeaderItemCell.xib */,
+				AAD4B9D523B27BCF00CCF457 /* DoctorMainDataItemCell.xib */,
+				AAD4B9D623B27BCF00CCF457 /* HeaderDashboard.xib */,
+				AAD4B9D723B27BCF00CCF457 /* BookingTwoLinesElementItemCell.xib */,
+				AAD4B9D823B27BCF00CCF457 /* DoctorSecondaryDataItemCell.xib */,
+				AAD4B9D923B27BCF00CCF457 /* HeaderDashboardSubtitle.xib */,
+				AAD4B9DA23B27BCF00CCF457 /* BookingActionsItemCell.xib */,
+				AAD4B9DB23B27BCF00CCF457 /* Header.xib */,
+				AAD4B9DC23B27BCF00CCF457 /* BookingDetailsView.xib */,
+				AAD4B9DD23B27BCF00CCF457 /* AvailabilityItemCell.xib */,
+			);
+			path = XIB;
+			sourceTree = "<group>";
+		};
+		AAD4B9DF23B27BCF00CCF457 /* CustomCells */ = {
+			isa = PBXGroup;
+			children = (
+				AAD4B9E023B27BCF00CCF457 /* SignUpProTwoColumnsElementItemCell.swift */,
+				AAD4B9E123B27BCF00CCF457 /* SignUpProOneColumnElementItemCell.swift */,
+				AAD4B9E223B27BCF00CCF457 /* ReasonItemCell.swift */,
+				AAD4B9E323B27BCF00CCF457 /* BookingPatientItemCell.swift */,
+				AAD4B9E423B27BCF00CCF457 /* BookingActionsItemCell.swift */,
+				AAD4B9E523B27BCF00CCF457 /* AvailabilitiesForDayItemCell.swift */,
+				AAD4B9E623B27BCF00CCF457 /* DoctorSecondaryDataItemCell.swift */,
+				AAD4B9E723B27BCF00CCF457 /* BookingPreviewHeaderItemCell.swift */,
+				AAD4B9E823B27BCF00CCF457 /* DoctorPreviewItemCell.swift */,
+				AAD4B9E923B27BCF00CCF457 /* AvailabilityItemCell.swift */,
+				AAD4B9EA23B27BCF00CCF457 /* BookingOneLineElementItemCell.swift */,
+				AAD4B9EB23B27BCF00CCF457 /* BookingPreviewItemCell.swift */,
+				AAD4B9EC23B27BCF00CCF457 /* BookingTwoLinesElementItemCell.swift */,
+				AAD4B9ED23B27BCF00CCF457 /* DoctorMainDataItemCell.swift */,
+			);
+			path = CustomCells;
+			sourceTree = "<group>";
+		};
+		AAD4B9F323B27BCF00CCF457 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AAD4B9F423B27BCF00CCF457 /* Experience.swift */,
+				AAD4B9F523B27BCF00CCF457 /* Language.swift */,
+				AAD4B9F623B27BCF00CCF457 /* Address.swift */,
+				AAD4B9F723B27BCF00CCF457 /* PaymentOption.swift */,
+				AAD4B9F823B27BCF00CCF457 /* Booking.swift */,
+				AAD4B9F923B27BCF00CCF457 /* Reason.swift */,
+				AAD4B9FA23B27BCF00CCF457 /* Doctor.swift */,
+				AAD4B9FB23B27BCF00CCF457 /* Patient.swift */,
+				AAD4B9FC23B27BCF00CCF457 /* Availability.swift */,
+				AAD4B9FD23B27BCF00CCF457 /* Resident.swift */,
+				AAD4B9FE23B27BCF00CCF457 /* Education.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AAD4B9FF23B27BCF00CCF457 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AAD4BA0023B27BCF00CCF457 /* ConfirmBookingVC.swift */,
+				AAD4BA0123B27BCF00CCF457 /* DoctorProfileVC.swift */,
+				AAD4BA0223B27BCF00CCF457 /* PopUpVC.swift */,
+				AAD4BA0323B27BCF00CCF457 /* LoginVC.swift */,
+				AAD4BA0423B27BCF00CCF457 /* ForgotPasswordVC.swift */,
+				AAD4BA0523B27BCF00CCF457 /* MyBookingDetailsVC.swift */,
+				AAD4BA0623B27BCF00CCF457 /* SignUpProVC.swift */,
+				AAD4BA0723B27BCF00CCF457 /* SignUpVC.swift */,
+				AAD4BA0823B27BCF00CCF457 /* SearchVC.swift */,
+				AAD4BA0923B27BCF00CCF457 /* ChooseAvailabilityVC.swift */,
+				AAD4BA0A23B27BCF00CCF457 /* HomeVC.swift */,
+				AAD4BA0B23B27BCF00CCF457 /* MyBookingsVC.swift */,
+				AAD4BA0C23B27BCF00CCF457 /* ChooseReasonVC.swift */,
+				AAD4BA7323B30D8200CCF457 /* PopUpBookingCancellationVC.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		AAD4BA0D23B27BD000CCF457 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				AAD4BA0E23B27BD000CCF457 /* Strings.swift */,
+				AAD4BA0F23B27BD000CCF457 /* Colors.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		AAD4BA1023B27BD000CCF457 /* DatabaseHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				AAD4BA1123B27BD000CCF457 /* AddressDatabaseHelper.swift */,
+				AAD4BA1223B27BD000CCF457 /* ExperienceDatabaseHelper.swift */,
+				AAD4BA1323B27BD000CCF457 /* EducationDatabaseHelper.swift */,
+				AAD4BA1423B27BD000CCF457 /* LanguageDatabaseHelper.swift */,
+				AAD4BA1523B27BD000CCF457 /* BookingDatabaseHelper.swift */,
+				AAD4BA1623B27BD000CCF457 /* AvailabilityDatabaseHelper.swift */,
+				AAD4BA1723B27BD000CCF457 /* DoctorDatabaseHelper.swift */,
+				AAD4BA1823B27BD000CCF457 /* DoctoAppDatabaseHelper.swift */,
+				AAD4BA1923B27BD000CCF457 /* PatientDatabaseHelper.swift */,
+				AAD4BA1A23B27BD000CCF457 /* ReasonDatabaseHelper.swift */,
+				AAD4BA1B23B27BD000CCF457 /* PaymentOptionDatabaseHelper.swift */,
+			);
+			path = DatabaseHelpers;
+			sourceTree = "<group>";
+		};
+		AAD4BA1C23B27BD000CCF457 /* Codes */ = {
+			isa = PBXGroup;
+			children = (
+				AAD4BA1D23B27BD000CCF457 /* ErrorCode.swift */,
+			);
+			path = Codes;
+			sourceTree = "<group>";
+		};
+		AAD4BA1E23B27BD000CCF457 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				AAD4BA1F23B27BD000CCF457 /* ImageService.swift */,
+				AAD4BA2023B27BD000CCF457 /* StringFormatterService.swift */,
+				AAD4BA2123B27BD000CCF457 /* DateTimeService.swift */,
+				AAD4BA2223B27BD000CCF457 /* EncryptionService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		AAD4BA7D23B3182D00CCF457 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AAD4BA8523B3182D00CCF457 /* CryptoSwift.framework */,
+				AAD4BA8723B3182D00CCF457 /* CryptoSwift-TestHostApp.app */,
+				AAD4BA8923B3182D00CCF457 /* CryptoSwiftTests.xctest */,
+				AAD4BA8B23B3182D00CCF457 /* TestsPerformance-Mac.xctest */,
+				AAD4BA8D23B3182D00CCF457 /* TestsPerformance-iOS.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -641,6 +697,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = AAD4BA7D23B3182D00CCF457 /* Products */;
+					ProjectRef = AAD4BA7C23B3182D00CCF457 /* CryptoSwift.xcodeproj */;
+				},
+				{
 					ProductGroup = 86DC1A7523A3CA2A00E6DFC6 /* Products */;
 					ProjectRef = 86DC1A7423A3CA2A00E6DFC6 /* SQLite.xcodeproj */;
 				},
@@ -704,6 +764,41 @@
 			remoteRef = 86DC1A8A23A3CA2A00E6DFC6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		AAD4BA8523B3182D00CCF457 /* CryptoSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CryptoSwift.framework;
+			remoteRef = AAD4BA8423B3182D00CCF457 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AAD4BA8723B3182D00CCF457 /* CryptoSwift-TestHostApp.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "CryptoSwift-TestHostApp.app";
+			remoteRef = AAD4BA8623B3182D00CCF457 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AAD4BA8923B3182D00CCF457 /* CryptoSwiftTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CryptoSwiftTests.xctest;
+			remoteRef = AAD4BA8823B3182D00CCF457 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AAD4BA8B23B3182D00CCF457 /* TestsPerformance-Mac.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "TestsPerformance-Mac.xctest";
+			remoteRef = AAD4BA8A23B3182D00CCF457 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AAD4BA8D23B3182D00CCF457 /* TestsPerformance-iOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "TestsPerformance-iOS.xctest";
+			remoteRef = AAD4BA8C23B3182D00CCF457 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -711,29 +806,29 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86DA0C6123AD898400755B44 /* AvailabilitiesForDayItemCell.xib in Resources */,
-				86DA0C6223AD898400755B44 /* AvailabilityItemCell.xib in Resources */,
-				86DA0C6523AD898400755B44 /* BookingOneLineElementItemCell.xib in Resources */,
+				AAD4BA2623B27BD000CCF457 /* BookingPreviewItemCell.xib in Resources */,
+				AAD4BA2E23B27BD000CCF457 /* HeaderDashboardSubtitle.xib in Resources */,
 				869CC039238D884600EA27C8 /* roboto_regular.ttf in Resources */,
-				86DA0C6923AD898400755B44 /* DoctorMainDataItemCell.xib in Resources */,
-				86DA0C6823AD898400755B44 /* BookingTwoLinesElementItemCell.xib in Resources */,
-				86DA0C6B23AD898400755B44 /* DoctorSecondaryDataItemCell.xib in Resources */,
-				86DA0C6423AD898400755B44 /* BookingDetailsView.xib in Resources */,
-				86DA0C6C23AD898400755B44 /* FeedbackMessage.xib in Resources */,
-				86DA0C6A23AD898400755B44 /* DoctorPreviewItemCell.xib in Resources */,
+				AAD4BA3123B27BD000CCF457 /* BookingDetailsView.xib in Resources */,
+				AAD4BA2723B27BD000CCF457 /* DoctorPreviewItemCell.xib in Resources */,
+				AAD4BA3023B27BD000CCF457 /* Header.xib in Resources */,
+				AAD4BA2823B27BD000CCF457 /* BookingOneLineElementItemCell.xib in Resources */,
 				86567361238D2E1B00BC38D8 /* LaunchScreen.storyboard in Resources */,
-				86DA0C6E23AD898400755B44 /* HeaderDashboard.xib in Resources */,
+				AAD4BA3223B27BD000CCF457 /* AvailabilityItemCell.xib in Resources */,
+				AAD4BA2B23B27BD000CCF457 /* HeaderDashboard.xib in Resources */,
+				AAD4BA2D23B27BD000CCF457 /* DoctorSecondaryDataItemCell.xib in Resources */,
 				869CC03D238D887F00EA27C8 /* boogaloo.ttf in Resources */,
+				AAD4BA2C23B27BD000CCF457 /* BookingTwoLinesElementItemCell.xib in Resources */,
+				AAD4BA2423B27BD000CCF457 /* AvailabilitiesForDayItemCell.xib in Resources */,
 				869CC03B238D884600EA27C8 /* roboto_bold.ttf in Resources */,
-				86DA0C7023AD898400755B44 /* HeaderSubtitle.xib in Resources */,
-				86DA0C6323AD898400755B44 /* BookingActionsItemCell.xib in Resources */,
+				AAD4BA2923B27BD000CCF457 /* BookingPreviewHeaderItemCell.xib in Resources */,
 				869CC03A238D884600EA27C8 /* roboto_medium.ttf in Resources */,
 				8656735E238D2E1B00BC38D8 /* Assets.xcassets in Resources */,
-				86DA0C6D23AD898400755B44 /* Header.xib in Resources */,
-				86DA0C6723AD898400755B44 /* BookingPreviewItemCell.xib in Resources */,
-				86DA0C6F23AD898400755B44 /* HeaderDashboardSubtitle.xib in Resources */,
+				AAD4BA2323B27BD000CCF457 /* FeedbackMessage.xib in Resources */,
+				AAD4BA2F23B27BD000CCF457 /* BookingActionsItemCell.xib in Resources */,
+				AAD4BA2523B27BD000CCF457 /* HeaderSubtitle.xib in Resources */,
 				8656735C238D2E1B00BC38D8 /* Main.storyboard in Resources */,
-				86DA0C6623AD898400755B44 /* BookingPreviewHeaderItemCell.xib in Resources */,
+				AAD4BA2A23B27BD000CCF457 /* DoctorMainDataItemCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -758,69 +853,70 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86DA0C5023AD898400755B44 /* BookingActionsItemCell.swift in Sources */,
-				86DA0C7823AD898400755B44 /* HomeVC.swift in Sources */,
-				86DA0C5423AD898400755B44 /* BookingPreviewItemCell.swift in Sources */,
-				86DA0C5E23AD898400755B44 /* HeaderDashboardView.swift in Sources */,
-				86DA0C3323AD898400755B44 /* Availability.swift in Sources */,
-				86DA0C4723AD898400755B44 /* EducationDatabaseHelper.swift in Sources */,
-				86DA0C5A23AD898400755B44 /* SignUpProOneColumnElementItemCell.swift in Sources */,
-				86DA0C5C23AD898400755B44 /* FeedbackMessageView.swift in Sources */,
-				86DA0C4523AD898400755B44 /* DoctoAppDatabaseHelper.swift in Sources */,
-				86DA0C5223AD898400755B44 /* BookingPatientItemCell.swift in Sources */,
-				86DA0C3A23AD898400755B44 /* PaymentOption.swift in Sources */,
-				86DA0C3523AD898400755B44 /* Doctor.swift in Sources */,
-				86DA0C5823AD898400755B44 /* DoctorSecondaryDataItemCell.swift in Sources */,
-				86DA0C5F23AD898400755B44 /* HeaderSubtitleView.swift in Sources */,
-				86DA0C7523AD898400755B44 /* ConfirmBookingVC.swift in Sources */,
-				86DA0C7723AD898400755B44 /* ForgotPasswordVC.swift in Sources */,
-				86DA0C5D23AD898400755B44 /* HeaderDashboardSubtitleView.swift in Sources */,
-				86DA0C4023AD898400755B44 /* StringFormatterService.swift in Sources */,
-				86DA0C4323AD898400755B44 /* AvailabilityDatabaseHelper.swift in Sources */,
-				86DA0C7623AD898400755B44 /* DoctorProfileVC.swift in Sources */,
-				86DA0C5523AD898400755B44 /* BookingTwoLinesElementItemCell.swift in Sources */,
-				86DA0C4B23AD898400755B44 /* PaymentOptionDatabaseHelper.swift in Sources */,
-				86DA0C3D23AD898400755B44 /* DateTimeService.swift in Sources */,
-				86DA0C5923AD898400755B44 /* ReasonItemCell.swift in Sources */,
-				86DA0C7E23AD898400755B44 /* SignUpProVC.swift in Sources */,
-				86DA0C3B23AD898400755B44 /* Reason.swift in Sources */,
-				86DA0C4F23AD898400755B44 /* AvailabilityItemCell.swift in Sources */,
-				86DA0C4123AD898400755B44 /* ErrorCode.swift in Sources */,
-				86DA0C7F23AD898400755B44 /* SignUpVC.swift in Sources */,
-				86DA0C3923AD898400755B44 /* Patient.swift in Sources */,
-				86DA0C3623AD898400755B44 /* Education.swift in Sources */,
-				86DA0C5123AD898400755B44 /* BookingOneLineElementItemCell.swift in Sources */,
-				86DA0C4223AD898400755B44 /* AddressDatabaseHelper.swift in Sources */,
-				86DA0C4923AD898400755B44 /* LanguageDatabaseHelper.swift in Sources */,
-				86DA0C4A23AD898400755B44 /* PatientDatabaseHelper.swift in Sources */,
-				86DA0C7D23AD898400755B44 /* SearchVC.swift in Sources */,
-				86DA0C7A23AD898400755B44 /* MyBookingDetailsVC.swift in Sources */,
-				86DA0C3723AD898400755B44 /* Experience.swift in Sources */,
-				86DA0C4823AD898400755B44 /* ExperienceDatabaseHelper.swift in Sources */,
-				86DA0C6023AD898400755B44 /* HeaderView.swift in Sources */,
-				86DA0C7223AD898400755B44 /* Strings.swift in Sources */,
-				86DA0C7423AD898400755B44 /* ChooseReasonVC.swift in Sources */,
-				86DA0C5723AD898400755B44 /* DoctorPreviewItemCell.swift in Sources */,
-				86DA0C4E23AD898400755B44 /* AvailabilitiesForDayItemCell.swift in Sources */,
-				86DA0C4C23AD898400755B44 /* ReasonDatabaseHelper.swift in Sources */,
-				86DA0C7923AD898400755B44 /* LoginVC.swift in Sources */,
-				86DA0C4423AD898400755B44 /* BookingDatabaseHelper.swift in Sources */,
-				86DA0C5323AD898400755B44 /* BookingPreviewHeaderItemCell.swift in Sources */,
-				86DA0C3F23AD898400755B44 /* ImageService.swift in Sources */,
-				86DA0C7123AD898400755B44 /* Colors.swift in Sources */,
-				86DA0C4D23AD898400755B44 /* BookingDetailsView.swift in Sources */,
-				86DA0C3E23AD898400755B44 /* EncryptionService.swift in Sources */,
-				86DA0C7323AD898400755B44 /* ChooseAvailabilityVC.swift in Sources */,
-				86DA0C3423AD898400755B44 /* Booking.swift in Sources */,
-				86DA0C5623AD898400755B44 /* DoctorMainDataItemCell.swift in Sources */,
-				86DA0C3823AD898400755B44 /* Language.swift in Sources */,
-				86DA0C3223AD898400755B44 /* Address.swift in Sources */,
+				AAD4BA4123B27BD000CCF457 /* DoctorMainDataItemCell.swift in Sources */,
+				AAD4BA4723B27BD000CCF457 /* Experience.swift in Sources */,
+				AAD4BA6B23B27BD000CCF457 /* PaymentOptionDatabaseHelper.swift in Sources */,
+				AAD4BA4323B27BD000CCF457 /* HeaderView.swift in Sources */,
+				AAD4BA4C23B27BD000CCF457 /* Reason.swift in Sources */,
+				AAD4BA6223B27BD000CCF457 /* ExperienceDatabaseHelper.swift in Sources */,
+				AAD4BA3B23B27BD000CCF457 /* BookingPreviewHeaderItemCell.swift in Sources */,
+				AAD4BA4023B27BD000CCF457 /* BookingTwoLinesElementItemCell.swift in Sources */,
+				AAD4BA6623B27BD000CCF457 /* AvailabilityDatabaseHelper.swift in Sources */,
+				AAD4BA5B23B27BD000CCF457 /* ChooseAvailabilityVC.swift in Sources */,
+				AAD4BA5E23B27BD000CCF457 /* ChooseReasonVC.swift in Sources */,
+				AAD4BA5123B27BD000CCF457 /* Education.swift in Sources */,
+				AAD4BA5323B27BD000CCF457 /* DoctorProfileVC.swift in Sources */,
+				AAD4BA6023B27BD000CCF457 /* Colors.swift in Sources */,
+				AAD4BA6823B27BD000CCF457 /* DoctoAppDatabaseHelper.swift in Sources */,
+				AAD4BA6723B27BD000CCF457 /* DoctorDatabaseHelper.swift in Sources */,
+				AAD4BA5923B27BD000CCF457 /* SignUpVC.swift in Sources */,
+				AAD4BA6A23B27BD000CCF457 /* ReasonDatabaseHelper.swift in Sources */,
+				AAD4BA5023B27BD000CCF457 /* Resident.swift in Sources */,
+				AAD4BA4E23B27BD000CCF457 /* Patient.swift in Sources */,
+				AAD4BA5D23B27BD000CCF457 /* MyBookingsVC.swift in Sources */,
+				AAD4BA4D23B27BD000CCF457 /* Doctor.swift in Sources */,
+				AAD4BA6323B27BD000CCF457 /* EducationDatabaseHelper.swift in Sources */,
+				AAD4BA6C23B27BD000CCF457 /* ErrorCode.swift in Sources */,
+				AAD4BA5223B27BD000CCF457 /* ConfirmBookingVC.swift in Sources */,
+				AAD4BA4B23B27BD000CCF457 /* Booking.swift in Sources */,
+				AAD4BA6423B27BD000CCF457 /* LanguageDatabaseHelper.swift in Sources */,
+				AAD4BA4223B27BD000CCF457 /* FeedbackMessageView.swift in Sources */,
+				AAD4BA5523B27BD000CCF457 /* LoginVC.swift in Sources */,
+				AAD4BA7023B27BD000CCF457 /* EncryptionService.swift in Sources */,
+				AAD4BA4A23B27BD000CCF457 /* PaymentOption.swift in Sources */,
+				AAD4BA6523B27BD000CCF457 /* BookingDatabaseHelper.swift in Sources */,
+				AAD4BA4923B27BD000CCF457 /* Address.swift in Sources */,
+				AAD4BA4623B27BD000CCF457 /* HeaderDashboardSubtitleView.swift in Sources */,
+				AAD4BA5F23B27BD000CCF457 /* Strings.swift in Sources */,
+				AAD4BA3623B27BD000CCF457 /* ReasonItemCell.swift in Sources */,
 				86567357238D2E1B00BC38D8 /* AppDelegate.swift in Sources */,
-				86DA0C5B23AD898400755B44 /* SignUpProTwoColumnsElementItemCell.swift in Sources */,
-				86DA0C3C23AD898400755B44 /* Resident.swift in Sources */,
-				86DA0C7C23AD898400755B44 /* PopUpVC.swift in Sources */,
-				86DA0C7B23AD898400755B44 /* MyBookingsVC.swift in Sources */,
-				86DA0C4623AD898400755B44 /* DoctorDatabaseHelper.swift in Sources */,
+				AAD4BA5C23B27BD000CCF457 /* HomeVC.swift in Sources */,
+				AAD4BA3F23B27BD000CCF457 /* BookingPreviewItemCell.swift in Sources */,
+				AAD4BA5823B27BD000CCF457 /* SignUpProVC.swift in Sources */,
+				AAD4BA3723B27BD000CCF457 /* BookingPatientItemCell.swift in Sources */,
+				AAD4BA4523B27BD000CCF457 /* BookingDetailsView.swift in Sources */,
+				AAD4BA5A23B27BD000CCF457 /* SearchVC.swift in Sources */,
+				AAD4BA5723B27BD000CCF457 /* MyBookingDetailsVC.swift in Sources */,
+				AAD4BA6923B27BD000CCF457 /* PatientDatabaseHelper.swift in Sources */,
+				AAD4BA6123B27BD000CCF457 /* AddressDatabaseHelper.swift in Sources */,
+				AAD4BA4F23B27BD000CCF457 /* Availability.swift in Sources */,
+				AAD4BA3323B27BD000CCF457 /* HeaderSubtitleView.swift in Sources */,
+				AAD4BA3C23B27BD000CCF457 /* DoctorPreviewItemCell.swift in Sources */,
+				AAD4BA5623B27BD000CCF457 /* ForgotPasswordVC.swift in Sources */,
+				AAD4BA3E23B27BD000CCF457 /* BookingOneLineElementItemCell.swift in Sources */,
+				AAD4BA3A23B27BD000CCF457 /* DoctorSecondaryDataItemCell.swift in Sources */,
+				AAD4BA3923B27BD000CCF457 /* AvailabilitiesForDayItemCell.swift in Sources */,
+				AAD4BA6F23B27BD000CCF457 /* DateTimeService.swift in Sources */,
+				AAD4BA3523B27BD000CCF457 /* SignUpProOneColumnElementItemCell.swift in Sources */,
+				AAD4BA6D23B27BD000CCF457 /* ImageService.swift in Sources */,
+				AAD4BA3423B27BD000CCF457 /* SignUpProTwoColumnsElementItemCell.swift in Sources */,
+				AAD4BA3823B27BD000CCF457 /* BookingActionsItemCell.swift in Sources */,
+				AAD4BA4423B27BD000CCF457 /* HeaderDashboardView.swift in Sources */,
+				AAD4BA5423B27BD000CCF457 /* PopUpVC.swift in Sources */,
+				AAD4BA7423B30D8200CCF457 /* PopUpBookingCancellationVC.swift in Sources */,
+				AAD4BA4823B27BD000CCF457 /* Language.swift in Sources */,
+				AAD4BA6E23B27BD000CCF457 /* StringFormatterService.swift in Sources */,
+				AAD4BA3D23B27BD000CCF457 /* AvailabilityItemCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

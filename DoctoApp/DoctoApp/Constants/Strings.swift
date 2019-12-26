@@ -68,6 +68,7 @@ struct Strings {
     public static let FORGOT_PASSWORD_ERROR_MSG_CONTENT: String = "Something went wrong when retrieving your account. Please make sure you provided an existing email address and both given passwords are the same."
 
     // Signup
+    public static let LOGGED_USER_PATIENT_PICTURE = "logged_user_patient_picture_"
     public static let SIGNUP_PICTURE_URI: String = "signup_picture_uri"
     public static let SIGNUP_CAPTION: String = "Sign-up and access your patient profile"
     public static let SIGNUP_TAKE_PICTURE_FROM_CAMERA: String = "Take a picture"
@@ -150,6 +151,8 @@ struct Strings {
     public static let MY_PROFILE_PATIENT_ADDRESS_SECTION_LABEL: String = "Address data"
 
     // Signup pro
+    public static let LOGGED_USER_DOCTOR_PICTURE = "logged_user_doctor_picture_"
+    public static let LOGGED_USER_DOCTOR_HEADER = "logged_user_doctor_header_"
     public static let SIGNUP_PRO_PICTURE_URI: String = "signup_pro_picture_uri"
     public static let SIGNUP_PRO_CAPTION: String = "Sign-up and access your professional profile"
     public static let SIGNUP_PRO_TAKE_PICTURE_FROM_CAMERA: String = "Take a picture"
