@@ -14,6 +14,7 @@ class DoctorMainDataItemCell: UITableViewCell {
     @IBOutlet var sectionTitle: UILabel!
     @IBOutlet var sectionContent: UILabel!
     @IBOutlet var sectionMore: UILabel!
+    @IBOutlet var expandIcon: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,11 +32,12 @@ class DoctorMainDataItemCell: UITableViewCell {
     }
     
     // Set cell data
-    func setData(doctorMainData: DoctorMainData) {
+    func setData(doctorMainData: DoctorMainData, displayExpandIcon: Bool = false) {
         self.sectionIcon.image = UIImage(named: doctorMainData.sectionIcon)
         self.setupIcon()
         self.sectionTitle.text = doctorMainData.sectionTitle
         self.sectionContent.text = doctorMainData.sectionContent
+        if !displayExpandIcon { self.expandIcon.isHidden = true }
     }
 }
     

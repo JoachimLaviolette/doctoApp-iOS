@@ -17,7 +17,7 @@ class PopUpVC: UIViewController {
     private var hideActionButtons: Bool = false
     private var titleString: String! // must be set by the calling view
     private var contentString: String! // must be set by the calling view
-    private var delegate: PopUpActionDelegator? = nil
+    private var delegator: PopUpActionDelegator? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +33,7 @@ class PopUpVC: UIViewController {
         self.hideActionButtons = hideButtons
         self.titleString = title
         self.contentString = content
-        self.delegate = delegate
+        self.delegator = delegate
     }
     
     // Action triggered when the background is clicked
@@ -48,7 +48,7 @@ class PopUpVC: UIViewController {
     
     // Action triggered when confirm button is clicked
     @IBAction func confirm(_ sender: Any) {
-        self.delegate?.doAction()
+        self.delegator?.doAction()
         dismiss(animated: true, completion: nil)
     }
     

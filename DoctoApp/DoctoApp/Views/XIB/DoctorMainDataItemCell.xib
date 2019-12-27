@@ -12,9 +12,6 @@
         <array key="roboto_medium.ttf">
             <string>Roboto-Medium</string>
         </array>
-        <array key="roboto_regular.ttf">
-            <string>Roboto-Regular</string>
-        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DoctorMainDataItemCell" customModule="DoctoApp" customModuleProvider="target"/>
@@ -29,13 +26,20 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="{ section_title }" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bax-Dt-BE1">
                         <rect key="frame" x="74" y="14" width="93" height="16.5"/>
                         <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" name="doctor_appointment_item_header_color"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="{ section_title }" lineBreakMode="clip" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wKy-ud-deR" userLabel="{ section_content }">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="clip" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wKy-ud-deR" userLabel="{ section_content }">
                         <rect key="frame" x="74" y="37" width="565" height="73"/>
-                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
-                        <color key="textColor" name="forgot_password_input_text_color"/>
+                        <attributedString key="attributedText">
+                            <fragment content="{ section_title }">
+                                <attributes>
+                                    <color key="NSColor" red="0.55885152284263961" green="0.55885152284263961" blue="0.55885152284263961" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <font key="NSFont" size="12" name="Avenir-Medium"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="6" lineHeightMultiple="1.5" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bjd-3h-PYh">
@@ -67,6 +71,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="expandIcon" destination="bjd-3h-PYh" id="YWf-i4-waA"/>
                 <outlet property="sectionContent" destination="wKy-ud-deR" id="3eq-MS-fWM"/>
                 <outlet property="sectionIcon" destination="UaJ-NY-gBm" id="iMm-7B-xQj"/>
                 <outlet property="sectionMore" destination="bjd-3h-PYh" id="Dlo-Pb-Wkb"/>
@@ -77,11 +82,11 @@
     </objects>
     <resources>
         <image name="ic_dialog_map" width="48" height="48"/>
+        <namedColor name="doctor_appointment_item_header_color">
+            <color red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="forgor_password_background_color">
             <color red="0.89411764705882357" green="0.89411764705882357" blue="0.89411764705882357" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="forgot_password_input_text_color">
-            <color red="0.52156862745098043" green="0.52156862745098043" blue="0.52156862745098043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

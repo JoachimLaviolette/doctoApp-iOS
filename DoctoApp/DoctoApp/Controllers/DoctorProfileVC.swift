@@ -31,6 +31,7 @@ class DoctorProfileVC: UIViewController, ToRedirectDelegator {
     @IBOutlet weak var doctorSpeciality: UILabel!
     @IBOutlet weak var doctorMainDataTable: UITableView!
     @IBOutlet weak var doctorSecondaryDataTable: UITableView!
+    @IBOutlet weak var bookAppointmentBtn: UIButton!
     
     private var doctor: Doctor! // must be set by the calling view
     private var doctorMainData: [DoctorMainData] = [DoctorMainData]()
@@ -39,11 +40,13 @@ class DoctorProfileVC: UIViewController, ToRedirectDelegator {
     
     private var selectedCategoryTitle: String = "" // set when we tap on a category
     private var selectedCategoryContent: String = "" // set when we tap on a category
+    private var popupSectionsData: [PopUpSectionsData]? = nil // set we tap on a multiple sections category
     
     private static let chooseReasonSegueIdentifier: String = "choose_reason_segue"
     private static let loginSegueIdentifier: String = "login_segue"
     private static let expandDataSegueIdentifier: String = "expand_data_segue"
-    
+    private static let expandDataSectionsSegueIdentifier: String = "expand_data_sections_segue"
+
     private static let doctorMainDataItemCellXibFile: String = "DoctorMainDataItemCell"
     private static let doctorSecondaryDataItemCellXibFile: String = "DoctorSecondaryDataItemCell"
     private static let doctorMainDataItemCellIdentifier: String = "doctor_main_data_item_cell"
@@ -128,6 +131,13 @@ class DoctorProfileVC: UIViewController, ToRedirectDelegator {
                 content: self.selectedCategoryContent,
                 hideButtons: true
             )
+        } else if segue.identifier == DoctorProfileVC.expandDataSectionsSegueIdentifier
+            && segue.destination is PopUpSectionsVC {
+            let popupSectionsVC = segue.destination as! PopUpSectionsVC
+            popupSectionsVC.setData(
+                title: self.selectedCategoryTitle,
+                popupSectionsData: self.popupSectionsData!
+            )
         }
     }
     
@@ -152,6 +162,8 @@ class DoctorProfileVC: UIViewController, ToRedirectDelegator {
     
     // Set main data
     private func setMainData() {
+        if self.loggedUser is Doctor { self.bookAppointmentBtn.isHidden = true }
+        
         self.doctorMainData = [
             DoctorMainData(
                 sectionIcon: DoctorProfileVC.sectionAddressIcon,
@@ -226,7 +238,11 @@ extension DoctorProfileVC: UITableViewDelegate, UITableViewDataSource {
         if tableView == self.doctorMainDataTable {
             let doctorMainDataItemCell = Bundle.main.loadNibNamed(DoctorProfileVC.doctorMainDataItemCellXibFile, owner: self, options: nil)?.first as! DoctorMainDataItemCell
             doctorMainDataItemCell.selectionStyle = .none
-            doctorMainDataItemCell.setData(doctorMainData: self.doctorMainData[indexPath.row])
+            
+            doctorMainDataItemCell.setData(
+                doctorMainData: self.doctorMainData[indexPath.row],
+                displayExpandIcon: !(indexPath.row == 2)
+            )
             
             return doctorMainDataItemCell
         }
@@ -239,17 +255,33 @@ extension DoctorProfileVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if tableView == self.doctorMainDataTable { return 110 }
+        if tableView == self.doctorMainDataTable {
+            if indexPath.row == 2 { // Payment options
+                return 70
+            }
+            
+            return 110
+        }
         return 50
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == self.doctorMainDataTable {
-            print("Clicked main data cell")
             self.selectedCategoryTitle = self.doctorMainData[indexPath.row].sectionTitle
+
+            if indexPath.row == 1 { // Prices and refunds
+                self.popupSectionsData = self.preparePopupSectionsData()
+                performSegue(withIdentifier: DoctorProfileVC.expandDataSectionsSegueIdentifier, sender: nil)
+                
+                return
+            }
+            
+            if indexPath.row == 2 { // Payment options
+                return
+            }
+            
             self.selectedCategoryContent = self.doctorMainData[indexPath.row].sectionContent
         } else {
-            print("Clicked secondary data cell")
             self.selectedCategoryTitle = self.doctorSecondaryData[indexPath.row].sectionTitle
             
             switch(indexPath.row) {
@@ -273,6 +305,40 @@ extension DoctorProfileVC: UITableViewDelegate, UITableViewDataSource {
         }
         
         performSegue(withIdentifier: DoctorProfileVC.expandDataSegueIdentifier, sender: nil)
+    }
+    
+    // Prepare the content to display in the popup sections
+    private func preparePopupSectionsData() -> [PopUpSectionsData] {
+        var popupSectionsData: [PopUpSectionsData] = [PopUpSectionsData]()
+        
+        if self.doctor.isUnderAgreement() {
+            popupSectionsData.append(
+                PopUpSectionsData(
+                    title: Strings.DOCTOR_PROFILE_POPUP_IS_UNDER_AGREEMENT,
+                    content: Strings.DOCTOR_PROFILE_POPUP_IS_UNDER_AGREEMENT_CONTENT
+                )
+            )
+        }
+        
+        if self.doctor.isHealthInsuranceCard() {
+            popupSectionsData.append(
+                PopUpSectionsData(
+                    title: Strings.DOCTOR_PROFILE_POPUP_IS_HEALTH_INSURANCE_CARD,
+                    content: Strings.DOCTOR_PROFILE_POPUP_IS_HEALTH_INSURANCE_CARD_CONTENT
+                )
+            )
+        }
+        
+        if self.doctor.isThirdPartyPayment() {
+            popupSectionsData.append(
+                PopUpSectionsData(
+                    title: Strings.DOCTOR_PROFILE_POPUP_IS_THIRD_PARTY_PAYMENT,
+                    content: Strings.DOCTOR_PROFILE_POPUP_IS_THIRD_PARTY_PAYMENT_CONTENT
+                )
+            )
+        }
+        
+        return popupSectionsData
     }
 }
 

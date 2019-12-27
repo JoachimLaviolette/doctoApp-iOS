@@ -20,6 +20,8 @@
 		86DC1A8D23A3CA3500E6DFC6 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86DC1A7F23A3CA2A00E6DFC6 /* SQLite.framework */; };
 		86DC1A8E23A3CA3C00E6DFC6 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86DC1A7F23A3CA2A00E6DFC6 /* SQLite.framework */; };
 		86DC1A8F23A3CA3C00E6DFC6 /* SQLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 86DC1A7F23A3CA2A00E6DFC6 /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AAC4C37223B6371B005E4D19 /* PopUpSectionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC4C37123B6371B005E4D19 /* PopUpSectionsVC.swift */; };
+		AAC4C37F23B63B59005E4D19 /* PopupSectionItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC4C37E23B63B59005E4D19 /* PopupSectionItemCell.swift */; };
 		AAD4BA2323B27BD000CCF457 /* FeedbackMessage.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAD4B9CE23B27BCF00CCF457 /* FeedbackMessage.xib */; };
 		AAD4BA2423B27BD000CCF457 /* AvailabilitiesForDayItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAD4B9CF23B27BCF00CCF457 /* AvailabilitiesForDayItemCell.xib */; };
 		AAD4BA2523B27BD000CCF457 /* HeaderSubtitle.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAD4B9D023B27BCF00CCF457 /* HeaderSubtitle.xib */; };
@@ -243,6 +245,8 @@
 		869CC038238D884600EA27C8 /* roboto_bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = roboto_bold.ttf; sourceTree = "<group>"; };
 		869CC03C238D887E00EA27C8 /* boogaloo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = boogaloo.ttf; sourceTree = "<group>"; };
 		86DC1A7423A3CA2A00E6DFC6 /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = DoctoApp/Frameworks/SQLite/SQLite.xcodeproj; sourceTree = "<group>"; };
+		AAC4C37123B6371B005E4D19 /* PopUpSectionsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpSectionsVC.swift; sourceTree = "<group>"; };
+		AAC4C37E23B63B59005E4D19 /* PopupSectionItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupSectionItemCell.swift; sourceTree = "<group>"; };
 		AAD4B9CE23B27BCF00CCF457 /* FeedbackMessage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedbackMessage.xib; sourceTree = "<group>"; };
 		AAD4B9CF23B27BCF00CCF457 /* AvailabilitiesForDayItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AvailabilitiesForDayItemCell.xib; sourceTree = "<group>"; };
 		AAD4B9D023B27BCF00CCF457 /* HeaderSubtitle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderSubtitle.xib; sourceTree = "<group>"; };
@@ -499,6 +503,7 @@
 				AAD4B9EB23B27BCF00CCF457 /* BookingPreviewItemCell.swift */,
 				AAD4B9EC23B27BCF00CCF457 /* BookingTwoLinesElementItemCell.swift */,
 				AAD4B9ED23B27BCF00CCF457 /* DoctorMainDataItemCell.swift */,
+				AAC4C37E23B63B59005E4D19 /* PopupSectionItemCell.swift */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -538,6 +543,7 @@
 				AAD4BA0B23B27BCF00CCF457 /* MyBookingsVC.swift */,
 				AAD4BA0C23B27BCF00CCF457 /* ChooseReasonVC.swift */,
 				AAD4BA7323B30D8200CCF457 /* PopUpBookingCancellationVC.swift */,
+				AAC4C37123B6371B005E4D19 /* PopUpSectionsVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -855,6 +861,7 @@
 				AAD4BA6B23B27BD000CCF457 /* PaymentOptionDatabaseHelper.swift in Sources */,
 				AAD4BA4323B27BD000CCF457 /* HeaderView.swift in Sources */,
 				AAD4BA4C23B27BD000CCF457 /* Reason.swift in Sources */,
+				AAC4C37223B6371B005E4D19 /* PopUpSectionsVC.swift in Sources */,
 				AAD4BA6223B27BD000CCF457 /* ExperienceDatabaseHelper.swift in Sources */,
 				AAD4BA3B23B27BD000CCF457 /* BookingPreviewHeaderItemCell.swift in Sources */,
 				AAD4BA4023B27BD000CCF457 /* BookingTwoLinesElementItemCell.swift in Sources */,
@@ -877,6 +884,7 @@
 				AAD4BA5223B27BD000CCF457 /* ConfirmBookingVC.swift in Sources */,
 				AAD4BA4B23B27BD000CCF457 /* Booking.swift in Sources */,
 				AAD4BA6423B27BD000CCF457 /* LanguageDatabaseHelper.swift in Sources */,
+				AAC4C37F23B63B59005E4D19 /* PopupSectionItemCell.swift in Sources */,
 				AAD4BA4223B27BD000CCF457 /* FeedbackMessageView.swift in Sources */,
 				AAD4BA5523B27BD000CCF457 /* LoginVC.swift in Sources */,
 				AAD4BA7023B27BD000CCF457 /* EncryptionService.swift in Sources */,

@@ -181,10 +181,6 @@ class LoginVC: UIViewController, PopUpActionDelegator {
         if patient!.getPwd() != hashedInputPwd { return false }
         self.loggedUser = patient
         
-        if self.toRedirect {
-             //REDIRECT
-        }
-        
         return true
     }
     
