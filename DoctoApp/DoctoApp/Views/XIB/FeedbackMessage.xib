@@ -9,8 +9,8 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="roboto_bold.ttf">
-            <string>Roboto-Black</string>
+        <array key="roboto_medium.ttf">
+            <string>Roboto-Medium</string>
         </array>
         <array key="roboto_regular.ttf">
             <string>Roboto-Regular</string>
@@ -31,7 +31,7 @@
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="{ msg_title }" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nWR-KV-aST">
                     <rect key="frame" x="10" y="20" width="346" height="21.5"/>
-                    <fontDescription key="fontDescription" name="Roboto-Black" family="Roboto" pointSize="18"/>
+                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="18"/>
                     <color key="textColor" name="login_delete_account_msg_title_color"/>
                     <nil key="highlightedColor"/>
                 </label>
