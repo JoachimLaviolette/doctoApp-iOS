@@ -13,7 +13,7 @@ protocol SignUpProVCDelegator {
     func removeItem(index: Int, itemType: ItemType)
 }
 
-class SignUpProVC: UIViewController, SignUpProVCDelegator {
+class SignUpProVC: UIViewController, SignUpProVCDelegator, PopUpActionDelegator {
     @IBOutlet weak var scrollView: UIScrollView!
 
     @IBOutlet weak var caption: UILabel!
@@ -104,6 +104,7 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
     private var loggedUser: Resident? = nil // can be retrieved from the user defaults
     private var doctor: Doctor?
     private let doctorDbHelper: DoctorDatabaseHelper = DoctorDatabaseHelper()
+    private var isRGPDConditionsAccepted: Bool = false // must be set by the calling view
     
     private var availabilities: [Availability]?
     private var reasons: [Reason]?
@@ -138,14 +139,17 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
         "Sunday"
     ]
     
-    static let oneColumnElementItemCellIdentifier: String = "signup_pro_one_column_element_item_cell"
-    static let twoColumnsElementItemCellIdentifier: String = "signup_pro_two_columns_element_item_cell"
+    private static let popupSegueIdentifier: String = "popup_segue"
+    private static let loginSegueIdentifier: String = "login_segue"
+    
+    private static let oneColumnElementItemCellIdentifier: String = "signup_pro_one_column_element_item_cell"
+    private static let twoColumnsElementItemCellIdentifier: String = "signup_pro_two_columns_element_item_cell"
     
     private static let photoIcon: String = "ic_take_picture"
     private static let galleryIcon: String = "ic_add_image"
     private static let addIcon: String = "ic_add"
 
-    private static let regexContactNumber = "^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$"
+    private static let regexContactNumber: String = "^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -154,7 +158,7 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
     
     private func initialize() {
         self.tryGetLoggedUser()
-        
+                
         // Take in charge all the subcomponents
         self.doctorLanguagesPicker.delegate = self
         self.doctorLanguagesPicker.dataSource = self
@@ -201,6 +205,19 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
         self.setContent()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == SignUpProVC.popupSegueIdentifier
+            && segue.destination is PopUpVC {
+            let popUpVC = segue.destination as! PopUpVC
+            popUpVC.setData(
+                title: Strings.SIGN_UP_RGPD_TITLE,
+                content: Strings.SIGN_UP_RGPD_CONTENT,
+                delegator: self,
+                mustConfirm: true
+            )
+        }
+    }
+    
     // Try to get a logged user id from the user defaults
     private func tryGetLoggedUser() {
         if self.loggedUser == nil {
@@ -236,8 +253,16 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
         self.displayLanguageError()
         self.displayPaymentOptionsError()
         
-        if self.loggedUser != nil { self.setSignupContextForDoctor() }
-        else { self.setSignupContext() }
+        if self.loggedUser is Doctor {
+            self.setSignupContextForDoctor()
+            
+            return
+        }
+        
+        self.setSignupContext()
+        
+        if !self.isRGPDConditionsAccepted { performSegue(withIdentifier: SignUpProVC.popupSegueIdentifier, sender: nil) }
+
     }
     
     // Setup actions buttons
@@ -857,6 +882,20 @@ class SignUpProVC: UIViewController, SignUpProVCDelegator {
     @IBAction func takeHeader(_ sender: UIButton) {
         self.headerPicker.sourceType = .camera
         present(self.headerPicker, animated: true, completion: nil)
+    }
+    
+    // Sign-up action
+    func doAction(hasConfirm: Bool = false) {
+        self.isRGPDConditionsAccepted = hasConfirm
+        
+        if !self.isRGPDConditionsAccepted {
+            for controller in self.navigationController!.viewControllers as Array {
+                if controller.isKind(of: LoginVC.self) {
+                    self.navigationController!.popToViewController(controller, animated: true)
+                    break
+                }
+            }
+        }
     }
 }
     

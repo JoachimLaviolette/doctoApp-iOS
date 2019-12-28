@@ -68,6 +68,8 @@ struct Strings {
     public static let FORGOT_PASSWORD_ERROR_MSG_CONTENT: String = "Something went wrong when retrieving your account. Please make sure you provided an existing email address and both given passwords are the same."
 
     // Signup
+    public static let SIGN_UP_RGPD_TITLE = "Terms of use of DoctoApp"
+    public static let SIGN_UP_RGPD_CONTENT = "By signing-up to DoctoApp, you accept to be  the host of all personal-related information you provide.\nYou also allow the system to use this information in order to provide online booking service.\nDoctoApp agrees to collect the minimum required personal-related information to run its service."
     public static let LOGGED_USER_PATIENT_PICTURE = "logged_user_patient_picture_"
     public static let SIGNUP_PICTURE_URI: String = "signup_picture_uri"
     public static let SIGNUP_CAPTION: String = "Sign-up and access your patient profile"

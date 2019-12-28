@@ -9,7 +9,7 @@
 import UIKit
 
 protocol PopUpActionDelegator {
-    func doAction()
+    func doAction(hasConfirm: Bool)
 }
 
 class LoginVC: UIViewController, PopUpActionDelegator {
@@ -83,7 +83,7 @@ class LoginVC: UIViewController, PopUpActionDelegator {
             popUpVC.setData(
                 title: Strings.LOGIN_DELETE_ACCOUNT_POPUP_TITLE,
                 content: Strings.LOGIN_DELETE_ACCOUNT_POPUP_CONTENT,
-                delegate: self
+                delegator: self
             )
         }
     }
@@ -310,8 +310,8 @@ class LoginVC: UIViewController, PopUpActionDelegator {
         }
     }
     
-    // Delete Account Action
-    func doAction() {
+    // Delete account action
+    func doAction(hasConfirm: Bool = false) {
         var isUserDeleted: Bool = false
         
         if self.loggedUser is Patient { isUserDeleted = PatientDatabaseHelper().deletePatient(patient: self.loggedUser as! Patient) }

@@ -17,6 +17,7 @@ class PopUpVC: UIViewController {
     private var hideActionButtons: Bool = false
     private var titleString: String! // must be set by the calling view
     private var contentString: String! // must be set by the calling view
+    private var mustConfirm: Bool = false
     private var delegator: PopUpActionDelegator? = nil
     
     override func viewDidLoad() {
@@ -29,27 +30,36 @@ class PopUpVC: UIViewController {
     }
     
     // Set view data
-    func setData(title: String, content: String, hideButtons: Bool = false, delegate: PopUpActionDelegator? = nil) {
+    func setData(title: String, content: String, hideButtons: Bool = false, delegator: PopUpActionDelegator? = nil, mustConfirm: Bool? = false) {
         self.hideActionButtons = hideButtons
         self.titleString = title
         self.contentString = content
-        self.delegator = delegate
+        self.mustConfirm = mustConfirm!
+        self.delegator = delegator
+    }
+    
+    // Discard
+    private func discard() {
+        dismiss(animated: true, completion: nil)
+        
+        if self.mustConfirm { self.delegator?.doAction(hasConfirm: false) }
     }
     
     // Action triggered when the background is clicked
     @IBAction func dismissPopUp(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
+        self.discard()
     }
     
     // Action triggered when discard button is clicked
     @IBAction func discard(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        self.discard()
     }
     
     // Action triggered when confirm button is clicked
     @IBAction func confirm(_ sender: Any) {
-        self.delegator?.doAction()
         dismiss(animated: true, completion: nil)
+        if self.mustConfirm { self.delegator?.doAction(hasConfirm: true) }
+        else { self.delegator?.doAction(hasConfirm: true) }
     }
     
     // Hide actions buttons

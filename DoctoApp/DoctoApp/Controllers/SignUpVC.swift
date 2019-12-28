@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignUpVC: UIViewController {
+class SignUpVC: UIViewController, PopUpActionDelegator {
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var caption: UILabel!
@@ -40,14 +40,18 @@ class SignUpVC: UIViewController {
     private var patientDbHelper: PatientDatabaseHelper = PatientDatabaseHelper()
     private var patient: Patient?
     private var loggedUser: Resident? = nil // can be retrieved from the user defaults
+    private var isRGPDConditionsAccepted: Bool = false // must be set by the calling view
     
     private var picturePicker: UIImagePickerController!
     
+    private static let popupSegueIdentifier: String = "popup_segue"
+    private static let loginSegueIdentifier: String = "login_segue"
+
     private static let photoIcon: String = "ic_take_picture"
     private static let galleryIcon: String = "ic_add_image"
     
-    private static let regexBirthdate = "\\d{4}-(01|02|03|04|05|06|07|08|09|10|11|12)-\\d{2}"
-    private static let regexInsuranceNumber = "^[0-9]*$"
+    private static let regexBirthdate: String = "\\d{4}-(01|02|03|04|05|06|07|08|09|10|11|12)-\\d{2}"
+    private static let regexInsuranceNumber: String = "^[0-9]*$"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,11 +61,24 @@ class SignUpVC: UIViewController {
     // Initialize view components and properties
     private func initialize() {
         self.tryGetLoggedUser()
-        
+                
         self.picturePicker = UIImagePickerController()
         self.picturePicker.delegate = self
         
         self.setContent()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == SignUpVC.popupSegueIdentifier
+            && segue.destination is PopUpVC {
+            let popUpVC = segue.destination as! PopUpVC
+            popUpVC.setData(
+                title: Strings.SIGN_UP_RGPD_TITLE,
+                content: Strings.SIGN_UP_RGPD_CONTENT,
+                delegator: self,
+                mustConfirm: true
+            )
+        }
     }
     
     // Try to get a logged user id from the user defaults
@@ -84,13 +101,15 @@ class SignUpVC: UIViewController {
         self.patientProfilePicture.layer.masksToBounds = true
         self.patientProfilePicture.layer.cornerRadius = patientProfilePicture.frame.width / 2
         
-        if self.loggedUser != nil {
+        if self.loggedUser is Patient {
             self.setSignupContextForPatient()
             
             return
         }
         
         self.setSignupContext()
+        
+        if !self.isRGPDConditionsAccepted { performSegue(withIdentifier: SignUpVC.popupSegueIdentifier, sender: nil) }
     }
     
     // Setup actions buttons
@@ -332,6 +351,21 @@ class SignUpVC: UIViewController {
         self.picturePicker.sourceType = .camera
         present(self.picturePicker, animated: true, completion: nil)
     }
+    
+    // Sign-up action
+    func doAction(hasConfirm: Bool = false) {
+        self.isRGPDConditionsAccepted = hasConfirm
+        
+        if !self.isRGPDConditionsAccepted {
+            for controller in self.navigationController!.viewControllers as Array {
+                if controller.isKind(of: LoginVC.self) {
+                    self.navigationController!.popToViewController(controller, animated: true)
+                    break
+                }
+            }
+        }
+    }
+
 }
 
 extension SignUpVC: UINavigationControllerDelegate, UIImagePickerControllerDelegate {

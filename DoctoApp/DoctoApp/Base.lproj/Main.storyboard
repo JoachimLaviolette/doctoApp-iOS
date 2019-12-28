@@ -1246,7 +1246,7 @@
                                                             <color key="titleColor" name="signup_login_link_color"/>
                                                         </state>
                                                         <connections>
-                                                            <segue destination="7wN-8F-i2Q" kind="show" id="dwy-YR-etg"/>
+                                                            <segue destination="7wN-8F-i2Q" kind="show" identifier="login_segue" id="dwy-YR-etg"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -1365,6 +1365,7 @@
                         <outlet property="signUpProSection" destination="33D-CU-4Wm" id="9UF-gH-96c"/>
                         <outlet property="signupBtn" destination="ehJ-R5-BQL" id="l9s-Sv-Ysl"/>
                         <outlet property="takePictureBtn" destination="iPE-2q-c1c" id="OzM-Rc-NEY"/>
+                        <segue destination="gnE-pi-1Bf" kind="presentation" identifier="popup_segue" id="oK6-oM-e1A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ro6-1a-E15" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2397,7 +2398,7 @@
                                                             <color key="titleColor" name="signup_login_link_color"/>
                                                         </state>
                                                         <connections>
-                                                            <segue destination="7wN-8F-i2Q" kind="show" id="XCf-uN-Mbh"/>
+                                                            <segue destination="7wN-8F-i2Q" kind="show" identifier="login_segue" id="XCf-uN-Mbh"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -2789,6 +2790,7 @@
                         <outlet property="signupBtn" destination="vsF-MD-LFv" id="vGi-rD-qKr"/>
                         <outlet property="takeHeaderBtn" destination="HUw-oP-LF4" id="d6H-x7-25V"/>
                         <outlet property="takePictureBtn" destination="dJm-kE-85N" id="adM-1E-ObR"/>
+                        <segue destination="gnE-pi-1Bf" kind="presentation" identifier="popup_segue" id="H4B-OP-yWZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qAm-zP-PVx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3402,11 +3404,11 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="qWN-j7-PVN"/>
-        <segue reference="XWw-dY-CRF"/>
-        <segue reference="73u-aW-kbK"/>
-        <segue reference="bAD-6l-55o"/>
-        <segue reference="vYl-Oy-v9f"/>
-        <segue reference="zqi-7j-ent"/>
+        <segue reference="kN0-Ap-c7W"/>
+        <segue reference="RId-5V-KQL"/>
+        <segue reference="FUG-5J-oNA"/>
+        <segue reference="oK6-oM-e1A"/>
+        <segue reference="dwy-YR-etg"/>
         <segue reference="UeG-4a-PBU"/>
     </inferredMetricsTieBreakers>
 </document>
