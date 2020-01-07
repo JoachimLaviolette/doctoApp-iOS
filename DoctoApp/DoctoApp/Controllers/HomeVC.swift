@@ -59,11 +59,11 @@ class HomeVC: UIViewController {
     }
     
     private func createModels() {
-        let inputPwd = "test" // test
-        let pwdSalt = "7e240de74fb1ed08fa08d38063f6a6a91462a815" // aaa
-        let pwd = inputPwd + pwdSalt //TO DO: hash it with SHA1
+        let inputPwd = "test"
+        let pwdSalt = EncryptionService.SALT()
+        let pwd = EncryptionService.SHA1(string: inputPwd + pwdSalt)
         
-        let d1 = Doctor(id: -1, lastname: "LAVIOLETTE", firstname: "Joachim", email: "joachim.laviolette@gmail.com", pwd: pwd, pwdSalt: pwdSalt, lastLogin: DateTimeService.GetCurrentDateTime(), picture: "pp1", address: Address(id: -1, street1: "8 rue de la plaine", street2: "Bat A26", city: "Paris", zip: "75008", country: "France"), speciality: "Pediatrician", description: "Specialized in children auscultation", contactNumber: "0660170694", underAgreement: true, healthInsuranceCard: true, thirdPartyPayment: true, header: "wallp1")
+        let d1 = Doctor(id: -1, lastname: "GRAFFE", firstname: "Robert", email: "robert.graffe@gmail.com", pwd: pwd, pwdSalt: pwdSalt, lastLogin: DateTimeService.GetCurrentDateTime(), picture: "pp1", address: Address(id: -1, street1: "8 rue de la plaine", street2: "Bat A26", city: "Paris", zip: "75008", country: "France"), speciality: "Pediatrician", description: "Specialized in children auscultation", contactNumber: "0789009876", underAgreement: true, healthInsuranceCard: true, thirdPartyPayment: true, header: "wallp1")
         
         let d2 = Doctor(id: -1, lastname: "LAPLACE", firstname: "Damien", email: "damien.laplace@gmail.com", pwd: pwd, pwdSalt: pwdSalt, lastLogin: DateTimeService.GetCurrentDateTime(), picture: "pp2", address: Address(id: -1, street1: "15 rue du Fer", street2: "", city: "Toulouse", zip: "31000", country: "France"), speciality: "Surgeon", description: "Heart surgery", contactNumber: "+33785659963", underAgreement: false, healthInsuranceCard: false, thirdPartyPayment: false, header: "wallp2")
         
@@ -206,9 +206,9 @@ class HomeVC: UIViewController {
         if !DoctorDatabaseHelper().createDoctor(doctor: d2) { return }
         if !DoctorDatabaseHelper().createDoctor(doctor: d3) { return }
         
-        let p1: Patient = Patient(id: -1, lastname: "FRANCO", firstname: "James", email: "james.franco@gmail.com", pwd: "TestTest", pwdSalt: "Test", lastLogin: "2019-12-16", picture: "pp4", address: Address(id: -1, street1: "3 place Henry IV", street2: "", city: "Paris", zip: "75016", country: "France"), birthdate: "1996-05-23", insuranceNumber: "02153562365602")
+        let p1: Patient = Patient(id: -1, lastname: "FRANCO", firstname: "James", email: "james.franco@gmail.com", pwd: pwd, pwdSalt: pwdSalt, lastLogin: "2019-12-16", picture: "pp4", address: Address(id: -1, street1: "3 place Henry IV", street2: "", city: "Paris", zip: "75016", country: "France"), birthdate: "1996-05-23", insuranceNumber: "02153562365602")
         
-        let p2: Patient = Patient(id: -1, lastname: "QUILLERY", firstname: "Marion", email: "marion.quillery@gmail.com", pwd: "TestTest", pwdSalt: "Test", lastLogin: DateTimeService.GetCurrentDateTime(), picture: "pp5", address: Address(id: -1, street1: "10 rue des Rosières", street2: "", city: "Troyes", zip: "10000", country: "France"), birthdate: "1986-08-12", insuranceNumber: "0263563522125")
+        let p2: Patient = Patient(id: -1, lastname: "QUILLERY", firstname: "Marion", email: "marion.quillery@gmail.com", pwd: pwd, pwdSalt: pwdSalt, lastLogin: DateTimeService.GetCurrentDateTime(), picture: "pp5", address: Address(id: -1, street1: "10 rue des Rosières", street2: "", city: "Troyes", zip: "10000", country: "France"), birthdate: "1986-08-12", insuranceNumber: "0263563522125")
         
         if !PatientDatabaseHelper().createPatient(patient: p1) { return }
         if !PatientDatabaseHelper().createPatient(patient: p2) { return }

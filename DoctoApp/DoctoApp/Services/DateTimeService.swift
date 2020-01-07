@@ -30,6 +30,14 @@ class DateTimeService {
 
         return formatter.string(from: Date())
     }
+    
+    // Return the current full date
+    static func GetCurrentFullDate() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = FORMAT_EEEE_MM_DD_YYYY
+
+        return formatter.string(from: Date())
+    }
 
     // Return the current time
     static func GetCurrentTime() -> String {
@@ -37,6 +45,21 @@ class DateTimeService {
         formatter.dateFormat = FORMAT_HH_MM
 
         return formatter.string(from: Date())
+    }
+    
+    // Compare the given time and return if it is lower  than the current one
+    static func IsTimeLowerThanCurrentFromDate(time: Date) -> Bool {
+        return time < GetCurrentTime()
+    }
+    
+    // Compare the given time and return if it is lower  than the current one
+    static func IsTimeLowerThanCurrentFromString(time: String) -> Bool {
+        let formatter = DateFormatter()
+        formatter.dateFormat = FORMAT_HH_MM
+
+        let time: Date = formatter.date(from: time)!
+        
+        return IsTimeLowerThanCurrentFromDate(time: time)
     }
     
     // Return the current date as a date
@@ -86,15 +109,7 @@ class DateTimeService {
     }
     
     // Get the provided date in the provided format
-    static func GetDateTimeInFormat(date: Date, format: String = FORMAT_YYYY_MM_DD) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = format
-        
-        return formatter.string(from: date)
-    }
-    
-    // Get the provided date in the provided format
-    static func GetDateTimeInFormat(date: String, fromFormat: String = FORMAT_EEEE_MM_DD_YYYY, toFormat: String = FORMAT_YYYY_MM_DD) -> String {
+    static func GetDateTimeInFormatFromStringAsString(date: String, fromFormat: String = FORMAT_EEEE_MM_DD_YYYY, toFormat: String = FORMAT_YYYY_MM_DD) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = fromFormat
         var date: Date = formatter.date(from: date)!
@@ -107,7 +122,7 @@ class DateTimeService {
         return formatter.string(from: date)
     }
     
-    static func GetDateTimeInFormat(date: String, format: String = FORMAT_YYYY_MM_DD) -> String {
+    static func GetDateTimeInFormatFromStringAsString(date: String, format: String = FORMAT_YYYY_MM_DD) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = format
         var date: Date = formatter.date(from: date)!
@@ -119,7 +134,15 @@ class DateTimeService {
     }
     
     // Get the provided date in the provided format
-    static func GetDateTimeInFormat(date: String, format: String = FORMAT_YYYY_MM_DD) -> Date {
+    static func GetDateTimeInFormatFromDateAsString(date: Date, format: String = FORMAT_YYYY_MM_DD) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        
+        return formatter.string(from: date)
+    }
+    
+    // Get the provided date in the provided format
+    static func GetDateTimeInFormatFromStringAsDate(date: String, format: String = FORMAT_YYYY_MM_DD) -> Date {
         let formatter = DateFormatter()
         formatter.dateFormat = format
         
@@ -127,7 +150,7 @@ class DateTimeService {
     }
     
     // Get the provided date in the provided format
-    static func GetDateTimeInFormat(date: Date, format: String = FORMAT_YYYY_MM_DD) -> Date {
+    static func GetDateTimeInFormatFromDateAsDate(date: Date, format: String = FORMAT_YYYY_MM_DD) -> Date {
         let formatter = DateFormatter()
         formatter.dateFormat = format
         let date = formatter.string(from: date)

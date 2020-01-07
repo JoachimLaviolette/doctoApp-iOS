@@ -207,6 +207,10 @@ class Doctor: Resident {
     func setExperiences(experiences: [Experience]?) { self.experiences = experiences }
 
     func getHeader() -> UIImage? {
+        if self.header != nil {
+            if !self.header!.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty { return UIImage(named: self.header!) }
+        }
+        
         return ImageService().retrieve(
             key: Strings.LOGGED_USER_DOCTOR_HEADER + "\(self.getId())",
             storageType: StorageType.UserDefaults
@@ -441,16 +445,39 @@ class Doctor: Resident {
                 for a: Availability in availabilitiesPerDayRef[day]! {
                     for x in 0...(availabilitiesPerDay.count-1) {
                         if availabilitiesPerDay[x]![fullDate] != nil {
-                            availabilitiesPerDay[x]![fullDate]!.append(
-                                Availability(
-                                    doctor: self,
-                                    date: fullDate,
-                                    time: a.getTime()
+                            if fullDate == DateTimeService.GetCurrentFullDate() {
+                                if !DateTimeService.IsTimeLowerThanCurrentFromString(time: a.getTime()) { availabilitiesPerDay[x]![fullDate]!.append(
+                                        Availability(
+                                            doctor: self,
+                                            date: fullDate,
+                                            time: a.getTime()
+                                        )
+                                    )
+                                }
+                            } else {
+                                availabilitiesPerDay[x]![fullDate]!.append(
+                                    Availability(
+                                        doctor: self,
+                                        date: fullDate,
+                                        time: a.getTime()
+                                    )
                                 )
-                            )
+                            }
                         }
                     }
                 }
+            }
+            
+            if availabilitiesPerDay[x]![fullDate] != nil {
+                if availabilitiesPerDay[x]![fullDate]!.isEmpty {
+                    availabilitiesPerDay[x]!.removeValue(forKey: fullDate)
+                }
+            }
+        }
+        
+        for x in 0...(availabilitiesPerDay.count - 1) {
+            if availabilitiesPerDay[x]!.isEmpty {
+                availabilitiesPerDay.removeValue(forKey: x)
             }
         }
 

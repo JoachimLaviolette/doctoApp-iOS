@@ -44,9 +44,9 @@ class BookingDatabaseHelper: DoctoAppDatabaseHelper {
             BookingDatabaseHelper.doctorId <- Int64(booking.GetDoctorId()),
             BookingDatabaseHelper.reasonId <- Int64(booking.GetReasonId()),
             BookingDatabaseHelper.fullDate <- booking.getFullDate(),
-            BookingDatabaseHelper.date <- DateTimeService.GetDateTimeInFormat(date: booking.getDate(), format: DateTimeService.FORMAT_YYYY_MM_DD),
-            BookingDatabaseHelper.time <- DateTimeService.GetDateTimeInFormat(date: booking.getTime(), format: DateTimeService.FORMAT_HH_MM),
-            BookingDatabaseHelper.bookingDate <- DateTimeService.GetDateTimeInFormat(date: booking.getBookingDate(), format: DateTimeService.FORMAT_YYYY_MM_DD_HH_MM_SS)
+            BookingDatabaseHelper.date <- DateTimeService.GetDateTimeInFormatFromStringAsDate(date: booking.getDate(), format: DateTimeService.FORMAT_YYYY_MM_DD),
+            BookingDatabaseHelper.time <- DateTimeService.GetDateTimeInFormatFromStringAsDate(date: booking.getTime(), format: DateTimeService.FORMAT_HH_MM),
+            BookingDatabaseHelper.bookingDate <- DateTimeService.GetDateTimeInFormatFromStringAsDate(date: booking.getBookingDate(), format: DateTimeService.FORMAT_YYYY_MM_DD_HH_MM_SS)
         )
         
         do {
@@ -73,8 +73,8 @@ class BookingDatabaseHelper: DoctoAppDatabaseHelper {
         
         let filter = BookingDatabaseHelper.table.filter(BookingDatabaseHelper.id == Int64(booking.getId()))
         let query = filter.update(
-            BookingDatabaseHelper.time <- DateTimeService.GetDateTimeInFormat(date: booking.getTime(), format: DateTimeService.FORMAT_HH_MM),
-            BookingDatabaseHelper.bookingDate <- DateTimeService.GetDateTimeInFormat(date: booking.getBookingDate(), format: DateTimeService.FORMAT_YYYY_MM_DD_HH_MM_SS)
+            BookingDatabaseHelper.time <- DateTimeService.GetDateTimeInFormatFromStringAsDate(date: booking.getTime(), format: DateTimeService.FORMAT_HH_MM),
+            BookingDatabaseHelper.bookingDate <- DateTimeService.GetDateTimeInFormatFromStringAsDate(date: booking.getBookingDate(), format: DateTimeService.FORMAT_YYYY_MM_DD_HH_MM_SS)
         )
         
         do {
@@ -138,9 +138,9 @@ class BookingDatabaseHelper: DoctoAppDatabaseHelper {
                     doctor: doctor,
                     reason: reason,
                     fullDate: try booking.get(BookingDatabaseHelper.fullDate),
-                    date: try DateTimeService.GetDateTimeInFormat(date: booking.get(BookingDatabaseHelper.date), format: DateTimeService.FORMAT_YYYY_MM_DD),
-                    time: try DateTimeService.GetDateTimeInFormat(date: booking.get(BookingDatabaseHelper.time), format: DateTimeService.FORMAT_HH_MM),
-                    bookingDate: try DateTimeService.GetDateTimeInFormat(date: booking.get(BookingDatabaseHelper.bookingDate), format: DateTimeService.FORMAT_YYYY_MM_DD_HH_MM_SS)
+                    date: try DateTimeService.GetDateTimeInFormatFromDateAsString(date: booking.get(BookingDatabaseHelper.date), format: DateTimeService.FORMAT_YYYY_MM_DD),
+                    time: try DateTimeService.GetDateTimeInFormatFromDateAsString(date: booking.get(BookingDatabaseHelper.time), format: DateTimeService.FORMAT_HH_MM),
+                    bookingDate: try DateTimeService.GetDateTimeInFormatFromDateAsString(date: booking.get(BookingDatabaseHelper.bookingDate), format: DateTimeService.FORMAT_YYYY_MM_DD_HH_MM_SS)
                 )
             }
         } catch {
@@ -175,9 +175,9 @@ class BookingDatabaseHelper: DoctoAppDatabaseHelper {
                         doctor: doctor,
                         reason: reason,
                         fullDate: try booking.get(BookingDatabaseHelper.fullDate),
-                        date: try DateTimeService.GetDateTimeInFormat(date: booking.get(BookingDatabaseHelper.date), format: DateTimeService.FORMAT_YYYY_MM_DD),
-                        time: try DateTimeService.GetDateTimeInFormat(date: booking.get(BookingDatabaseHelper.time), format: DateTimeService.FORMAT_HH_MM),
-                        bookingDate: try DateTimeService.GetDateTimeInFormat(date: booking.get(BookingDatabaseHelper.bookingDate), format: DateTimeService.FORMAT_YYYY_MM_DD_HH_MM_SS)
+                        date: try DateTimeService.GetDateTimeInFormatFromDateAsString(date: booking.get(BookingDatabaseHelper.date), format: DateTimeService.FORMAT_YYYY_MM_DD),
+                        time: try DateTimeService.GetDateTimeInFormatFromDateAsString(date: booking.get(BookingDatabaseHelper.time), format: DateTimeService.FORMAT_HH_MM),
+                        bookingDate: try DateTimeService.GetDateTimeInFormatFromDateAsString(date: booking.get(BookingDatabaseHelper.bookingDate), format: DateTimeService.FORMAT_YYYY_MM_DD_HH_MM_SS)
                     )
                 )
             }
@@ -210,8 +210,8 @@ class BookingDatabaseHelper: DoctoAppDatabaseHelper {
                 let reason: Reason = ReasonDatabaseHelper().getReason(reasonId: Int(try booking.get(BookingDatabaseHelper.reasonId)))!
                 reason.setDoctor(doctor: doctor)
                 
-                let bookingDate: Date = try DateTimeService.GetDateTimeInFormat(date: booking.get(BookingDatabaseHelper.date), format: DateTimeService.FORMAT_YYYY_MM_DD)
-                let bookingTime: Date = try DateTimeService.GetDateTimeInFormat(date: booking.get(BookingDatabaseHelper.date), format: DateTimeService.FORMAT_HH_MM)
+                let bookingDate: Date = try DateTimeService.GetDateTimeInFormatFromDateAsDate(date: booking.get(BookingDatabaseHelper.date), format: DateTimeService.FORMAT_YYYY_MM_DD)
+                let bookingTime: Date = try DateTimeService.GetDateTimeInFormatFromDateAsDate(date: booking.get(BookingDatabaseHelper.date), format: DateTimeService.FORMAT_HH_MM)
                 
                 if bookingDate > currentDate
                     || (bookingDate == currentDate && bookingTime >= currentTime) {
@@ -222,9 +222,9 @@ class BookingDatabaseHelper: DoctoAppDatabaseHelper {
                             doctor: doctor,
                             reason: reason,
                             fullDate: try booking.get(BookingDatabaseHelper.fullDate),
-                            date: try DateTimeService.GetDateTimeInFormat(date: booking.get(BookingDatabaseHelper.date), format: DateTimeService.FORMAT_YYYY_MM_DD),
-                            time: try DateTimeService.GetDateTimeInFormat(date: booking.get(BookingDatabaseHelper.time), format: DateTimeService.FORMAT_HH_MM),
-                            bookingDate: try DateTimeService.GetDateTimeInFormat(date: booking.get(BookingDatabaseHelper.bookingDate), format: DateTimeService.FORMAT_YYYY_MM_DD_HH_MM_SS)
+                            date: try DateTimeService.GetDateTimeInFormatFromDateAsString(date: booking.get(BookingDatabaseHelper.date), format: DateTimeService.FORMAT_YYYY_MM_DD),
+                            time: try DateTimeService.GetDateTimeInFormatFromDateAsString(date: booking.get(BookingDatabaseHelper.time), format: DateTimeService.FORMAT_HH_MM),
+                            bookingDate: try DateTimeService.GetDateTimeInFormatFromDateAsString(date: booking.get(BookingDatabaseHelper.bookingDate), format: DateTimeService.FORMAT_YYYY_MM_DD_HH_MM_SS)
                         )
                     )
                 }

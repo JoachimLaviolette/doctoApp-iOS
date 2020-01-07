@@ -65,9 +65,11 @@ class AvailabilitiesForDayItemCell: UITableViewCell {
 
 extension AvailabilitiesForDayItemCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let fullDateKey: String = (availabilitiesForDay.first?.key)!
+        let fullDateKey: String? = (availabilitiesForDay.first?.key)
         
-        return self.availabilitiesForDay[fullDateKey]!.count
+        if fullDateKey != nil { return self.availabilitiesForDay[fullDateKey!]!.count }
+        
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -93,7 +95,7 @@ extension AvailabilitiesForDayItemCell: UICollectionViewDelegate, UICollectionVi
                 doctor: self.doctor,
                 reason: self.reason,
                 fullDate: availability.getDate(),
-                date: DateTimeService.GetDateTimeInFormat(date: availability.getDate(), fromFormat: DateTimeService.FORMAT_EEEE_MM_DD_YYYY, toFormat: DateTimeService.FORMAT_YYYY_MM_DD),
+                date: DateTimeService.GetDateTimeInFormatFromStringAsString(date: availability.getDate(), fromFormat: DateTimeService.FORMAT_EEEE_MM_DD_YYYY, toFormat: DateTimeService.FORMAT_YYYY_MM_DD),
                 time: availability.getTime(),
                 bookingDate: DateTimeService.GetCurrentDateTime()
             )

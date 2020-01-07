@@ -91,6 +91,10 @@ class Resident {
     func setBookings(bookings: [Booking]?) { self.bookings = bookings }
 
     func getPicture() -> UIImage? {
+        if self.picture != nil {
+            if !self.picture!.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty { return UIImage(named: self.picture!) }
+        }
+        
         return ImageService().retrieve(
             key: (self is Patient ? Strings.LOGGED_USER_PATIENT_PICTURE : Strings.LOGGED_USER_DOCTOR_PICTURE) + "\(self.id)",
             storageType: StorageType.UserDefaults

@@ -1,3 +1,6 @@
 [submodule "DoctoApp/DoctoApp/Frameworks/CryptoSwift"]
 	path = DoctoApp/DoctoApp/Frameworks/CryptoSwift
 	url = https://github.com/krzyzanowskim/CryptoSwift.git
+[submodule "DoctoApp/DoctoApp/CryptoSwift"]
+	path = DoctoApp/DoctoApp/CryptoSwift
+	url = https://github.com/krzyzanowskim/CryptoSwift.git
