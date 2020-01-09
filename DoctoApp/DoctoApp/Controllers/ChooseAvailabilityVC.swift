@@ -117,7 +117,10 @@ extension ChooseAvailabilityVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if !self.isBookingUpdate! {
-            let availabilitiesForDay: [String: [Availability]] = self.availabilitiesPerDay[indexPath.row + 1]!
+            let availabilitiesForDay: [String: [Availability]]!
+            if self.availabilitiesPerDay[0] != nil { availabilitiesForDay = self.availabilitiesPerDay[indexPath.row]! }
+            else { availabilitiesForDay = self.availabilitiesPerDay[indexPath.row + 1]! }
+            
             let availabilitiesForDayItemCell = Bundle.main.loadNibNamed(ChooseAvailabilityVC.availabilitiesForDayItemCellXibFile, owner: self, options: nil)?.first as! AvailabilitiesForDayItemCell
             availabilitiesForDayItemCell.setData(
                 availabilitiesForDay: availabilitiesForDay,
